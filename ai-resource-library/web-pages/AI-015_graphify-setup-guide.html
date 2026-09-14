@@ -1,0 +1,228 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Graphify Setup Guide</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✦%3C/text%3E%3C/svg%3E">
+ <style>
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+ html { scroll-behavior: smooth; }
+ body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+ .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+ .header.scrolled { border-color: var(--accent-border); }
+ .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+ .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+ .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+ .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+ .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+ a.logo-subtitle:hover { color: var(--accent); }
+ .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+ .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+ .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+ @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+ .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+ .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+ .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+ .badge-cat { background: var(--accent); color: #fff; }
+ .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+ .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+ .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+ .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+ .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+ .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+ .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+ .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+ .toc-box ol { list-style: none; counter-reset: toc; }
+ .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+ .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+ .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+ .toc-box a:hover { color: var(--accent); }
+ .guide-content { padding: 2rem 0 5rem; }
+ .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+ .guide-content h2:first-child { border-top: none; margin-top: 0; }
+ .guide-content h3 { font-size: 1.125rem; font-weight: 600; margin-top: 1.75rem; margin-bottom: 0.75rem; }
+ .guide-content p { margin-bottom: 1.125rem; }
+ .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+ .guide-content li { margin-bottom: 0.375rem; }
+ .guide-content strong { font-weight: 600; }
+ .callout { background: var(--accent-light); border-left: 3px solid var(--accent); padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; font-size: 0.9375rem; margin: 1.25rem 0; }
+ .callout p { margin: 0; }
+ .callout strong { color: var(--accent); }
+ .code-block { background: #000; color: #e2e8f0; font-family: 'Courier New', Courier, monospace; font-size: 0.875rem; line-height: 1.6; padding: 1.25rem 1.5rem; border-radius: 8px; overflow-x: auto; margin: 1.25rem 0; white-space: pre; }
+
+ .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+ @media (max-width: 640px) { .compare-grid { grid-template-columns: 1fr; } }
+ .compare-card { border-radius: 10px; padding: 1.25rem; }
+ .compare-card.before { background: #FFF7F7; border: 1px solid #FECACA; }
+ .compare-card.after { background: var(--accent-light); border: 1px solid var(--accent-border); }
+ .compare-card h4 { font-size: 0.875rem; font-weight: 700; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+ .compare-card.before h4 { color: #DC2626; }
+ .compare-card.after h4 { color: var(--accent); }
+ .compare-card ul { list-style: none; padding: 0; margin: 0; }
+ .compare-card ul li { font-size: 0.875rem; padding: 0.3rem 0; display: flex; gap: 0.5rem; align-items: flex-start; }
+ .compare-card.before ul li::before { content: "✗"; color: #DC2626; font-weight: 700; flex-shrink: 0; }
+ .compare-card.after ul li::before { content: "✓"; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+ .token-result { text-align: center; padding: 1rem; background: var(--accent); color: #fff; border-radius: 0 0 10px 10px; font-weight: 700; font-size: 1.1rem; margin-top: -1rem; }
+
+ @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+     .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+    @page { margin: 1.5cm; } @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .chapter-card, .compare-card, .checklist-card, blockquote { break-inside: avoid; page-break-inside: avoid; } .chapter-overview, .compare-grid, .checklist-grid, .email-flow { break-inside: avoid; page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+
+<header class="header" id="site-header">
+ <div class="header-inner">
+ <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+ <div class="logo-divider"></div>
+ <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">← All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+ <span class="badge badge-cat">Claude Code</span>
+ <span class="badge badge-diff">Intermediate</span>
+ </div>
+ <h1>Graphify Setup Guide</h1>
+ <div class="hero-author">
+ <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+ <div>
+ <span class="author-name">Max Johnson</span>
+ <span class="author-meta">@maxjohnscn</span>
+ </div>
+ </div>
+</div>
+
+<div class="page-wrap">
+ <article class="guide-content">
+    <button class="download-btn" onclick="downloadPDF()">&#8595; Download PDF</button>
+
+ <h2 id="chapter-01-what-graphify-actually-does">Chapter 01, What Graphify Actually Does</h2>
+ <p>Every time you send a prompt in Claude Code, Claude reads files to understand your project. With a large codebase, that means re-reading the same files over and over. Every prompt. Every session. That is where the tokens go.</p>
+ <p>Graphify solves this by mapping your entire codebase once, upfront, into a structured knowledge graph. Instead of reading raw files, Claude reads the map. The map tells it where everything is, what connects to what, and what it needs to look at. So it does not re-read things it already knows.</p>
+ <p>This is Andrej Karpathy's system. He coined the term vibe coding and is one of the most influential AI engineers working today. The 70x token reduction figure comes from real-world usage of this approach.</p>
+
+ <!-- VISUAL BLOCK 1 -->
+ <div class="compare-grid">
+ <div class="compare-card before">
+ <h4>Without Graphify</h4>
+ <ul>
+ <li>Claude reads every file</li>
+ <li>Same files re-read every session</li>
+ <li>Token usage = file sizes</li>
+ </ul>
+ </div>
+ <div class="compare-card after">
+ <h4>With Graphify</h4>
+ <ul>
+ <li>Claude queries the map</li>
+ <li>Only reads what's needed</li>
+ <li>Token usage = task complexity</li>
+ </ul>
+ </div>
+ </div>
+ <div style="text-align:center; margin: -0.5rem 0 1.5rem; padding: 0.75rem; background: var(--accent); color: #fff; border-radius: 8px; font-weight: 700; font-size: 1.05rem;">70x token reduction</div>
+
+ <p><strong>How it works in three steps:</strong></p>
+ <ol>
+ <li><strong>Graphify maps your project.</strong> You run Graphify inside your Claude folder. It reads every file and creates a knowledge graph, a structured index of everything in the codebase, including how files relate to each other.</li>
+ <li><strong>Obsidian visualises the graph.</strong> You open the same folder in Obsidian and turn on graph view. You get a visual map of your entire project, every file, every connection. Optional but useful for understanding what was built.</li>
+ <li><strong>CLAUDE.md tells Claude to read the map.</strong> You add one line to CLAUDE.md. From that point on, every time you open a Claude Code session, Claude reads the map first. It already knows where things are before you type your first prompt.</li>
+ </ol>
+
+ <h2 id="chapter-02-step-one-install-graphify">Chapter 02, Step One: Install Graphify</h2>
+ <p>Graphify is open source, maintained by safishamsi on GitHub. It supports Claude Code, Codex, OpenCode, Cursor, Gemini CLI, GitHub Copilot CLI, VS Code Copilot Chat, Aider, OpenClaw, Factory Droid, Trae, and Google Antigravity. Over 28,000 stars. Requires Python 3.10 or higher.</p>
+ <p><strong>1 Go to the GitHub repo.</strong> Open your browser and go to: <code>https://github.com/safishamsi/graphify</code></p>
+ <p><strong>2 Run the install command.</strong> Open your Claude Code terminal and run:</p>
+ <div class="code-block">pip install graphifyy && graphify install</div>
+ <div class="callout"><p><strong>TIP:</strong> Make sure you have Python 3.10+ installed before running this. Type <code>python3 --version</code> in your terminal to check.</p></div>
+ <p><strong>3 Run Graphify in your project folder.</strong> Navigate to your main Claude project folder in the terminal, then run the Graphify skill. It will read every file in the project and build the knowledge graph.</p>
+ <div class="code-block">cd ~/your-project-folder
+graphify run</div>
+ <div class="callout"><p><strong>NOTE:</strong> This may take a few minutes on larger projects. Graphify reads and indexes every file. You only need to run this once, then re-run when your project changes significantly.</p></div>
+
+ <h2 id="chapter-03-step-two-open-in-obsidian">Chapter 03, Step Two: Open in Obsidian</h2>
+ <p>Obsidian is a free note-taking app that reads folders of markdown files. Because Graphify outputs markdown, Obsidian can read the graph it has created and display it visually. This step is optional but highly recommended, seeing the full map of your project is useful for both you and for understanding what Graphify has built.</p>
+ <p><strong>1 Download Obsidian.</strong> Go to obsidian.md and download the free desktop app. Available for Mac, Windows, and Linux: <code>https://obsidian.md</code></p>
+ <p><strong>2 Open your project folder as a vault.</strong> In Obsidian, click Open Folder as Vault and select the same folder you ran Graphify in. Obsidian will read the markdown files Graphify created.</p>
+ <div class="callout"><p><strong>TIP:</strong> Open the exact same folder you ran <code>graphify run</code> in. Obsidian needs to see the files Graphify generated.</p></div>
+ <p><strong>3 Open Graph View.</strong> In the left sidebar, click the graph icon, or press Cmd + G on Mac / Ctrl + G on Windows. Obsidian will display a visual map of your entire codebase, every file as a node, every connection as a line.</p>
+ <p>What you are looking at is a full index of everything Claude is working with. Clusters of closely connected nodes are areas of high dependency. Isolated nodes are standalone files.</p>
+ <div class="callout"><p><strong>NOTE:</strong> The graph view is for your understanding. Claude does not see this visual. What Claude reads is the underlying knowledge graph data that Graphify created.</p></div>
+
+ <h2 id="chapter-04-step-three-update-claudemd">Chapter 04, Step Three: Update CLAUDE.md</h2>
+ <p>This is the step that actually changes how Claude reads your project. On its own, Graphify creates the knowledge graph. Claude does not know to use it unless you tell it to. The CLAUDE.md file is how you tell it.</p>
+ <p>CLAUDE.md is a file in the root of your project that Claude Code reads automatically at the start of every session. You are going to add a section that tells Claude to always check the graph first.</p>
+ <p><strong>THE SNIPPET TO PASTE IN.</strong> Open or create a CLAUDE.md file in the root of your project folder. Paste this section in:</p>
+ <div class="code-block">## Context Navigation
+
+When you need to understand the codebase, docs, or any files in this project:
+
+1. ALWAYS query the knowledge graph first: '/graphify query "your question"'
+2. Only read raw files if I explicitly say "read the file" or "look at the raw file"
+3. Use 'graphify-out/wiki/index.md' as your navigation entrypoint for browsing structure</div>
+ <div class="callout"><p><strong>TIP:</strong> This is the exact snippet from Andrej Karpathy's system. Do not modify the structure, Claude needs these specific instructions to prioritise the graph over raw file reads.</p></div>
+ <p>Once this is in your CLAUDE.md, every new Claude Code session opens with these instructions loaded. Claude will query the graph first, not read raw files, unless you specifically tell it to.</p>
+ <p><strong>What each line does:</strong></p>
+ <ul>
+ <li>Line 1 tells Claude to always run a graph query before reading any file. The query returns relevant nodes and relationships, not raw file contents.</li>
+ <li>Line 2 prevents Claude from defaulting back to raw file reads. Without this, it might still read files even when the graph has what it needs.</li>
+ <li>Line 3 sets a navigation entrypoint. When Claude needs to browse the project structure rather than query for something specific, it starts from the index.</li>
+ </ul>
+
+ <h2 id="chapter-05-why-this-works">Chapter 05, Why This Works</h2>
+ <p>The token reduction comes from a difference in information density. When Claude reads a raw source file, it processes everything in that file, every line of code, every comment, every import, even if only 5% of it is relevant to your prompt. When Claude reads the knowledge graph instead, it gets a compressed, structured summary of what is in the file and how it relates to everything else. The relevant signal, without the noise. That compression is where the 70x figure comes from.</p>
+ <p><strong>Without Graphify:</strong> You send a prompt asking Claude to modify a function → Claude reads the entire source file to find the function → Claude reads imported files to understand dependencies → Claude re-reads the same files it read last session → Token usage scales with file sizes, not task complexity.</p>
+ <p><strong>With Graphify:</strong> You send the same prompt → Claude queries the graph: finds the function, its dependencies, its connections → Claude reads only what is directly relevant → No re-reading. No noise. Just the information it needs → Token usage scales with task complexity, not codebase size.</p>
+ <div class="callout"><p><strong>NOTE:</strong> The larger and more complex your project, the more significant the token reduction. On small projects the effect is noticeable. On large codebases it is transformative.</p></div>
+ <p><strong>Quick Reference:</strong></p>
+ <div class="code-block"># Install
+pip install graphifyy && graphify install
+
+# Map your project
+graphify run
+
+# Obsidian graph view
+https://obsidian.md → Open Folder as Vault → Cmd+G
+
+# CLAUDE.md snippet
+1. ALWAYS query: '/graphify query "your question"'
+2. Only read raw files if I explicitly say so
+3. Use 'graphify-out/wiki/index.md' for navigation</div>
+
+ </article>
+ <aside class="toc-sidebar">
+ <div class="toc-box">
+ <h3>Contents</h3>
+ <ol>
+ <li><a href="#chapter-01-what-graphify-actually-does">What Graphify Actually Does</a></li>
+ <li><a href="#chapter-02-step-one-install-graphify">Step One: Install Graphify</a></li>
+ <li><a href="#chapter-03-step-two-open-in-obsidian">Step Two: Open in Obsidian</a></li>
+ <li><a href="#chapter-04-step-three-update-claudemd">Step Three: Update CLAUDE.md</a></li>
+ <li><a href="#chapter-05-why-this-works">Why This Works</a></li>
+ </ol>
+ </div>
+ </aside>
+</div>
+
+
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+<script>
+function downloadPDF() {
+  window.print();
+}
+</script>
+</body>
+</html>

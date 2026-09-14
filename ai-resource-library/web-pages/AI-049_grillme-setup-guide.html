@@ -1,0 +1,399 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>The GrillMe Setup Guide</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+ <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+  .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+  .header.scrolled { border-color: var(--accent-border); }
+  .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+  .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+  .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+  .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+  .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+  a.logo-subtitle:hover { color: var(--accent); }
+  .nav-agent-link { font-size: 0.8125rem; font-weight: 700; color: var(--accent); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--accent); border-radius: 9999px; letter-spacing: 0.04em; text-transform: uppercase; transition: all 0.2s; white-space: nowrap; }
+    .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+  .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+  .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+  @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+  .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+  .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+  .badge-cat { background: var(--accent); color: #fff; }
+  .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+  .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+  .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+  .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+  .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+  .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+  .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+  .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+  .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+  .toc-box ol { list-style: none; counter-reset: toc; }
+  .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+  .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+  .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+  .toc-box a:hover { color: var(--accent); }
+  .guide-content { padding: 2rem 0 5rem; }
+  .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+  .guide-content h2:first-of-type { border-top: none; margin-top: 0; }
+  .guide-content h3 { font-size: 1.0625rem; font-weight: 700; margin-top: 1.75rem; margin-bottom: 0.625rem; }
+  .guide-content p { margin-bottom: 1.125rem; }
+  .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+  .guide-content li { margin-bottom: 0.375rem; }
+  .guide-content strong { font-weight: 600; }
+  .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+  @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+  .callout { border-left: 4px solid var(--accent-border); background: var(--accent-light); padding: 0.875rem 1.125rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0; }
+  .callout-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.35rem; }
+  .callout p { margin-bottom: 0; }
+  pre { background: #1a1a1a; color: #e8e8e8; padding: 1.25rem 1.5rem; border-radius: 8px; font-size: 0.875rem; line-height: 1.65; margin: 1.5rem 0; overflow-x: auto; white-space: pre-wrap; }
+  pre code { font-family: 'Courier New', Courier, monospace; }
+
+  /* VB1: Stat grid */
+  .stat-grid { background: linear-gradient(135deg, #fff 0%, var(--accent-light) 100%); border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.75rem 2rem; margin: 1.75rem 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  @media (max-width: 600px) { .stat-grid { grid-template-columns: 1fr; } }
+  .stat-card { text-align: center; }
+  .stat-num { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; color: var(--accent); line-height: 1.1; margin-bottom: 0.35rem; }
+  .stat-label { display: block; font-size: 0.8125rem; color: var(--muted); line-height: 1.5; }
+
+  /* VB2: Feature stack */
+  .feature-stack { background: linear-gradient(135deg, #fff 0%, var(--accent-light) 100%); border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.5rem; margin: 1.75rem 0; display: flex; flex-direction: column; gap: 0.875rem; }
+  .feature-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.125rem 1.25rem; display: flex; gap: 1rem; align-items: flex-start; }
+  .feature-num { display: inline-flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-size: 0.8125rem; font-weight: 700; background: var(--accent); color: #fff; border-radius: 9999px; min-width: 28px; height: 28px; padding: 0 0.5rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .feature-body { flex: 1; }
+  .feature-title { font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.35rem; }
+  .feature-desc { font-size: 0.8125rem; color: var(--muted); line-height: 1.6; margin: 0; }
+
+  /* VB3: Step flow */
+  .step-flow { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.5rem; margin: 1.75rem 0; display: flex; flex-direction: column; gap: 0; }
+  .step-flow-item { display: flex; gap: 1rem; align-items: flex-start; padding: 1rem 0; position: relative; }
+  .step-flow-item:not(:last-child)::after { content: ''; position: absolute; left: 17px; top: 52px; width: 2px; height: calc(100% - 28px); background: var(--accent-border); }
+  .step-circle { display: inline-flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-size: 0.875rem; font-weight: 700; background: var(--accent); color: #fff; border-radius: 50%; width: 36px; height: 36px; flex-shrink: 0; }
+  .step-flow-body { flex: 1; padding-top: 0.25rem; }
+  .step-flow-title { font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.25rem; }
+  .step-flow-desc { font-size: 0.8125rem; color: var(--muted); line-height: 1.6; margin: 0; }
+
+  /* VB4 + VB5: Two-col cards */
+  .two-col-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0.875rem; margin: 1.75rem 0; }
+  @media (max-width: 600px) { .two-col-cards { grid-template-columns: 1fr; } }
+  .two-col-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; overflow: hidden; }
+  .two-col-card-header { background: var(--accent); color: #fff; font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.625rem 1.125rem; }
+  .two-col-card ul { list-style: none; padding: 1rem 1.125rem; margin: 0; }
+  .two-col-card li { font-size: 0.8375rem; color: var(--text); padding: 0.3rem 0 0.3rem 1.25rem; position: relative; line-height: 1.55; }
+  .two-col-card li::before { content: "›"; position: absolute; left: 0; color: var(--accent); font-size: 1rem; line-height: 1.4; }
+
+  /* VB6: Skill stack */
+  .skill-stack { background: linear-gradient(135deg, #fff 0%, var(--accent-light) 100%); border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.5rem; margin: 1.75rem 0; display: flex; flex-direction: column; gap: 0.875rem; }
+  .skill-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.125rem 1.25rem; }
+  .skill-cmd { display: inline-block; font-family: 'Courier New', monospace; font-size: 0.8125rem; font-weight: 700; background: var(--accent); color: #fff; border-radius: 6px; padding: 0.2rem 0.6rem; margin-bottom: 0.5rem; }
+  .skill-desc { font-size: 0.8375rem; color: var(--muted); line-height: 1.6; margin: 0; }
+
+  /* Download button */
+  .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+  .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+
+  @page { margin: 1.5cm; }
+  @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .feature-card, .skill-card, .stat-card { break-inside: avoid; page-break-inside: avoid; } .stat-grid, .feature-stack, .step-flow, .two-col-cards, .skill-stack { break-inside: avoid; page-break-inside: avoid; } }
+ </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+  <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+  <div class="logo-divider"></div>
+  <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">&#8592; All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+  <span class="badge badge-cat">Claude Code</span>
+  <span class="badge badge-diff">Intermediate</span>
+ </div>
+ <h1>The GrillMe Setup Guide</h1>
+ <div class="hero-author">
+  <img src="assets/Headshot.jpg.JPG.jpeg" alt="Author" class="author-avatar">
+  <div>
+   <span class="author-name">Max Johnson</span>
+   <span class="author-meta">AI Agency Founder · @maxjohnscn</span>
+  </div>
+ </div>
+</div>
+
+<div class="page-wrap">
+ <article class="guide-content">
+  <button class="download-btn" onclick="window.print()">&#8595; Download PDF</button>
+
+  <p class="intro-blurb">The Claude Code skill that refuses to write a single line until it's grilled you first. Stop letting AI guess. Start making it ask.</p>
+
+  <h3>What's Inside</h3>
+  <ul>
+   <li>Why vague prompts always produce the wrong thing</li>
+   <li>What GrillMe is and how Matt Pocock built it</li>
+   <li>The exact instructions inside the skill file</li>
+   <li>How to install GrillMe in Claude Code</li>
+   <li>The exact command to run your first grilling session</li>
+   <li>When to use GrillMe and when it's overkill</li>
+   <li>The other skills in the repo worth knowing</li>
+  </ul>
+
+  <h2 id="ch-01">The Problem With Vague Prompts</h2>
+
+  <p>Most people open Claude Code, type a one-line prompt, and let the agent guess the rest. The agent always guesses confidently. And it almost always builds the wrong thing.</p>
+
+  <p>This isn't a model problem. It's a communication problem. There is a gap between what you have in your head and what you've written down. The agent can only work with what you've given it. When the brief is vague, it fills the gaps with assumptions. By the time you see the output, those assumptions are baked in everywhere.</p>
+
+  <div class="callout">
+   <div class="callout-label">The Core Issue</div>
+   <p>The most common failure mode in AI-assisted development is misalignment. You think the agent knows what you want. Then you see what it built and it didn't. This is true with human developers and it's true with AI agents.</p>
+  </div>
+
+  <div class="stat-grid">
+   <div class="stat-card">
+    <span class="stat-num">16-50</span>
+    <span class="stat-label">Questions before any code is written</span>
+   </div>
+   <div class="stat-card">
+    <span class="stat-num">~45</span>
+    <span class="stat-label">Minutes for a full grilling session</span>
+   </div>
+   <div class="stat-card">
+    <span class="stat-num">84K+</span>
+    <span class="stat-label">GitHub stars on the skills repo</span>
+   </div>
+  </div>
+
+  <p>Matt Pocock, one of the most-followed engineers on the internet and known for his TypeScript courses and YouTube channel, published his personal .claude directory on GitHub in 2026. He called it Skills for Real Engineers. Inside it, one skill does something that goes against every instinct you have about AI speed: it makes the agent stop, and interview you, before it does anything.</p>
+
+  <div class="callout">
+   <p>By the end of a grilling session, you have "a rich conversation full of context, your actual ideas, and answers to difficult questions." The code the agent writes after that session actually matches what was in your head.</p>
+  </div>
+
+  <h2 id="ch-02">How GrillMe Works</h2>
+
+  <p>GrillMe is a Claude Code skill: a short markdown file with instructions. When you invoke it with /grill-me, the agent reads it and follows it exactly. There's no API, no framework, no execution layer. The leverage is entirely in the words.</p>
+
+  <p>Here's the full instruction set, everything the skill tells Claude to do:</p>
+
+  <pre><code>Interview me relentlessly about every aspect of this plan
+until we reach a shared understanding. Walk down each
+branch of the design tree, resolving dependencies
+between decisions one-by-one.
+
+For each question, provide your recommended answer.
+Ask the questions one at a time.
+
+If a question can be answered by exploring the codebase,
+explore the codebase instead.</code></pre>
+
+  <h3>The Three Rules That Make It Work</h3>
+
+  <div class="feature-stack">
+   <div class="feature-card">
+    <div class="feature-num">01</div>
+    <div class="feature-body">
+     <div class="feature-title">One question at a time, never bundled</div>
+     <p class="feature-desc">Each question gets your full attention. No long lists. No multi-part questions. You answer, then the next one arrives. This forces real decisions, not skimmed approvals.</p>
+    </div>
+   </div>
+   <div class="feature-card">
+    <div class="feature-num">02</div>
+    <div class="feature-body">
+     <div class="feature-title">The agent gives its recommended answer first</div>
+     <p class="feature-desc">It doesn't just ask. It tells you what it thinks. You confirm, correct, or expand. This eliminates the lazy "what do you think?" dead-end and moves every question forward.</p>
+    </div>
+   </div>
+   <div class="feature-card">
+    <div class="feature-num">03</div>
+    <div class="feature-body">
+     <div class="feature-title">It reads your codebase before asking</div>
+     <p class="feature-desc">If an answer exists in your repo already, it finds it instead of asking you. Questions that a grep command can resolve don't get asked, saving turns and keeping the session focused.</p>
+    </div>
+   </div>
+  </div>
+
+  <h2 id="ch-03">Installing GrillMe in Claude Code</h2>
+
+  <p>GrillMe lives inside Matt Pocock's public mattpocock/skills repo on GitHub. You install the whole skills collection once and get GrillMe, plus every other skill, immediately.</p>
+
+  <div class="step-flow">
+   <div class="step-flow-item">
+    <div class="step-circle">1</div>
+    <div class="step-flow-body">
+     <div class="step-flow-title">Open Claude Code in your project root</div>
+     <p class="step-flow-desc">Navigate to the root of the project you want to use GrillMe on. Claude Code reads skills from a .claude/ folder at the root level.</p>
+    </div>
+   </div>
+   <div class="step-flow-item">
+    <div class="step-circle">2</div>
+    <div class="step-flow-body">
+     <div class="step-flow-title">Run the one-time setup skill</div>
+     <p class="step-flow-desc">Open Claude Code and run the setup command. This configures the repo for your issue tracker and workflow preferences.</p>
+    </div>
+   </div>
+   <div class="step-flow-item">
+    <div class="step-circle">3</div>
+    <div class="step-flow-body">
+     <div class="step-flow-title">Answer the setup questions</div>
+     <p class="step-flow-desc">It asks which issue tracker you use (GitHub, Linear, or local files) and how you label tickets. Answer honestly: this tailors the other skills in the repo.</p>
+    </div>
+   </div>
+   <div class="step-flow-item">
+    <div class="step-circle">4</div>
+    <div class="step-flow-body">
+     <div class="step-flow-title">You're ready, invoke GrillMe</div>
+     <p class="step-flow-desc">Describe what you want to build, then type the command. The agent will start asking questions immediately instead of writing code.</p>
+    </div>
+   </div>
+  </div>
+
+  <p><strong>01 Open Claude Code in your project root.</strong> Navigate to the root of the project you want to use GrillMe on. Claude Code reads skills from a .claude/ folder at the root level.</p>
+
+  <p><strong>02 Run the one-time setup skill.</strong> Open Claude Code and run the setup command. This configures the repo for your issue tracker and workflow preferences.</p>
+
+  <pre><code>/setup-matt-pocock-skills</code></pre>
+
+  <p><strong>03 Answer the setup questions.</strong> It asks which issue tracker you use (GitHub, Linear, or local files) and how you label tickets. Answer honestly: this tailors the other skills in the repo.</p>
+
+  <p><strong>04 You're ready, invoke GrillMe.</strong> Describe what you want to build, then type the command. The agent will start asking questions immediately instead of writing code.</p>
+
+  <pre><code>/grill-me</code></pre>
+
+  <div class="callout">
+   <div class="callout-label">Good to Know</div>
+   <p>The skills are just markdown files with MIT licence. You can read, copy, and customise any skill directly. GrillMe is at skills/productivity/grill-me/SKILL.md in the repo.</p>
+  </div>
+
+  <h2 id="ch-04">Running Your First Session</h2>
+
+  <p>A GrillMe session runs entirely inside Claude Code. No prep needed. Just describe your build and invoke the skill. The agent takes it from there.</p>
+
+  <div class="two-col-cards">
+   <div class="two-col-card">
+    <div class="two-col-card-header">WHAT TO BRING</div>
+    <ul>
+     <li>A rough idea of what you want to build</li>
+     <li>Your codebase open (if building on one)</li>
+     <li>15 to 45 minutes of focused time</li>
+     <li>An open mind about the final shape</li>
+    </ul>
+   </div>
+   <div class="two-col-card">
+    <div class="two-col-card-header">WHAT YOU GET OUT</div>
+    <ul>
+     <li>A locked, agreed plan with no gaps</li>
+     <li>All design decisions resolved upfront</li>
+     <li>Zero assumptions left in the brief</li>
+     <li>Code that actually matches your intent</li>
+    </ul>
+   </div>
+  </div>
+
+  <h3>The Flow: Four Stages</h3>
+
+  <p><strong>01 Describe your plan briefly.</strong> Tell Claude Code what you want to build: a feature, a component, a system. No need to be exhaustive. The grilling will extract everything else.</p>
+
+  <p><strong>02 Invoke /grill-me.</strong> Type /grill-me and send. The first question arrives in about ten seconds. Then another. Then another.</p>
+
+  <p><strong>03 Answer each question honestly.</strong> Confirm the agent's recommended answer, correct it, or expand on it. Each answer shapes the next question. Sessions run 16 to 50 questions. Matt Pocock typically runs sessions of around 45 minutes.</p>
+
+  <p><strong>04 The plan is locked. Now the agent builds.</strong> Once every branch of the decision tree is resolved, the agent has nothing left to guess. What it writes from this point matches exactly what you have in your head.</p>
+
+  <h2 id="ch-05">When to Use GrillMe (and When to Skip It)</h2>
+
+  <p>A grilling session adds intentional friction. That friction is the point, but only when the decision is worth the time. Don't run GrillMe on everything.</p>
+
+  <div class="two-col-cards">
+   <div class="two-col-card">
+    <div class="two-col-card-header">USE GRILLME WHEN</div>
+    <ul>
+     <li>Building something new with design decisions</li>
+     <li>You've described the brief more than once</li>
+     <li>The brief still feels vague to you</li>
+     <li>It's architecture-level or system-level</li>
+     <li>You'd hate to rebuild it from scratch</li>
+     <li>Decisions have dependencies on each other</li>
+    </ul>
+   </div>
+   <div class="two-col-card">
+    <div class="two-col-card-header">SKIP IT WHEN</div>
+    <ul>
+     <li>Quick factual lookups or one-liners</li>
+     <li>Editing or tweaking existing code</li>
+     <li>Takes under a minute to decide</li>
+     <li>Copy changes or minor text fixes</li>
+     <li>Single-step tasks with one right answer</li>
+    </ul>
+   </div>
+  </div>
+
+  <div class="callout">
+   <div class="callout-label">The Signal</div>
+   <p>If you've already started prompting and the output keeps coming back wrong, that's the signal. Stop, open a fresh Claude Code session, and run /grill-me before you do anything else.</p>
+  </div>
+
+  <h3>Other Skills in the Repo</h3>
+
+  <div class="skill-stack">
+   <div class="skill-card">
+    <div class="skill-cmd">/grill-with-docs</div>
+    <p class="skill-desc">Grilling session that also builds your domain model, updating CONTEXT.md and architecture decision records inline as you talk.</p>
+   </div>
+   <div class="skill-card">
+    <div class="skill-cmd">/to-prd</div>
+    <p class="skill-desc">Turns the current conversation into a full PRD and publishes it to your issue tracker. No interview. It synthesises what you've already discussed.</p>
+   </div>
+   <div class="skill-card">
+    <div class="skill-cmd">/prototype</div>
+    <p class="skill-desc">Builds throwaway prototypes (runnable terminal apps or multiple UI variations) to test design decisions before committing.</p>
+   </div>
+   <div class="skill-card">
+    <div class="skill-cmd">/tdd</div>
+    <p class="skill-desc">Test-driven development with a red-green-refactor loop. Keeps the agent writing honest tests before implementation, not tests that rubber-stamp finished code.</p>
+   </div>
+  </div>
+
+  <h2>Stop Letting AI Guess.</h2>
+
+  <p>The difference between a vague prompt and a grilled plan isn't just output quality. It's time. One hour of grilling replaces three hours of rework. Open Claude Code. Describe what you want to build. Type /grill-me. Let it ask the questions you didn't think to answer.</p>
+
+  <h3>Your Two Resources</h3>
+  <ul>
+   <li><a href="https://github.com/mattpocock/skills" rel="noopener noreferrer" target="_blank">mattpocock/skills</a>: The full repo, GrillMe and every other skill, free to use</li>
+   <li><a href="https://claude.ai/code" rel="noopener noreferrer" target="_blank">Claude Code</a>: Where you run the skills, Anthropic's coding agent</li>
+  </ul>
+
+ </article>
+
+ <aside class="toc-sidebar">
+  <div class="toc-box">
+   <h3>Chapters</h3>
+   <ol>
+    <li><a href="#ch-01">The Problem With Vague Prompts</a></li>
+    <li><a href="#ch-02">How GrillMe Works</a></li>
+    <li><a href="#ch-03">Installing GrillMe in Claude Code</a></li>
+    <li><a href="#ch-04">Running Your First Session</a></li>
+    <li><a href="#ch-05">When to Use GrillMe (and When to Skip It)</a></li>
+   </ol>
+  </div>
+ </aside>
+</div>
+
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "id": "AI-025",
+  "slug": "7-prompts-that-will-outperform-99-of-agents",
+  "title": "7 Prompts That Will Outperform 99% of Agents",
+  "category": "Prompts & Skills",
+  "subcategory": "Prompt Engineering",
+  "difficulty": "Intermediate",
+  "description": "Seven prompt structures that get consistently better results than standard agent prompts. Each one includes the template, the reasoning behind why it works, and examples of real output.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Prompts & Skills",
+    "Prompt Engineering"
+  ],
+  "ai_tools": [
+    "Claude"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-025_7-prompts-that-will-outperform-99-of-agents.html",
+  "summary_file": "summaries/AI-025.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

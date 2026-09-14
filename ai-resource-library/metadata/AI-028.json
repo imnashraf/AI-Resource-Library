@@ -1,0 +1,28 @@
+{
+  "id": "AI-028",
+  "slug": "top-1-claude-skills",
+  "title": "Top 1% Claude Skills",
+  "category": "Prompts & Skills",
+  "subcategory": "Custom Skills",
+  "difficulty": "Intermediate",
+  "description": "The advanced skill configurations used by the top 1% of Claude users. Custom skill architecture, skill chaining, and the patterns that separate power users from everyone else.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Prompts & Skills",
+    "Custom Skills"
+  ],
+  "ai_tools": [
+    "Claude Skills",
+    "Claude"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-028_top-1-claude-skills.html",
+  "summary_file": "summaries/AI-028.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

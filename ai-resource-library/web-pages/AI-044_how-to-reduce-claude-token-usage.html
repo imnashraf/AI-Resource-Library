@@ -1,0 +1,335 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>How to Reduce Claude Token Usage</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+ <style>
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+ html { scroll-behavior: smooth; }
+ body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+ .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+ .header.scrolled { border-color: var(--accent-border); }
+ .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+ .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+ .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+ .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+ .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+ a.logo-subtitle:hover { color: var(--accent); }
+ .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+ .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+ .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+ @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+ .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+ .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+ .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+ .badge-cat { background: var(--accent); color: #fff; }
+ .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+ .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+ .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+ .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+ .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+ .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+ .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+ .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+ .toc-box ol { list-style: none; counter-reset: toc; }
+ .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+ .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+ .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+ .toc-box a:hover { color: var(--accent); }
+ .guide-content { padding: 2rem 0 5rem; }
+ .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+ .guide-content h2:first-child { border-top: none; margin-top: 0; }
+ .guide-content h3 { font-size: 1.0625rem; font-weight: 700; margin-top: 1.75rem; margin-bottom: 0.625rem; }
+ .guide-content p { margin-bottom: 1.125rem; }
+ .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+ .guide-content li { margin-bottom: 0.375rem; }
+ .guide-content strong { font-weight: 600; }
+ .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+ pre { background: #1a1a1a; color: #e8e8e8; font-family: 'Courier New', Courier, monospace; font-size: 0.875rem; padding: 1.25rem 1.5rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1.25rem; line-height: 1.6; }
+ code { font-family: 'Courier New', Courier, monospace; }
+ .callout { background: var(--accent-light); border-left: 4px solid var(--accent); border-radius: 0 8px 8px 0; padding: 1rem 1.25rem; margin: 1.5rem 0; font-size: 0.9375rem; }
+ .callout strong { color: var(--accent); display: block; margin-bottom: 0.25rem; font-size: 0.8125rem; letter-spacing: 0.04em; text-transform: uppercase; }
+ .tip-box { background: var(--accent-light); border-left: 4px solid var(--accent-border); border-radius: 0 8px 8px 0; padding: 0.875rem 1.25rem; margin: 1.25rem 0; font-size: 0.9rem; color: var(--muted); }
+ .tip-box strong { color: var(--accent); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; display: block; margin-bottom: 0.2rem; }
+ .whats-inside { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+ .whats-inside h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.75rem; }
+ .whats-inside ul { padding-left: 1.25rem; margin: 0; }
+ .whats-inside li { font-size: 0.9375rem; margin-bottom: 0.375rem; }
+ .tips-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin: 1.5rem 0; background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .tip-item { display: flex; align-items: baseline; gap: 0.625rem; font-size: 0.875rem; padding: 0.3rem 0; }
+ .tip-num { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--accent); font-size: 0.9375rem; flex-shrink: 0; }
+ @media (max-width: 640px) { .tips-grid { grid-template-columns: 1fr; } }
+ .effort-table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.875rem; }
+ .effort-table th { background: var(--accent); color: #fff; text-align: left; padding: 0.5rem 0.875rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; }
+ .effort-table td { padding: 0.5rem 0.875rem; border-bottom: 1px solid var(--accent-border); }
+ .effort-table tr:last-child td { border-bottom: none; }
+ .effort-table tr:nth-child(even) td { background: var(--accent-light); }
+ .effort-table td:first-child { font-family: 'Courier New', Courier, monospace; font-size: 0.8125rem; font-weight: 700; }
+ .two-col-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+ @media (max-width: 640px) { .two-col-cards { grid-template-columns: 1fr; } }
+ .routing-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.125rem 1.25rem; }
+ .routing-card.accent-border { border-color: var(--accent); border-width: 2px; }
+ .routing-card h4 { font-family: 'Space Grotesk', sans-serif; font-size: 0.9375rem; font-weight: 700; margin-bottom: 0.625rem; }
+ .routing-card ul { padding-left: 1.125rem; margin: 0; }
+ .routing-card li { font-size: 0.875rem; margin-bottom: 0.3rem; }
+ .stat-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0; }
+ @media (max-width: 640px) { .stat-cards { grid-template-columns: 1fr; } }
+ .stat-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.125rem 1.25rem; text-align: center; }
+ .stat-card .big-num { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; color: var(--accent); display: block; }
+ .stat-card p { font-size: 0.8125rem; color: var(--muted); margin: 0.25rem 0 0; }
+ .remove-list { list-style: none; padding: 0; margin: 0.75rem 0; }
+ .remove-list li { padding: 0.25rem 0; padding-left: 1.5rem; position: relative; font-size: 0.9375rem; }
+ .remove-list li::before { content: "✕"; position: absolute; left: 0; color: #dc2626; font-weight: 700; font-size: 0.8rem; top: 0.35rem; }
+ @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+     .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+    @page { margin: 1.5cm; } @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .chapter-card, .compare-card, .checklist-card, blockquote { break-inside: avoid; page-break-inside: avoid; } .chapter-overview, .compare-grid, .checklist-grid, .email-flow { break-inside: avoid; page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+ <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+ <div class="logo-divider"></div>
+ <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">← All guides</a>
+ </div>
+</header>
+<div class="guide-hero">
+ <div class="hero-meta">
+ <span class="badge badge-cat">Getting Started</span>
+ <span class="badge badge-diff">Beginner</span>
+ </div>
+ <h1>How to Reduce Claude Token Usage</h1>
+ <div class="hero-author">
+ <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+ <div><span class="author-name">Max Johnson</span><span class="author-meta">@maxjohnscn</span></div>
+ </div>
+</div>
+<div class="page-wrap">
+ <article class="guide-content">
+    <button class="download-btn" onclick="downloadPDF()">&#8595; Download PDF</button>
+
+ <p class="intro-blurb">10 practical techniques to stop burning through your Claude usage limit, and get more out of every session without losing output quality.</p>
+
+ <div class="whats-inside">
+ <h3>What's inside</h3>
+ <ul>
+ <li>Why you're draining your limit faster than you think</li>
+ <li>The effort dial, and why most people run it too high</li>
+ <li>How to batch context and stop drip-feeding Claude</li>
+ <li>Capping output length before it spirals</li>
+ <li>What changes on June 23 and how to prepare</li>
+ </ul>
+ </div>
+
+ <div class="tip-box"><strong>Note</strong>All tips apply to Claude's most capable models on claude.ai. On Pro, Max, Team, and Enterprise plans, the most capable models count as 2x usage against your session limit, every technique here directly extends your available window.</div>
+
+ <!-- Tips overview -->
+ <div class="tips-grid">
+ <div class="tip-item"><span class="tip-num">01</span>Use powerful models to plan, cheaper to execute</div>
+ <div class="tip-item"><span class="tip-num">02</span>Match effort level to task complexity</div>
+ <div class="tip-item"><span class="tip-num">03</span>Give goals not step-by-step instructions</div>
+ <div class="tip-item"><span class="tip-num">04</span>Stop testing powerful models on simple tasks</div>
+ <div class="tip-item"><span class="tip-num">05</span>Batch context upfront, no drip feeding</div>
+ <div class="tip-item"><span class="tip-num">06</span>Cap output length explicitly</div>
+ <div class="tip-item"><span class="tip-num">07</span>Remove show-your-reasoning instructions</div>
+ <div class="tip-item"><span class="tip-num">08</span>Watch your window with agentic tasks</div>
+ <div class="tip-item"><span class="tip-num">09</span>Use memory files for long-running projects</div>
+ <div class="tip-item"><span class="tip-num">10</span>Know what's changing on usage pricing</div>
+ </div>
+
+ <h2 id="tip-01">Tip 01: Use the Most Capable Model to Plan, Cheaper Models to Execute</h2>
+ <p>The most capable Claude models are specifically trained for delegation and orchestration. Let them do the planning and route the actual implementation to Sonnet or other models. Using the most powerful model at the orchestrator seat writing prompts for Sonnet workers is significantly cheaper than having it do everything itself.</p>
+
+ <h3>The Prompt</h3>
+ <pre><code>Use the most capable model to plan this task but use Sonnet sub-agents
+for the implementation: [insert task]</code></pre>
+
+ <h2 id="tip-02">Tip 02: Match Effort Level to Task Complexity</h2>
+ <p>In Claude Code, you can control how much reasoning Claude applies. Thinking tokens bill at output rates, running everything at maximum effort is one of the fastest ways to drain your limit.</p>
+
+ <table class="effort-table">
+ <thead>
+ <tr><th>Level</th><th>Best For</th></tr>
+ </thead>
+ <tbody>
+ <tr><td>low</td><td>Simple Q&amp;A, formatting, short rewrites</td></tr>
+ <tr><td>medium</td><td>Summarisation, standard content, research</td></tr>
+ <tr><td>high</td><td>Most everyday work, the correct default</td></tr>
+ <tr><td>xhigh</td><td>Complex code review, multi-step reasoning</td></tr>
+ <tr><td>max</td><td>Genuinely hard unsolved problems only</td></tr>
+ </tbody>
+ </table>
+
+ <div class="tip-box"><strong>Tip</strong>Add the effort level directly in your prompt: 'Use low effort for this, summarise the following in 5 bullets.'</div>
+
+ <h2 id="tip-03">Tip 03: Give Goals and Success Criteria, Not Step-by-Step Instructions</h2>
+ <p>Micro-managing Claude with detailed step-by-step instructions forces more back-and-forth, which means more context reloads. Give it the outcome you want and what good looks like.</p>
+
+ <h3>Template</h3>
+ <pre><code>Goal: [one sentence on what done looks like].
+Success criteria: [what to check before calling it complete].
+Check in after each major step.</code></pre>
+
+ <h3>For Long Tasks, Add This</h3>
+ <pre><code>Before marking this complete, verify your output against the success
+criteria using fresh eyes, not your own working memory.</code></pre>
+
+ <h2 id="tip-04">Tip 04: Stop Testing Powerful Models on Simple Tasks</h2>
+ <p>The most capable models show their strengths on hard, long-horizon problems. Testing them on simple tasks is where a lot of unnecessary usage quietly goes. Do a routing check before every session.</p>
+
+ <div class="two-col-cards">
+ <div class="routing-card accent-border">
+ <h4>Good Tasks for Most Capable Models</h4>
+ <ul>
+ <li>Large codebase refactors</li>
+ <li>Multi-stage analysis</li>
+ <li>Complex agent orchestration</li>
+ <li>Tasks that previously failed with other models</li>
+ </ul>
+ </div>
+ <div class="routing-card">
+ <h4>Use Sonnet Instead</h4>
+ <ul>
+ <li>Content creation</li>
+ <li>Standard coding</li>
+ <li>Research summaries</li>
+ <li>Anything you'd normally finish in under 10 messages</li>
+ </ul>
+ </div>
+ </div>
+
+ <div class="callout"><strong>Routing Check</strong>Before opening the most powerful model, ask: could Sonnet handle this? If yes, use Sonnet.</div>
+
+ <h2 id="tip-05">Tip 05: Batch Context Up Front, Do Not Drip Feed It</h2>
+ <p>More capable Claude models have a slow time-to-first-token because they reason heavily before answering. Every new message restarts that cycle. Turn-by-turn prompting is expensive. Send everything it needs upfront in one message and ask for the full deliverable.</p>
+
+ <h3>Batching Template</h3>
+ <pre><code>Context: [background, relevant files, constraints].
+Task: [the full deliverable].
+Output format: [length, structure, what to skip].
+Success looks like: [what done means].</code></pre>
+
+ <h3>Add This to Cap Verbosity</h3>
+ <pre><code>Be concise. Stop when the task is complete, do not summarise what
+you did or explain your reasoning unless I ask.</code></pre>
+
+ <h2 id="tip-06">Tip 06: Cap Output Length Explicitly</h2>
+ <p>Claude can generate up to 128,000 output tokens in a single response. One uncapped agentic run can burn significant usage just on output. Most tasks don't need anywhere near that. Add a cap to every prompt.</p>
+
+ <h3>Word Count Caps</h3>
+ <ul>
+ <li>"Keep this under 300 words."</li>
+ <li>"Answer in 3 sentences or fewer."</li>
+ </ul>
+
+ <h3>Format Constraints</h3>
+ <ul>
+ <li>"Bullet points only. Max 6 bullets."</li>
+ <li>"Output only, no preamble."</li>
+ </ul>
+
+ <h3>Add to User Preferences</h3>
+ <pre><code>Default to concise responses. I will ask for detail when I need it.
+Never summarise what you just did.</code></pre>
+
+ <h2 id="tip-07">Tip 07: Remove Old Show-Your-Reasoning Instructions</h2>
+ <p>If you have prompts or system instructions that say "think step by step," "show your work," or "explain your reasoning", remove them for Claude's most capable models. The models reason internally by default. Externalising that reasoning adds output tokens for content you will mostly scroll past.</p>
+
+ <h3>Remove These</h3>
+ <ul class="remove-list">
+ <li>"Think step by step"</li>
+ <li>"Show your work"</li>
+ <li>"Explain your reasoning"</li>
+ <li>"Walk me through it"</li>
+ </ul>
+
+ <h3>Replace With</h3>
+ <pre><code>If you are uncertain about any step, flag it briefly.
+Otherwise give me the output directly.</code></pre>
+
+ <h2 id="tip-08">Tip 08: Watch Your Window With Agentic Tasks</h2>
+ <p>Agentic Claude Code sessions can silently branch into 4-6 concurrent model calls as sub-agents spin up. Each runs its own context. The Claude Code status line shows your remaining 5-hour and weekly budget, check it before walking away from a long session.</p>
+
+ <pre><code>Use a maximum of 3 sub-agents. Prioritise sequential work over
+parallel where both would work. Check in with me before spawning
+more than 2 agents.</code></pre>
+
+ <div class="stat-cards">
+ <div class="stat-card">
+ <span class="big-num">4-6x</span>
+ <p>Concurrent model calls in uncontrolled agentic sessions</p>
+ </div>
+ <div class="stat-card">
+ <span class="big-num">2x</span>
+ <p>Usage counted per message for most capable models on subscription plans</p>
+ </div>
+ <div class="stat-card">
+ <span class="big-num">128k</span>
+ <p>Max output tokens per response, cap it explicitly</p>
+ </div>
+ </div>
+
+ <h2 id="tip-09">Tip 09: Use Memory Files for Long-Running Projects</h2>
+ <p>For anything running across multiple sessions, give Claude a place to log decisions, even a simple markdown file. This avoids re-paying for context that is already established.</p>
+
+ <h3>Memory File Prompt</h3>
+ <pre><code>Maintain a DECISIONS.md file. After each major decision or completed
+step, log what was decided, why, and any constraints to carry forward.
+At the start of each new session, read this file before starting,
+do not ask me to re-explain what is already there.</code></pre>
+
+ <h2 id="tip-10">Tip 10: Know What's Changing on Usage Pricing</h2>
+ <p>Anthropic has been updating how usage is counted for its most capable models. If you are building the most powerful Claude models into regular workflows, understand the current pricing model and how it applies to your plan, Pro, Max, Team, and Enterprise all have different limits and overage rules.</p>
+ <p>The core principle stays the same regardless of when you're reading this: use the most capable models for what they were built for, hard, long-horizon problems that genuinely need them. Everything else goes to Sonnet.</p>
+
+ <div class="callout"><strong>The Summary</strong>That one routing habit does more than every other tip on this list combined.</div>
+
+ <h2 id="closing">The Habit That Does Most of the Work</h2>
+ <p>Route hard problems to the most capable model. Route everything else to Sonnet. Apply effort levels. Cap your output. These aren't complicated changes, they're habits. Build them once and your usage window stops being a constraint.</p>
+ <ul>
+ <li>Plan with the most capable model, execute with Sonnet or lighter sub-agents.</li>
+ <li>Match effort level to task complexity, default to high, not xhigh.</li>
+ <li>Send full context upfront, never drip-feed a long task turn by turn.</li>
+ <li>Cap output length explicitly on every prompt you send.</li>
+ <li>Maintain a DECISIONS.md for anything spanning multiple sessions.</li>
+ </ul>
+
+ </article>
+ <aside class="toc-sidebar">
+ <div class="toc-box">
+ <h3>Contents</h3>
+ <ol>
+ <li><a href="#tip-01">Tip 01: Use Powerful Models to Plan</a></li>
+ <li><a href="#tip-02">Tip 02: Match Effort Level</a></li>
+ <li><a href="#tip-03">Tip 03: Give Goals Not Steps</a></li>
+ <li><a href="#tip-04">Tip 04: Stop Testing on Simple Tasks</a></li>
+ <li><a href="#tip-05">Tip 05: Batch Context Up Front</a></li>
+ <li><a href="#tip-06">Tip 06: Cap Output Length</a></li>
+ <li><a href="#tip-07">Tip 07: Remove Show-Your-Reasoning</a></li>
+ <li><a href="#tip-08">Tip 08: Watch Your Window</a></li>
+ <li><a href="#tip-09">Tip 09: Use Memory Files</a></li>
+ <li><a href="#tip-10">Tip 10: Know What's Changing</a></li>
+ </ol>
+ </div>
+ </aside>
+</div>
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+<script>
+function downloadPDF() {
+  window.print();
+}
+</script>
+</body>
+</html>

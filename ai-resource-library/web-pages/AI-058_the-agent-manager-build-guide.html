@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>The Agent Manager Build Guide</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+ <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+  .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+  .header.scrolled { border-color: var(--accent-border); }
+  .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+  .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+  .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+  .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+  .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+  a.logo-subtitle:hover { color: var(--accent); }
+  .nav-agent-link { font-size: 0.8125rem; font-weight: 700; color: var(--accent); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--accent); border-radius: 9999px; letter-spacing: 0.04em; text-transform: uppercase; transition: all 0.2s; white-space: nowrap; }
+  .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+  .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+  .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+  @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+  .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+  .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+  .badge-cat { background: var(--accent); color: #fff; }
+  .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+  .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+  .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+  .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+  .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+  .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+  .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+  .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+  .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+  .toc-box ol { list-style: none; counter-reset: toc; }
+  .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+  .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+  .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+  .toc-box a:hover { color: var(--accent); }
+  .guide-content { padding: 2rem 0 5rem; }
+  .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+  .guide-content h2:first-of-type { border-top: none; margin-top: 0; }
+  .guide-content h3 { font-size: 1.0625rem; font-weight: 700; margin-top: 1.75rem; margin-bottom: 0.625rem; }
+  .guide-content p { margin-bottom: 1.125rem; }
+  .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+  .guide-content li { margin-bottom: 0.375rem; }
+  .guide-content strong { font-weight: 600; }
+  .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+  @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+  .callout { border-left: 4px solid var(--accent-border); background: var(--accent-light); padding: 0.875rem 1.125rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0; }
+  .callout-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.35rem; }
+  .callout p { margin-bottom: 0; }
+  .callout-warning { border-left-color: #D97706; background: #FFFBEB; }
+  .callout-warning .callout-label { color: #D97706; }
+  .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+  .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+  @page { margin: 1.5cm; }
+  @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider, .nav-agent-link { display: none !important; } .page-wrap { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; } p { orphans: 3; widows: 3; } }
+
+  /* VISUAL BLOCKS */
+  /* VB1 & VB3: numbered cards (courses / scorecard categories) */
+  .numcard-stack { display: flex; flex-direction: column; gap: 1rem; margin: 1.75rem 0; }
+  .numcard { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.25rem 1.5rem; display: flex; gap: 1.25rem; align-items: flex-start; transition: transform 0.2s, box-shadow 0.2s; }
+  .numcard:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent-border); }
+  .numcard-num { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; color: var(--accent); line-height: 1; flex-shrink: 0; width: 2.5rem; text-align: center; padding-top: 0.1rem; }
+  .numcard-body { flex: 1; }
+  .numcard-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.0625rem; margin-bottom: 0.4rem; }
+  .numcard-desc { font-size: 0.875rem; color: var(--muted); margin: 0; }
+  /* VB2: role cards */
+  .role-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.75rem 0; }
+  @media (max-width: 700px) { .role-grid { grid-template-columns: 1fr; } }
+  .role-card { background: var(--accent-light); border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.25rem 1.375rem; }
+  .role-name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.0625rem; color: var(--accent); margin-bottom: 0.625rem; }
+  .role-can { font-size: 0.8375rem; margin-bottom: 0.625rem; }
+  .role-limit { font-size: 0.8125rem; color: var(--muted); font-style: italic; }
+  /* VB4: glossary cards */
+  .glossary-stack { display: flex; flex-direction: column; gap: 0.875rem; margin: 1.75rem 0; }
+  .glossary-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.125rem 1.375rem; }
+  .glossary-term { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; letter-spacing: 0.03em; color: var(--accent); margin-bottom: 0.4rem; }
+  .glossary-def { font-size: 0.875rem; color: var(--muted); margin: 0; }
+ </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+  <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+  <div class="logo-divider"></div>
+  <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">&#8592; All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+  <span class="badge badge-cat">Building &amp; Monetising</span>
+  <span class="badge badge-diff">Intermediate</span>
+ </div>
+ <h1>The Agent Manager Build Guide</h1>
+ <p class="intro-blurb">The exact proof-of-work system to show any business you can run a team of AI agents safely, not just prompt one.</p>
+ <ul>
+  <li>Why "agent manager" is the AI job companies are creating right now, and what it actually pays</li>
+  <li>The three free Anthropic Academy courses that get the theory locked in, certificate included</li>
+  <li>How to spin up a three-agent team in Claude with hard limits on what each one can touch</li>
+  <li>Building the approval gate that keeps a human in the loop, the part businesses actually care about</li>
+  <li>Turning one real job into a one-page scorecard you can bring to an interview</li>
+ </ul>
+ <div class="hero-author">
+  <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+  <div><span class="author-name">Max Johnson</span><span class="author-meta">@maxjohnscn</span></div>
+ </div>
+</div>
+
+<div class="page-wrap">
+ <main class="guide-content">
+
+  <button class="download-btn" onclick="window.print()">&#8595; Download PDF</button>
+
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>The figures in this guide have been checked against the original sources rather than repeated from social media. Where a claim was overstated, it's corrected in place with a WARNING box, not quietly fixed.</p>
+  </div>
+
+  <h2 id="the-opportunity">Chapter 01: The Opportunity</h2>
+  <p>There's a job title showing up on job boards right now that barely existed a year ago: agent manager. At the executive level it's sometimes called chief agent officer. Harvard Business School and Salesforce co-authored the piece that put a formal name to it, published in Harvard Business Review in February 2026.</p>
+  <p>The job itself is orchestration. It's about making sure AI agents learn, collaborate, perform, and work safely alongside humans. You're not building the agents. You're managing them, the same way a product manager sits between engineering and the business without writing the code themselves.</p>
+  <p>Salesforce already runs the role internally. Their agent managers oversee entire fleets of agents spanning support, sales and marketing on the company's Agentforce platform. Microsoft's own research backs the trend too: nearly a third of the managers it surveyed say they're planning to hire into exactly this kind of role within the next 18 months.</p>
+  <p>The bar to enter is lower than it sounds. You don't need to be an engineer or know how to code. Domain expertise and the ability to direct agents safely matter more than technical background. If you already use Claude, you're closer to qualified than you think.</p>
+
+  <div class="callout callout-warning">
+   <div class="callout-label">Warning: On the salary numbers</div>
+   <p>Inflated figures circulate with this trend online, up to $500,000 in some versions. The real data tells a different story: AI agent manager listings average around $103,000, rising to roughly $175,000 for experienced hires depending on company and industry. Still a strong role to target. Just don't walk into an interview quoting the inflated number.</p>
+  </div>
+
+  <h2 id="learn-the-theory-first">Step 01: Learn The Theory First</h2>
+  <p>Before you touch anything, get the language and the framework down. Anthropic runs a free course library called Anthropic Academy. Every course includes a completion certificate, and none of it costs anything.</p>
+
+  <p><strong>1. AI Fluency</strong></p>
+  <p>Teaches you to delegate to AI rather than just prompt it. This is the foundation for thinking like a manager instead of a user.</p>
+
+  <p><strong>2. Introduction to Claude Cowork</strong></p>
+  <p>Covers running real, multi-step work through an agent that operates across your files and apps, rather than one prompt at a time.</p>
+
+  <p><strong>3. Introduction to Agent Skills</strong></p>
+  <p>Shows how agents pick up and reuse defined skills, which is exactly what the build in Step 2 is going to demonstrate.</p>
+
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>Course length varies. Anthropic's own course listings put most Academy courses at one to three hours each, so budget more than a single evening to get through all three properly.</p>
+  </div>
+
+  <div class="callout">
+   <div class="callout-label">Sign up</div>
+   <p>anthropic.skilljar.com: sign up with any email, no Claude subscription required, and start with AI Fluency.</p>
+  </div>
+
+  <div class="numcard-stack">
+   <div class="numcard">
+    <div class="numcard-num">01</div>
+    <div class="numcard-body">
+     <div class="numcard-title">AI Fluency</div>
+     <p class="numcard-desc">Teaches you to delegate to AI rather than just prompt it. This is the foundation for thinking like a manager instead of a user.</p>
+    </div>
+   </div>
+   <div class="numcard">
+    <div class="numcard-num">02</div>
+    <div class="numcard-body">
+     <div class="numcard-title">Introduction to Claude Cowork</div>
+     <p class="numcard-desc">Covers running real, multi-step work through an agent that operates across your files and apps, rather than one prompt at a time.</p>
+    </div>
+   </div>
+   <div class="numcard">
+    <div class="numcard-num">03</div>
+    <div class="numcard-body">
+     <div class="numcard-title">Introduction to Agent Skills</div>
+     <p class="numcard-desc">Shows how agents pick up and reuse defined skills, which is exactly what the build in Step 2 is going to demonstrate.</p>
+    </div>
+   </div>
+  </div>
+
+  <h2 id="build-the-proof">Step 02: Build The Proof</h2>
+  <p>Once you know the theory, build something that shows it. This is the exact build that proves you can run a team of agents, not just prompt one.</p>
+
+  <p><strong>1. Spin up a three-agent team in Claude</strong></p>
+  <p>Give each agent a distinct job and a hard limit on what it's allowed to touch. What files it can open, what it can send, what it can never do without approval.</p>
+
+  <p><strong>2. Add an approval gate</strong></p>
+  <p>Nothing ships until you sign off on it. This is what "keeping a human in the loop" means in practice, and it's the single most important thing a business will want to see you can do.</p>
+
+  <div class="role-grid">
+   <div class="role-card">
+    <div class="role-name">Researcher</div>
+    <p class="role-can">Gathers information and drafts findings. Can browse and summarise.</p>
+    <p class="role-limit">Can't send or publish anything.</p>
+   </div>
+   <div class="role-card">
+    <div class="role-name">Drafter</div>
+    <p class="role-can">Turns research into the finished output. Can create drafts.</p>
+    <p class="role-limit">Can't approve or ship them.</p>
+   </div>
+   <div class="role-card">
+    <div class="role-name">Executor</div>
+    <p class="role-can">Carries out the final action once approved. Only acts after your sign-off at the approval gate.</p>
+    <p class="role-limit">Never acts without your approval.</p>
+   </div>
+  </div>
+
+  <div class="callout">
+   <div class="callout-label">Tip</div>
+   <p>Make each hard limit specific rather than general. "Can draft replies but can't send them" is a real limit. "Should behave responsibly" is not.</p>
+  </div>
+
+  <h2 id="run-it-then-grade-it">Step 03: Run It, Then Grade It</h2>
+  <p>Have your team run one real job. Reject it once, on purpose, so you get a genuine look at how the team handles a correction rather than a clean run you can't learn anything from.</p>
+  <p>Then read the full session log and grade each agent on a one-page scorecard. That scorecard is the artifact. It's what proves you can run a team of agents under human oversight, not just prompt one and hope for the best. The natural next step from here is building something bigger with the same team.</p>
+
+  <div class="numcard-stack">
+   <div class="numcard">
+    <div class="numcard-num">01</div>
+    <div class="numcard-body">
+     <div class="numcard-title">Task completed</div>
+     <p class="numcard-desc">Did the agent finish the job it was given, end to end?</p>
+    </div>
+   </div>
+   <div class="numcard">
+    <div class="numcard-num">02</div>
+    <div class="numcard-body">
+     <div class="numcard-title">Stayed inside its limits</div>
+     <p class="numcard-desc">Did it touch only what it was allowed to touch?</p>
+    </div>
+   </div>
+   <div class="numcard">
+    <div class="numcard-num">03</div>
+    <div class="numcard-body">
+     <div class="numcard-title">Handled the rejection</div>
+     <p class="numcard-desc">What did it do when you sent the work back?</p>
+    </div>
+   </div>
+   <div class="numcard">
+    <div class="numcard-num">04</div>
+    <div class="numcard-body">
+     <div class="numcard-title">Session log clarity</div>
+     <p class="numcard-desc">Could someone else follow what it did, and why?</p>
+    </div>
+   </div>
+  </div>
+
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>This four-category structure is a starting point, not a fixed template. Adjust it to fit the job your agents actually ran.</p>
+  </div>
+
+  <h2 id="speak-the-language">Chapter 05: Speak The Language</h2>
+  <p>The vocabulary is part of the proof. Use these terms accurately in an interview and it shows you understand the discipline, not just the tool.</p>
+
+  <div class="glossary-stack">
+   <div class="glossary-card">
+    <div class="glossary-term">ORCHESTRATION</div>
+    <p class="glossary-def">Coordinating multiple agents working together toward one outcome, rather than running each one in isolation.</p>
+   </div>
+   <div class="glossary-card">
+    <div class="glossary-term">HANDOFF</div>
+    <p class="glossary-def">The point where one agent passes a task, or partial output, to another agent or to a human.</p>
+   </div>
+   <div class="glossary-card">
+    <div class="glossary-term">HUMAN-IN-THE-LOOP</div>
+    <p class="glossary-def">A checkpoint where a person has to review or approve work before it goes any further. This is your approval gate from Step 2.</p>
+   </div>
+   <div class="glossary-card">
+    <div class="glossary-term">APPROVAL GATE</div>
+    <p class="glossary-def">The specific mechanism, a step, a sign-off, a review, that enforces human-in-the-loop inside a real workflow.</p>
+   </div>
+   <div class="glossary-card">
+    <div class="glossary-term">SESSION LOG / SCORECARD</div>
+    <p class="glossary-def">The full record of what each agent did, and the one-page write-up graded against it. Together, they're your interview artifact.</p>
+   </div>
+  </div>
+
+  <h2 id="the-theory-is-free">The Theory Is Free. The Proof Is Yours To Build.</h2>
+  <p>Anthropic Academy costs nothing. The agent team costs nothing beyond your existing Claude subscription. The only real barrier is doing the build and writing up the scorecard.</p>
+  <h3>Your Three Moves</h3>
+  <ul>
+   <li>Complete the three Anthropic Academy courses and get your certificate</li>
+   <li>Build the three-agent team with hard limits and an approval gate</li>
+   <li>Run one real job, grade it, and bring the scorecard to your next interview</li>
+  </ul>
+
+ </main>
+
+ <aside class="toc-sidebar">
+  <div class="toc-box">
+   <h3>In this guide</h3>
+   <ol>
+    <li><a href="#the-opportunity">The Opportunity</a></li>
+    <li><a href="#learn-the-theory-first">Learn The Theory First</a></li>
+    <li><a href="#build-the-proof">Build The Proof</a></li>
+    <li><a href="#run-it-then-grade-it">Run It, Then Grade It</a></li>
+    <li><a href="#speak-the-language">Speak The Language</a></li>
+    <li><a href="#the-theory-is-free">The Theory Is Free</a></li>
+   </ol>
+  </div>
+ </aside>
+</div>
+
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+</body>
+</html>

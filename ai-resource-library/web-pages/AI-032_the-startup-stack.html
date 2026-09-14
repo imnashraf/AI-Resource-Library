@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>The Startup Stack</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✦%3C/text%3E%3C/svg%3E">
+ <style>
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+ html { scroll-behavior: smooth; }
+ body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+ .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+ .header.scrolled { border-color: var(--accent-border); }
+ .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+ .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+ .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+ .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+ .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+ a.logo-subtitle:hover { color: var(--accent); }
+ .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+ .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+ .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+ @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+ .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+ .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+ .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+ .badge-cat { background: var(--accent); color: #fff; }
+ .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+ .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+ .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+ .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+ .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+ .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+ .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+ .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+ .toc-box ol { list-style: none; counter-reset: toc; }
+ .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+ .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+ .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+ .toc-box a:hover { color: var(--accent); }
+ .guide-content { padding: 2rem 0 5rem; }
+ .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+ .guide-content h2:first-child { border-top: none; margin-top: 0; }
+ .guide-content h3 { font-size: 1.0625rem; font-weight: 700; margin-top: 1.75rem; margin-bottom: 0.625rem; }
+ .guide-content p { margin-bottom: 1.125rem; }
+ .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+ .guide-content li { margin-bottom: 0.375rem; }
+ .guide-content strong { font-weight: 600; }
+ .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+ .stack-row { display: flex; align-items: center; gap: 0; flex-wrap: wrap; margin: 1.5rem 0; }
+ .stack-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 0.875rem 1rem; flex: 1; min-width: 110px; text-align: center; }
+ .stack-num { font-weight: 700; color: var(--accent); font-size: 0.875rem; margin-bottom: 0.2rem; }
+ .stack-name { font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.2rem; }
+ .stack-role { font-size: 0.75rem; color: var(--muted); }
+ .stack-arrow { color: var(--accent-border); font-size: 1.125rem; padding: 0 0.375rem; flex-shrink: 0; }
+ @media (max-width: 700px) { .stack-row { flex-direction: column; align-items: stretch; } .stack-arrow { transform: rotate(90deg); align-self: center; } }
+ .flow-label { text-align: center; font-size: 0.8125rem; color: var(--muted); margin-top: 0.625rem; margin-bottom: 1.5rem; letter-spacing: 0.02em; }
+ @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+     .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+    @page { margin: 1.5cm; } @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .chapter-card, .compare-card, .checklist-card, blockquote { break-inside: avoid; page-break-inside: avoid; } .chapter-overview, .compare-grid, .checklist-grid, .email-flow { break-inside: avoid; page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+ <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+ <div class="logo-divider"></div>
+ <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">← All guides</a>
+ </div>
+</header>
+<div class="guide-hero">
+ <div class="hero-meta">
+ <span class="badge badge-cat">Building &amp; Monetising</span>
+ <span class="badge badge-diff">Beginner</span>
+ </div>
+ <h1>The Startup Stack</h1>
+ <div class="hero-author">
+ <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+ <div><span class="author-name">Max Johnson</span><span class="author-meta">@maxjohnscn</span></div>
+ </div>
+</div>
+<div class="page-wrap">
+ <article class="guide-content">
+    <button class="download-btn" onclick="downloadPDF()">&#8595; Download PDF</button>
+ <p class="intro-blurb">How to get the most out of the 5 tools every founder needs.</p>
+ <p>Each of these tools is useful on its own. But the founders who know how to run all five together are building things that would have taken an entire team two years ago.</p>
+
+ <!-- VISUAL BLOCK 1 -->
+ <div class="stack-row">
+ <div class="stack-card"><div class="stack-num">01</div><div class="stack-name">Claude</div><div class="stack-role">Strategy &amp; thinking</div></div>
+ <div class="stack-arrow">→</div>
+ <div class="stack-card"><div class="stack-num">02</div><div class="stack-name">Cookiy</div><div class="stack-role">User research</div></div>
+ <div class="stack-arrow">→</div>
+ <div class="stack-card"><div class="stack-num">03</div><div class="stack-name">Figma</div><div class="stack-role">Design</div></div>
+ <div class="stack-arrow">→</div>
+ <div class="stack-card"><div class="stack-num">04</div><div class="stack-name">Claude Code</div><div class="stack-role">Build</div></div>
+ <div class="stack-arrow">→</div>
+ <div class="stack-card"><div class="stack-num">05</div><div class="stack-name">N8N</div><div class="stack-role">Automation</div></div>
+ </div>
+ <div class="flow-label">Think → Validate → Design → Build → Automate</div>
+
+ <h2 id="tool-01">01, Claude</h2>
+ <p>Claude is the brain behind everything in this stack. Most people use it to answer questions. That is the least interesting thing you can do with it.</p>
+ <p><strong>How to actually use it:</strong></p>
+ <ul>
+ <li>Set up a project in Claude and give it context about what you are building. The more it knows upfront, the better everything it produces will be.</li>
+ <li>Use it as your strategist first. Before writing a single line of code, tell Claude your idea and ask it to stress test it. What is the biggest risk? Who is this actually for? What would make it fail?</li>
+ <li>Run your entire workflow through it. Copy, strategy, research, code review. If you are switching between five different tools to do these things, consolidate them into Claude.</li>
+ <li>Give it a memory by uploading documents, previous chats, or a brief at the start of every session. It has no memory between conversations by default so the more context you give it, the sharper it gets.</li>
+ <li>Use Claude for the thinking. Use Claude Code for the building. The two together are where the real speed comes from.</li>
+ </ul>
+ <p>The people getting the most out of Claude are not asking it one question at a time. They are running entire workflows through it.</p>
+
+ <h2 id="tool-02">02, Cookiy</h2>
+ <p>Cookiy is a free skill you add directly into Claude. It lets you find real people and interview them on any idea you have. Not surveys. Not guesswork. Actual conversations with the exact people you want to speak to.</p>
+ <p><strong>Why this matters.</strong> Most founders skip user research because it is too slow and too expensive. Agencies charge thousands. It takes weeks. By the time you get the results the moment has passed. Cookiy removes all of that.</p>
+ <p><strong>How to use it:</strong></p>
+ <ul>
+ <li>Add the Cookiy skill to Claude. It is free to install and takes about two minutes to set up.</li>
+ <li>Type /cookiy and describe your idea. Then tell it who you want to speak to. Age, location, profession, whatever is relevant. Be specific.</li>
+ <li>Cookiy goes and finds those exact people and runs the interviews for you. Real people, on camera. You get back the recordings, the transcripts and a full analysis, all inside Claude.</li>
+ <li>Use it before you build anything. The single most common mistake founders make is building something nobody wants. One round of interviews before you start will save you months.</li>
+ <li>Use it while you are building too. Run a quick round every time you are about to make a big product decision. It takes a day and costs less than a meal out.</li>
+ </ul>
+ <p>A full 15 minute interview with a recruited respondent costs $9.90. That includes finding the person for you. There is nothing else out there that comes close to that.</p>
+
+ <h2 id="tool-03">03, Figma</h2>
+ <p>This is where your product gets designed. It is the industry standard and pretty much everyone you will ever work with already knows how to use it.</p>
+ <p><strong>How to use it:</strong></p>
+ <ul>
+ <li>Start with a simple wireframe before you touch Claude Code. Even a rough layout will save you hours of back and forth when you start building.</li>
+ <li>Use Figma's component system. Build your buttons, cards and inputs as reusable components from the start. When something changes you update it once and it updates everywhere.</li>
+ <li>Share it with collaborators using the observer link. Anyone you bring in, whether a designer, developer or co-founder, can see exactly what you are building without needing edit access.</li>
+ <li>Export assets directly into your project. Icons, images, anything you design in Figma can be dropped straight into your build.</li>
+ </ul>
+ <p>You do not need to be a designer to use Figma. You just need to be clear about what you want to build. Start simple and add detail as you go.</p>
+
+ <h2 id="tool-04">04, Claude Code</h2>
+ <p>This is how you build your product without needing a developer. It runs inside Claude, which means everything you are already doing connects straight into it.</p>
+ <p><strong>How to use it:</strong></p>
+ <ul>
+ <li>Give it your Figma designs as context. The more visual reference it has, the closer the output will be to what you actually want.</li>
+ <li>Be specific about what you are asking it to build. Vague prompts produce vague code. Tell it exactly what the component should do, what it should look like and how it should behave.</li>
+ <li>Review every change before it moves on. Claude Code works best when you are in the loop, not just letting it run. Check the output, give feedback and iterate.</li>
+ <li>Use it for debugging too. Paste in an error and tell it what you were trying to do. It will usually find the problem faster than searching Stack Overflow.</li>
+ <li>Combine it with Claude for the thinking layer. Use Claude to plan what you are building, then hand it off to Claude Code to actually build it.</li>
+ </ul>
+ <p>It is probably the fastest way to go from idea to working product right now. Especially when you combine it with everything else in this stack.</p>
+
+ <h2 id="tool-05">05, N8N</h2>
+ <p>Once everything is running you need it all connected. N8N handles your automations so the repetitive stuff just runs in the background on its own.</p>
+ <p><strong>How to use it:</strong></p>
+ <ul>
+ <li>Start with one automation, not ten. Pick the most repetitive thing you do every week and build a workflow for that first. Get comfortable with how N8N works before you scale it.</li>
+ <li>Connect it to your other tools. N8N integrates with most things you are already using. Notion, Slack, Gmail, Airtable, Google Sheets. If data needs to move between them, N8N can handle it.</li>
+ <li>Use Claude inside your N8N workflows. You can pipe data through Claude to summarise, analyse or generate content as part of an automated flow. This is where things get genuinely powerful.</li>
+ <li>Build your Cookiy research results into a workflow. Once interviews come back, use N8N to automatically format the insights and send them to wherever your team works.</li>
+ <li>Self-host it if you can. N8N is open source and free to run on your own server. It gives you full control and removes any per-task pricing.</li>
+ </ul>
+ <p>The goal with N8N is to remove yourself from the things that do not need you. Every hour you spend on repetitive tasks is an hour you are not spending on building.</p>
+ </article>
+ <aside class="toc-sidebar">
+ <div class="toc-box">
+ <h3>Stack</h3>
+ <ol>
+ <li><a href="#tool-01">Claude</a></li>
+ <li><a href="#tool-02">Cookiy</a></li>
+ <li><a href="#tool-03">Figma</a></li>
+ <li><a href="#tool-04">Claude Code</a></li>
+ <li><a href="#tool-05">N8N</a></li>
+ </ol>
+ </div>
+ </aside>
+</div>
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+<script>
+function downloadPDF() {
+  window.print();
+}
+</script>
+</body>
+</html>

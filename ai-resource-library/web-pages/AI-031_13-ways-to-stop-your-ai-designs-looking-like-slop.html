@@ -1,0 +1,211 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>13 Ways to Stop Your AI Designs Looking Like Slop</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✦%3C/text%3E%3C/svg%3E">
+ <style>
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+ html { scroll-behavior: smooth; }
+ body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+ .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+ .header.scrolled { border-color: var(--accent-border); }
+ .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+ .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+ .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+ .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+ .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+ a.logo-subtitle:hover { color: var(--accent); }
+ .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+ .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+ .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+ @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+ .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+ .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+ .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+ .badge-cat { background: var(--accent); color: #fff; }
+ .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+ .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+ .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+ .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+ .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+ .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+ .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+ .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+ .toc-box ol { list-style: none; counter-reset: toc; }
+ .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+ .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+ .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+ .toc-box a:hover { color: var(--accent); }
+ .guide-content { padding: 2rem 0 5rem; }
+ .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+ .guide-content h2:first-child { border-top: none; margin-top: 0; }
+ .guide-content h3 { font-size: 1.0625rem; font-weight: 700; margin-top: 1.75rem; margin-bottom: 0.625rem; }
+ .guide-content p { margin-bottom: 1.125rem; }
+ .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+ .guide-content li { margin-bottom: 0.375rem; }
+ .guide-content strong { font-weight: 600; }
+ .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+ .callout { background: var(--accent-light); border-left: 3px solid var(--accent); padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; font-size: 0.9375rem; margin: 1.25rem 0; }
+ .callout p { margin: 0; }
+ .callout strong { color: var(--accent); }
+ .code-block { background: #000; color: #e2e8f0; font-family: 'Courier New', Courier, monospace; font-size: 0.875rem; line-height: 1.6; padding: 1.25rem 1.5rem; border-radius: 8px; overflow-x: auto; margin: 1.25rem 0; white-space: pre-wrap; }
+ .tip-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.625rem; margin: 1.5rem 0; }
+ @media (max-width: 700px) { .tip-grid { grid-template-columns: repeat(2, 1fr); } }
+ @media (max-width: 450px) { .tip-grid { grid-template-columns: 1fr; } }
+ .tip-item { background: #fff; border: 1px solid var(--accent-border); border-radius: 8px; padding: 0.75rem; display: flex; gap: 0.625rem; align-items: flex-start; }
+ .tip-num { font-weight: 700; color: var(--accent); font-size: 0.875rem; flex-shrink: 0; min-width: 1.5rem; }
+ .tip-label { font-size: 0.8125rem; font-weight: 500; line-height: 1.45; }
+ @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+     .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+    @page { margin: 1.5cm; } @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .chapter-card, .compare-card, .checklist-card, blockquote { break-inside: avoid; page-break-inside: avoid; } .chapter-overview, .compare-grid, .checklist-grid, .email-flow { break-inside: avoid; page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+ <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+ <div class="logo-divider"></div>
+ <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">← All guides</a>
+ </div>
+</header>
+<div class="guide-hero">
+ <div class="hero-meta">
+ <span class="badge badge-cat">Prompts &amp; Skills</span>
+ <span class="badge badge-diff">Beginner</span>
+ </div>
+ <h1>13 Ways to Stop Your AI Designs Looking Like Slop</h1>
+ <div class="hero-author">
+ <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+ <div><span class="author-name">Max Johnson</span><span class="author-meta">@maxjohnscn</span></div>
+ </div>
+</div>
+<div class="page-wrap">
+ <article class="guide-content">
+    <button class="download-btn" onclick="downloadPDF()">&#8595; Download PDF</button>
+ <p class="intro-blurb">The tools, prompts, and techniques that separate designed outputs from AI defaults.</p>
+ <p><strong>What's inside:</strong></p>
+ <ul>
+ <li>Three sites that give you real design references instantly</li>
+ <li>How to install a UI design skill into Claude</li>
+ <li>The MCP servers that replace generic AI defaults</li>
+ <li>How to prompt specifically, not descriptively</li>
+ <li>10 more techniques to use on every AI design task</li>
+ </ul>
+
+ <!-- VISUAL BLOCK 1 -->
+ <div class="tip-grid">
+ <div class="tip-item"><span class="tip-num">01</span><span class="tip-label">Efford, design reference library</span></div>
+ <div class="tip-item"><span class="tip-num">02</span><span class="tip-label">Newform, UI component references</span></div>
+ <div class="tip-item"><span class="tip-num">03</span><span class="tip-label">SuperDesign, visual style browser</span></div>
+ <div class="tip-item"><span class="tip-num">04</span><span class="tip-label">Install UI design skill</span></div>
+ <div class="tip-item"><span class="tip-num">05</span><span class="tip-label">Always give a reference</span></div>
+ <div class="tip-item"><span class="tip-num">06</span><span class="tip-label">Google Stitch + Nano Banana 2 MCPs</span></div>
+ <div class="tip-item"><span class="tip-num">07</span><span class="tip-label">21st.dev component library</span></div>
+ <div class="tip-item"><span class="tip-num">08</span><span class="tip-label">Specify, don't describe</span></div>
+ <div class="tip-item"><span class="tip-num">09</span><span class="tip-label">Canva connector for digital products</span></div>
+ <div class="tip-item"><span class="tip-num">10</span><span class="tip-label">Use Projects for design standards</span></div>
+ <div class="tip-item"><span class="tip-num">11</span><span class="tip-label">Tell Claude what NOT to do</span></div>
+ <div class="tip-item"><span class="tip-num">12</span><span class="tip-label">Critique before you iterate</span></div>
+ <div class="tip-item"><span class="tip-num">13</span><span class="tip-label">Reusable prompt formula</span></div>
+ </div>
+
+ <h2 id="three-sites">The Three Sites, Design References That Do the Work For You</h2>
+ <h3>1, Efford, efford.co</h3>
+ <p>Go to efford.co and pick whatever you're building. It gives you a categorised library of real design styles. Find one you like, then copy either the prompt or the actual code directly from the page.</p>
+ <p>The prompt goes straight into Claude, Codex, or Cursor. The code goes into your editor as a starting point. Either way, you're not designing from scratch. You're telling the AI to replicate something that already looks good.</p>
+ <h3>2, Newform</h3>
+ <p>Newform has one of the longest lists of quality UI components you'll find free. Find the component or layout you want and you'll get two options: save the skill file or download the design.md file. The skill file installs into Claude Code. The design.md file gets dropped into your project root or pasted directly into your prompt. Claude reads it and uses it as a reference. Everything it builds after that pulls from real patterns instead of guessing.</p>
+ <h3>3, SuperDesign</h3>
+ <p>SuperDesign lets you browse design styles visually. Click a style you like and it gives you either a full prompt for the whole page or a more targeted prompt for a specific section. Useful when you only want to fix one part of a design. Copy the prompt, paste it into your AI editor with your project context, and tell it to follow the style exactly.</p>
+ <p>All three sites work the same way at the core. They give you a prompt, a design.md file, or actual code. You attach it to your AI editor and tell it to build exactly to that reference. That single instruction is what separates a slop output from something that looks designed.</p>
+
+ <h2 id="tips-4-5">Tips 4 5</h2>
+ <h3>4, Install a UI Design Skill</h3>
+ <p>A design skill is a folder with a SKILL.md file that gives Claude an actual design system to work from. Layout rules, spacing principles, component patterns, all loaded automatically every time you start a session. Without one, Claude is guessing at what good design looks like. With one, it has a reference.</p>
+ <p>The UI UX Pro Max skill on GitHub is the best free option right now. It covers design tokens, colour systems, typography pairing, and component patterns. Download it, zip the folder, and upload it via Settings &gt; Capabilities &gt; Skills in claude.ai.</p>
+ <div class="callout"><p><strong>TIP:</strong> For Claude Code, drop the SKILL.md into your project root and rename it CLAUDE.md. It loads at the start of every session without you doing anything.</p></div>
+ <h3>5, Give Claude a Real Design Reference Every Time</h3>
+ <p>The single most effective thing you can do in any design prompt is attach a reference. Before you write a word about what you want, find a site or component you like and either paste the URL or paste the code. Then say: build to this standard.</p>
+ <p>Claude is far better at matching than it is at inventing. If you describe what you want in abstract terms you'll get a generic output. If you show it what you want you'll get something close to it. Reference first, instructions second.</p>
+
+ <h2 id="tips-6-7">Tips 6 7</h2>
+ <h3>6, Install Two MCPs: Google Stitch and Nano Banana 2</h3>
+ <p>These two MCP servers give Claude Code access to real design pattern libraries. Instead of generating from memory, it pulls from proven patterns when it builds components. Install both with:</p>
+ <div class="code-block">claude mcp add google-stitch
+claude mcp add nano-banana-2</div>
+ <p>Verify they're active with <code>claude mcp list</code>. The difference shows up most in layouts and spacing.</p>
+ <h3>7, Connect 21st.dev for Components</h3>
+ <p>21st.dev is a component library Claude Code taps directly. It has 3D elements, animated components, and reactive UI assets. Create a free account, grab your API key from the dashboard, then install it:</p>
+ <div class="code-block">claude mcp add 21st-dev --api-key YOUR_API_KEY_HERE</div>
+ <p>When you ask for anything animated or 3D, Claude pulls a real component instead of attempting to write one from scratch. Keep the key out of any shared files or Git commits.</p>
+
+ <h2 id="tips-8-9">Tips 8 9</h2>
+ <h3>8, Stop Describing, Start Specifying</h3>
+ <p>Most prompts that produce bad design look like this: "Build me a clean, modern landing page with good spacing and a professional colour scheme." That gives Claude nothing to work with. Every word in that prompt is vague. Clean means a hundred different things. Modern is not a design instruction.</p>
+ <p>Better prompt:</p>
+ <div class="code-block">Build a landing page hero section. Dark background, #0D1117. Headline in white, 64px,
+semi-bold. One line subheadline in #8B949E. Single CTA button, teal, pill shape.
+Left-aligned text. Right side is a mockup image placeholder. No shadows. No gradients.
+Tight layout.</div>
+ <p>Specific beats descriptive every time. If you can measure it, include it. If you can name the colour, name it.</p>
+ <h3>9, Use Canva's Native Connector for Digital Products</h3>
+ <p>If you're building guides, ebooks, or any digital product, you don't need to design from scratch. Enable the Canva connector in Claude settings, start a new chat, turn it on, and Claude can create and edit Canva designs directly without you switching tabs.</p>
+ <p>Get Claude to write the content first, then ask it to format it into page-sized blocks with one title, one short paragraph, and no more than five bullet points per page. That consistent structure is what lets you move fast.</p>
+
+ <h2 id="tips-10-11">Tips 10 11</h2>
+ <h3>10, Use Claude Projects to Carry Your Design Standards</h3>
+ <p>Every time you start a new conversation without a project, Claude has no idea what your design preferences are. You explain the same things again. The output regresses to the mean.</p>
+ <p>Set up a Claude project for design work. In the custom instructions, include your colour palette, font choices, spacing rules, and any design standards you want applied consistently. Upload example designs you like as reference files. Every conversation inside that project starts with all of that already loaded.</p>
+ <h3>11, Tell Claude What Not to Do</h3>
+ <p>Banning specific things is more effective than describing what you want. If you're getting AI-looking designs, add these to your project instructions or your prompt:</p>
+ <div class="code-block">No drop shadows. No gradients unless specified. No rounded corners above 8px.
+No stock illustration-style icons. No generic hero with a floating mockup on the right
+unless I ask. No footer with four columns of links unless I ask.</div>
+ <p>The defaults Claude reaches for when uninstructed are the same defaults that make AI design look like AI design. Removing them forces it to make deliberate choices instead.</p>
+
+ <h2 id="tips-12-13">Tips 12 13</h2>
+ <h3>12, Ask Claude to Critique the Design First</h3>
+ <p>Before you iterate on a bad output, ask Claude to critique it. Paste the code back in and say: what would a senior product designer change about this? Tell me the five biggest problems with the layout and hierarchy.</p>
+ <p>Claude is often better at diagnosing design issues than it is at preventing them in the first generation. Get the diagnosis, then fix each issue in the next prompt. This two-pass approach produces better results than trying to write a perfect first prompt every time.</p>
+ <h3>13, Use the Reusable Prompt Formula for Any Product</h3>
+ <p>For anything you're building to sell or distribute, this structure covers every type:</p>
+ <div class="code-block">Create a [product type] for [specific audience] who want to [specific outcome].
+Make it [number] pages. Tone: [tone]. Structure each page with a title,
+a short intro paragraph, and bullet points. Format it ready to drop into Canva.</div>
+ <p>Swap the brackets. Run the prompt. Then ask Claude to break the output into individual pages, each with the same shape, before you go near a design tool. That consistency is what makes the design step fast.</p>
+ <p>Most people who read a guide like this never apply it. Don't be that person. Pick the three tips that are most relevant to what you're building right now and use them today. The difference between your current outputs and properly designed outputs is a single reference and a specific prompt.</p>
+ </article>
+ <aside class="toc-sidebar">
+ <div class="toc-box">
+ <h3>Tips</h3>
+ <ol>
+ <li><a href="#three-sites">The Three Sites</a></li>
+ <li><a href="#tips-4-5">Tips 4 5</a></li>
+ <li><a href="#tips-6-7">Tips 6 7</a></li>
+ <li><a href="#tips-8-9">Tips 8 9</a></li>
+ <li><a href="#tips-10-11">Tips 10 11</a></li>
+ <li><a href="#tips-12-13">Tips 12 13</a></li>
+ </ol>
+ </div>
+ </aside>
+</div>
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+<script>
+function downloadPDF() {
+  window.print();
+}
+</script>
+</body>
+</html>

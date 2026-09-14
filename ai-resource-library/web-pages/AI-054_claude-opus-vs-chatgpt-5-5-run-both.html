@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Claude Opus vs ChatGPT 5.5: Stop Debating. Run Both.</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+ <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+  .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+  .header.scrolled { border-color: var(--accent-border); }
+  .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+  .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+  .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+  .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+  .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+  a.logo-subtitle:hover { color: var(--accent); }
+  .nav-agent-link { font-size: 0.8125rem; font-weight: 700; color: var(--accent); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--accent); border-radius: 9999px; letter-spacing: 0.04em; text-transform: uppercase; transition: all 0.2s; white-space: nowrap; }
+  .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+  .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+  .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+  @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+  .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+  .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+  .badge-cat { background: var(--accent); color: #fff; }
+  .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+  .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+  .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+  .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+  .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+  .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+  .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+  .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+  .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+  .toc-box ol { list-style: none; counter-reset: toc; }
+  .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+  .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+  .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+  .toc-box a:hover { color: var(--accent); }
+  .guide-content { padding: 2rem 0 5rem; }
+  .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+  .guide-content h2:first-of-type { border-top: none; margin-top: 0; }
+  .guide-content h3 { font-size: 1.0625rem; font-weight: 700; margin-top: 1.75rem; margin-bottom: 0.625rem; }
+  .guide-content p { margin-bottom: 1.125rem; }
+  .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+  .guide-content li { margin-bottom: 0.375rem; }
+  .guide-content strong { font-weight: 600; }
+  .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+  @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+  .callout { border-left: 4px solid var(--accent-border); background: var(--accent-light); padding: 0.875rem 1.125rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0; }
+  .callout-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.35rem; }
+  .callout p { margin-bottom: 0; }
+  pre { background: #1a1a1a; color: #e8e8e8; padding: 1.25rem 1.5rem; border-radius: 8px; font-size: 0.875rem; line-height: 1.65; margin: 1.5rem 0; overflow-x: auto; white-space: pre; }
+  pre code { font-family: 'Courier New', Courier, monospace; }
+  .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+  .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+  @page { margin: 1.5cm; }
+  @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider, .nav-agent-link { display: none !important; } .page-wrap { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; } p { orphans: 3; widows: 3; } }
+
+  /* VISUAL BLOCKS */
+  .chapter-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1.75rem 0; }
+  @media (max-width: 600px) { .chapter-grid { grid-template-columns: 1fr; } }
+  .chapter-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.125rem 1.25rem; }
+  .chapter-num { font-family: 'Space Grotesk', sans-serif; font-size: 1.75rem; font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: 0.375rem; }
+  .chapter-title { font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.25rem; }
+  .chapter-desc { font-size: 0.8125rem; color: var(--muted); line-height: 1.55; margin: 0; }
+
+  .two-col-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0.875rem; margin: 1.75rem 0; }
+  @media (max-width: 600px) { .two-col-cards { grid-template-columns: 1fr; } }
+  .two-col-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; overflow: hidden; }
+  .two-col-card-header { font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.625rem 1.125rem; background: var(--accent); color: #fff; }
+  .two-col-card-body { padding: 1rem 1.125rem; font-size: 0.8375rem; line-height: 1.6; color: var(--muted); }
+
+  .checklist { background: linear-gradient(135deg, #fff 0%, var(--accent-light) 100%); border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.25rem 1.5rem; margin: 1.75rem 0; }
+  .checklist-item { display: flex; gap: 1rem; align-items: flex-start; padding: 0.75rem 0; border-bottom: 1px solid var(--accent-border); }
+  .checklist-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .check-badge { width: 1.75rem; height: 1.75rem; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'Space Grotesk', sans-serif; font-size: 0.6875rem; font-weight: 700; color: #fff; }
+  .checklist-body { flex: 1; }
+  .checklist-title { font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.15rem; }
+  .checklist-desc { font-size: 0.8125rem; color: var(--muted); margin: 0; line-height: 1.55; }
+
+  .flow-diagram { display: flex; align-items: stretch; gap: 0; margin: 1.75rem 0; background: linear-gradient(135deg, #fff 0%, var(--accent-light) 100%); border: 1.5px solid var(--accent-border); border-radius: 12px; overflow: hidden; }
+  .flow-node { flex: 1; padding: 1.25rem; text-align: center; }
+  .flow-node + .flow-node { border-left: 1px solid var(--accent-border); }
+  .flow-arrow { display: flex; align-items: center; color: var(--accent); font-size: 1.25rem; font-weight: 700; padding: 0 0.25rem; flex-shrink: 0; }
+  .flow-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.35rem; color: var(--accent); }
+  .flow-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.55; margin: 0; }
+  @media (max-width: 600px) { .flow-diagram { flex-direction: column; } .flow-node + .flow-node { border-left: none; border-top: 1px solid var(--accent-border); } }
+
+  .action-strip { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.875rem; margin: 1.75rem 0; }
+  @media (max-width: 600px) { .action-strip { grid-template-columns: 1fr; } }
+  .action-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.125rem 1.25rem; }
+  .action-num { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: 0.5rem; }
+  .action-text { font-size: 0.8375rem; font-weight: 600; line-height: 1.55; margin: 0; }
+ </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+  <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+  <div class="logo-divider"></div>
+  <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">&#8592; All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+  <span class="badge badge-cat">Claude Code</span>
+  <span class="badge badge-diff">Intermediate</span>
+ </div>
+ <h1>Claude Opus vs ChatGPT 5.5: Stop Debating. Run Both.</h1>
+ <div class="hero-author">
+  <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+  <div>
+   <span class="author-name">Max Johnson</span>
+   <span class="author-meta">5 chapters &middot; ~12 min read</span>
+  </div>
+ </div>
+</div>
+
+<div class="page-wrap">
+ <main class="guide-content">
+
+  <button class="download-btn" onclick="window.print()">&#8595; Download PDF</button>
+
+  <p class="intro-blurb">The argument misses the point entirely. Claude Opus and GPT-5.5 are strong at different things. The real question is not which one you pick; it is how you run them together on the same codebase, in the same session, without any extra tooling overhead.</p>
+
+  <p><strong>What's inside:</strong></p>
+  <ul>
+   <li>Why benchmarks do not settle this debate in actual development work</li>
+   <li>The exact prerequisites before you start, including plan requirements</li>
+   <li>Installing Codex CLI and linking it to your ChatGPT account</li>
+   <li>Adding the skill-codex plugin to Claude Code in two commands</li>
+   <li>Running a real two-model review and reading the output</li>
+  </ul>
+
+  <!-- VISUAL BLOCK 1: Chapter index grid -->
+  <div class="chapter-grid">
+   <div class="chapter-card">
+    <div class="chapter-num">01</div>
+    <div class="chapter-title">Why The Debate Is Pointless</div>
+    <p class="chapter-desc">Two strong models, built for two different jobs.</p>
+   </div>
+   <div class="chapter-card">
+    <div class="chapter-num">02</div>
+    <div class="chapter-title">What You Need &amp; Installing Codex CLI</div>
+    <p class="chapter-desc">Before you start, plus getting Codex running on your machine.</p>
+   </div>
+   <div class="chapter-card">
+    <div class="chapter-num">03</div>
+    <div class="chapter-title">Install The skill-codex Plugin</div>
+    <p class="chapter-desc">The free, open-source connector that bridges Claude Code and Codex.</p>
+   </div>
+   <div class="chapter-card">
+    <div class="chapter-num">04</div>
+    <div class="chapter-title">Trigger It &amp; Verify</div>
+    <p class="chapter-desc">No config files, just ask in plain English.</p>
+   </div>
+   <div class="chapter-card">
+    <div class="chapter-num">05</div>
+    <div class="chapter-title">Two Models, One Review</div>
+    <p class="chapter-desc">How the handoff actually works, and prompts to try tonight.</p>
+   </div>
+  </div>
+
+  <!-- CHAPTER 01 -->
+  <h2 id="ch-01">Chapter 01 &middot; Why The Debate Is Pointless</h2>
+
+  <p>Every few weeks a new benchmark drops and developer discourse predictably splits in two. One camp points to the eval where Opus beat GPT-5.5. The other counters with a different eval where GPT-5.5 came out ahead. Neither camp is wrong, exactly. But both are answering the wrong question.</p>
+
+  <p>Benchmarks measure the same things in the same way. Real codebases are messier: half-documented abstractions, global state that predates anyone on the team, functions that do three things each. The model that handles that best on any given day is not always the one that topped last week's leaderboard.</p>
+
+  <p>The more useful question is: what is each model actually good at in practice, and can you get both in the same session?</p>
+
+  <p>The answer to the second part is yes. That is what this guide is about.</p>
+
+  <!-- VISUAL BLOCK 2: Two comparison cards -->
+  <div class="two-col-cards">
+   <div class="two-col-card">
+    <div class="two-col-card-header">Where GPT-5.5 Tends To Win</div>
+    <div class="two-col-card-body">Faster in most real-world testing. Uses noticeably fewer tokens to finish the same coding task. Sharper on terminal-heavy, shell-based workflows.</div>
+   </div>
+   <div class="two-col-card">
+    <div class="two-col-card-header">Where Opus Tends To Win</div>
+    <div class="two-col-card-body">Holds more context across a large codebase. More methodical on ambiguous instructions. Tends to catch more of what's actually wrong in a review.</div>
+   </div>
+  </div>
+
+  <h3>The Real Split</h3>
+
+  <p>GPT-5.5 is faster in most real-world testing. It uses fewer tokens to complete the same task and is sharper on terminal-heavy, shell-based work. If you are running quick iterations, prototyping, or doing routine refactors, its directness is an asset.</p>
+
+  <p>Opus is slower but holds more in memory. Give it a 30-file codebase with a subtle bug buried in the interaction between two modules and it will trace the chain more reliably. It also tends to ask better questions when instructions are ambiguous, rather than making a confident wrong assumption.</p>
+
+  <p>Neither of these is a knock on the other model. They are just different tools. The decision to run them sequentially, rather than picking one, changes how you work in a meaningful way.</p>
+
+  <div class="callout">
+   <div class="callout-label">The Core Idea</div>
+   <p>Claude builds with full codebase context. Codex audits the result cold. Together they cover more surface area than either would alone, and the total token cost is lower than you expect.</p>
+  </div>
+
+  <!-- CHAPTER 02 -->
+  <h2 id="ch-02">Chapter 02 &middot; What You Need &amp; Installing Codex CLI</h2>
+
+  <p>Before you start, three things need to be in place. Nothing exotic, but skipping any of them will stall you mid-setup.</p>
+
+  <!-- VISUAL BLOCK 3: Prerequisites checklist -->
+  <div class="checklist">
+   <div class="checklist-item">
+    <div class="check-badge">1</div>
+    <div class="checklist-body">
+     <div class="checklist-title">Claude Code</div>
+     <p class="checklist-desc">Installed and working on your machine. If you can open a session and run a basic prompt, you are good.</p>
+    </div>
+   </div>
+   <div class="checklist-item">
+    <div class="check-badge">2</div>
+    <div class="checklist-body">
+     <div class="checklist-title">A ChatGPT Plan</div>
+     <p class="checklist-desc">Codex is included from the Free tier up, though usage limits vary by plan. A Plus or Pro subscription removes the tightest daily caps.</p>
+    </div>
+   </div>
+   <div class="checklist-item">
+    <div class="check-badge">3</div>
+    <div class="checklist-body">
+     <div class="checklist-title">Git</div>
+     <p class="checklist-desc">Installed and available on your PATH. Needed to grab the plugin in the next chapter.</p>
+    </div>
+   </div>
+  </div>
+
+  <h3>Installing Codex CLI</h3>
+
+  <p>Codex CLI is OpenAI's command-line coding agent. It runs GPT-5.5 locally from your terminal and can handle file reads, edits, and shell commands. If you already use Claude Code, the mental model will feel familiar immediately.</p>
+
+  <p>Install it globally with npm:</p>
+
+<pre><code>npm install -g @openai/codex</code></pre>
+
+  <p>Then authenticate with your ChatGPT account:</p>
+
+<pre><code>codex login</code></pre>
+
+  <p>This opens a browser window and asks you to sign in with the same account as your ChatGPT plan. Once authenticated, run a quick sanity check:</p>
+
+<pre><code>codex --version</code></pre>
+
+  <p>You should see a version string printed to the terminal. If the command is not found, check that your npm global bin directory is on your PATH. On macOS and Linux, <code>npm bin -g</code> returns the path; add it to your shell profile and restart your terminal.</p>
+
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>Codex CLI is in active development. If the version you install behaves differently from what is described here, check the official Codex CLI changelog on GitHub for breaking changes before filing a bug.</p>
+  </div>
+
+  <!-- CHAPTER 03 -->
+  <h2 id="ch-03">Chapter 03 &middot; Install The skill-codex Plugin</h2>
+
+  <p>The skill-codex plugin is a free, open-source Claude Code extension that handles the handoff between Claude and Codex. It lives in the Claude Code marketplace and does not require you to write any configuration files or set environment variables manually.</p>
+
+  <p>Here is what happens under the hood when you trigger a dual review:</p>
+
+  <!-- VISUAL BLOCK 4: Three-node flow diagram -->
+  <div class="flow-diagram">
+   <div class="flow-node">
+    <div class="flow-title">Claude Builds</div>
+    <p class="flow-desc">Reasons about intent, holds the full codebase in context, makes or describes the change.</p>
+   </div>
+   <div class="flow-node">
+    <div class="flow-title">Codex Reviews</div>
+    <p class="flow-desc">GPT-5.5 audits the diff from scratch, catching logic errors and edge cases with fresh eyes.</p>
+   </div>
+   <div class="flow-node">
+    <div class="flow-title">You See Both</div>
+    <p class="flow-desc">Codex's take comes straight back into the same Claude Code thread. No context-switching.</p>
+   </div>
+  </div>
+
+  <h3>Installing From the Marketplace</h3>
+
+  <p>Open Claude Code and run:</p>
+
+<pre><code>/install skill-codex</code></pre>
+
+  <p>Claude will prompt you to confirm. Type <strong>yes</strong> and it will pull the plugin, verify that Codex CLI is reachable on your PATH, and register the skill in your session. The whole process takes under a minute.</p>
+
+  <p>If you prefer to install from source:</p>
+
+<pre><code>git clone https://github.com/briix-tools/skill-codex
+cd skill-codex
+npm install
+claude skill install .</code></pre>
+
+  <p>Both paths end in the same place. The source install is useful if you want to audit the code before running it, or if you plan to fork it and customize the review prompt.</p>
+
+  <h3>Verifying the Link</h3>
+
+  <p>After installation, ask Claude directly:</p>
+
+<pre><code>Do you have the codex skill available?</code></pre>
+
+  <p>Claude will confirm the skill is loaded and report whether Codex CLI is reachable on your machine. If it reports that Codex CLI is not found, the most common cause is that your npm global bin directory is not on the PATH that Claude Code inherits. Add it to your shell profile, then restart Claude Code.</p>
+
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>The plugin only calls Codex when you explicitly ask it to. It does not run automatically on file saves, does not background-watch your repo, and does not send your code anywhere except directly to the Codex CLI process on your own machine.</p>
+  </div>
+
+  <!-- CHAPTER 04 -->
+  <h2 id="ch-04">Chapter 04 &middot; Trigger It &amp; Verify</h2>
+
+  <p>There are no flags to learn and no config files to write. You trigger the dual review in plain English, the same way you give Claude any other instruction.</p>
+
+  <!-- VISUAL BLOCK 5: Three-move action strip -->
+  <div class="action-strip">
+   <div class="action-card">
+    <div class="action-num">01</div>
+    <p class="action-text">Install Codex CLI and sign in with your ChatGPT plan</p>
+   </div>
+   <div class="action-card">
+    <div class="action-num">02</div>
+    <p class="action-text">Add the skill-codex plugin from the marketplace</p>
+   </div>
+   <div class="action-card">
+    <div class="action-num">03</div>
+    <p class="action-text">Ask Claude to use Codex the next time you're about to ship something</p>
+   </div>
+  </div>
+
+  <h3>The Trigger Phrase</h3>
+
+  <p>The simplest trigger is:</p>
+
+<pre><code>Review this file with Codex before we ship.</code></pre>
+
+  <p>Claude reads the file, makes or describes its changes, then passes the diff to Codex CLI. Codex audits it and returns its notes. Both sets of notes appear in your Claude Code thread, labelled clearly.</p>
+
+  <p>You can also be more specific about scope:</p>
+
+<pre><code>Use Codex to review the auth middleware for logic errors.</code></pre>
+
+  <p>Or focus on a recent set of changes:</p>
+
+<pre><code>Codex, check the last three commits for edge cases we might have missed.</code></pre>
+
+  <h3>What to Expect</h3>
+
+  <p>The first call takes a few seconds longer than a single-model review because two sequential model calls are running. After that, you see Claude's summary first, then a clearly labelled section with Codex's notes.</p>
+
+  <p>If Codex has nothing to add, it says so. It does not pad the output or generate filler feedback to justify being called.</p>
+
+  <div class="callout">
+   <div class="callout-label">Tip</div>
+   <p>Triggering Codex on every small change will slow your flow. Reserve it for meaningful diffs: new features, refactors that touch shared utilities, or anything going into a release branch.</p>
+  </div>
+
+  <h3>Troubleshooting Common Issues</h3>
+
+  <div class="callout">
+   <div class="callout-label">Troubleshooting</div>
+   <p>If Claude says the Codex skill is unavailable after installation, restart the Claude Code session. If Codex CLI returns a 401 error, run <code>codex login</code> again. If the review times out, your Codex plan's rate limit may have been hit. Wait a few minutes and retry.</p>
+  </div>
+
+  <!-- CHAPTER 05 -->
+  <h2 id="ch-05">Chapter 05 &middot; Two Models, One Review</h2>
+
+  <p>The handoff is intentional by design. Claude builds with your codebase in full context. It knows the function names, the naming conventions, the quirks of the architecture. That accumulated context is what makes it good at writing code that fits the existing system.</p>
+
+  <p>Codex starts fresh. It sees only the diff and the relevant file. That constraint is also the point. A reviewer who has been staring at the same code for two hours misses things that a fresh read catches immediately. The edge case that was obvious when you wrote the function becomes invisible once you have accepted it as given.</p>
+
+  <h3>How to Read the Output</h3>
+
+  <p>After a dual review, you will see two labelled sections in your thread. The first is Claude's output: what it did, why, and any notes on places it was uncertain. The second is the Codex review: specific flags, alternative approaches, and anything it would do differently.</p>
+
+  <p>Where they agree, you can move forward with confidence. Where they disagree, you have a real signal worth investigating. The disagreement itself is not a problem to resolve. It is the value you are paying for.</p>
+
+  <h3>Prompts to Try Tonight</h3>
+
+  <p>These are worth running the first time you set this up, to get a feel for how the handoff actually behaves:</p>
+
+<pre><code>Build a basic rate limiter for the API routes, then have Codex
+review it for bypass scenarios.</code></pre>
+
+<pre><code>Refactor the database connection pooling. Once you're done,
+ask Codex if there are any race conditions.</code></pre>
+
+<pre><code>Write unit tests for the payment module. When you have a draft,
+use Codex to check for cases that aren't covered.</code></pre>
+
+  <p>Start with something you were already planning to ship this week. The goal is not a demo. It is a real second opinion on code that will matter.</p>
+
+  <h3>On Trusting the Output</h3>
+
+  <p>Neither model is infallible. Codex will occasionally flag something that is intentional. Claude will occasionally miss an edge case that Codex catches. Your job is not to defer to either model but to use both as inputs to your own judgment.</p>
+
+  <p>The pattern that works best is straightforward: Claude for the build, Codex for the adversarial read, you for the final call. That division of labour is more reliable than any single model running solo, and it scales as both models continue to improve.</p>
+
+  <div class="callout">
+   <div class="callout-label">Why This Matters</div>
+   <p>Running both models does not double your cost. Most of the token spend is in Claude's build phase. The Codex review is a targeted audit on a diff, which is a small fraction of a full-context call. The improvement in review quality outpaces the added cost by a significant margin.</p>
+  </div>
+
+ </main>
+
+ <aside class="toc-sidebar">
+  <div class="toc-box">
+   <h3>In This Guide</h3>
+   <ol>
+    <li><a href="#ch-01">Why The Debate Is Pointless</a></li>
+    <li><a href="#ch-02">What You Need &amp; Installing Codex CLI</a></li>
+    <li><a href="#ch-03">Install The skill-codex Plugin</a></li>
+    <li><a href="#ch-04">Trigger It &amp; Verify</a></li>
+    <li><a href="#ch-05">Two Models, One Review</a></li>
+   </ol>
+  </div>
+ </aside>
+</div>
+
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+</body>
+</html>

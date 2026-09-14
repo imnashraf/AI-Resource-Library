@@ -1,0 +1,796 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>The 7 Boring Automations</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+ <style>
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+ html { scroll-behavior: smooth; }
+ body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+ .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+ .header.scrolled { border-color: var(--accent-border); }
+ .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+ .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+ .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+ .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+ .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+ a.logo-subtitle:hover { color: var(--accent); }
+ .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+ .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+ .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+ @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+ .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+ .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+ .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+ .badge-cat { background: var(--accent); color: #fff; }
+ .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+ .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+ .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+ .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+ .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+ .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+ .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+ .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+ .toc-box ol { list-style: none; counter-reset: toc; }
+ .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+ .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+ .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+ .toc-box a:hover { color: var(--accent); }
+ .guide-content { padding: 2rem 0 5rem; }
+ .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+ .guide-content h2:first-child { border-top: none; margin-top: 0; }
+ .guide-content h3 { font-size: 1.0625rem; font-weight: 700; margin-top: 1.75rem; margin-bottom: 0.625rem; }
+ .guide-content p { margin-bottom: 1.125rem; }
+ .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+ .guide-content li { margin-bottom: 0.375rem; }
+ .guide-content strong { font-weight: 600; }
+ .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+ pre { background: #1a1a1a; color: #e8e8e8; font-family: 'Courier New', Courier, monospace; font-size: 0.875rem; padding: 1.25rem 1.5rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1.25rem; line-height: 1.6; }
+ code { font-family: 'Courier New', Courier, monospace; }
+ .callout { background: var(--accent-light); border-left: 4px solid var(--accent); border-radius: 0 8px 8px 0; padding: 1rem 1.25rem; margin: 1.5rem 0; font-size: 0.9375rem; }
+ .callout strong { color: var(--accent); display: block; margin-bottom: 0.25rem; font-size: 0.8125rem; letter-spacing: 0.04em; text-transform: uppercase; }
+ .tip-box { background: var(--accent-light); border-left: 4px solid var(--accent-border); border-radius: 0 8px 8px 0; padding: 0.875rem 1.25rem; margin: 1.25rem 0; font-size: 0.9rem; color: var(--muted); }
+ .tip-box strong { color: var(--accent); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; display: block; margin-bottom: 0.2rem; }
+ .whats-inside { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+ .whats-inside h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.75rem; }
+ .whats-inside ul { padding-left: 1.25rem; margin: 0; }
+ .whats-inside li { font-size: 0.9375rem; margin-bottom: 0.375rem; }
+ /* Visual blocks */
+ .chapter-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin: 1.5rem 0; background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .chapter-item { display: flex; align-items: baseline; gap: 0.625rem; font-size: 0.875rem; padding: 0.35rem 0; }
+ .chapter-num { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--accent); font-size: 0.9375rem; flex-shrink: 0; }
+ .card-grid-2x2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+ @media (max-width: 640px) { .card-grid-2x2 { grid-template-columns: 1fr; } .chapter-grid { grid-template-columns: 1fr; } }
+ .info-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.125rem 1.25rem; }
+ .info-card h4 { font-family: 'Space Grotesk', sans-serif; font-size: 0.9375rem; font-weight: 700; margin-bottom: 0.5rem; }
+ .info-card p { font-size: 0.875rem; color: var(--muted); margin: 0; }
+ .flow-strip { display: flex; align-items: center; flex-wrap: wrap; gap: 0; margin: 1.5rem 0; background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1rem 1.25rem; }
+ .flow-node { background: var(--accent-light); border: 1.5px solid var(--accent-border); border-radius: 8px; padding: 0.5rem 0.875rem; font-size: 0.8125rem; font-weight: 600; white-space: nowrap; }
+ .flow-node.accent { background: var(--accent); color: #fff; border-color: var(--accent); }
+ .flow-arrow { color: var(--accent-border); font-size: 1.125rem; padding: 0 0.375rem; flex-shrink: 0; }
+ .pricing-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.875rem; }
+ .pricing-table th { background: var(--accent); color: #fff; text-align: left; padding: 0.625rem 0.875rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; }
+ .pricing-table td { padding: 0.625rem 0.875rem; border-bottom: 1px solid var(--accent-border); }
+ .pricing-table tr:last-child td { border-bottom: none; }
+ .pricing-table tr:nth-child(even) td { background: var(--accent-light); }
+ .pricing-table td:nth-child(2) { color: var(--accent); font-weight: 700; }
+ .stack-table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.875rem; }
+ .stack-table td { padding: 0.5rem 0.875rem; border-bottom: 1px solid var(--accent-border); vertical-align: top; }
+ .stack-table td:first-child { font-weight: 700; width: 30%; white-space: nowrap; }
+ .stack-table tr:last-child td { border-bottom: none; }
+ .build-steps { counter-reset: build; list-style: none; padding: 0; margin: 1rem 0 1.25rem; }
+ .build-steps li { counter-increment: build; display: flex; gap: 0.875rem; margin-bottom: 1rem; }
+ .build-steps li::before { content: counter(build); background: var(--accent); color: #fff; font-weight: 700; font-size: 0.8125rem; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.1rem; }
+ .build-steps li div { font-size: 0.9375rem; line-height: 1.65; }
+ .build-steps li strong { display: block; font-weight: 700; margin-bottom: 0.15rem; }
+ .automation-header { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin: 1.5rem 0; }
+ @media (max-width: 640px) { .automation-header { grid-template-columns: 1fr; } }
+ .auto-box { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.125rem 1.25rem; }
+ .auto-box h4 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 0.625rem; }
+ .auto-box ul { padding-left: 1.125rem; margin: 0; }
+ .auto-box li { font-size: 0.875rem; margin-bottom: 0.3rem; }
+ .sells-row { display: flex; gap: 1rem; flex-wrap: wrap; margin: 1rem 0; }
+ .sells-badge { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 8px; padding: 0.5rem 0.875rem; font-size: 0.8125rem; }
+ .sells-badge strong { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin-bottom: 0.15rem; }
+ .pitch-box { background: #fff; border: 1.5px solid var(--text); border-radius: 10px; padding: 1rem 1.25rem; margin: 1rem 0; font-style: italic; font-size: 0.9375rem; }
+ .pitch-box strong { display: block; font-style: normal; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 0.375rem; }
+ .four-principles { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+ @media (max-width: 640px) { .four-principles { grid-template-columns: 1fr; } }
+ .principle-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1rem 1.25rem; }
+ .principle-card h4 { font-family: 'Space Grotesk', sans-serif; font-size: 0.9375rem; font-weight: 700; margin-bottom: 0.375rem; }
+ .principle-card p { font-size: 0.875rem; color: var(--muted); margin: 0; }
+ .accounts-list { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.125rem 1.5rem; margin: 1.25rem 0; }
+ .accounts-list li { font-size: 0.9375rem; margin-bottom: 0.5rem; }
+ .accounts-list li strong { color: var(--accent); }
+ @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+     .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+    @page { margin: 1.5cm; } @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .chapter-card, .compare-card, .checklist-card, blockquote { break-inside: avoid; page-break-inside: avoid; } .chapter-overview, .compare-grid, .checklist-grid, .email-flow { break-inside: avoid; page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+ <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+ <div class="logo-divider"></div>
+ <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">← All guides</a>
+ </div>
+</header>
+<div class="guide-hero">
+ <div class="hero-meta">
+ <span class="badge badge-cat">Building &amp; Monetising</span>
+ <span class="badge badge-diff">Intermediate</span>
+ </div>
+ <h1>The 7 Boring Automations</h1>
+ <div class="hero-author">
+ <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+ <div><span class="author-name">Max Johnson</span><span class="author-meta">@maxjohnscn</span></div>
+ </div>
+</div>
+<div class="page-wrap">
+ <article class="guide-content">
+    <button class="download-btn" onclick="downloadPDF()">&#8595; Download PDF</button>
+
+ <p class="intro-blurb">Boring on purpose. These are the unglamorous, high-value automations real businesses quietly pay well for, and exactly how to build and sell all seven.</p>
+
+ <div class="whats-inside">
+ <h3>What's inside</h3>
+ <ul>
+ <li>The seven automations businesses quietly pay for, and why boring wins</li>
+ <li>The universal stack and a repeatable five-phase delivery method</li>
+ <li>Step-by-step builds for all seven, with the exact tools for each</li>
+ <li>The voice, document and data integrations that make them real</li>
+ <li>How to package, price and sell each one as a service</li>
+ </ul>
+ </div>
+
+ <div class="tip-box"><strong>Note</strong>Each automation gets two pages: the opportunity and stack on the left, the step-by-step build and how to sell it on the right. The tools are real, current picks, swap them for what a client already runs.</div>
+
+ <!-- Chapter overview visual -->
+ <div class="chapter-grid">
+ <div class="chapter-item"><span class="chapter-num">01</span>Why Boring Wins</div>
+ <div class="chapter-item"><span class="chapter-num">02</span>The Operating Model</div>
+ <div class="chapter-item"><span class="chapter-num">03</span>Home Services &amp; Trades</div>
+ <div class="chapter-item"><span class="chapter-num">04</span>Small Law Firms</div>
+ <div class="chapter-item"><span class="chapter-num">05</span>Accounting &amp; Bookkeeping</div>
+ <div class="chapter-item"><span class="chapter-num">06</span>Dental &amp; Medical Practices</div>
+ <div class="chapter-item"><span class="chapter-num">07</span>Recruitment &amp; Staffing</div>
+ <div class="chapter-item"><span class="chapter-num">08</span>Independent Insurance Agencies</div>
+ <div class="chapter-item"><span class="chapter-num">09</span>Property Management</div>
+ <div class="chapter-item"><span class="chapter-num">10</span>Pricing the Seven</div>
+ <div class="chapter-item"><span class="chapter-num">11</span>Your First 30 Days</div>
+ </div>
+
+ <h2 id="why-boring-wins">Chapter 01: Why Boring Wins</h2>
+ <p>The automations that make money aren't the flashy demos. They're the plumbing, the repetitive, unglamorous work that quietly drains a business. Nobody posts about it, and that's the opening. Here's why the boring stuff is the best thing you can sell.</p>
+
+ <div class="card-grid-2x2">
+ <div class="info-card">
+ <h4>Boring = recurring pain</h4>
+ <p>Missed calls, slow quotes, no-shows, dead admin. These don't trend on X, but they bleed money every single day, which is exactly why businesses pay to fix them, every month.</p>
+ </div>
+ <div class="info-card">
+ <h4>Boring = recurring revenue</h4>
+ <p>Unsexy problems don't get solved once and forgotten. They need monitoring, tuning and ownership, so a build fee turns into a retainer instead of a one-off.</p>
+ </div>
+ <div class="info-card">
+ <h4>Boring = easy to prove</h4>
+ <p>The ROI is a number the owner already feels: jobs recovered, hours returned, chairs filled. You're not selling 'AI', you're selling money back.</p>
+ </div>
+ <div class="info-card">
+ <h4>Boring = same shape every time</h4>
+ <p>Every one of the seven is a trigger, an AI judgement step, actions across the business's tools, and a human gate where it matters. Learn the shape once, reuse it forever.</p>
+ </div>
+ </div>
+
+ <div class="callout"><strong>The Rule</strong>Don't sell webhooks and JSON. Sell recovered revenue and reclaimed hours. The client never buys the workflow, they buy the outcome it produces, priced against the money it makes or saves them.</div>
+
+ <h2 id="operating-model">Chapter 02: The Operating Model</h2>
+ <p>All seven run on the same skeleton. Learn it once and every build becomes a variation, not a fresh problem.</p>
+
+ <h3>The Universal Stack</h3>
+ <div class="flow-strip">
+ <div class="flow-node">Trigger (call, form, message)</div>
+ <div class="flow-arrow">→</div>
+ <div class="flow-node">Orchestrator (n8n / Make)</div>
+ <div class="flow-arrow">→</div>
+ <div class="flow-node accent">AI brain (Claude / GPT)</div>
+ <div class="flow-arrow">→</div>
+ <div class="flow-node">Tools (CRM, Xero, SMS...)</div>
+ <div class="flow-arrow">→</div>
+ <div class="flow-node">Human gate (review &amp; sign-off)</div>
+ </div>
+
+ <h3>The Five-Phase Delivery Method</h3>
+ <ol class="build-steps">
+ <li><div><strong>Audit the bottleneck</strong>Find the one workflow bleeding the most time or money. Get the volume and the cost of doing it manually, that number sets your price.</div></li>
+ <li><div><strong>Map the workflow</strong>Draw trigger to decision to actions to gate before touching a tool. If you can't draw it, you can't build it.</div></li>
+ <li><div><strong>Build &amp; integrate</strong>Wire it in n8n / Make, add the LLM only where judgement is needed, connect the client's real tools.</div></li>
+ <li><div><strong>Test on real cases</strong>Run it against messy, real-world inputs, not the happy path. Edge cases are where trust is won or lost.</div></li>
+ <li><div><strong>Deploy behind a gate</strong>Ship with a human review step, then monitor for drift. The retainer lives here.</div></li>
+ </ol>
+
+ <h3>Which Tool, When</h3>
+ <table class="stack-table">
+ <tr><td>n8n</td><td>AI-agent-heavy builds, self-hosting and cost control at scale. The default for anything complex or data-heavy.</td></tr>
+ <tr><td>Make</td><td>The fastest no-code visual builder. Reach for it when speed to a working scenario matters more than control.</td></tr>
+ <tr><td>Vapi</td><td>Anything voice or phone. The orchestration layer for STT, LLM, TTS and telephony in one.</td></tr>
+ </table>
+
+ <div class="callout"><strong>Heuristic</strong>If you can write the rules in 10 minutes, it's a workflow. If you'd need 50 if-statements and still miss cases, it's an agent. Only pay for an LLM where real judgement is needed.</div>
+
+ <h2 id="automation-01">Automation 01: Home Services &amp; Trades (HVAC, Plumbing, Electrical, Roofing)</h2>
+
+ <div class="automation-header">
+ <div class="auto-box">
+ <h4>The Problem</h4>
+ <ul>
+ <li>Missed call = lost job</li>
+ <li>62% of calls go unanswered</li>
+ <li>Best techs can't answer phones</li>
+ <li>No follow-up = no repeat work</li>
+ </ul>
+ </div>
+ <div class="auto-box">
+ <h4>The Fix: AI Voice Agent</h4>
+ <ul>
+ <li>Answers every call instantly</li>
+ <li>Triages emergencies, books the job</li>
+ <li>Syncs to ServiceTitan / Jobber</li>
+ <li>Captures lead details automatically</li>
+ <li>Chases unaccepted quotes</li>
+ <li>Handles out-of-hours calls</li>
+ </ul>
+ </div>
+ </div>
+
+ <h3>The Stack</h3>
+ <table class="stack-table">
+ <tr><td>Vapi</td><td>Voice orchestration</td></tr>
+ <tr><td>Twilio</td><td>Number / SIP</td></tr>
+ <tr><td>Claude / GPT</td><td>The brain</td></tr>
+ <tr><td>ElevenLabs</td><td>Voice</td></tr>
+ <tr><td>n8n</td><td>Backend actions</td></tr>
+ <tr><td>ServiceTitan / Jobber</td><td>Booking</td></tr>
+ </table>
+
+ <h3>How It Flows</h3>
+ <div class="flow-strip">
+ <div class="flow-node">Inbound call (Twilio)</div>
+ <div class="flow-arrow">→</div>
+ <div class="flow-node accent">Vapi assistant (STT + LLM + TTS)</div>
+ <div class="flow-arrow">→</div>
+ <div class="flow-node">Tool calls (book / capture)</div>
+ <div class="flow-arrow">→</div>
+ <div class="flow-node">n8n backend (CRM + SMS)</div>
+ </div>
+
+ <div class="sells-row">
+ <div class="sells-badge"><strong>Sells To</strong>Trades doing $500k-$5m, owner-operator, 1-10 trucks, bleeding missed calls</div>
+ <div class="sells-badge"><strong>Build Fee</strong>$2,500 - $5,000</div>
+ <div class="sells-badge"><strong>Retainer</strong>$500 - $1,500/mo</div>
+ </div>
+
+ <h3>How to Build It</h3>
+ <ol class="build-steps">
+ <li><div><strong>Get a number &amp; connect telephony</strong>Buy a Vapi number or import the business's existing Twilio line. Start as after-hours / overflow so it can't break live calls.</div></li>
+ <li><div><strong>Build the assistant in Vapi</strong>Pick the stack, Deepgram (STT), Claude or GPT-4.1 (LLM), ElevenLabs (TTS). Tune patience and interruption so it feels human, not robotic.</div></li>
+ <li><div><strong>Write the triage logic</strong>System prompt sets the role and the rules: emergency keywords (no heat, burst pipe, sparking) escalate or transfer; routine calls collect name, address, issue and book.</div></li>
+ <li><div><strong>Add tools via function calling</strong>Define book_appointment, check_availability, capture_lead, send_sms. Each tool fires a webhook into n8n during the call.</div></li>
+ <li><div><strong>Wire the backend in n8n</strong>Webhook checks calendar / ServiceTitan availability, books the slot, sends an SMS confirmation, and logs the lead. Add a scheduled quote-chaser at 24h / 72h / 7d.</div></li>
+ <li><div><strong>Test latency, then deploy</strong>Simulate calls in Vapi, target sub-800ms response, stress accents and interruptions. Go live after-hours first, then full overflow once it's solid.</div></li>
+ </ol>
+
+ <div class="callout"><strong>Latency Is Everything</strong>Above around 1 second of delay the call feels robotic and callers hang up. Test relentlessly before going live, a slow agent loses more jobs than no agent.</div>
+
+ <h3>Package &amp; Sell It</h3>
+ <p>Build fee: $2,500 - $5,000. Monthly retainer: $500 - $1,500/mo + minutes pass-through</p>
+ <div class="pitch-box"><strong>The Pitch</strong>"You're losing jobs every week to calls nobody answers. This picks up every one, books it, and chases your dead quotes, one recovered job pays for the month."</div>
+
+ <h2 id="automation-02">Automation 02: Small Law Firms (Conveyancing, Immigration, PI, Family)</h2>
+
+ <div class="automation-header">
+ <div class="auto-box">
+ <h4>The Problem</h4>
+ <ul>
+ <li>Enquiries go cold overnight</li>
+ <li>Billable hours lost to drafting</li>
+ <li>Document work buries fee-earners</li>
+ <li>Slow, messy intake</li>
+ </ul>
+ </div>
+ <div class="auto-box">
+ <h4>The Fix: Intake-to-Draft Automation</h4>
+ <ul>
+ <li>24/7 intake that qualifies leads</li>
+ <li>Conflict checks before humans look</li>
+ <li>Auto-fills the case system</li>
+ <li>Turns answers into first drafts</li>
+ <li>Firm-specific clause library</li>
+ <li>Human review built in</li>
+ </ul>
+ </div>
+ </div>
+
+ <h3>The Stack</h3>
+ <table class="stack-table">
+ <tr><td>Make / n8n</td><td>Orchestration</td></tr>
+ <tr><td>Web form</td><td>Intake</td></tr>
+ <tr><td>Claude</td><td>Analyse + draft</td></tr>
+ <tr><td>Notion</td><td>Matter brief</td></tr>
+ <tr><td>Clio / Asana</td><td>Case + tasks</td></tr>
+ <tr><td>Slack</td><td>Review alert</td></tr>
+ </table>
+
+ <h3>How It Flows</h3>
+ <div class="flow-strip">
+ <div class="flow-node">Intake form (new enquiry)</div>
+ <div class="flow-arrow">→</div>
+ <div class="flow-node">Conflict check (clear to proceed)</div>
+ <div class="flow-arrow">→</div>
+ <div class="flow-node accent">AI analyse + draft (facts + first draft)</div>
+ <div class="flow-arrow">→</div>
+ <div class="flow-node">File + assign (Notion / Clio + Slack)</div>
+ </div>
+
+ <div class="sells-row">
+ <div class="sells-badge"><strong>Sells To</strong>Boutique firms with 2-20 fee-earners and repeatable, high-volume matter types</div>
+ <div class="sells-badge"><strong>Build Fee</strong>$4,000 - $10,000</div>
+ <div class="sells-badge"><strong>Retainer</strong>$750 - $2,500/mo</div>
+ </div>
+
+ <h3>How to Build It</h3>
+ <ol class="build-steps">
+ <li><div><strong>Build the intake form</strong>Capture matter type, parties, dates and a description. The firm drops the link on its site and Google Business so enquiries are caught 24/7.</div></li>
+ <li><div><strong>Trigger and conflict-check</strong>Form submission fires the scenario. First step searches the firm's client list for the named parties and flags any conflict before a human spends a minute on it.</div></li>
+ <li><div><strong>AI analysis &amp; extraction</strong>Claude classifies the matter, extracts key facts and dates, scores lead quality and flags urgency, turning a messy enquiry into structured data.</div></li>
+ <li><div><strong>Generate the first draft</strong>Pass the facts plus the firm's own clause library (uploaded as reference) to Claude to produce a first-draft letter or agreement, clearly stamped DRAFT.</div></li>
+ <li><div><strong>File it and assign</strong>Create a Notion / Clio matter brief, open a review task in the case system, and attach the draft so everything lives in one place.</div></li>
+ <li><div><strong>Human review gate</strong>Slack the fee-earner: new matter, draft ready. Nothing leaves the building without a qualified person signing off, that gate is the whole point.</div></li>
+ </ol>
+
+ <div class="callout"><strong>This Drafts, It Does Not Advise</strong>Legal output must be reviewed by a qualified person. Build the human gate in by default and never let a draft auto-send. You're saving hours, not replacing judgement.</div>
+
+ <h3>Package &amp; Sell It</h3>
+ <p>Build fee: $4,000 - $10,000. Monthly retainer: $750 - $2,500/mo monitoring + tuning</p>
+ <div class="pitch-box"><strong>The Pitch</strong>"Every enquiry answered in minutes, conflict-checked, with a first draft already waiting. Your fee-earners only touch the high-value 20%, the rest is done before they sit down."</div>
+
+ <h2 id="automation-03">Automation 03: Accounting &amp; Bookkeeping (Practices, Fractional finance teams)</h2>
+
+ <div class="automation-header">
+ <div class="auto-box">
+ <h4>The Problem</h4>
+ <ul>
+ <li>Native AI = clean files only</li>
+ <li>Messy files break the automation</li>
+ <li>Getting documents in still manual</li>
+ <li>Firm's own ops still chaos</li>
+ </ul>
+ </div>
+ <div class="auto-box">
+ <h4>The Fix: Xero AI Setup + Automation</h4>
+ <ul>
+ <li>Clean and structure the file</li>
+ <li>Auto-chase clients for documents</li>
+ <li>Link Xero to everything (n8n / MCP)</li>
+ <li>Automate the firm's own workflow</li>
+ <li>Auto-draft advisory and reports</li>
+ </ul>
+ </div>
+ </div>
+
+ <h3>The Stack</h3>
+ <table class="stack-table">
+ <tr><td>n8n</td><td>Orchestration</td></tr>
+ <tr><td>Xero MCP</td><td>Official server</td></tr>
+ <tr><td>Claude</td><td>Clean + advise</td></tr>
+ <tr><td>Document AI</td><td>OCR receipts</td></tr>
+ <tr><td>Email / SMS</td><td>Client chasing</td></tr>
+ <tr><td>Slack</td><td>Review</td></tr>
+ </table>
+
+ <h3>How It Flows</h3>
+ <div class="flow-strip">
+ <div class="flow-node">Docs in (email / receipts)</div>
+ <div class="flow-arrow">→</div>
+ <div class="flow-node">OCR + extract (supplier, tax, total)</div>
+ <div class="flow-arrow">→</div>
+ <div class="flow-node accent">Clean + match (chart of accounts)</div>
+ <div class="flow-arrow">→</div>
+ <div class="flow-node">Write to Xero (via MCP)</div>
+ </div>
+
+ <div class="sells-row">
+ <div class="sells-badge"><strong>Sells To</strong>Bookkeeping / accounting firms drowning in client admin and chasing</div>
+ <div class="sells-badge"><strong>Build Fee</strong>$3,500 - $9,000</div>
+ <div class="sells-badge"><strong>Retainer</strong>$700 - $2,500/mo</div>
+ </div>
+
+ <h3>How to Build It</h3>
+ <ol class="build-steps">
+ <li><div><strong>Connect Xero</strong>Stand up the official @xeroapi/xero-mcp-server with OAuth2 client ID and secret, or hit the Xero API directly from n8n. Scope it to invoices, contacts and reports.</div></li>
+ <li><div><strong>Build the document intake</strong>A dedicated inbox or upload that n8n watches. OCR plus Claude extract supplier, date, amount, tax and category from messy PDFs and phone photos.</div></li>
+ <li><div><strong>Clean &amp; structure</strong>AI normalises the data and matches it to the chart of accounts. Anything ambiguous is flagged for a human instead of being guessed, that's what keeps it trusted.</div></li>
+ <li><div><strong>Write to Xero</strong>Push structured bills, invoices and contacts into Xero through the MCP tools. No more re-keying receipts by hand.</div></li>
+ <li><div><strong>Auto-chase clients</strong>A scheduled workflow spots missing documents and unreconciled items, then runs a polite branded email / SMS chase until the client actually sends them in.</div></li>
+ <li><div><strong>Auto-draft advisory &amp; firm ops</strong>Monthly, pull Xero reports via MCP and have Claude draft a plain-English management report for review. Automate the firm's own onboarding and deadline reminders too.</div></li>
+ </ol>
+
+ <div class="callout"><strong>Keep a Human Sign-Off</strong>It's financial data. The AI categorises, cleans and drafts, the accountant reviews and signs off. Flag-don't-guess on anything ambiguous and you'll keep the trust that sells the service.</div>
+
+ <h3>Package &amp; Sell It</h3>
+ <p>Build fee: $3,500 - $9,000. Monthly retainer: $700 - $2,500/mo + monitoring</p>
+ <div class="pitch-box"><strong>The Pitch</strong>"Stop chasing clients and re-keying receipts. Clean data flows into Xero automatically and your advisory reports are drafted for you, you just review, sign and bill."</div>
+
+ <h2 id="automation-04">Automation 04: Dental &amp; Medical Practices (Dental, Aesthetics, Physio, Clinics)</h2>
+
+ <div class="automation-header">
+ <div class="auto-box">
+ <h4>The Problem</h4>
+ <ul>
+ <li>No-show = empty chair = lost money</li>
+ <li>Front desk can't keep up</li>
+ <li>Lapsed patients forgotten</li>
+ <li>Patients won't wait on hold</li>
+ </ul>
+ </div>
+ <div class="auto-box">
+ <h4>The Fix: AI Comms + No-Show System</h4>
+ <ul>
+ <li>Multi-touch reminders (text, email, voice)</li>
+ <li>Confirmations plus waitlist fill</li>
+ <li>Flags likely no-shows early</li>
+ <li>24/7 self-serve booking</li>
+ <li>Recall and reactivation campaigns</li>
+ <li>Hands clinical questions to staff</li>
+ </ul>
+ </div>
+ </div>
+
+ <h3>The Stack</h3>
+ <table class="stack-table">
+ <tr><td>n8n</td><td>Orchestration</td></tr>
+ <tr><td>Twilio SMS</td><td>Messaging</td></tr>
+ <tr><td>Vapi</td><td>Voice reminders</td></tr>
+ <tr><td>Email (Resend / SendGrid)</td><td>Email channel</td></tr>
+ <tr><td>PMS (Dentrix / EHR)</td><td>Schedule source</td></tr>
+ <tr><td>Claude</td><td>Intent routing</td></tr>
+ </table>
+
+ <h3>How It Flows</h3>
+ <div class="flow-strip">
+ <div class="flow-node">Schedule (from the PMS)</div>
+ <div class="flow-arrow">→</div>
+ <div class="flow-node">Reminder cadence (email + SMS + voice)</div>
+ <div class="flow-arrow">→</div>
+ <div class="flow-node accent">Handle replies (confirm / reschedule)</div>
+ <div class="flow-arrow">→</div>
+ <div class="flow-node">Waitlist backfill (fill the gap)</div>
+ </div>
+
+ <div class="sells-row">
+ <div class="sells-badge"><strong>Sells To</strong>Practices losing 10-15% of appointments to no-shows with a stretched front desk</div>
+ <div class="sells-badge"><strong>Build Fee</strong>$3,000 - $7,000</div>
+ <div class="sells-badge"><strong>Retainer</strong>$500 - $1,500/mo</div>
+ </div>
+
+ <h3>How to Build It</h3>
+ <ol class="build-steps">
+ <li><div><strong>Connect the schedule</strong>Pull appointments from the PMS (Dentrix, Eaglesoft, or the practice's EHR). n8n holds the source of truth for who needs reminding and when.</div></li>
+ <li><div><strong>Build the reminder cadence</strong>The proven sequence: email 72h out, two-way SMS 24h out with a confirm / reschedule link, then an AI voice call or SMS 2h out. Multi-channel cuts no-shows about 2x vs one channel.</div></li>
+ <li><div><strong>Handle the replies</strong>Inbound SMS or voice goes to Claude, which classifies intent, confirm, cancel, reschedule or question, and updates the schedule automatically.</div></li>
+ <li><div><strong>Waitlist backfill</strong>The moment someone cancels, the system texts the waitlist in priority order. First to accept gets the slot and the PMS updates, gaps fill in minutes, not days.</div></li>
+ <li><div><strong>No-show risk + recall</strong>Score patients on history and response, and add an extra touch to high-risk ones. Run hygiene recall at 30 / 14 / 7 / 1 days and a reactivation sequence for lapsed patients.</div></li>
+ <li><div><strong>Clinical guardrail + go live</strong>Any clinical or medical question is never answered by AI, it's routed straight to a human. The system handles booking and admin only.</div></li>
+ </ol>
+
+ <div class="callout"><strong>PHI Is Not Optional</strong>Healthcare data needs HIPAA-eligible tooling, signed BAAs and encryption (UK GDPR + clinical governance over here). The AI never gives clinical advice, booking and reminders only.</div>
+
+ <h3>Package &amp; Sell It</h3>
+ <p>Build fee: $3,000 - $7,000. Monthly retainer: $500 - $1,500/mo easy ROI</p>
+ <div class="pitch-box"><strong>The Pitch</strong>"Cut no-shows below 5%, fill cancellations in minutes and reactivate lapsed patients, without hiring another person for the front desk. Recovered chairs pay for it many times over."</div>
+
+ <h2 id="automation-05">Automation 05: Recruitment &amp; Staffing (Agencies, In-house talent teams)</h2>
+
+ <div class="automation-header">
+ <div class="auto-box">
+ <h4>The Problem</h4>
+ <ul>
+ <li>Slow sourcing = thin pipeline</li>
+ <li>Best candidates gone in days</li>
+ <li>Admin eats the week</li>
+ <li>More CVs, harder to read</li>
+ </ul>
+ </div>
+ <div class="auto-box">
+ <h4>The Fix: AI Sourcing + Screening Engine</h4>
+ <ul>
+ <li>Mines your own database first</li>
+ <li>Plain-language search, no Boolean</li>
+ <li>Parses and scores CVs</li>
+ <li>Validates skills, not keywords</li>
+ <li>Multi-channel outreach sequences</li>
+ <li>Auto-schedules interviews</li>
+ </ul>
+ </div>
+ </div>
+
+ <h3>The Stack</h3>
+ <table class="stack-table">
+ <tr><td>n8n</td><td>Orchestration</td></tr>
+ <tr><td>Bullhorn / Loxo</td><td>ATS / CRM</td></tr>
+ <tr><td>Claude</td><td>Parse + score</td></tr>
+ <tr><td>Vector DB</td><td>Semantic search</td></tr>
+ <tr><td>Email + LinkedIn</td><td>Outreach</td></tr>
+ <tr><td>Cal.com</td><td>Scheduling</td></tr>
+ </table>
+
+ <h3>How It Flows</h3>
+ <div class="flow-strip">
+ <div class="flow-node">Job brief (plain English)</div>
+ <div class="flow-arrow">→</div>
+ <div class="flow-node">Search own DB (semantic match)</div>
+ <div class="flow-arrow">→</div>
+ <div class="flow-node accent">Parse + score (skills, not keywords)</div>
+ <div class="flow-arrow">→</div>
+ <div class="flow-node">Outreach + book (sequence + calendar)</div>
+ </div>
+
+ <div class="sells-row">
+ <div class="sells-badge"><strong>Sells To</strong>Agencies sitting on a big, underused candidate database; flooded in-house TA teams</div>
+ <div class="sells-badge"><strong>Build Fee</strong>$4,000 - $12,000</div>
+ <div class="sells-badge"><strong>Retainer</strong>$1,000 - $3,000/mo</div>
+ </div>
+
+ <h3>How to Build It</h3>
+ <ol class="build-steps">
+ <li><div><strong>Index the database</strong>Export the firm's existing candidate database and embed every CV into a vector store. Now you can search by meaning, not by fragile Boolean strings.</div></li>
+ <li><div><strong>Plain-language search</strong>The recruiter types the role in plain English and semantic search surfaces the best existing candidates first, the cheapest placement is one already in your database.</div></li>
+ <li><div><strong>Parse &amp; structure CVs</strong>Claude extracts structured fields (titles, dates, skills, seniority) from any CV format, turning the unreadable pile into comparable, searchable data.</div></li>
+ <li><div><strong>Score against the brief</strong>The AI scores each candidate on the real requirements, validating demonstrated skills over keyword-stuffing, and returns a ranked shortlist with reasons attached.</div></li>
+ <li><div><strong>Outreach sequences</strong>Generate personalised multi-channel sequences (email + LinkedIn) per candidate, throttled and tailored so it reads like a recruiter wrote it, not a blast.</div></li>
+ <li><div><strong>Auto-schedule + write back</strong>Interested replies get a booking link; the interview lands in the recruiter's calendar and every action writes back to the ATS so nothing is double-worked.</div></li>
+ </ol>
+
+ <div class="callout"><strong>Score, Then Let Humans Decide</strong>Screening models can carry bias. Keep a recruiter in the loop on every shortlisting decision and audit the scoring. The AI ranks and surfaces, people make the call.</div>
+
+ <h3>Package &amp; Sell It</h3>
+ <p>Build fee: $4,000 - $12,000. Monthly retainer: $1,000 - $3,000/mo + monitoring</p>
+ <div class="pitch-box"><strong>The Pitch</strong>"Fill faster from the database you already paid for. Plain-language search, scored shortlists and outreach on autopilot, your recruiters spend the week placing, not reading CVs."</div>
+
+ <h2 id="automation-06">Automation 06: Independent Insurance Agencies (P&amp;C, Commercial lines)</h2>
+
+ <div class="automation-header">
+ <div class="auto-box">
+ <h4>The Problem</h4>
+ <ul>
+ <li>2 to 4 hours per quote</li>
+ <li>Forms convert terribly</li>
+ <li>Service work clogs the day</li>
+ <li>Can't scale without hiring</li>
+ </ul>
+ </div>
+ <div class="auto-box">
+ <h4>The Fix: AI Quoting + Comparison System</h4>
+ <ul>
+ <li>One entry, all carriers quoted</li>
+ <li>Ingests and pre-fills ACORD data</li>
+ <li>Side-by-side coverage comparison</li>
+ <li>Auto-builds client proposals</li>
+ <li>Integrates with the AMS</li>
+ <li>Follows up on the client's channel</li>
+ </ul>
+ </div>
+ </div>
+
+ <h3>The Stack</h3>
+ <table class="stack-table">
+ <tr><td>n8n</td><td>Orchestration</td></tr>
+ <tr><td>Document AI</td><td>ACORD extract</td></tr>
+ <tr><td>Claude</td><td>Compare + draft</td></tr>
+ <tr><td>EZLynx / Tarmika</td><td>Comparative rater</td></tr>
+ <tr><td>Applied / AMS360</td><td>The AMS</td></tr>
+ <tr><td>Email / SMS</td><td>Follow-up</td></tr>
+ </table>
+
+ <h3>How It Flows</h3>
+ <div class="flow-strip">
+ <div class="flow-node">Docs in (ACORD / dec pages)</div>
+ <div class="flow-arrow">→</div>
+ <div class="flow-node">Extract + validate (structured fields)</div>
+ <div class="flow-arrow">→</div>
+ <div class="flow-node accent">Pre-fill rater (one entry, all carriers)</div>
+ <div class="flow-arrow">→</div>
+ <div class="flow-node">Compare + propose (AMS + follow-up)</div>
+ </div>
+
+ <div class="sells-row">
+ <div class="sells-badge"><strong>Sells To</strong>Independent P&amp;C agencies, commercial-heavy, small team that can't scale on hiring</div>
+ <div class="sells-badge"><strong>Build Fee</strong>$5,000 - $15,000</div>
+ <div class="sells-badge"><strong>Retainer</strong>$1,000 - $3,500/mo</div>
+ </div>
+
+ <h3>How to Build It</h3>
+ <ol class="build-steps">
+ <li><div><strong>Build the smart intake</strong>One form or doc-drop where the client uploads their existing policy or ACORD. Conversational intake fills the gaps, forms convert terribly, so make it effortless.</div></li>
+ <li><div><strong>Extract the ACORD data</strong>Document AI plus Claude pull structured fields from ACORD 125 / 126, dec pages and loss runs at roughly 95% on clean PDFs, low-confidence fields get flagged for review.</div></li>
+ <li><div><strong>Pre-fill the rater</strong>Push the validated data into a comparative rater (EZLynx, Tarmika) so it's one entry across every carrier, not re-keying into each portal.</div></li>
+ <li><div><strong>Normalise the quotes</strong>Pull the returned carrier quotes and have the AI build a clean side-by-side comparison, limits, deductibles, price and coverage gaps in one view.</div></li>
+ <li><div><strong>Auto-build the proposal</strong>Generate a branded client proposal with the recommended option and the reasoning, as a draft for the producer to review, never auto-sent.</div></li>
+ <li><div><strong>Write to the AMS + follow up</strong>Log the submission, quotes and documents to the AMS for the E&amp;O trail, then run an automated follow-up sequence on the client's preferred channel.</div></li>
+ </ol>
+
+ <div class="callout"><strong>A Licensed Producer Must Advise</strong>AI speeds the quote, it does not decide suitability or bind coverage. Keep producer review, mind TCPA / consent and state DOI rules, and document everything for E&amp;O. Underwriting stays with the carrier.</div>
+
+ <h3>Package &amp; Sell It</h3>
+ <p>Build fee: $5,000 - $15,000. Monthly retainer: $1,000 - $3,500/mo highest-value build</p>
+ <div class="pitch-box"><strong>The Pitch</strong>"Cut quote time from hours to minutes. One entry, every carrier, a clean comparison and a finished proposal, your producers stop re-keying and start advising and closing."</div>
+
+ <h2 id="automation-07">Automation 07: Property Management (Letting agents, 50-5,000 units)</h2>
+
+ <div class="automation-header">
+ <div class="auto-box">
+ <h4>The Problem</h4>
+ <ul>
+ <li>Tenant requests swamp the team</li>
+ <li>Reactive maintenance = costly emergencies</li>
+ <li>Paperwork piles up, dates missed</li>
+ <li>Vacancy = dead money</li>
+ </ul>
+ </div>
+ <div class="auto-box">
+ <h4>The Fix: AI Triage + Tenant Comms</h4>
+ <ul>
+ <li>24/7 tenant chat for routine questions</li>
+ <li>Triages and routes maintenance requests</li>
+ <li>Escalates real emergencies fast</li>
+ <li>Lease abstraction flags key dates</li>
+ <li>Virtual leasing agent books viewings</li>
+ <li>Automated rent and renewal reminders</li>
+ </ul>
+ </div>
+ </div>
+
+ <h3>The Stack</h3>
+ <table class="stack-table">
+ <tr><td>n8n</td><td>Orchestration</td></tr>
+ <tr><td>Twilio + Vapi</td><td>SMS / voice</td></tr>
+ <tr><td>Web chat</td><td>Tenant intake</td></tr>
+ <tr><td>Claude</td><td>Triage + abstract</td></tr>
+ <tr><td>AppFolio / Buildium</td><td>The PMS</td></tr>
+ <tr><td>Calendar</td><td>Viewings</td></tr>
+ </table>
+
+ <h3>How It Flows</h3>
+ <div class="flow-strip">
+ <div class="flow-node">Tenant message (chat / SMS / voice)</div>
+ <div class="flow-arrow">→</div>
+ <div class="flow-node accent">AI triage (type + urgency)</div>
+ <div class="flow-arrow">→</div>
+ <div class="flow-node">Emergency? (escalate fast)</div>
+ <div class="flow-arrow">→</div>
+ <div class="flow-node">Work order (PMS + dispatch)</div>
+ </div>
+
+ <div class="sells-row">
+ <div class="sells-badge"><strong>Sells To</strong>Property managers and letting agents with 50-5,000 units and a small team adding doors</div>
+ <div class="sells-badge"><strong>Build Fee</strong>$4,000 - $10,000</div>
+ <div class="sells-badge"><strong>Retainer</strong>$750 - $2,500/mo</div>
+ </div>
+
+ <h3>How to Build It</h3>
+ <ol class="build-steps">
+ <li><div><strong>Open the channels</strong>Web chat, SMS and voice all flow into one n8n inbox so tenants reach you however they prefer, around the clock.</div></li>
+ <li><div><strong>Answer the routine</strong>Claude handles routine questions, rent due, how-to, office hours, from a knowledge base, clearing the noise off the team's desk.</div></li>
+ <li><div><strong>Triage maintenance</strong>Each request is classified by type (plumbing, electrical, HVAC, structural, pest) and urgency, collecting details and photos up front.</div></li>
+ <li><div><strong>Escalate vs schedule</strong>True emergencies (gas, flood, no heat) escalate to a human or vendor instantly; routine items get a work order and a slot, many '2am emergencies' are calm by morning.</div></li>
+ <li><div><strong>Write to the PMS &amp; dispatch</strong>Create the work order in AppFolio / Buildium / Yardi, assign the right vendor and keep the tenant updated on status automatically.</div></li>
+ <li><div><strong>Lease abstraction + leasing</strong>On upload, extract renewal, rent-review and break dates and load reminders so nothing slips. A virtual leasing agent qualifies enquiries and books viewings to cut vacancy.</div></li>
+ </ol>
+
+ <div class="callout"><strong>Humans Own Real Risk</strong>Keep emergencies on a fast human path and leave disputes and evictions to people. The AI clears the routine noise so the team can focus on what actually needs judgement.</div>
+
+ <h3>Package &amp; Sell It</h3>
+ <p>Build fee: $4,000 - $10,000. Monthly retainer: $750 - $2,500/mo + monitoring</p>
+ <div class="pitch-box"><strong>The Pitch</strong>"Handle every tenant message 24/7, route maintenance correctly and never miss a key lease date, so you can add doors without adding headcount."</div>
+
+ <h2 id="pricing-the-seven">Chapter 10: Pricing the Seven</h2>
+ <p>Real 2026 market ranges. Treat them as a floor to anchor from, then move the number to match the volume, risk and dollar value of the specific business.</p>
+
+ <table class="pricing-table">
+ <thead>
+ <tr><th>Automation</th><th>Build Fee</th><th>Retainer</th><th>Who to Sell It To</th></tr>
+ </thead>
+ <tbody>
+ <tr><td>01 Home Services &amp; Trades</td><td>$2,500-$5,000</td><td>$500-$1,500/mo</td><td>Trades doing $500k-$5m, owner-operator, 1-10 trucks</td></tr>
+ <tr><td>02 Small Law Firms</td><td>$4,000-$10,000</td><td>$750-$2,500/mo</td><td>Boutique firms with 2-20 fee-earners</td></tr>
+ <tr><td>03 Accounting &amp; Bookkeeping</td><td>$3,500-$9,000</td><td>$700-$2,500/mo</td><td>Bookkeeping / accounting firms drowning in client admin</td></tr>
+ <tr><td>04 Dental &amp; Medical Practices</td><td>$3,000-$7,000</td><td>$500-$1,500/mo</td><td>Practices losing 10-15% of appointments to no-shows</td></tr>
+ <tr><td>05 Recruitment &amp; Staffing</td><td>$4,000-$12,000</td><td>$1,000-$3,000/mo</td><td>Agencies with underused candidate databases</td></tr>
+ <tr><td>06 Independent Insurance Agencies</td><td>$5,000-$15,000</td><td>$1,000-$3,500/mo</td><td>Independent P&amp;C agencies, commercial-heavy</td></tr>
+ <tr><td>07 Property Management</td><td>$4,000-$10,000</td><td>$750-$2,500/mo</td><td>Letting agents with 50-5,000 units</td></tr>
+ </tbody>
+ </table>
+
+ <h3>Four Pricing Principles</h3>
+ <div class="four-principles">
+ <div class="principle-card">
+ <h4>Price to value, not to effort</h4>
+ <p>A build that removes $60k of annual cost is cheap at $10k. Pricing by 'number of scenarios' undercharges every time.</p>
+ </div>
+ <div class="principle-card">
+ <h4>Build fee + retainer</h4>
+ <p>Charge to build it, then charge monthly to own it, monitoring, fixes and tuning. Some waive the build fee for a 6-month retainer commitment.</p>
+ </div>
+ <div class="principle-card">
+ <h4>Pass usage through</h4>
+ <p>Voice minutes, SMS and API tokens are the client's cost, not yours. Keep them separate so your retainer stays pure margin.</p>
+ </div>
+ <div class="principle-card">
+ <h4>Position as an AI employee</h4>
+ <p>You're replacing a function, not selling a plugin. Price against the salary or revenue it stands in for, and add an outcome bonus on top of the base if you're confident.</p>
+ </div>
+ </div>
+
+ <h2 id="first-30-days">Chapter 11: Your First 30 Days</h2>
+ <p>The whole stack costs less than a coffee habit to start. The constraint is never the tools, it's picking one thing and actually shipping it.</p>
+
+ <h3>Accounts to Open</h3>
+ <ul class="accounts-list">
+ <li><strong>n8n</strong> Cloud from ~$20/mo or self-host free. Your orchestration backbone.</li>
+ <li><strong>Vapi</strong> Voice agents. Bring-your-own keys, pay providers directly, low markup.</li>
+ <li><strong>Twilio</strong> Phone numbers and SMS for voice and reminder builds.</li>
+ <li><strong>Anthropic API</strong> Claude for the judgement, drafting and extraction steps.</li>
+ <li><strong>Make</strong> Optional, the fast no-code alternative for simpler scenarios.</li>
+ </ul>
+
+ <h3>The First Three Moves</h3>
+ <ol class="build-steps">
+ <li><div><strong>Pick one automation, one industry</strong>Don't build a menu. Master a single playbook for a single niche so you can sell it again and again without re-learning.</div></li>
+ <li><div><strong>Build it once, cheap, for a first client</strong>Trade a low price (or free) for a real deployment, a case study and a testimonial. That proof is worth more than the first cheque.</div></li>
+ <li><div><strong>Sell the outcome, then repeat</strong>Take the recovered-revenue number to the next ten identical businesses. Same build, same pitch, full price.</div></li>
+ </ol>
+
+ <div class="callout"><strong>Truth</strong>Everything in this guide can be built by one person with these accounts and a weekend per automation. The businesses that need them won't build them themselves, that gap is the entire opportunity.</div>
+
+ <p>Seven automations, one repeatable stack, and a market of businesses that feel the pain every day but will never build the fix themselves. Pick one. Build it this week. Sell it.</p>
+
+ </article>
+ <aside class="toc-sidebar">
+ <div class="toc-box">
+ <h3>Contents</h3>
+ <ol>
+ <li><a href="#why-boring-wins">Why Boring Wins</a></li>
+ <li><a href="#operating-model">The Operating Model</a></li>
+ <li><a href="#automation-01">Automation 01: Home Services</a></li>
+ <li><a href="#automation-02">Automation 02: Small Law Firms</a></li>
+ <li><a href="#automation-03">Automation 03: Accounting</a></li>
+ <li><a href="#automation-04">Automation 04: Dental &amp; Medical</a></li>
+ <li><a href="#automation-05">Automation 05: Recruitment</a></li>
+ <li><a href="#automation-06">Automation 06: Insurance Agencies</a></li>
+ <li><a href="#automation-07">Automation 07: Property Management</a></li>
+ <li><a href="#pricing-the-seven">Pricing the Seven</a></li>
+ <li><a href="#first-30-days">Your First 30 Days</a></li>
+ </ol>
+ </div>
+ </aside>
+</div>
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+<script>
+function downloadPDF() {
+  window.print();
+}
+</script>
+</body>
+</html>

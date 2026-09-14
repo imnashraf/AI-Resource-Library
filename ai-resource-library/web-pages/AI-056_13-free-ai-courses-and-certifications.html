@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>13 Free AI Courses &amp; Certifications</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+ <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+  .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+  .header.scrolled { border-color: var(--accent-border); }
+  .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+  .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+  .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+  .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+  .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+  a.logo-subtitle:hover { color: var(--accent); }
+  .nav-agent-link { font-size: 0.8125rem; font-weight: 700; color: var(--accent); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--accent); border-radius: 9999px; letter-spacing: 0.04em; text-transform: uppercase; transition: all 0.2s; white-space: nowrap; }
+  .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+  .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+  .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+  @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+  .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+  .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+  .badge-cat { background: var(--accent); color: #fff; }
+  .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+  .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+  .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+  .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+  .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+  .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+  .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+  .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+  .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+  .toc-box ol { list-style: none; counter-reset: toc; }
+  .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+  .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+  .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+  .toc-box a:hover { color: var(--accent); }
+  .guide-content { padding: 2rem 0 5rem; }
+  .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+  .guide-content h2:first-of-type { border-top: none; margin-top: 0; }
+  .guide-content h3 { font-size: 1.0625rem; font-weight: 700; margin-top: 1.75rem; margin-bottom: 0.625rem; }
+  .guide-content p { margin-bottom: 1.125rem; }
+  .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+  .guide-content li { margin-bottom: 0.375rem; }
+  .guide-content strong { font-weight: 600; }
+  .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+  @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+  .callout { border-left: 4px solid var(--accent-border); background: var(--accent-light); padding: 0.875rem 1.125rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0; }
+  .callout-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.35rem; }
+  .callout p { margin-bottom: 0; }
+  .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+  .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+  @page { margin: 1.5cm; }
+  @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider, .nav-agent-link { display: none !important; } .page-wrap { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; } p { orphans: 3; widows: 3; } }
+
+  /* VISUAL BLOCKS */
+  /* VB1: Two summary cards */
+  .summary-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0.875rem; margin: 1.75rem 0; }
+  @media (max-width: 600px) { .summary-cards { grid-template-columns: 1fr; } }
+  .summary-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.5rem; }
+  .summary-num { font-family: 'Space Grotesk', sans-serif; font-size: 3rem; font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: 0.5rem; }
+  .summary-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.5rem; }
+  .summary-desc { font-size: 0.8375rem; color: var(--muted); line-height: 1.6; margin: 0; }
+  /* VB2: Credential pills panel */
+  .cred-panel { background: var(--accent-light); border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.5rem; margin: 1.75rem 0; }
+  .cred-heading { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.375rem; }
+  .cred-intro { font-size: 0.8375rem; color: var(--muted); margin-bottom: 1rem; }
+  .cred-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .cred-pill { display: inline-block; font-size: 0.8rem; font-weight: 600; color: var(--accent); background: #fff; border: 1.5px solid var(--accent-border); border-radius: 9999px; padding: 0.3rem 0.875rem; }
+  /* VB3-6: Course cards */
+  .course-stack { display: flex; flex-direction: column; gap: 1rem; margin: 1.75rem 0; }
+  .course-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.25rem 1.5rem; display: flex; gap: 1.25rem; align-items: flex-start; transition: transform 0.2s, box-shadow 0.2s; }
+  .course-card:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent-border); }
+  .course-num { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; color: var(--accent); line-height: 1; flex-shrink: 0; width: 2.5rem; text-align: center; padding-top: 0.1rem; }
+  .course-body { flex: 1; }
+  .course-provider { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.2rem; }
+  .course-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.5rem; line-height: 1.3; }
+  .course-desc { font-size: 0.8125rem; color: var(--muted); line-height: 1.6; margin-bottom: 0.875rem; }
+  .course-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+  .course-tags { display: flex; gap: 0.375rem; flex-wrap: wrap; }
+  .course-tag { font-size: 0.6875rem; font-weight: 600; background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); border-radius: 9999px; padding: 0.15rem 0.5rem; }
+  .course-link { font-size: 0.75rem; font-family: 'Courier New', monospace; font-weight: 600; color: var(--accent); text-decoration: none; border: 1.5px solid var(--accent-border); border-radius: 9999px; padding: 0.25rem 0.75rem; transition: all 0.2s; white-space: nowrap; }
+  .course-link:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+ </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+  <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+  <div class="logo-divider"></div>
+  <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">&#8592; All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+  <span class="badge badge-cat">Getting Started</span>
+  <span class="badge badge-diff">Beginner</span>
+ </div>
+ <h1>13 Free AI Courses &amp; Certifications</h1>
+ <p class="intro-blurb">Every one is free. Every one has a direct link. A complete path from total beginner to building real AI agents and workflows, with badges and certificates to prove it.</p>
+ <ul>
+  <li>3 courses to run first, straight from Anthropic and OpenAI</li>
+  <li>Fundamentals from Google, IBM, and Microsoft</li>
+  <li>Hands-on cloud AI, machine learning, and agent-building</li>
+  <li>Short courses, a deep-dive, and two classics for AI literacy</li>
+  <li>Certificates, skill badges, and IBM and AWS credentials included</li>
+ </ul>
+</div>
+
+<div class="page-wrap">
+ <main class="guide-content">
+
+  <button class="download-btn" onclick="window.print()">&#8595; Download PDF</button>
+
+  <h2 id="overview">Overview</h2>
+  <h3>How to use this guide</h3>
+  <p>Thirteen ways to learn AI, ordered from the most practical starting point to the most comprehensive deep end. The first three are built for immediate use. The ten that follow add foundations, hands-on building, and the kind of credentials worth putting on a profile.</p>
+
+  <div class="summary-cards">
+   <div class="summary-card">
+    <div class="summary-num">3</div>
+    <div class="summary-title">Start here</div>
+    <p class="summary-desc">The fastest route to actually doing real work with AI, straight from Anthropic and OpenAI.</p>
+   </div>
+   <div class="summary-card">
+    <div class="summary-num">10</div>
+    <div class="summary-title">Go further</div>
+    <p class="summary-desc">Foundations, agents, machine learning and full certifications from Google, IBM, Microsoft, AWS, Harvard and more.</p>
+   </div>
+  </div>
+
+  <div class="cred-panel">
+   <div class="cred-heading">What you walk away with</div>
+   <p class="cred-intro">Most of these hand you something to show for it. Look for these labels on each course:</p>
+   <div class="cred-pills">
+    <span class="cred-pill">Certificate</span>
+    <span class="cred-pill">Skill badge</span>
+    <span class="cred-pill">IBM credential via Credly</span>
+    <span class="cred-pill">AWS Cloud Quest badge</span>
+    <span class="cred-pill">LinkedIn certificate</span>
+   </div>
+  </div>
+
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>Everything in this guide is free. A few offer an optional paid exam or verified certificate on top, but you can complete every course without paying a penny.</p>
+  </div>
+
+  <h2 id="start-here">Start Here</h2>
+  <h3>The 3 to run first</h3>
+  <p>If you do nothing else, do these. They take you from opening the app to getting real work done: no theory, no fluff.</p>
+
+  <div class="course-stack">
+   <div class="course-card">
+    <div class="course-num">01</div>
+    <div class="course-body">
+     <div class="course-provider">ANTHROPIC</div>
+     <div class="course-title">Claude for You</div>
+     <p class="course-desc">Anthropic's own practical intro to getting real work done with Claude: prompting, features, and workflows straight from the source.</p>
+     <div class="course-footer">
+      <div class="course-tags"><span class="course-tag">Free</span></div>
+      <a href="https://anthropic.com" target="_blank" rel="noopener noreferrer" class="course-link">anthropic.com &#8599;</a>
+     </div>
+    </div>
+   </div>
+
+   <div class="course-card">
+    <div class="course-num">02</div>
+    <div class="course-body">
+     <div class="course-provider">OPENAI ACADEMY</div>
+     <div class="course-title">Applied AI Foundations</div>
+     <p class="course-desc">Foundational course on core AI and LLM concepts, and how to apply OpenAI tools to real tasks.</p>
+     <div class="course-footer">
+      <div class="course-tags"><span class="course-tag">Free</span></div>
+      <a href="https://academy.openai.com" target="_blank" rel="noopener noreferrer" class="course-link">academy.openai.com &#8599;</a>
+     </div>
+    </div>
+   </div>
+
+   <div class="course-card">
+    <div class="course-num">03</div>
+    <div class="course-body">
+     <div class="course-provider">OPENAI ACADEMY</div>
+     <div class="course-title">Agents and Workflows</div>
+     <p class="course-desc">Building AI agents and automating multi-step workflows using OpenAI's tooling.</p>
+     <div class="course-footer">
+      <div class="course-tags"><span class="course-tag">Free</span></div>
+      <a href="https://academy.openai.com" target="_blank" rel="noopener noreferrer" class="course-link">academy.openai.com &#8599;</a>
+     </div>
+    </div>
+   </div>
+  </div>
+
+  <h2 id="go-further-1">Go Further</h2>
+  <h3>Ten more, all free</h3>
+  <p>Foundations and fundamentals from Google, IBM and Microsoft.</p>
+
+  <div class="course-stack">
+   <div class="course-card">
+    <div class="course-num">04</div>
+    <div class="course-body">
+     <div class="course-provider">GOOGLE SKILLS</div>
+     <div class="course-title">Introduction to Generative AI</div>
+     <p class="course-desc">An introductory microlearning course explaining what generative AI is, how it's used, and how it differs from traditional machine learning, plus Google's tools for building your own Gen AI apps.</p>
+     <div class="course-footer">
+      <div class="course-tags">
+       <span class="course-tag">Free</span>
+       <span class="course-tag">Skill badge</span>
+      </div>
+      <a href="https://skills.google" target="_blank" rel="noopener noreferrer" class="course-link">skills.google &#8599;</a>
+     </div>
+    </div>
+   </div>
+
+   <div class="course-card">
+    <div class="course-num">05</div>
+    <div class="course-body">
+     <div class="course-provider">IBM SKILLSBUILD</div>
+     <div class="course-title">Artificial Intelligence Fundamentals</div>
+     <p class="course-desc">Covers natural language processing, computer vision, machine learning, deep learning, chatbots, neural networks, AI ethics, and running a model in IBM Watson Studio.</p>
+     <div class="course-footer">
+      <div class="course-tags">
+       <span class="course-tag">Free</span>
+       <span class="course-tag">IBM credential via Credly</span>
+      </div>
+      <a href="https://skillsbuild.org" target="_blank" rel="noopener noreferrer" class="course-link">skillsbuild.org &#8599;</a>
+     </div>
+    </div>
+   </div>
+
+   <div class="course-card">
+    <div class="course-num">06</div>
+    <div class="course-body">
+     <div class="course-provider">MICROSOFT LEARN</div>
+     <div class="course-title">AI Learning Hub</div>
+     <p class="course-desc">Free self-paced training on what AI is, the services and technologies it includes, responsible AI, and how to put AI to work. The old AI-900 exam retired 30 June 2026, but all the learning material stays free (paid exams optional).</p>
+     <div class="course-footer">
+      <div class="course-tags">
+       <span class="course-tag">Free</span>
+       <span class="course-tag">Paid exam optional</span>
+      </div>
+      <a href="https://learn.microsoft.com" target="_blank" rel="noopener noreferrer" class="course-link">learn.microsoft.com &#8599;</a>
+     </div>
+    </div>
+   </div>
+  </div>
+
+  <h2 id="go-further-2">Go Further</h2>
+  <h3>Ten more, all free</h3>
+  <p>Hands-on building: cloud AI, machine learning and your first agents.</p>
+
+  <div class="course-stack">
+   <div class="course-card">
+    <div class="course-num">07</div>
+    <div class="course-body">
+     <div class="course-provider">AWS</div>
+     <div class="course-title">Cloud Quest: Generative AI Practitioner</div>
+     <p class="course-desc">A free, game-based course teaching you to build real AI solutions using Amazon Bedrock, Amazon Q and other services. A good hands-on intro to LLMs, embeddings and RAG.</p>
+     <div class="course-footer">
+      <div class="course-tags">
+       <span class="course-tag">Free</span>
+       <span class="course-tag">AWS Cloud Quest badge</span>
+      </div>
+      <a href="https://skillbuilder.aws" target="_blank" rel="noopener noreferrer" class="course-link">skillbuilder.aws &#8599;</a>
+     </div>
+    </div>
+   </div>
+
+   <div class="course-card">
+    <div class="course-num">08</div>
+    <div class="course-body">
+     <div class="course-provider">KAGGLE LEARN</div>
+     <div class="course-title">Intro to Machine Learning</div>
+     <p class="course-desc">Learn the core ideas in machine learning and build your first models. Short and practical at around three hours. Kaggle's Intro to AI Ethics is also worth adding.</p>
+     <div class="course-footer">
+      <div class="course-tags">
+       <span class="course-tag">Free</span>
+       <span class="course-tag">Certificate</span>
+      </div>
+      <a href="https://kaggle.com/learn" target="_blank" rel="noopener noreferrer" class="course-link">kaggle.com/learn &#8599;</a>
+     </div>
+    </div>
+   </div>
+
+   <div class="course-card">
+    <div class="course-num">09</div>
+    <div class="course-body">
+     <div class="course-provider">HUGGING FACE</div>
+     <div class="course-title">AI Agents Course</div>
+     <p class="course-desc">A free course taking you from beginner to building AI agents using libraries like smolagents, LlamaIndex and LangGraph. Basic Python helps.</p>
+     <div class="course-footer">
+      <div class="course-tags">
+       <span class="course-tag">Free</span>
+       <span class="course-tag">Certificate</span>
+      </div>
+      <a href="https://huggingface.co" target="_blank" rel="noopener noreferrer" class="course-link">huggingface.co &#8599;</a>
+     </div>
+    </div>
+   </div>
+  </div>
+
+  <h2 id="go-further-3">Go Further</h2>
+  <h3>Ten more, all free</h3>
+  <p>Short courses, the deep end, and two classics to round it out.</p>
+
+  <div class="course-stack">
+   <div class="course-card">
+    <div class="course-num">10</div>
+    <div class="course-body">
+     <div class="course-provider">DEEPLEARNING.AI</div>
+     <div class="course-title">Short Courses</div>
+     <p class="course-desc">Free, practical short courses (mostly under two hours) built with teams like OpenAI and LangChain: covering prompt engineering, building agents, RAG and more. Great for quick, shippable skills.</p>
+     <div class="course-footer">
+      <div class="course-tags"><span class="course-tag">Free</span></div>
+      <a href="https://deeplearning.ai" target="_blank" rel="noopener noreferrer" class="course-link">deeplearning.ai &#8599;</a>
+     </div>
+    </div>
+   </div>
+
+   <div class="course-card">
+    <div class="course-num">11</div>
+    <div class="course-body">
+     <div class="course-provider">HARVARD</div>
+     <div class="course-title">CS50's Introduction to AI with Python</div>
+     <p class="course-desc">The deepest one on this list: search algorithms, classification, optimisation, reinforcement learning and machine learning, built into your own Python programs through hands-on projects. Best pick if you want to understand the mechanics.</p>
+     <div class="course-footer">
+      <div class="course-tags">
+       <span class="course-tag">Free to audit</span>
+       <span class="course-tag">Free CS50 certificate</span>
+      </div>
+      <a href="https://cs50.harvard.edu" target="_blank" rel="noopener noreferrer" class="course-link">cs50.harvard.edu &#8599;</a>
+     </div>
+    </div>
+   </div>
+
+   <div class="course-card">
+    <div class="course-num">12</div>
+    <div class="course-body">
+     <div class="course-provider">UNIVERSITY OF HELSINKI</div>
+     <div class="course-title">Elements of AI</div>
+     <p class="course-desc">A free online course for anyone wanting to learn what AI is, what's possible (and not) with it, and how it affects our lives: no complicated maths or programming required. The classic non-technical AI literacy course.</p>
+     <div class="course-footer">
+      <div class="course-tags">
+       <span class="course-tag">Free</span>
+       <span class="course-tag">LinkedIn certificate</span>
+      </div>
+      <a href="https://elementsofai.com" target="_blank" rel="noopener noreferrer" class="course-link">elementsofai.com &#8599;</a>
+     </div>
+    </div>
+   </div>
+
+   <div class="course-card">
+    <div class="course-num">13</div>
+    <div class="course-body">
+     <div class="course-provider">NVIDIA DLI</div>
+     <div class="course-title">Generative AI Explained</div>
+     <p class="course-desc">A free, no-coding course covering generative AI concepts, applications, and the challenges and opportunities in the field. Around two hours.</p>
+     <div class="course-footer">
+      <div class="course-tags">
+       <span class="course-tag">Free</span>
+       <span class="course-tag">Certificate</span>
+      </div>
+      <a href="https://learn.nvidia.com" target="_blank" rel="noopener noreferrer" class="course-link">learn.nvidia.com &#8599;</a>
+     </div>
+    </div>
+   </div>
+  </div>
+
+  <h2 id="thats-the-list">That's The List</h2>
+  <h3>Pick one. Start today.</h3>
+  <p>Thirteen free courses. Every link is right here in this guide. You don't need all of them: you need to open one and begin. The certificate is a bonus. The skill is the point.</p>
+
+ </main>
+
+ <aside class="toc-sidebar">
+  <div class="toc-box">
+   <h3>In this guide</h3>
+   <ol>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#start-here">Start Here</a></li>
+    <li><a href="#go-further-1">Go Further</a></li>
+    <li><a href="#go-further-2">Go Further</a></li>
+    <li><a href="#go-further-3">Go Further</a></li>
+    <li><a href="#thats-the-list">That's The List</a></li>
+   </ol>
+  </div>
+ </aside>
+</div>
+
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+</body>
+</html>

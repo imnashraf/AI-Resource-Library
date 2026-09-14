@@ -1,0 +1,33 @@
+{
+  "id": "AI-064",
+  "slug": "copilot-in-excel-the-prompts-i-use-every-week",
+  "title": "Copilot in Excel",
+  "category": "Tools & Integrations",
+  "subcategory": "Analytics & Sheets",
+  "difficulty": "Beginner",
+  "description": "Turn the spreadsheet you never open into a clear picture of your business, charts, trends and margins, using Copilot in Excel. Covers file setup, a real monthly health-check sequence from a client project, forecasting, and asking your data plain-English questions.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Tools & Integrations",
+    "Contents",
+    "What You'll Set Up",
+    "The Unopened Spreadsheet",
+    "What You Need Before You Start",
+    "The Monthly Health Check",
+    "Going Further",
+    "Analytics & Sheets"
+  ],
+  "ai_tools": [
+    "Claude"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-064_copilot-in-excel-the-prompts-i-use-every-week.html",
+  "summary_file": "summaries/AI-064.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

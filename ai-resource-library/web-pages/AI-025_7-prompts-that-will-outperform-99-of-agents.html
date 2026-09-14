@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>7 Prompts That Will Outperform 99% of Agents</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✦%3C/text%3E%3C/svg%3E">
+ <style>
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+ html { scroll-behavior: smooth; }
+ body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+ .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+ .header.scrolled { border-color: var(--accent-border); }
+ .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+ .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+ .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+ .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+ .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+ a.logo-subtitle:hover { color: var(--accent); }
+ .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+ .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+ .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+ @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+ .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+ .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+ .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+ .badge-cat { background: var(--accent); color: #fff; }
+ .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+ .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+ .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+ .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+ .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+ .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+ .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+ .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+ .toc-box ol { list-style: none; counter-reset: toc; }
+ .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+ .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+ .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+ .toc-box a:hover { color: var(--accent); }
+ .guide-content { padding: 2rem 0 5rem; }
+ .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+ .guide-content h2:first-child { border-top: none; margin-top: 0; }
+ .guide-content p { margin-bottom: 1.125rem; }
+ .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+ .guide-content li { margin-bottom: 0.375rem; }
+ .guide-content strong { font-weight: 600; }
+ .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+ .callout { background: var(--accent-light); border-left: 3px solid var(--accent); padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; font-size: 0.9375rem; margin: 1.25rem 0; }
+ .callout p { margin: 0; }
+ .callout strong { color: var(--accent); }
+ .code-block { background: #000; color: #e2e8f0; font-family: 'Courier New', Courier, monospace; font-size: 0.875rem; line-height: 1.6; padding: 1.25rem 1.5rem; border-radius: 8px; overflow-x: auto; margin: 1.25rem 0; white-space: pre-wrap; }
+ .prompt-nav { display: flex; flex-direction: column; gap: 0.5rem; margin: 1.5rem 0; }
+ .prompt-nav-item { display: flex; align-items: center; gap: 0.75rem; background: #fff; border: 1px solid var(--accent-border); border-radius: 8px; padding: 0.75rem 1rem; text-decoration: none; transition: box-shadow 0.2s; }
+ .prompt-nav-item:hover { box-shadow: 0 4px 12px rgba(26,122,106,0.1); }
+ .pn-num { font-weight: 700; color: var(--accent); font-size: 1rem; min-width: 2rem; flex-shrink: 0; }
+ .pn-title { font-weight: 600; font-size: 0.9375rem; }
+ @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+     .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+    @page { margin: 1.5cm; } @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .chapter-card, .compare-card, .checklist-card, blockquote { break-inside: avoid; page-break-inside: avoid; } .chapter-overview, .compare-grid, .checklist-grid, .email-flow { break-inside: avoid; page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+ <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+ <div class="logo-divider"></div>
+ <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">← All guides</a>
+ </div>
+</header>
+<div class="guide-hero">
+ <div class="hero-meta">
+ <span class="badge badge-cat">Prompts &amp; Skills</span>
+ <span class="badge badge-diff">Intermediate</span>
+ </div>
+ <h1>7 Prompts That Will Outperform 99% of Agents</h1>
+ <div class="hero-author">
+ <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+ <div><span class="author-name">Max Johnson</span><span class="author-meta">@maxjohnscn</span></div>
+ </div>
+</div>
+<div class="page-wrap">
+ <article class="guide-content">
+    <button class="download-btn" onclick="downloadPDF()">&#8595; Download PDF</button>
+ <p class="intro-blurb">Claude prompts, copy, paste, send.</p>
+
+ <!-- VISUAL BLOCK 1 -->
+ <div class="prompt-nav">
+ <a class="prompt-nav-item" href="#prompt-01"><span class="pn-num">01</span><span class="pn-title">Turn Cold Leads Into Warm Conversations</span></a>
+ <a class="prompt-nav-item" href="#prompt-02"><span class="pn-num">02</span><span class="pn-title">Build a Content Strategy in 5 Minutes</span></a>
+ <a class="prompt-nav-item" href="#prompt-03"><span class="pn-num">03</span><span class="pn-title">Win Every Listing Appointment</span></a>
+ <a class="prompt-nav-item" href="#prompt-04"><span class="pn-num">04</span><span class="pn-title">Write a Bio That Gets You Hired</span></a>
+ <a class="prompt-nav-item" href="#prompt-05"><span class="pn-num">05</span><span class="pn-title">Systematize Your Weaknesses</span></a>
+ <a class="prompt-nav-item" href="#prompt-06"><span class="pn-num">06</span><span class="pn-title">Negotiate Better, Every Time</span></a>
+ <a class="prompt-nav-item" href="#prompt-07"><span class="pn-num">07</span><span class="pn-title">Help Clients Through a Tough Market</span></a>
+ </div>
+
+ <h2 id="prompt-01">Prompt 01 of 07, Turn Cold Leads Into Warm Conversations</h2>
+ <div class="code-block">"You are a real estate business coach and expert copywriter. I have a lead
+who [describe lead: where they came from, what they inquired about, how
+long ago, any info I have on them]. Write me 3 follow-up messages, one
+text, one email, one DM, that feel genuinely human, reference their
+specific situation, create urgency without being pushy, and end with one
+low-friction question that gets a response. Do not use any generic real
+estate language."</div>
+
+ <h2 id="prompt-02">Prompt 02 of 07, Build a Content Strategy in 5 Minutes</h2>
+ <div class="code-block">"Act as a social media strategist who specializes in personal brand content
+for real estate professionals. My target client is [describe your ideal
+client]. My market is [city/area]. My unique angle or personality is
+[describe yourself in 3 words]. Give me a 30-day Instagram content plan
+with specific post ideas for each week, the core message behind each one,
+and the hook I should open with. Prioritize content that builds trust and
+attracts clients without me ever having to post a listing."</div>
+
+ <h2 id="prompt-03">Prompt 03 of 07, Win Every Listing Appointment</h2>
+ <div class="code-block">"You are a seasoned listing agent with 20 years of experience in
+competitive markets. I have a listing appointment at [property address or
+describe the home and neighborhood]. My potential clients are [describe
+sellers]. Anticipated objections I may face: [list them]. Give me a full
+appointment prep guide including: the 3 questions I should ask before
+pitching anything, how to handle each objection with a specific reframe,
+and a closing statement that feels confident without being salesy."</div>
+
+ <h2 id="prompt-04">Prompt 04 of 07, Write a Bio That Gets You Hired</h2>
+ <div class="code-block">"You are a personal branding expert who writes bios for high-performing
+entrepreneurs and business owners. Here is my background: [paste your raw
+info, years in the business, volume, specialties, personality, why you got
+into real estate, anything personal that's relevant]. Write me three
+versions of my professional bio, short (50 words), medium (150 words), and
+long (300 words). Each version should sound like a real human wrote it,
+lead with what makes me different, and make a potential client feel like
+I'm the obvious choice."</div>
+
+ <h2 id="prompt-05">Prompt 05 of 07, Systematize Your Weaknesses</h2>
+ <div class="code-block">"You are an operations consultant who helps solo business owners build
+scalable systems. The part of my business I want to systematize is
+[describe it, ex: onboarding new clients, managing offers, following up
+after closing]. Walk me through exactly how to build a repeatable process
+for this from start to finish. Include: every step in the process, what
+triggers each step, what tools I could use, what I could delegate or
+automate, and how I'd know if the system is working."</div>
+
+ <h2 id="prompt-06">Prompt 06 of 07, Negotiate Better, Every Time</h2>
+ <div class="code-block">"You are a master negotiator and real estate attorney with 25 years of
+experience representing buyers and sellers in high-stakes transactions. My
+current negotiation situation is: [describe it in detail, price, terms,
+what each side wants, current sticking points, market conditions]. Give me
+a full negotiation strategy including: my strongest leverage points, 3
+tactical approaches ranked by risk, specific language I can use in my next
+conversation with the other agent, and the one concession I should be
+willing to make to get the deal done."</div>
+
+ <h2 id="prompt-07">Prompt 07 of 07, Help Clients Through a Tough Market</h2>
+ <div class="code-block">"You are a real estate coach and communications expert. The market
+objection I keep running into is: [ex: 'rates are too high', 'prices are
+going to crash', 'we're going to wait']. Give me 5 different responses to
+this objection, ranging from educational to direct to story-based. Each
+response should acknowledge the concern, reframe it with data or logic, and
+move the conversation toward a decision without making the client feel
+pressured. Write these in a conversational tone I can actually use out
+loud."</div>
+ </article>
+ <aside class="toc-sidebar">
+ <div class="toc-box">
+ <h3>Prompts</h3>
+ <ol>
+ <li><a href="#prompt-01">Cold Leads</a></li>
+ <li><a href="#prompt-02">Content Strategy</a></li>
+ <li><a href="#prompt-03">Listing Appointment</a></li>
+ <li><a href="#prompt-04">Bio Writing</a></li>
+ <li><a href="#prompt-05">Systematize</a></li>
+ <li><a href="#prompt-06">Negotiation</a></li>
+ <li><a href="#prompt-07">Tough Market</a></li>
+ </ol>
+ </div>
+ </aside>
+</div>
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+<script>
+function downloadPDF() {
+  window.print();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+{
+  "id": "AI-031",
+  "slug": "13-ways-to-stop-your-ai-designs-looking-like-slop",
+  "title": "13 Ways to Stop Your AI Designs Looking Like Slop",
+  "category": "Prompts & Skills",
+  "subcategory": "Custom Skills",
+  "difficulty": "Beginner",
+  "description": "Thirteen specific techniques to make AI-generated designs look intentional and professional. Covers prompting, post-processing, skill configuration, and the visual tells that expose generic AI output.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Prompts & Skills",
+    "1, Efford, efford.co",
+    "2, Newform",
+    "3, SuperDesign",
+    "Tips 4 5",
+    "4, Install a UI Design Skill",
+    "Custom Skills"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude Projects",
+    "Claude",
+    "Cursor",
+    "Canva"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-031_13-ways-to-stop-your-ai-designs-looking-like-slop.html",
+  "summary_file": "summaries/AI-031.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

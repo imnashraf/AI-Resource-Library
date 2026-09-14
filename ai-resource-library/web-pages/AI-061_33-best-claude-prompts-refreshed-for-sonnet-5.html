@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>33 Best Claude Prompts: Refreshed for Sonnet 5</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+ <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+  .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+  .header.scrolled { border-color: var(--accent-border); }
+  .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+  .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+  .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+  .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+  .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+  a.logo-subtitle:hover { color: var(--accent); }
+  .nav-agent-link { font-size: 0.8125rem; font-weight: 700; color: var(--accent); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--accent); border-radius: 9999px; letter-spacing: 0.04em; text-transform: uppercase; transition: all 0.2s; white-space: nowrap; }
+  .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+  .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+  .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+  @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+  .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+  .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+  .badge-cat { background: var(--accent); color: #fff; }
+  .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+  .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 0.375rem; }
+  .hero-subtitle { font-family: 'Space Grotesk', sans-serif; font-size: 1.125rem; font-weight: 600; color: var(--accent); margin-bottom: 1rem; }
+  .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+  .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+  .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+  .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+  .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+  .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+  .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+  .toc-box ol { list-style: none; counter-reset: toc; }
+  .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+  .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+  .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+  .toc-box a:hover { color: var(--accent); }
+  .guide-content { padding: 2rem 0 5rem; }
+  .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+  .guide-content h2:first-of-type { border-top: none; margin-top: 0; }
+  .guide-content h3 { font-size: 1.0625rem; font-weight: 700; margin-top: 1.75rem; margin-bottom: 0.625rem; }
+  .guide-content p { margin-bottom: 1.125rem; }
+  .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+  .guide-content li { margin-bottom: 0.375rem; }
+  .guide-content strong { font-weight: 600; }
+  .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+  @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+  .callout { border-left: 4px solid var(--accent-border); background: var(--accent-light); padding: 0.875rem 1.125rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0; }
+  .callout-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.35rem; }
+  .callout p { margin-bottom: 0; }
+  .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+  .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+  @page { margin: 1.5cm; }
+  @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider, .nav-agent-link { display: none !important; } .page-wrap { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; } p { orphans: 3; widows: 3; } pre, .callout { break-inside: avoid; } }
+
+  /* Prompt code blocks */
+  .guide-content pre { background: #0a0a0a; color: #f8f8f8; border-radius: 10px; padding: 1.25rem 1.5rem; overflow-x: auto; font-size: 0.8125rem; line-height: 1.6; margin: 0.75rem 0 1.25rem; border: 1px solid #1f1f1f; white-space: pre-wrap; }
+  .guide-content pre code { background: none; border: none; padding: 0; color: inherit; font-size: inherit; }
+  .guide-content code { font-family: 'Courier New', Courier, monospace; }
+
+  /* VISUAL BLOCKS */
+  /* VB1: what's-inside bullet cards */
+  .bullet-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.875rem; margin: 1.75rem 0; }
+  @media (max-width: 600px) { .bullet-grid { grid-template-columns: 1fr; } }
+  .bullet-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1rem 1.125rem; display: flex; gap: 0.75rem; align-items: flex-start; }
+  .bullet-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 0.45rem; }
+  .bullet-text { font-size: 0.875rem; margin: 0; }
+  /* VB2: model comparison */
+  .model-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0; }
+  @media (max-width: 700px) { .model-grid { grid-template-columns: 1fr; } }
+  .model-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.25rem 1.375rem; }
+  .model-name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--accent); font-size: 1.0625rem; margin-bottom: 0.5rem; }
+  .model-desc { font-size: 0.8375rem; color: var(--muted); margin: 0; }
+  /* VB3: category overview grid */
+  .catgrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.75rem 0; }
+  @media (max-width: 700px) { .catgrid { grid-template-columns: 1fr; } }
+  .catgrid-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.125rem 1.25rem; }
+  .catgrid-head { display: flex; align-items: baseline; gap: 0.625rem; margin-bottom: 0.4rem; }
+  .catgrid-num { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--accent); font-size: 1rem; flex-shrink: 0; }
+  .catgrid-name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.9375rem; }
+  .catgrid-desc { font-size: 0.8125rem; color: var(--muted); margin-bottom: 0.75rem; }
+  .catgrid-count { font-size: 0.6875rem; font-weight: 600; color: var(--accent); background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 9999px; padding: 0.15rem 0.625rem; }
+ </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+  <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+  <div class="logo-divider"></div>
+  <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">&#8592; All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+  <span class="badge badge-cat">Prompts &amp; Skills</span>
+  <span class="badge badge-diff">Beginner to Advanced</span>
+ </div>
+ <h1>33 Best Claude Prompts</h1>
+ <div class="hero-subtitle">Refreshed for Sonnet 5</div>
+ <p class="intro-blurb">Context-engineered prompts for Claude Sonnet 5, Opus 5 and Haiku 4.5, organised by what you are actually trying to get done, not by how clever the wording sounds.</p>
+ <div class="hero-author">
+  <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+  <div><span class="author-name">Max Johnson</span><span class="author-meta">@maxjohnscn</span></div>
+ </div>
+</div>
+
+<div class="page-wrap">
+ <main class="guide-content">
+
+  <button class="download-btn" onclick="window.print()">&#8595; Download PDF</button>
+
+  <h2 id="whats-inside">What's Inside</h2>
+  <div class="bullet-grid">
+   <div class="bullet-card"><span class="bullet-dot"></span><p class="bullet-text">Writing prompts that catch AI-sounding drafts before you publish</p></div>
+   <div class="bullet-card"><span class="bullet-dot"></span><p class="bullet-text">Coding prompts built around a pre-flight interview, not guesswork</p></div>
+   <div class="bullet-card"><span class="bullet-dot"></span><p class="bullet-text">Data, product and strategy prompts that rank confidence honestly</p></div>
+   <div class="bullet-card"><span class="bullet-dot"></span><p class="bullet-text">Sales scripts and audits that do not read like an ad</p></div>
+   <div class="bullet-card"><span class="bullet-dot"></span><p class="bullet-text">Research prompts that flag contradiction instead of smoothing it over</p></div>
+   <div class="bullet-card"><span class="bullet-dot"></span><p class="bullet-text">Team systems, not just tricks for one prompt-savvy person</p></div>
+  </div>
+
+  <h2 id="before-you-use-this">Before You Use This</h2>
+  <p>Context engineering has replaced prompt engineering. The biggest shift in 2026 isn't cleverer wording, it's Claude remembering your setup so you stop re-explaining it. Skills, Projects, and memory mean you teach Claude your voice, your format, and your rules once. A lot of the prompts in this guide are built around that instead of one-off asks.</p>
+
+  <div class="callout">
+   <div class="callout-label">The Plausibility Trap</div>
+   <p>Claude can produce answers that sound completely correct, properly formatted and confidently worded, while being wrong: a deprecated function used like it's current, a stat that doesn't exist, a claim rounded up to sound cleaner. The fix isn't distrust, it's a habit: ask Claude to flag its own uncertainty before you ship anything that matters.</p>
+  </div>
+
+  <div class="callout">
+   <div class="callout-label">Interview-Me-First Beats Guessing</div>
+   <p>For anything ambiguous, a brief, a spec, a plan, get Claude to ask you questions before it produces the thing. It surfaces the details you forgot to mention. Several prompts in this guide use that instead of a one-shot ask.</p>
+  </div>
+
+  <h3>Which Model to Use</h3>
+  <div class="model-grid">
+   <div class="model-card">
+    <div class="model-name">Sonnet 5</div>
+    <p class="model-desc">Handles almost everything in this guide. It's the default for a reason.</p>
+   </div>
+   <div class="model-card">
+    <div class="model-name">Opus 5</div>
+    <p class="model-desc">Switch here for the hardest reasoning chains: pricing calls, multi-file code review, anything where being wrong is expensive.</p>
+   </div>
+   <div class="model-card">
+    <div class="model-name">Haiku 4.5</div>
+    <p class="model-desc">Worth knowing for high-volume, low-stakes tasks (batch tagging, quick reformatting) where speed and cost matter more than depth.</p>
+   </div>
+  </div>
+  <div class="callout">
+   <p>Turn Thinking up next to the model selector when a prompt says "before answering, think through...". It isn't decorative, it changes the output.</p>
+  </div>
+
+  <h2 id="contents">Contents</h2>
+  <p>Find what you need, fast</p>
+  <div class="catgrid">
+   <div class="catgrid-card">
+    <div class="catgrid-head"><span class="catgrid-num">01</span><span class="catgrid-name">Writing &amp; Content</span></div>
+    <p class="catgrid-desc">Prompts for catching AI-sounding drafts before you publish them.</p>
+    <span class="catgrid-count">5 prompts</span>
+   </div>
+   <div class="catgrid-card">
+    <div class="catgrid-head"><span class="catgrid-num">02</span><span class="catgrid-name">Coding &amp; Engineering</span></div>
+    <p class="catgrid-desc">Prompts built around a pre-flight interview, not guesswork.</p>
+    <span class="catgrid-count">4 prompts</span>
+   </div>
+   <div class="catgrid-card">
+    <div class="catgrid-head"><span class="catgrid-num">03</span><span class="catgrid-name">Data &amp; Analysis</span></div>
+    <p class="catgrid-desc">Prompts that rank confidence honestly instead of by how interesting a finding sounds.</p>
+    <span class="catgrid-count">4 prompts</span>
+   </div>
+   <div class="catgrid-card">
+    <div class="catgrid-head"><span class="catgrid-num">04</span><span class="catgrid-name">Product &amp; Strategy</span></div>
+    <p class="catgrid-desc">Prompts for pressure-testing a decision before it's locked in.</p>
+    <span class="catgrid-count">4 prompts</span>
+   </div>
+   <div class="catgrid-card">
+    <div class="catgrid-head"><span class="catgrid-num">05</span><span class="catgrid-name">Sales &amp; Marketing</span></div>
+    <p class="catgrid-desc">Scripts and audits built to not read like a script or an ad.</p>
+    <span class="catgrid-count">4 prompts</span>
+   </div>
+   <div class="catgrid-card">
+    <div class="catgrid-head"><span class="catgrid-num">06</span><span class="catgrid-name">Learning &amp; Research</span></div>
+    <p class="catgrid-desc">Prompts that flag contradiction and uncertainty instead of smoothing it over.</p>
+    <span class="catgrid-count">4 prompts</span>
+   </div>
+   <div class="catgrid-card">
+    <div class="catgrid-head"><span class="catgrid-num">07</span><span class="catgrid-name">Productivity &amp; Systems</span></div>
+    <p class="catgrid-desc">Systems for a team, not just for the one person who's good at prompting.</p>
+    <span class="catgrid-count">4 prompts</span>
+   </div>
+   <div class="catgrid-card">
+    <div class="catgrid-head"><span class="catgrid-num">08</span><span class="catgrid-name">Thinking &amp; Decisions</span></div>
+    <p class="catgrid-desc">Prompts for finding the weak assumption before you commit to it.</p>
+    <span class="catgrid-count">4 prompts</span>
+   </div>
+  </div>
+  <p>33 prompts &#183; 8 categories</p>
+
+  <h2 id="category-01">Category 01: Writing &amp; Content</h2>
+  <p>Prompts for catching AI-sounding drafts before you publish them.</p>
+
+  <h3>01 Turn Your Voice Into a Reusable Skill</h3>
+  <pre><code>Analyse these [3-5] pieces of my writing: [PASTE SAMPLES]
+
+Instead of just matching my voice this once, write me a reusable voice guide I can save and reuse every time: 5 sentence-level patterns (rhythm, length, how I open lines), 3 words or phrases I lean on, 3 things I never do, my implicit point of view in one sentence, and a "banned phrases" list specific to how I sound generic when I'm not careful.
+
+Format this as instructions I can paste at the start of any future session so you write like me without me re-explaining every time.</code></pre>
+  <div class="callout"><p><strong>Tip:</strong> One-off voice matching decays. A saved voice guide compounds: paste it once per project and every draft after inherits it.</p></div>
+
+  <h3>02 The De-Slop Pass</h3>
+  <pre><code>Here's a draft: [PASTE DRAFT]
+
+Audit it for the specific tells that make writing sound AI-generated: em dashes used as a crutch, "rule of three" lists, vague attributions ("many believe," "experts say"), promotional language, filler openers, and any claim that sounds impressive but says nothing specific.
+
+For each one you find: quote it, say why it reads as generic, and rewrite that line specifically. Don't rewrite the whole piece, just the flagged lines.</code></pre>
+  <div class="callout"><p><strong>Tip:</strong> Most people ask Claude to sound human. Better to ask it to find where it sounds like AI and fix only that.</p></div>
+
+  <h3>03 Contrarian Take Generator</h3>
+  <pre><code>Topic: [TOPIC]. Audience: [WHO].
+
+Give me 5 genuinely contrarian takes on common advice in this space, not edgy for the sake of it, positions you could actually defend.
+
+For each: the conventional wisdom it pushes against, the argument, and the strongest case against your own take (steelman the disagreement).
+
+Do NOT give me a take you can't back with a specific reason. Vague contrarianism ("actually, hustle culture is bad") gets rejected.</code></pre>
+
+  <h3>04 Trend-Timed Content Opportunity Finder</h3>
+  <pre><code>My niche: [NICHE]. Current month/context: [WHAT'S HAPPENING RIGHT NOW IN YOUR INDUSTRY OR CALENDAR].
+
+Find 5 content opportunities that are timely right now, not evergreen. For each: the specific angle, why it's timely this week and not last month, best platform and format, and the exact hook line.
+
+Skip anything generic enough to have been written any month this year. Prioritise angles that invite comments and saves over ones that just look good.</code></pre>
+
+  <h3>05 B-Roll Narration Builder</h3>
+  <pre><code>I filmed [DESCRIBE THE FOOTAGE, setting, what's happening, no talking].
+
+Write a voiceover script to lay over this footage. Match it to what's actually visible, don't describe generic "day in the life" beats, describe what this specific footage shows.
+
+Length: [SECONDS]. Tone: [YOUR VOICE, casual/direct/etc]. No narration that states the obvious ("here I am at my desk"). Every line should add something the footage alone doesn't say.</code></pre>
+  <div class="callout"><p><strong>Tip:</strong> Silent-capture-then-narrate is how a lot of founder lifestyle content actually gets made now. This closes the gap between raw footage and a usable script.</p></div>
+
+  <h2 id="category-02">Category 02: Coding &amp; Engineering</h2>
+  <p>Prompts built around a pre-flight interview, not guesswork.</p>
+
+  <h3>06 Pre-Flight Interview</h3>
+  <pre><code>I want to build: [ROUGH DESCRIPTION OF THE FEATURE/PROJECT].
+
+Before writing any code, interview me. Ask one question at a time about anything ambiguous: edge cases, data shape, error handling, what "done" looks like, tradeoffs I haven't considered.
+
+Don't move to the next question until I've answered. Stop asking once you have enough to build without guessing, and tell me when you've reached that point.</code></pre>
+  <div class="callout"><p><strong>Tip:</strong> This is the highest-leverage habit change in this whole guide. A vague spec produces confidently wrong code; the interview forces the ambiguity out before it becomes a bug.</p></div>
+
+  <h3>07 The Plausibility Audit</h3>
+  <pre><code>Review this code for anything that would pass a quick glance but break in production: [PASTE CODE]
+
+Specifically check for: deprecated methods or parameters used like they're current, functions or libraries that sound real but might not exist, logic that's syntactically correct but semantically wrong, and anywhere you're pattern-matching to a common solution that doesn't actually fit this specific case.
+
+Rate your own confidence on each flagged section: certain, probably right, or genuinely unsure. Don't round "unsure" up to sound more finished.</code></pre>
+
+  <h3>08 Skill-ify This Workflow</h3>
+  <pre><code>I do this task repeatedly: [DESCRIBE THE RECURRING TASK, e.g. code review against our standards, a specific refactor pattern, our test naming convention].
+
+Write this as a reusable skill file I can save: the trigger conditions (when should this run automatically), the exact steps, and the output format. I want to stop re-explaining this every session.</code></pre>
+
+  <h3>09 Self-Verification Before "Done"</h3>
+  <pre><code>Before you tell me this is finished: [PASTE THE TASK/ACCEPTANCE CRITERIA]
+
+Check your own work against every criterion listed, one at a time. For each: pass, fail, or partially, with the specific evidence from what you built, not a general assurance.
+
+Only say "done" if every criterion genuinely passes. If something's uncertain, say so and tell me what to check manually.</code></pre>
+
+  <h2 id="category-03">Category 03: Data &amp; Analysis</h2>
+  <p>Prompts that rank confidence honestly instead of by how interesting a finding sounds.</p>
+
+  <h3>10 Assumption Audit</h3>
+  <pre><code>Data: [PASTE DATA]. Question I want answered: [QUESTION].
+
+Before analysing anything, restate what you think I'm actually asking, and list every assumption you'd need to make about this data to answer it (sample size, what's missing, selection bias, time period issues).
+
+Wait for me to confirm before running the analysis.</code></pre>
+
+  <h3>11 Confidence-Ranked Insights</h3>
+  <pre><code>Synthesise this data/these responses: [PASTE]
+
+Give me insights ranked by how confident you actually are in each one, not by how interesting they sound. For each: the insight, the evidence strength behind it (strong/moderate/weak), and what would change your confidence.
+
+Separate "the data clearly shows this" from "this is a plausible read but could easily be wrong."</code></pre>
+
+  <h3>12 Metric Sanity-Check</h3>
+  <pre><code>I'm about to report this metric: [METRIC + HOW IT WAS CALCULATED]
+
+Try to break it. What's the most likely way this number is misleading: wrong denominator, survivorship bias, a period comparison that isn't apples-to-apples, an outlier doing the work?
+
+Tell me straight if the metric is solid or if I need to caveat it before presenting.</code></pre>
+
+  <h3>13 Dashboard-to-Narrative</h3>
+  <pre><code>Raw numbers: [PASTE]
+
+Write the one paragraph a non-technical stakeholder actually needs: what happened, why it matters, what to do about it. No chart description, no "as you can see." If the data doesn't support a clear story, say that instead of forcing one.</code></pre>
+
+  <h2 id="category-04">Category 04: Product &amp; Strategy</h2>
+  <p>Prompts for pressure-testing a decision before it's locked in.</p>
+
+  <h3>14 Scope-Cut Simulator</h3>
+  <pre><code>Current plan: [DESCRIBE FEATURE/PROJECT SCOPE]. Deadline just got cut in half.
+
+Show me what ships in the reduced time, what gets cut, and what breaks if I cut the wrong thing. Rank the cuts by what actually protects the core value versus what just looks like progress.
+
+Be specific about what "ship the core" actually means here, not a vague MVP gesture.</code></pre>
+
+  <h3>15 Silent Objection Surfacer</h3>
+  <pre><code>Decision: [DESCRIBE].
+
+Imagine the sharpest, most skeptical person on your team heard this in a meeting and said nothing, but was thinking something. What's the objection they didn't voice?
+
+Give me the 3 most likely unspoken objections, ranked by how much they'd actually derail this if raised, and the one thing that would neutralise each.</code></pre>
+
+  <h3>16 12-Month Regret Audit</h3>
+  <pre><code>We're about to commit to: [DECISION].
+
+It's 12 months from now and this was the wrong call. Walk back from that regret: what specifically went wrong, what signal we ignored along the way, and what it would have cost to check that signal before committing.
+
+Be specific, "we didn't validate demand" is too vague to act on.</code></pre>
+
+  <h3>17 Build vs Buy vs Skip</h3>
+  <pre><code>We need: [CAPABILITY/PROBLEM]. Options considered: [LIST].
+
+For each option, build it, buy/use an existing tool, or don't solve this yet, give me: real cost (time or money), what it locks us into, and the failure mode specific to that choice.
+
+End with your actual recommendation and the one thing that would change it.</code></pre>
+
+  <h2 id="category-05">Category 05: Sales &amp; Marketing</h2>
+  <p>Scripts and audits built to not read like a script or an ad.</p>
+
+  <h3>18 AI Citability Audit</h3>
+  <pre><code>You're auditing content for whether AI systems (ChatGPT, Perplexity, AI Overviews, Claude) would cite it as a source, not whether it ranks. [PASTE URL/CONTENT]
+
+Check: does the opening directly answer the core question in one self-contained, quotable block? Is there a clear plain-language definition near the top? Are claims specific and quantified?
+
+Rewrite the opening as one tight, self-contained answer block, 40 to 60 words.</code></pre>
+
+  <h3>19 Comment-to-DM Script Writer</h3>
+  <pre><code>I want people who comment [KEYWORD] on this post to get an automated DM. Post topic: [TOPIC]. What they get: [LEAD MAGNET/OFFER].
+
+Write: the exact comment CTA line for the post/script, the opening DM line (not salesy, feels like a reply not a bot), and one natural follow-up if they don't respond in 48 hours.
+
+Keep the DM under 40 words. No "hey! thanks so much for commenting!" energy, write it like a person replying, not a sequence firing.</code></pre>
+
+  <h3>20 Sponsored Content That Doesn't Feel Sponsored</h3>
+  <pre><code>I need to promote [PRODUCT/TOOL] without it reading like an ad.
+
+Build the script around a real situation I could plausibly have had this week: [DESCRIBE YOUR ACTUAL WORK/NICHE]. The tool should be introduced mid-thought, not announced. One credibility signal delivered as an aside, not a section.
+
+Closer should name the real barrier to using this, not hype the product. No investor mentions, no "I only just discovered this."</code></pre>
+
+  <h3>21 Objection Pre-empt</h3>
+  <pre><code>The objection I keep hearing: [PASTE VERBATIM].
+
+Don't write a response yet. First: what's the prospect actually worried about underneath this, list 3 real concerns, not the surface complaint.
+
+Then write the response, under 60 words, addressing the real concern. End with a question that re-opens the conversation instead of a hard close.</code></pre>
+
+  <h2 id="category-06">Category 06: Learning &amp; Research</h2>
+  <p>Prompts that flag contradiction and uncertainty instead of smoothing it over.</p>
+
+  <h3>22 Multi-Source Contradiction Finder</h3>
+  <pre><code>Sources: [PASTE MULTIPLE ARTICLES/NOTES/TRANSCRIPTS]
+
+Where do these sources actually agree, and where do they contradict each other? Don't smooth over disagreement to produce a clean summary, name the specific claims that conflict and which source is more credible on that specific point, if you can tell.
+
+End with the 3 open questions none of these sources answer.</code></pre>
+
+  <h3>23 Confidence-Calibrated Explainer</h3>
+  <pre><code>Explain [CONCEPT] to someone who knows [PREREQUISITE] but has never encountered this.
+
+After the explanation, go back through it and flag which parts you're certain about versus which parts are your best synthesis that could be wrong. Don't let the confident parts and the uncertain parts read the same.</code></pre>
+
+  <h3>24 Second-Brain Distiller</h3>
+  <pre><code>Here are scattered notes/voice memo transcripts from the last [TIMEFRAME]: [PASTE]
+
+Turn this into one running document: recurring themes, decisions I seem to have already made without writing them down, open loops I haven't closed, and the single most important thing I should act on this week.
+
+No chronological summary, organise by what matters, not when I said it.</code></pre>
+
+  <h3>25 Skill Roadmap, No Fluff</h3>
+  <pre><code>I want to learn [SKILL] to the point where I can [SPECIFIC OUTCOME]. Current level: [WHAT YOU KNOW]. Time available: [HRS/WEEK].
+
+Build a 4-phase roadmap, each phase ending in something concrete I can show or ship. Name the most overrated resource people recommend for this and why. Name the first thing to do in the next 2 hours.
+
+Skip "fundamentals matter", I need the actual sequence.</code></pre>
+
+  <h2 id="category-07">Category 07: Productivity &amp; Systems</h2>
+  <p>Systems for a team, not just for the one person who's good at prompting.</p>
+
+  <h3>26 Team Prompt Library Builder</h3>
+  <pre><code>We do these tasks repeatedly on the team: [LIST 5-10 RECURRING TASKS]
+
+For each, write a reusable master prompt with clear variables I can swap in per use, plus one line on when to use it. Format for a shared doc so anyone on the team gets consistent output, not just the person who's good at prompting.</code></pre>
+  <div class="callout"><p><strong>Tip:</strong> A prompt that only works for one person on the team is a bottleneck. This makes quality repeatable across whoever's using it.</p></div>
+
+  <h3>27 Interview-Me-First Kickoff</h3>
+  <pre><code>I need to get done: [ROUGH TASK, a plan, a brief, a doc, anything ambiguous].
+
+Before producing anything, ask me what you'd actually need to know to do this well, one question at a time. Stop once you have enough, and tell me you're ready to start.</code></pre>
+
+  <h3>28 Context Reset Summary</h3>
+  <pre><code>This conversation has gotten long. Before I start a fresh chat, summarise everything decided so far: the final decisions (not the options we rejected), any open questions still unresolved, and the exact next action.
+
+Write it so I can paste it into a new chat and pick up with zero context loss.</code></pre>
+
+  <h3>29 Meeting-to-System Converter</h3>
+  <pre><code>Meeting notes/transcript: [PASTE]
+
+Convert into: tasks with owners and rough deadlines, decisions actually made (versus things discussed but not decided), and anything that needs a follow-up before it can move.
+
+Flag anything that sounded like a decision but wasn't actually confirmed by everyone in the room.</code></pre>
+
+  <h2 id="category-08">Category 08: Thinking &amp; Decisions</h2>
+  <p>Prompts for finding the weak assumption before you commit to it.</p>
+
+  <h3>30 Plausibility Stress-Test</h3>
+  <pre><code>My plan: [DESCRIBE]
+
+Find the part of this that sounds right but probably isn't, the assumption that feels obvious but hasn't actually been checked. Don't attack the whole plan, find the single weakest load-bearing assumption and press on just that one.</code></pre>
+
+  <h3>31 Range-of-Outcomes Forecast</h3>
+  <pre><code>Decision: [DESCRIBE]
+
+Give me best case, base case, and worst case, not just a single prediction. For each, what specifically would have to be true for that outcome, and roughly how likely each scenario actually is given what I know.
+
+Don't hedge into "it depends" without giving me your actual read.</code></pre>
+
+  <h3>32 Second-Opinion Simulator</h3>
+  <pre><code>Decision: [DESCRIBE]
+
+Give me how 3 specific, different-minded people would react to this: [NAME 3 ARCHETYPES, e.g. a cautious CFO type, an aggressive growth-focused founder, a skeptical customer].
+
+For each: their gut reaction, the question they'd ask first, and what would actually change their mind.</code></pre>
+
+  <h3>33 Steelman-Then-Decide</h3>
+  <pre><code>Choosing between [OPTION A] and [OPTION B].
+
+Steelman A fully. Steelman B fully. For each, the one condition under which it loses badly.
+
+Given my actual context, [CONTEXT], which steelman is more relevant to my situation, and what's your recommendation.
+
+Don't hedge on the final call. Pick one.</code></pre>
+
+  <h2 id="now-go-use-one">Now Go Use One. Not All 33.</h2>
+  <p>A guide full of prompts only earns its keep if a few of them actually get used. Pick the two or three that map to what you do every week and turn those into saved Skills. That is where the real time comes back.</p>
+  <ul>
+   <li>Pick one prompt from this guide and run it on something you are working on today, not a hypothetical.</li>
+   <li>Save the ones you reuse as a Skill so you stop re-pasting the same instructions every session.</li>
+   <li>Build the habit of asking Claude to flag its own uncertainty before you ship anything that matters.</li>
+  </ul>
+
+ </main>
+
+ <aside class="toc-sidebar">
+  <div class="toc-box">
+   <h3>In this guide</h3>
+   <ol>
+    <li><a href="#whats-inside">What's Inside</a></li>
+    <li><a href="#before-you-use-this">Before You Use This</a></li>
+    <li><a href="#contents">Contents</a></li>
+    <li><a href="#category-01">Writing &amp; Content</a></li>
+    <li><a href="#category-02">Coding &amp; Engineering</a></li>
+    <li><a href="#category-03">Data &amp; Analysis</a></li>
+    <li><a href="#category-04">Product &amp; Strategy</a></li>
+    <li><a href="#category-05">Sales &amp; Marketing</a></li>
+    <li><a href="#category-06">Learning &amp; Research</a></li>
+    <li><a href="#category-07">Productivity &amp; Systems</a></li>
+    <li><a href="#category-08">Thinking &amp; Decisions</a></li>
+    <li><a href="#now-go-use-one">Now Go Use One</a></li>
+   </ol>
+  </div>
+ </aside>
+</div>
+
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+{
+  "id": "AI-070",
+  "slug": "3-free-skills-that-kill-the-ai-look",
+  "title": "3 Free Skills That Kill The AI Look",
+  "category": "Prompts & Skills",
+  "subcategory": "Custom Skills",
+  "difficulty": "Intermediate",
+  "description": "Three free Claude Code skills that stop your builds looking like every other vibe-coded site: Emil Kowalski's motion skill, Impeccable's design system and polish command, and the Taste anti-slop skill. Install commands and what each one actually fixes.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Prompts & Skills",
+    "Contents: What You'll Set Up",
+    "Why these three",
+    "Why Every AI Site Looks The Same",
+    "The three tells",
+    "What each skill fixes",
+    "Custom Skills"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude Desktop",
+    "Claude",
+    "Cursor"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-070_3-free-skills-that-kill-the-ai-look.html",
+  "summary_file": "summaries/AI-070.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

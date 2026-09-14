@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>9 Things You're Still Paying For That Claude Builds for Free</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+ <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+  .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+  .header.scrolled { border-color: var(--accent-border); }
+  .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+  .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+  .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+  .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+  .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+  a.logo-subtitle:hover { color: var(--accent); }
+  .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+  .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+  .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+  @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+  .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+  .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+  .badge-cat { background: var(--accent); color: #fff; }
+  .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+  .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+  .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+  .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+  .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+  .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+  .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+  .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+  .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+  .toc-box ol { list-style: none; counter-reset: toc; }
+  .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+  .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+  .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+  .toc-box a:hover { color: var(--accent); }
+  .guide-content { padding: 2rem 0 5rem; }
+  .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+  .guide-content h2:first-of-type { border-top: none; margin-top: 0; }
+  .guide-content h3 { font-size: 1.0625rem; font-weight: 700; margin-top: 1.75rem; margin-bottom: 0.625rem; }
+  .guide-content p { margin-bottom: 1.125rem; }
+  .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+  .guide-content li { margin-bottom: 0.5rem; }
+  .guide-content strong { font-weight: 600; }
+  .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+  @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .back-btn { margin-left: 0; } .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+  .callout { border-left: 4px solid var(--accent-border); background: var(--accent-light); padding: 0.875rem 1.125rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0; }
+  .callout-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.35rem; }
+  .callout p { margin-bottom: 0; }
+  .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+  .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+  @page { margin: 1.5cm; }
+  @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; } p { orphans: 3; widows: 3; } pre, .callout { break-inside: avoid; } }
+
+  /* Prompt code blocks */
+  .guide-content pre { background: #0a0a0a; color: #f8f8f8; border-radius: 10px; padding: 1.25rem 1.5rem; overflow-x: auto; font-size: 0.8125rem; line-height: 1.6; margin: 0.5rem 0 1.25rem; border: 1px solid #1f1f1f; white-space: pre-wrap; }
+  .guide-content pre code { background: none; border: none; padding: 0; color: inherit; font-size: inherit; }
+  .guide-content code { font-family: 'Courier New', Courier, monospace; }
+  .prompt-label { font-size: 0.8125rem; font-weight: 700; color: var(--accent); margin: 0.5rem 0 0.25rem; }
+  .build-meta { display: flex; flex-direction: column; gap: 0.3rem; margin: 0.5rem 0 1.125rem; }
+  .build-meta p { margin: 0; font-size: 0.9375rem; }
+
+  /* VISUAL BLOCKS */
+  /* VB1: 9-build overview grid */
+  .rolegrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.875rem; margin: 1.75rem 0; }
+  @media (max-width: 800px) { .rolegrid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .rolegrid { grid-template-columns: 1fr; } }
+  .rolegrid-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1rem 1.125rem; }
+  .rolegrid-num { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--accent); font-size: 0.8125rem; margin-bottom: 0.3rem; }
+  .rolegrid-name { font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.3rem; }
+  .rolegrid-tool { font-size: 0.8125rem; color: var(--muted); }
+  .rolegrid-arrow { color: var(--accent-border); margin: 0 0.25rem; }
+  /* VB2: 9-card reasoning grid */
+  .reasongrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.75rem 0; }
+  @media (max-width: 800px) { .reasongrid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .reasongrid { grid-template-columns: 1fr; } }
+  .reasongrid-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.125rem 1.25rem; }
+  .reasongrid-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.25rem; }
+  .reasongrid-tool { font-size: 0.75rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.03em; margin-bottom: 0.5rem; }
+  .reasongrid-desc { font-size: 0.8125rem; color: var(--muted); margin: 0; }
+ </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+  <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+  <div class="logo-divider"></div>
+  <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">&#8592; All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+  <span class="badge badge-cat">Tools &amp; Integrations</span>
+  <span class="badge badge-diff">Intermediate</span>
+ </div>
+ <h1>9 Things You're Still Paying For That Claude Builds for Free</h1>
+ <p class="intro-blurb">Not nine prompts. Nine actual builds, one per role, each set up with the specific Claude feature that fits the job, from Projects to Chrome to Cowork to Code.</p>
+ <ul>
+  <li>All nine roles, matched to the actual Claude feature built for that job</li>
+  <li>Step-by-step setup for each: Projects, Skills, Chrome, Cowork, Code, and more</li>
+  <li>The exact instructions or prompt to paste in for each build</li>
+  <li>Why that feature, and not just a chat message, is the right tool for it</li>
+ </ul>
+ <div class="hero-author">
+  <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+  <div><span class="author-name">Max Johnson</span><span class="author-meta">@maxjohnscn</span></div>
+ </div>
+</div>
+
+<div class="page-wrap">
+ <main class="guide-content">
+
+  <button class="download-btn" onclick="window.print()">&#8595; Download PDF</button>
+
+  <div class="rolegrid">
+   <div class="rolegrid-card"><div class="rolegrid-num">01</div><div class="rolegrid-name">Interior Designer</div><div class="rolegrid-tool"><span class="rolegrid-arrow">&#8594;</span>Claude Projects</div></div>
+   <div class="rolegrid-card"><div class="rolegrid-num">02</div><div class="rolegrid-name">Copywriter</div><div class="rolegrid-tool"><span class="rolegrid-arrow">&#8594;</span>Claude Skills</div></div>
+   <div class="rolegrid-card"><div class="rolegrid-num">03</div><div class="rolegrid-name">Travel Agent</div><div class="rolegrid-tool"><span class="rolegrid-arrow">&#8594;</span>Claude in Chrome</div></div>
+   <div class="rolegrid-card"><div class="rolegrid-num">04</div><div class="rolegrid-name">Language Tutor</div><div class="rolegrid-tool"><span class="rolegrid-arrow">&#8594;</span>Mobile App + Memory</div></div>
+   <div class="rolegrid-card"><div class="rolegrid-num">05</div><div class="rolegrid-name">Social Media Manager</div><div class="rolegrid-tool"><span class="rolegrid-arrow">&#8594;</span>Artifacts (persistent storage)</div></div>
+   <div class="rolegrid-card"><div class="rolegrid-num">06</div><div class="rolegrid-name">Personal Trainer</div><div class="rolegrid-tool"><span class="rolegrid-arrow">&#8594;</span>Claude Cowork</div></div>
+   <div class="rolegrid-card"><div class="rolegrid-num">07</div><div class="rolegrid-name">Business Coach</div><div class="rolegrid-tool"><span class="rolegrid-arrow">&#8594;</span>Claude for Excel</div></div>
+   <div class="rolegrid-card"><div class="rolegrid-num">08</div><div class="rolegrid-name">Resume Writer</div><div class="rolegrid-tool"><span class="rolegrid-arrow">&#8594;</span>Claude for Word</div></div>
+   <div class="rolegrid-card"><div class="rolegrid-num">09</div><div class="rolegrid-name">Meal Planner &amp; Nutrition Helper</div><div class="rolegrid-tool"><span class="rolegrid-arrow">&#8594;</span>Claude Code (Desktop)</div></div>
+  </div>
+
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>A few of these need a paid Claude plan (Pro, Max, Team, or Enterprise) and, in two cases, a Microsoft 365 subscription. Each page tells you exactly what you need before you start.</p>
+  </div>
+
+  <h2 id="how-this-works">How This Guide Works: The Right Tool, Not Just a Chat Message</h2>
+  <p>Every one of these nine jobs can technically be done in a plain Claude chat. But a plain chat forgets everything the moment you close it. The professional you're replacing didn't just answer a question once, they held context, worked from live information, produced a real document, or checked in on you over time. So each build here uses whichever actual Claude feature does that.</p>
+
+  <div class="reasongrid">
+   <div class="reasongrid-card"><div class="reasongrid-title">Interior Designer</div><div class="reasongrid-tool">Claude Projects</div><p class="reasongrid-desc">It's ongoing. Your photos, budget, and taste need to persist across every visit to this project.</p></div>
+   <div class="reasongrid-card"><div class="reasongrid-title">Copywriter</div><div class="reasongrid-tool">Claude Skills</div><p class="reasongrid-desc">It's a repeatable process you'll run on every offer. Teach it once, it fires on every future chat.</p></div>
+   <div class="reasongrid-card"><div class="reasongrid-title">Travel Agent</div><div class="reasongrid-tool">Claude in Chrome</div><p class="reasongrid-desc">It needs what's actually live on booking sites right now, not what Claude remembers from training.</p></div>
+   <div class="reasongrid-card"><div class="reasongrid-title">Language Tutor</div><div class="reasongrid-tool">Mobile App + Memory</div><p class="reasongrid-desc">Practice happens in small gaps in your day, and needs to remember your mistakes between sessions.</p></div>
+   <div class="reasongrid-card"><div class="reasongrid-title">Social Media Manager</div><div class="reasongrid-tool">Artifacts</div><p class="reasongrid-desc">The calendar needs to persist and get checked off over weeks, not live inside one chat message.</p></div>
+   <div class="reasongrid-card"><div class="reasongrid-title">Personal Trainer</div><div class="reasongrid-tool">Claude Cowork</div><p class="reasongrid-desc">It's a multi-step job: build the plan, produce a tracker, then revise it weekly. That's a handoff.</p></div>
+   <div class="reasongrid-card"><div class="reasongrid-title">Business Coach</div><div class="reasongrid-tool">Claude for Excel</div><p class="reasongrid-desc">The diagnosis needs your real numbers, live, inside the sheet you already work in.</p></div>
+   <div class="reasongrid-card"><div class="reasongrid-title">Resume Writer</div><div class="reasongrid-tool">Claude for Word</div><p class="reasongrid-desc">The output is the actual document you'll submit. Edit it in place, formatting intact.</p></div>
+   <div class="reasongrid-card"><div class="reasongrid-title">Meal Planner</div><div class="reasongrid-tool">Claude Code</div><p class="reasongrid-desc">"Adjusts as things change" means a small tool you rerun, not a fresh conversation every week.</p></div>
+  </div>
+
+  <h2 id="build-01">Build 01 of 09: Interior Designer</h2>
+  <div class="build-meta">
+   <p><strong>Built with:</strong> Claude Projects</p>
+   <p><strong>Replaces:</strong> a paid design consultation</p>
+  </div>
+  <p>Give it your space, budget, and taste. It designs a full layout with a colour palette and real furniture picks that actually work together.</p>
+  <p><strong>Why this tool:</strong> This is a project, not a one-off question. You'll come back to it as the room evolves, and Claude needs your photos and budget on hand every time, not re-explained each chat.</p>
+  <p><strong>You'll need:</strong> Any Claude account. Free plans get 5 projects; paid plans (Pro/Max/Team) hold a much larger knowledge base.</p>
+  <h3>The Build</h3>
+  <ol>
+   <li><strong>Create the project:</strong> In claude.ai, click "Projects" in the left sidebar, then "Create project." Name it something specific, like "Living Room Redesign."</li>
+   <li><strong>Set the project instructions:</strong> Open Project instructions and paste the block below. This is what makes every chat inside the project act like a designer, not a generic assistant.</li>
+   <li><strong>Upload your knowledge:</strong> Add photos of the actual room, a folder of inspiration images, and your budget as Project knowledge. Claude references these automatically.</li>
+   <li><strong>Start a new chat inside the project:</strong> Describe the room and what you want. Claude already has your instructions and files loaded.</li>
+  </ol>
+  <p class="prompt-label">Paste into: Project Instructions</p>
+  <pre><code>You are acting as my interior designer. Every time I describe a room, give me:
+1) a full layout explaining where each piece of furniture goes and why, 2) a
+colour palette for walls and textiles, 3) specific, real, buyable furniture
+picks that fit my stated budget. Ask for the room's dimensions and which way it
+faces if I haven't given them.</code></pre>
+  <div class="callout"><p><strong>Tip:</strong> Upload real photos of the room to Project knowledge. Claude designs around the actual space, not a generic one.</p></div>
+
+  <h2 id="build-02">Build 02 of 09: Copywriter</h2>
+  <div class="build-meta">
+   <p><strong>Built with:</strong> Claude Skills</p>
+   <p><strong>Replaces:</strong> a freelance copywriter</p>
+  </div>
+  <p>Give it your offer and audience. It writes conversion-focused copy and stress-tests it against objections until it actually sells.</p>
+  <p><strong>Why this tool:</strong> This is a repeatable process you'll run on every offer you ever write, not a one-time job. A skill teaches Claude the process once, and it applies automatically in any chat from then on.</p>
+  <p><strong>You'll need:</strong> Any Claude plan, with Code execution and file creation turned on in Settings.</p>
+  <h3>The Build</h3>
+  <ol>
+   <li><strong>Open Skills settings:</strong> Go to Settings &#8594; Customize &#8594; Skills (or claude.ai/settings/customize-skills).</li>
+   <li><strong>Create a new skill:</strong> Click the "+" button, then "+ Create skill," then choose "Write skill instructions." No file to prepare.</li>
+   <li><strong>Paste the instructions and name it:</strong> Paste the block below and name it something like "Conversion Copy Reviewer." Save it.</li>
+   <li><strong>Turn it on:</strong> Uploaded skills are off by default. Toggle it on in your skills list.</li>
+   <li><strong>Use it in any chat:</strong> Paste your offer and audience. The skill loads automatically because the request matches it.</li>
+  </ol>
+  <p class="prompt-label">Paste into: Write Skill Instructions</p>
+  <pre><code>Use this skill whenever asked to write or review sales, landing page, or ad
+copy. Write conversion-focused copy for the stated offer and audience. Then, in
+a second pass, list the top 5 objections a skeptical buyer would raise and
+rewrite the copy to pre-empt each one. Never skip the objection pass.</code></pre>
+  <div class="callout"><p><strong>Tip:</strong> The description field is what makes a skill fire automatically. Name the exact situations it should trigger on.</p></div>
+
+  <h2 id="build-03">Build 03 of 09: Travel Agent</h2>
+  <div class="build-meta">
+   <p><strong>Built with:</strong> Claude in Chrome</p>
+   <p><strong>Replaces:</strong> a travel planning service</p>
+  </div>
+  <p>Tell it your destination and budget. It builds a real itinerary with pacing, hidden gems, and backup plans, not just a list of sights.</p>
+  <p><strong>Why this tool:</strong> A good itinerary needs what's actually live on booking and review sites right now, not what Claude remembers from training. Claude in Chrome reads the real page in front of you as you browse.</p>
+  <p><strong>You'll need:</strong> A paid Claude plan (Pro, Max, Team, or Enterprise) and Google Chrome on desktop.</p>
+  <h3>The Build</h3>
+  <ol>
+   <li><strong>Install the extension:</strong> Open the Chrome Web Store, search "Claude," and click "Add to Chrome."</li>
+   <li><strong>Sign in:</strong> Sign in with your Claude account when prompted. This requires a paid plan.</li>
+   <li><strong>Open the side panel:</strong> Click the Claude icon in your Chrome toolbar. It stays open while you browse.</li>
+   <li><strong>Browse, then ask:</strong> Open real listings, review sites, or a map of your destination, then ask Claude in the side panel to build the itinerary from what's on the pages.</li>
+   <li><strong>Approve site access:</strong> Claude asks before it acts on a page. Approve the sites you want it reading.</li>
+  </ol>
+  <p class="prompt-label">Say this in the side panel</p>
+  <pre><code>I'm going to Lisbon for 5 days on a $1,500 budget. Look at what's actually on
+this page and build me a realistic day-by-day itinerary with pacing, a few
+local spots, and a backup plan for each day in case of rain or closures.</code></pre>
+  <div class="callout"><p><strong>Tip:</strong> Browse to a few real listings first. Claude in Chrome works from what's actually on your screen, not just memory.</p></div>
+
+  <h2 id="build-04">Build 04 of 09: Language Tutor</h2>
+  <div class="build-meta">
+   <p><strong>Built with:</strong> Claude Mobile App + Memory</p>
+   <p><strong>Replaces:</strong> 1:1 language tutoring</p>
+  </div>
+  <p>Practice full conversations with it in any language. It catches your specific error patterns and adapts lessons to what you're actually struggling with.</p>
+  <p><strong>Why this tool:</strong> Tutoring only works if it happens often and short, in the gaps in your day, and if Claude remembers your recurring mistakes between sessions instead of starting fresh every time.</p>
+  <p><strong>You'll need:</strong> The Claude app for iOS or Android, with Memory turned on in Settings.</p>
+  <h3>The Build</h3>
+  <ol>
+   <li><strong>Get the app:</strong> Download Claude from the App Store or Google Play and sign in with your account.</li>
+   <li><strong>Turn on Memory:</strong> In Settings, enable "Generate memory from chat history" so Claude carries context between sessions.</li>
+   <li><strong>Start a conversation:</strong> Ask Claude to role-play a real scenario in your target language.</li>
+   <li><strong>Ask for the error summary:</strong> After a real back-and-forth, ask Claude to summarise the specific patterns it noticed.</li>
+   <li><strong>Come back tomorrow:</strong> Open the app again. Claude already knows what you struggle with.</li>
+  </ol>
+  <p class="prompt-label">Try this prompt</p>
+  <pre><code>Let's have a conversation in Spanish about ordering food at a restaurant. Stay
+in character as the waiter. Correct my grammar as we go, and at the end, tell
+me the specific error patterns you noticed and how to fix them.</code></pre>
+  <div class="callout"><p><strong>Tip:</strong> Ask for the error-pattern summary explicitly. Left alone, Claude will just keep chatting.</p></div>
+
+  <h2 id="build-05">Build 05 of 09: Social Media Manager</h2>
+  <div class="build-meta">
+   <p><strong>Built with:</strong> Artifacts (persistent storage)</p>
+   <p><strong>Replaces:</strong> a social media management retainer</p>
+  </div>
+  <p>Give it your brand and niche. It builds your content strategy, hooks, and posting cadence, then sharpens it based on what's working.</p>
+  <p><strong>Why this tool:</strong> A content calendar needs to persist and get checked off over weeks, not live in a chat message you'll lose. Artifacts can save your data so it's still there the next time you open it.</p>
+  <p><strong>You'll need:</strong> Any Claude plan, in a normal chat or inside a Project.</p>
+  <h3>The Build</h3>
+  <ol>
+   <li><strong>Open a chat:</strong> A Project is a nice extra here if you want your brand knowledge attached, but a normal chat works fine.</li>
+   <li><strong>Describe your brand:</strong> Give Claude your brand, niche, and how often you can realistically post.</li>
+   <li><strong>Ask for a saved artifact:</strong> Ask Claude to build the calendar as an interactive artifact that saves your data, not just a text list.</li>
+   <li><strong>Use it, then report back:</strong> Check posts off as you go. After a couple of weeks, tell Claude what actually performed.</li>
+   <li><strong>Ask it to sharpen the plan:</strong> It updates both the strategy and the saved calendar based on real results.</li>
+  </ol>
+  <p class="prompt-label">Try this prompt</p>
+  <pre><code>Build me an interactive content calendar as an artifact I can check off as I
+post, with pillar topics, hook formulas, and a posting cadence for my skincare
+brand. Save my data so it's there when I reopen it.</code></pre>
+  <div class="callout"><p><strong>Tip:</strong> This uses Claude's persistent storage inside Artifacts. Your data lives in the artifact itself, not in the chat.</p></div>
+
+  <h2 id="build-06">Build 06 of 09: Personal Trainer</h2>
+  <div class="build-meta">
+   <p><strong>Built with:</strong> Claude Cowork</p>
+   <p><strong>Replaces:</strong> a personal training package</p>
+  </div>
+  <p>Tell it your goals, your gym or home setup, and your free days. It builds the plan and levels it up each week.</p>
+  <p><strong>Why this tool:</strong> This is a multi-step, ongoing job, not a single question: build a plan, produce a way to track it, then revise it weekly. Cowork is built for handing off exactly that kind of work.</p>
+  <p><strong>You'll need:</strong> A paid Claude plan and the Claude Desktop app.</p>
+  <h3>The Build</h3>
+  <ol>
+   <li><strong>Get the desktop app:</strong> Download Claude Desktop from claude.com/download and sign in.</li>
+   <li><strong>Open Cowork:</strong> Click the "Cowork" tab in the desktop app.</li>
+   <li><strong>Hand off the build:</strong> Describe your goal, equipment, and free days, and ask for a 4-week plan plus a simple file to track it in.</li>
+   <li><strong>Let it run:</strong> Cowork works the task in the background and hands you back the plan and a tracking file.</li>
+   <li><strong>Check in weekly:</strong> Feed it how sessions actually went. Ask it to adjust before it builds the next week.</li>
+  </ol>
+  <p class="prompt-label">Try this prompt</p>
+  <pre><code>My goal is to build muscle. I have dumbbells and a pull-up bar at home, and I
+can train Monday, Wednesday, Friday, and Saturday. Build me a 4-week
+progressive plan and a simple file to track it in, then check in with me each
+week to adjust it.</code></pre>
+  <div class="callout"><p><strong>Tip:</strong> Cowork works best when you hand off the task and let it run, rather than chatting turn by turn.</p></div>
+
+  <h2 id="build-07">Build 07 of 09: Business Coach</h2>
+  <div class="build-meta">
+   <p><strong>Built with:</strong> Claude for Excel</p>
+   <p><strong>Replaces:</strong> a business coaching retainer</p>
+  </div>
+  <p>Give it your numbers and bottleneck. It diagnoses what's actually holding growth back and pressure-tests your next move like a real operator.</p>
+  <p><strong>Why this tool:</strong> A real diagnosis needs your actual numbers, live, not numbers retyped into a chat. Claude for Excel reads the workbook you're already working in.</p>
+  <p><strong>You'll need:</strong> A paid Claude plan and Microsoft 365 (Excel on web, Windows, or Mac).</p>
+  <h3>The Build</h3>
+  <ol>
+   <li><strong>Install the add-in:</strong> In Microsoft AppSource, or from Excel's Home &#8594; Add-ins menu, search "Claude by Anthropic" and add it.</li>
+   <li><strong>Sign in:</strong> Connect it to your Claude account. This requires a paid Claude plan.</li>
+   <li><strong>Open your numbers:</strong> Have your revenue, churn, CAC, or whatever you track open in the workbook.</li>
+   <li><strong>Open the Claude sidebar:</strong> Use the Add-ins menu, or Ctrl+Alt+C on Windows / Ctrl+Option+C on Mac.</li>
+   <li><strong>Ask for the diagnosis:</strong> Describe your bottleneck. Claude reads the live sheet as it answers.</li>
+  </ol>
+  <p class="prompt-label">Try this prompt</p>
+  <pre><code>Looking at this sheet, my bottleneck feels like new customer acquisition.
+Diagnose what's actually holding growth back, then pressure-test my plan to
+spend on paid ads before I commit budget to it.</code></pre>
+  <div class="callout"><p><strong>Tip:</strong> Claude only sees the workbook that's open. If you're comparing two files, put the numbers in one sheet first.</p></div>
+
+  <h2 id="build-08">Build 08 of 09: Resume Writer</h2>
+  <div class="build-meta">
+   <p><strong>Built with:</strong> Claude for Word</p>
+   <p><strong>Replaces:</strong> a professional resume writing service</p>
+  </div>
+  <p>Give it your work history and the job posting. It rewrites your resume to mirror that role's language and beat the ATS.</p>
+  <p><strong>Why this tool:</strong> The output here is the actual document you'll submit. Editing it directly inside Word, formatting intact, beats writing in a chat and reformatting it yourself after.</p>
+  <p><strong>You'll need:</strong> A paid Claude plan and Microsoft 365 (Word).</p>
+  <h3>The Build</h3>
+  <ol>
+   <li><strong>Install the add-in:</strong> In Word, open the ribbon, click Add-ins, and search "Claude."</li>
+   <li><strong>Sign in:</strong> Connect it to your Claude account. This requires a paid Claude plan.</li>
+   <li><strong>Open your resume:</strong> Have your current resume open in Word, or paste your work history into the sidebar.</li>
+   <li><strong>Add the job posting:</strong> Paste the full posting you're applying to into the sidebar.</li>
+   <li><strong>Ask for the rewrite:</strong> Claude rewrites directly against the open document.</li>
+  </ol>
+  <p class="prompt-label">Try this prompt</p>
+  <pre><code>Here's the job posting I'm applying to: [paste it]. Rewrite this resume to
+mirror the language and priorities of the posting and get past ATS keyword
+filters, without inventing anything I haven't actually done.</code></pre>
+  <div class="callout"><p><strong>Tip:</strong> Always paste the actual posting. A generic "make it better" ask gets a generic result.</p></div>
+
+  <h2 id="build-09">Build 09 of 09: Meal Planner &amp; Nutrition Helper</h2>
+  <div class="build-meta">
+   <p><strong>Built with:</strong> Claude Code (Desktop)</p>
+   <p><strong>Replaces:</strong> a nutrition coaching subscription</p>
+  </div>
+  <p>Tell it your macros, allergies, and what's in your fridge. It builds a weekly plan and adjusts it as things change.</p>
+  <p><strong>Why this tool:</strong> "Adjusts as things change" really means a small tool you can rerun any time your fridge changes, not a fresh conversation every week. Claude Code builds that tool for you, no coding required.</p>
+  <p><strong>You'll need:</strong> A paid Claude plan and the Claude Desktop app (Mac or Windows).</p>
+  <h3>The Build</h3>
+  <ol>
+   <li><strong>Get the desktop app:</strong> Download Claude Desktop from claude.com/download and sign in.</li>
+   <li><strong>Open the Code tab:</strong> Click "Code" at the top of the desktop app.</li>
+   <li><strong>Describe the tool in plain English:</strong> Tell it what you want built. See the prompt below.</li>
+   <li><strong>Approve as it builds:</strong> Claude proposes each change; you approve it. No coding on your end.</li>
+   <li><strong>Rerun it any time:</strong> Update your fridge inventory and ask Claude to regenerate the week's plan.</li>
+  </ol>
+  <p class="prompt-label">Try this prompt</p>
+  <pre><code>Build me a simple personal meal-planning tool. I give it my macro targets,
+allergies, and what's currently in my fridge, and it outputs a 7-day plan using
+what I have plus a shopping list for the rest. Keep it simple, just something I
+can run on my own computer.</code></pre>
+  <div class="callout"><p><strong>Tip:</strong> You're not writing code. You're describing what you want and approving Claude's changes as it builds.</p></div>
+
+  <h2 id="closing">Closing: Nine Builds. One at a Time.</h2>
+  <p>Don't set up all nine today. Pick the one role that matches something you're paying for right now, follow that one page, and actually build it. Come back for the next one when you need it.</p>
+  <h3>Your Three Moves</h3>
+  <ul>
+   <li>Pick one build from this guide that replaces something you're paying for right now</li>
+   <li>Follow that page's steps exactly, including the plan or tool it says you need</li>
+   <li>Use it for a real task this week, then come back and set up the next one</li>
+  </ul>
+
+ </main>
+
+ <aside class="toc-sidebar">
+  <div class="toc-box">
+   <h3>In this guide</h3>
+   <ol>
+    <li><a href="#how-this-works">How This Guide Works</a></li>
+    <li><a href="#build-01">Interior Designer</a></li>
+    <li><a href="#build-02">Copywriter</a></li>
+    <li><a href="#build-03">Travel Agent</a></li>
+    <li><a href="#build-04">Language Tutor</a></li>
+    <li><a href="#build-05">Social Media Manager</a></li>
+    <li><a href="#build-06">Personal Trainer</a></li>
+    <li><a href="#build-07">Business Coach</a></li>
+    <li><a href="#build-08">Resume Writer</a></li>
+    <li><a href="#build-09">Meal Planner</a></li>
+    <li><a href="#closing">One At A Time</a></li>
+   </ol>
+  </div>
+ </aside>
+</div>
+
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+</body>
+</html>

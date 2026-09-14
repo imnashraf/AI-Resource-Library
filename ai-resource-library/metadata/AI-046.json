@@ -1,0 +1,38 @@
+{
+  "id": "AI-046",
+  "slug": "how-to-get-most-out-of-claude-fable-5",
+  "title": "How to Get the Most Out of Claude Fable 5",
+  "category": "Getting Started",
+  "subcategory": "Core Fundamentals",
+  "difficulty": "Beginner",
+  "description": "Anthropic's most powerful model, included free on Pro and Max plans until June 22. Fact-checked benchmarks, the four use cases where Fable 5 pulls furthest ahead, a two-minute setup guide, and how to prompt it differently.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Getting Started",
+    "What Fable 5 Actually Is",
+    "The Free Window",
+    "The Benchmarks, Fact-Checked",
+    "Where Fable 5 Shines",
+    "Setup Guide",
+    "Prompt It Differently",
+    "Core Fundamentals"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude Fable 5",
+    "Claude",
+    "GPT-5",
+    "Gemini",
+    "Cursor"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-046_how-to-get-most-out-of-claude-fable-5.html",
+  "summary_file": "summaries/AI-046.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>15 Claude Routines To Automate Your Business</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+ <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+  .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+  .header.scrolled { border-color: var(--accent-border); }
+  .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+  .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+  .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+  .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+  .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+  a.logo-subtitle:hover { color: var(--accent); }
+  .nav-agent-link { font-size: 0.8125rem; font-weight: 700; color: var(--accent); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--accent); border-radius: 9999px; letter-spacing: 0.04em; text-transform: uppercase; transition: all 0.2s; white-space: nowrap; }
+  .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+  .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+  .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+  @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+  .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+  .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+  .badge-cat { background: var(--accent); color: #fff; }
+  .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+  .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 0.375rem; }
+  .hero-subtitle { font-family: 'Space Grotesk', sans-serif; font-size: 1.125rem; font-weight: 600; color: var(--accent); margin-bottom: 1rem; }
+  .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+  .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+  .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+  .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+  .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+  .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+  .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+  .toc-box ol { list-style: none; counter-reset: toc; }
+  .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+  .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+  .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+  .toc-box a:hover { color: var(--accent); }
+  .guide-content { padding: 2rem 0 5rem; }
+  .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+  .guide-content h2:first-of-type { border-top: none; margin-top: 0; }
+  .guide-content h3 { font-size: 1.0625rem; font-weight: 700; margin-top: 1.75rem; margin-bottom: 0.625rem; }
+  .guide-content p { margin-bottom: 1.125rem; }
+  .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+  .guide-content li { margin-bottom: 0.375rem; }
+  .guide-content strong { font-weight: 600; }
+  .guide-content em { font-style: italic; color: var(--muted); }
+  .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+  @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+  .callout { border-left: 4px solid var(--accent-border); background: var(--accent-light); padding: 0.875rem 1.125rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0; }
+  .callout-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.35rem; }
+  .callout p { margin-bottom: 0; }
+  .callout-warning { border-left-color: #D97706; background: #FFFBEB; }
+  .callout-warning .callout-label { color: #D97706; }
+  .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+  .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+  @page { margin: 1.5cm; }
+  @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider, .nav-agent-link { display: none !important; } .page-wrap { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; } p { orphans: 3; widows: 3; } pre, .callout { break-inside: avoid; } }
+
+  /* Prompt code blocks */
+  .guide-content pre { background: #0a0a0a; color: #f8f8f8; border-radius: 10px; padding: 1.25rem 1.5rem; overflow-x: auto; font-size: 0.8125rem; line-height: 1.6; margin: 0.5rem 0 1.25rem; border: 1px solid #1f1f1f; white-space: pre-wrap; }
+  .guide-content pre code { background: none; border: none; padding: 0; color: inherit; font-size: inherit; }
+  .guide-content code { font-family: 'Courier New', Courier, monospace; }
+  .prompt-label { font-size: 0.8125rem; font-weight: 700; color: var(--accent); margin: 0.5rem 0 0.25rem; }
+  .cadence-line { font-size: 0.8125rem; color: var(--muted); font-style: italic; margin: -0.5rem 0 0.75rem; }
+
+  /* VISUAL BLOCKS */
+  /* VB1: pill tags */
+  .tag-row { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 1.5rem 0; }
+  .tag-pill { display: inline-flex; align-items: center; gap: 0.4rem; background: #fff; color: var(--accent); border: 1.5px solid var(--accent-border); border-radius: 9999px; padding: 0.3rem 0.875rem; font-size: 0.8125rem; font-weight: 600; }
+  .tag-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  /* VB2: 2-card info block */
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+  @media (max-width: 700px) { .info-grid { grid-template-columns: 1fr; } }
+  .info-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.25rem 1.375rem; }
+  .info-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--accent); font-size: 0.9375rem; margin-bottom: 0.5rem; }
+  .info-desc { font-size: 0.8375rem; color: var(--muted); margin: 0; }
+  /* VB3 & VB4: routine overview grids */
+  .routinegrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.75rem 0; }
+  @media (max-width: 700px) { .routinegrid { grid-template-columns: 1fr; } }
+  .routinegrid-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.125rem 1.25rem; }
+  .routinegrid-head { display: flex; align-items: baseline; gap: 0.625rem; margin-bottom: 0.35rem; flex-wrap: wrap; }
+  .routinegrid-num { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--accent); font-size: 1rem; flex-shrink: 0; }
+  .routinegrid-name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.9375rem; }
+  .routinegrid-cadence { font-size: 0.6875rem; font-weight: 600; color: var(--accent); background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 9999px; padding: 0.15rem 0.625rem; margin-bottom: 0.5rem; display: inline-block; }
+  .routinegrid-desc { font-size: 0.8125rem; color: var(--muted); margin: 0; }
+ </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+  <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+  <div class="logo-divider"></div>
+  <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">&#8592; All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+  <span class="badge badge-cat">Getting Started</span>
+  <span class="badge badge-diff">Intermediate</span>
+ </div>
+ <h1>15 Claude Routines</h1>
+ <div class="hero-subtitle">To Automate Your Business</div>
+ <p class="intro-blurb">The 5 routines from the video, fully broken down, plus 10 more worth setting up right after. What each one does, the prompt to build it, and what it actually needs to work.</p>
+ <ul>
+  <li>The 5 core routines from the video, fully broken down</li>
+  <li>10 more routines worth setting up right after</li>
+  <li>The exact prompt to paste in to build each one</li>
+  <li>What each routine needs to work, and what it honestly can't do yet</li>
+  <li>A setup checklist so nothing breaks on day one</li>
+ </ul>
+ <div class="hero-author">
+  <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+  <div><span class="author-name">Max Johnson</span><span class="author-meta">@maxjohnscn</span></div>
+ </div>
+</div>
+
+<div class="page-wrap">
+ <main class="guide-content">
+
+  <button class="download-btn" onclick="window.print()">&#8595; Download PDF</button>
+
+  <div class="tag-row">
+   <span class="tag-pill"><span class="tag-dot"></span>Content</span>
+   <span class="tag-pill"><span class="tag-dot"></span>Ads</span>
+   <span class="tag-pill"><span class="tag-dot"></span>Competitors</span>
+   <span class="tag-pill"><span class="tag-dot"></span>Errors</span>
+   <span class="tag-pill"><span class="tag-dot"></span>Email</span>
+  </div>
+
+  <h2 id="contents">Contents</h2>
+  <h3>What You'll Find Inside</h3>
+  <ul>
+   <li><strong>01 What Claude Routines Actually Are:</strong> The feature behind the name, and what it can and can't do out of the box</li>
+   <li><strong>02 How To Set One Up:</strong> Two ways to build a routine, step by step</li>
+   <li><strong>03 The 5 Routines From The Video:</strong> Content, ads, competitors, errors, email, broken down and prompt-ready</li>
+   <li><strong>04 10 More Routines Worth Running:</strong> Reports, briefings and triage you can set up right after</li>
+   <li><strong>05 Setup Checklist &amp; Common Mistakes:</strong> What to check before you trust a routine to run unsupervised</li>
+  </ul>
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>This guide uses Claude Cowork's scheduled tasks feature, the closest current match to what the video calls "Claude Routines." Where a routine needs something Claude can't do natively yet, that's flagged rather than glossed over.</p>
+  </div>
+
+  <h2 id="chapter-01">Chapter 01: What Claude Routines Actually Are</h2>
+  <p>"Claude Routines" isn't an official product name. The feature behind it is scheduled tasks in Claude Cowork: you describe a job once in plain English, Claude saves it as a set of instructions, and it runs automatically on the cadence you pick, whether or not your computer is switched on.</p>
+  <p>Each run starts a fresh Cowork session with access to whatever connectors, skills and plugins you've already set up, so a routine can genuinely search Slack, read a spreadsheet, browse the web, or draft an email, not just generate text.</p>
+
+  <div class="info-grid">
+   <div class="info-card">
+    <div class="info-title">Cadence Options</div>
+    <p class="info-desc">Hourly, daily, weekly, weekdays, or manual (run it yourself on demand). You set the time when you create the task.</p>
+   </div>
+   <div class="info-card">
+    <div class="info-title">Who Can Use It</div>
+    <p class="info-desc">Any paid Claude plan: Pro, Max, Team or Enterprise. Free plans don't get scheduled tasks or connectors.</p>
+   </div>
+  </div>
+
+  <p><strong>Two approval modes</strong></p>
+  <p>Automatically approve lets Claude work through a routine without pausing you for every step, but it still screens each action for safety before running it. Skip all approvals removes that screening entirely. For anything unattended, start with Automatically approve.</p>
+
+  <div class="callout">
+   <div class="callout-label">Honest limit</div>
+   <p>A routine only reaches the tools you've connected. If a routine below needs Slack, Gmail or a specific ad platform and you haven't connected it, Claude will tell you it can't do that part rather than making something up, so connect first.</p>
+  </div>
+
+  <h2 id="chapter-02">Chapter 02: How To Set One Up</h2>
+  <p>Every routine in this guide is built the same way. Four steps, about two minutes each the first time.</p>
+
+  <p><strong>1. Open Cowork and click Scheduled</strong></p>
+  <p>In the left sidebar of Claude Cowork, click "Scheduled" to land on the Scheduled tasks page.</p>
+
+  <p><strong>2. Choose how you want to build it</strong></p>
+  <p>"Create with Claude" lets you describe the task in plain English and Claude asks clarifying questions before creating it. "Set up manually" gives you direct fields: name, prompt, approval mode, cadence, model, and which folder to work in.</p>
+
+  <p><strong>3. Connect whatever the routine needs first</strong></p>
+  <p>Gmail, Slack, Drive, or any third-party connector. Do this before you schedule the task, not after, so the first run isn't wasted finding out something isn't connected.</p>
+
+  <p><strong>4. Confirm and let it run</strong></p>
+  <p>Claude will state the task name, schedule and what it does before asking you to confirm. From the Scheduled page you can review upcoming and past runs, pause, edit, delete, or run any task on demand at any time.</p>
+
+  <div class="callout">
+   <div class="callout-label">Tip</div>
+   <p>Run a new routine manually once before you schedule its first automatic run. It's the fastest way to catch a missing connector or a vague prompt before it runs unattended.</p>
+  </div>
+
+  <h2 id="chapter-03">Chapter 03: The 5 Routines From The Video</h2>
+
+  <div class="routinegrid">
+   <div class="routinegrid-card">
+    <div class="routinegrid-head"><span class="routinegrid-num">01</span><span class="routinegrid-name">Daily Content Generator</span></div>
+    <span class="routinegrid-cadence">Daily, 9:00am</span>
+    <p class="routinegrid-desc">Researches trending topics in your niche, then writes a full script in your voice, ready to film that day.</p>
+   </div>
+   <div class="routinegrid-card">
+    <div class="routinegrid-head"><span class="routinegrid-num">02</span><span class="routinegrid-name">Daily Ad Report</span></div>
+    <span class="routinegrid-cadence">Daily, 7:00am</span>
+    <p class="routinegrid-desc">Pulls yesterday's ad spend and performance, and tells you exactly how the business performed.</p>
+   </div>
+   <div class="routinegrid-card">
+    <div class="routinegrid-head"><span class="routinegrid-num">03</span><span class="routinegrid-name">Weekly Competitor Analysis</span></div>
+    <span class="routinegrid-cadence">Weekly, Monday morning</span>
+    <p class="routinegrid-desc">Reviews accounts making content in your niche and hands you a shortlist of what's working, ready to adapt.</p>
+   </div>
+   <div class="routinegrid-card">
+    <div class="routinegrid-head"><span class="routinegrid-num">04</span><span class="routinegrid-name">Daily n8n Error Report</span></div>
+    <span class="routinegrid-cadence">Triggered, on failure</span>
+    <p class="routinegrid-desc">The moment an n8n workflow breaks, tells you exactly what happened and how to fix it.</p>
+   </div>
+   <div class="routinegrid-card">
+    <div class="routinegrid-head"><span class="routinegrid-num">05</span><span class="routinegrid-name">Daily Email Handler</span></div>
+    <span class="routinegrid-cadence">Daily</span>
+    <p class="routinegrid-desc">Reads your inbox, categorises everything, and drafts replies to the routine stuff so you're not starting from a blank screen.</p>
+   </div>
+  </div>
+
+  <h3 id="routine-01">Routine 01: Daily Content Generator</h3>
+  <p class="cadence-line">Daily &#183; 9:00am</p>
+  <p>Researches trending topics in your niche, then writes a full script in your voice, ready to film that day.</p>
+  <p class="prompt-label">Prompt to paste in "Create with Claude":</p>
+  <pre><code>Every day at 9am, research the top trending topics in [your niche] on Reddit, Instagram
+and X. Pick the one most likely to perform well as a short-form video. Write a full script in
+my voice: [describe your tone and style, or paste 2-3 past scripts as reference]. Format it
+ready to read on camera.</code></pre>
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>Claude doesn't have a native connector into Reddit, Instagram or X. It reaches them through web search and browsing, so it sees public, indexable content. Anything behind a login wall, which is most of Instagram and some of X, won't be visible. For deeper social listening, pair this with a dedicated scraping connector.</p>
+  </div>
+
+  <h3 id="routine-02">Routine 02: Daily Ad Report</h3>
+  <p class="cadence-line">Daily &#183; 7:00am</p>
+  <p>Pulls yesterday's ad spend and performance, and tells you exactly how the business performed.</p>
+  <p class="prompt-label">Prompt to paste in "Create with Claude":</p>
+  <pre><code>Every day at 7am, pull yesterday's ad performance across [your ad platforms] and pipeline
+data from [your CRM or spreadsheet]. Summarise total spend, ROAS, and pipeline movement in
+three sentences, then break it down by platform in a table.</code></pre>
+  <div class="callout callout-warning">
+   <div class="callout-label">Warning</div>
+   <p>Anthropic doesn't build a native Meta Ads or Google Ads connector. You'll need a third-party connector authenticated to your ad accounts (search Claude's connector directory for one), or export the numbers into a Google Sheet each day and have this routine read that instead. Either way, the connector has to exist before the prompt can do anything with it.</p>
+  </div>
+
+  <h3 id="routine-03">Routine 03: Weekly Competitor Analysis</h3>
+  <p class="cadence-line">Weekly &#183; Monday morning</p>
+  <p>Reviews accounts making content in your niche and hands you a shortlist of what's working, ready to adapt.</p>
+  <p class="prompt-label">Prompt to paste in "Create with Claude":</p>
+  <pre><code>Every Monday, look at these [30] competitor accounts: [list handles or links]. Identify
+which posts from the last 7 days performed best. Summarise the hook, format and topic of the
+top 5, and suggest how I'd adapt each one for my own channel.</code></pre>
+  <div class="callout callout-warning">
+   <div class="callout-label">Warning</div>
+   <p>Claude can't log into Instagram or TikTok to pull private engagement numbers, and downloading someone else's video to reuse the footage is a copyright and platform terms-of-service problem, not just a technical one. Keep this routine to analysis: hooks, structure and topics to adapt, not literal downloads. If you genuinely need saved reference clips, that requires a licensed scraping tool, used within the platform's terms.</p>
+  </div>
+
+  <h3 id="routine-04">Routine 04: Daily n8n Error Report</h3>
+  <p class="cadence-line">Triggered &#183; On failure</p>
+  <p>The moment an n8n workflow breaks, tells you exactly what happened and how to fix it.</p>
+  <p class="prompt-label">Prompt to paste in "Create with Claude":</p>
+  <pre><code>When you receive an n8n workflow error, read the error payload: workflow name, node that
+failed, and the error message. Explain in plain language what broke and why, then give me the
+specific fix, whether that's a credential, a field mapping, or a node configuration change.</code></pre>
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>This one doesn't fit Cowork's clock-based scheduling, because it needs to fire on an event, not a time of day. The closest real match is Claude Code's Routines feature (currently in research preview), which supports API triggers: n8n's Error Trigger node calls a webhook, which hits your routine's dedicated endpoint, which starts a Claude session with the error already in it. This is a step more technical than the other four routines here and needs an API key.</p>
+  </div>
+
+  <h3 id="routine-05">Routine 05: Daily Email Handler</h3>
+  <p class="cadence-line">Daily</p>
+  <p>Reads your inbox, categorises everything, and drafts replies to the routine stuff so you're not starting from a blank screen.</p>
+  <p class="prompt-label">Prompt to paste in "Create with Claude":</p>
+  <pre><code>Every morning, go through my inbox. Categorise everything as: needs a reply, FYI, or
+ignore. Draft replies for anything routine, in my voice. Leave anything involving money,
+contracts, or an unhappy client as a flagged draft with a one-line note on why it needs my
+eyes first.</code></pre>
+  <div class="callout callout-warning">
+   <div class="callout-label">Warning</div>
+   <p>This one is more limited than the video suggests, worth knowing before you build it. Claude's Gmail connector reads and drafts, but it cannot send. Every reply, routine or not, lands as an unsent draft waiting in Gmail. There's no version of this where the low-stakes emails send themselves and only the tricky ones need you. Budget five minutes each morning to skim and send the drafts yourself. The Outlook/Microsoft 365 connector can send, but only if a Team or Enterprise admin has switched on write tools, and it's off by default.</p>
+  </div>
+
+  <h2 id="chapter-04">Chapter 04: 10 More Routines Worth Running</h2>
+  <p>Once the first five are running, these are the next ones worth setting up. Same process every time: connect the tool, paste a prompt, pick a cadence.</p>
+
+  <div class="routinegrid">
+   <div class="routinegrid-card">
+    <div class="routinegrid-head"><span class="routinegrid-num">06</span><span class="routinegrid-name">Weekly Content Performance Digest</span></div>
+    <span class="routinegrid-cadence">Weekly</span>
+    <p class="routinegrid-desc">Pulls views and engagement across your channels for the week and tells you what to double down on.</p>
+   </div>
+   <div class="routinegrid-card">
+    <div class="routinegrid-head"><span class="routinegrid-num">07</span><span class="routinegrid-name">Daily Inbox-To-Do List</span></div>
+    <span class="routinegrid-cadence">Daily</span>
+    <p class="routinegrid-desc">Scans email and Slack for anything that needs action and turns it into one prioritised to-do list.</p>
+   </div>
+   <div class="routinegrid-card">
+    <div class="routinegrid-head"><span class="routinegrid-num">08</span><span class="routinegrid-name">Weekly Client Report Drafter</span></div>
+    <span class="routinegrid-cadence">Weekly</span>
+    <p class="routinegrid-desc">Pulls the week's work from your project tool and Drive, drafts a client-ready update as a draft.</p>
+   </div>
+   <div class="routinegrid-card">
+    <div class="routinegrid-head"><span class="routinegrid-num">09</span><span class="routinegrid-name">New Lead Triage</span></div>
+    <span class="routinegrid-cadence">Daily</span>
+    <p class="routinegrid-desc">Checks for new leads, drafts a first response, and gives you a one-line brief on who they are.</p>
+   </div>
+   <div class="routinegrid-card">
+    <div class="routinegrid-head"><span class="routinegrid-num">10</span><span class="routinegrid-name">Weekly Newsletter Draft</span></div>
+    <span class="routinegrid-cadence">Weekly</span>
+    <p class="routinegrid-desc">Pulls your best content from the week and drafts a newsletter ready for you to review.</p>
+   </div>
+   <div class="routinegrid-card">
+    <div class="routinegrid-head"><span class="routinegrid-num">11</span><span class="routinegrid-name">Daily Meeting Prep Briefing</span></div>
+    <span class="routinegrid-cadence">Daily</span>
+    <p class="routinegrid-desc">Looks at today's calendar and pulls context on each person or company you're meeting into one briefing.</p>
+   </div>
+   <div class="routinegrid-card">
+    <div class="routinegrid-head"><span class="routinegrid-num">12</span><span class="routinegrid-name">Weekly Expense &amp; Invoice Tracker</span></div>
+    <span class="routinegrid-cadence">Weekly</span>
+    <p class="routinegrid-desc">Reviews a spending sheet or accounting tool, flags anything unusual, and chases overdue invoices.</p>
+   </div>
+   <div class="routinegrid-card">
+    <div class="routinegrid-head"><span class="routinegrid-num">13</span><span class="routinegrid-name">Daily Comments &amp; DMs Digest</span></div>
+    <span class="routinegrid-cadence">Daily</span>
+    <p class="routinegrid-desc">Pulls the highest-value comments and DMs from the day so you know who's worth replying to personally.</p>
+   </div>
+   <div class="routinegrid-card">
+    <div class="routinegrid-head"><span class="routinegrid-num">14</span><span class="routinegrid-name">Weekly SEO/Blog Brief Generator</span></div>
+    <span class="routinegrid-cadence">Weekly</span>
+    <p class="routinegrid-desc">Researches what's ranking in your niche this week and drafts a brief for your next post or video.</p>
+   </div>
+   <div class="routinegrid-card">
+    <div class="routinegrid-head"><span class="routinegrid-num">15</span><span class="routinegrid-name">Monthly Business Snapshot</span></div>
+    <span class="routinegrid-cadence">Monthly</span>
+    <p class="routinegrid-desc">Pulls revenue, ad spend, content output and pipeline into one summary so you can see the month at a glance.</p>
+   </div>
+  </div>
+
+  <p><strong>Routine 06: Weekly Content Performance Digest</strong></p>
+  <p class="cadence-line">Weekly</p>
+  <p>Pulls views and engagement across your channels for the week and tells you what to double down on.<br>Needs: Whichever analytics connector each platform supports, or a spreadsheet you update manually.</p>
+
+  <p><strong>Routine 07: Daily Inbox-To-Do List</strong></p>
+  <p class="cadence-line">Daily</p>
+  <p>Scans email and Slack for anything that needs action and turns it into one prioritised to-do list.<br>Needs: Gmail/Outlook connector, Slack connector.</p>
+
+  <p><strong>Routine 08: Weekly Client Report Drafter</strong></p>
+  <p class="cadence-line">Weekly</p>
+  <p>Pulls the week's work from your project tool and Drive, drafts a client-ready update as a draft.<br>Needs: Drive connector, plus your project tool's connector (Notion, Asana etc.).</p>
+
+  <p><strong>Routine 09: New Lead Triage</strong></p>
+  <p class="cadence-line">Daily</p>
+  <p>Checks for new leads, drafts a first response, and gives you a one-line brief on who they are.<br>Needs: CRM connector, or Gmail if leads land by email.</p>
+
+  <p><strong>Routine 10: Weekly Newsletter Draft</strong></p>
+  <p class="cadence-line">Weekly</p>
+  <p>Pulls your best content from the week and drafts a newsletter ready for you to review.<br>Needs: Drive/notes access, plus Gmail or your email platform's connector.</p>
+
+  <div class="callout">
+   <div class="callout-label">Tip</div>
+   <p>Start with whichever of these overlaps a connector you've already set up for the first 5 routines. Reusing a connection is faster than authenticating a new one.</p>
+  </div>
+
+  <p><strong>Routine 11: Daily Meeting Prep Briefing</strong></p>
+  <p class="cadence-line">Daily</p>
+  <p>Looks at today's calendar and pulls context on each person or company you're meeting into one briefing.<br>Needs: Calendar connector (full read/write), plus CRM or Drive.</p>
+
+  <p><strong>Routine 12: Weekly Expense &amp; Invoice Tracker</strong></p>
+  <p class="cadence-line">Weekly</p>
+  <p>Reviews a spending sheet or accounting tool, flags anything unusual, and chases overdue invoices.<br>Needs: Sheets/Drive, or an accounting connector where one exists.</p>
+
+  <p><strong>Routine 13: Daily Comments &amp; DMs Digest</strong></p>
+  <p class="cadence-line">Daily</p>
+  <p>Pulls the highest-value comments and DMs from the day so you know who's worth replying to personally.<br>Needs: Platform connector or browsing; same login-wall limits as Routine 01.</p>
+
+  <p><strong>Routine 14: Weekly SEO/Blog Brief Generator</strong></p>
+  <p class="cadence-line">Weekly</p>
+  <p>Researches what's ranking in your niche this week and drafts a brief for your next post or video.<br>Needs: Built-in web search. No connector required.</p>
+
+  <p><strong>Routine 15: Monthly Business Snapshot</strong></p>
+  <p class="cadence-line">Monthly</p>
+  <p>Pulls revenue, ad spend, content output and pipeline into one summary so you can see the month at a glance.<br>Needs: Whichever sheet or connectors already hold that data.</p>
+
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>A few of these (07, 11, 13) touch more than one connector at once. Set each connector up and test it individually before combining them in one routine, it's much easier to spot which one is missing when something doesn't work.</p>
+  </div>
+
+  <h2 id="chapter-05">Chapter 05: Setup Checklist &amp; Common Mistakes</h2>
+  <ul>
+   <li>Connect the tool before you schedule the task, not after. A routine can only reach what's already connected.</li>
+   <li>Start with "Automatically approve," not "Skip all approvals." The first still screens each action for safety. The second doesn't check anything.</li>
+   <li>Run it manually once before you schedule it. Read the actual output before you let it run unattended.</li>
+   <li>Don't schedule anything you can't afford to have go wrong unsupervised, especially anything that sends money or messages.</li>
+   <li>Check the Scheduled page weekly. Pause anything that's stopped being useful instead of letting it run for the sake of it.</li>
+   <li>Keep each routine to one job. A routine trying to do five things at once is where the errors creep in.</li>
+  </ul>
+
+  <h2 id="stop-doing-this-by-hand">Stop Doing This By Hand. Every Day.</h2>
+  <p>Pick one routine from this guide. Connect what it needs. Paste the prompt. Run it once manually, then schedule it. That's the whole process, for every routine in here.</p>
+  <h3>Your Next Three Moves</h3>
+  <ul>
+   <li>Open Cowork and connect the first tool a routine needs</li>
+   <li>Paste the prompt for that routine and run it manually once</li>
+   <li>Read the output, then schedule it for real</li>
+  </ul>
+
+ </main>
+
+ <aside class="toc-sidebar">
+  <div class="toc-box">
+   <h3>In this guide</h3>
+   <ol>
+    <li><a href="#contents">Contents</a></li>
+    <li><a href="#chapter-01">What Routines Are</a></li>
+    <li><a href="#chapter-02">How To Set One Up</a></li>
+    <li><a href="#chapter-03">The 5 From The Video</a></li>
+    <li><a href="#chapter-04">10 More Routines</a></li>
+    <li><a href="#chapter-05">Setup Checklist</a></li>
+    <li><a href="#stop-doing-this-by-hand">Start Automating</a></li>
+   </ol>
+  </div>
+ </aside>
+</div>
+
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+</body>
+</html>

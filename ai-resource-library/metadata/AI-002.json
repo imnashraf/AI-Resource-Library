@@ -1,0 +1,39 @@
+{
+  "id": "AI-002",
+  "slug": "the-master-level-claude-guide",
+  "title": "The Master Level Claude Guide",
+  "category": "Getting Started",
+  "subcategory": "Core Fundamentals",
+  "difficulty": "Beginner to Advanced",
+  "description": "From complete beginner to advanced user. Every practical workflow has been tested, from your first conversation through multi-agent automations, business monetisation, and a ready-to-use prompt reference library.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Getting Started",
+    "01: Getting Started",
+    "The Plans",
+    "Setting Up",
+    "Setting up your first Project",
+    "02: The Basics",
+    "How to Prompt Properly",
+    "Core Fundamentals"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude Skills",
+    "Claude",
+    "PostHog",
+    "Figma",
+    "Ruflo",
+    "NotebookLM"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-002_the-master-level-claude-guide.html",
+  "summary_file": "summaries/AI-002.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

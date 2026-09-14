@@ -1,0 +1,34 @@
+{
+  "id": "AI-014",
+  "slug": "ruflo-multi-agent-framework-setup-guide",
+  "title": "Ruflo Multi-Agent Framework Setup Guide",
+  "category": "Claude Code",
+  "subcategory": "Agent Architecture",
+  "difficulty": "Intermediate",
+  "description": "Set up Ruflo, the multi-agent orchestration framework built for Claude Code. Coordinate parallel agents, manage shared context, and build production-grade automation pipelines step by step.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Claude Code",
+    "Overview",
+    "Setup Steps",
+    "Optional, Spawn a Manual Swarm",
+    "How the Cost Reduction Works",
+    "Useful Commands",
+    "Agent Architecture"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude",
+    "Ruflo"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-014_ruflo-multi-agent-framework-setup-guide.html",
+  "summary_file": "summaries/AI-014.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "AI-058",
+  "slug": "the-agent-manager-build-guide",
+  "title": "The Agent Manager Build Guide",
+  "category": "Building & Monetising",
+  "subcategory": "Monetisation Strategy",
+  "difficulty": "Intermediate",
+  "description": "The exact proof-of-work system to show any business you can run a team of AI agents safely, not just prompt one. Free Anthropic Academy courses, a three-agent team with hard limits, an approval gate, and a one-page scorecard to bring to an interview.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Building & Monetising",
+    "The Opportunity",
+    "Step 01: Learn The Theory First",
+    "Step 02: Build The Proof",
+    "Step 03: Run It, Then Grade It",
+    "Speak The Language",
+    "Monetisation Strategy"
+  ],
+  "ai_tools": [
+    "Claude"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-058_the-agent-manager-build-guide.html",
+  "summary_file": "summaries/AI-058.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

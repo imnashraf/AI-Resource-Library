@@ -1,0 +1,390 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>The Sandcastles Content Strategy Setup Guide</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+ <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+  .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+  .header.scrolled { border-color: var(--accent-border); }
+  .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+  .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+  .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+  .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+  .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+  a.logo-subtitle:hover { color: var(--accent); }
+  .nav-agent-link { font-size: 0.8125rem; font-weight: 700; color: var(--accent); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--accent); border-radius: 9999px; letter-spacing: 0.04em; text-transform: uppercase; transition: all 0.2s; white-space: nowrap; }
+    .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+  .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+  .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+  @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+  .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+  .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+  .badge-cat { background: var(--accent); color: #fff; }
+  .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+  .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+  .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+  .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+  .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+  .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+  .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+  .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+  .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+  .toc-box ol { list-style: none; counter-reset: toc; }
+  .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+  .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+  .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+  .toc-box a:hover { color: var(--accent); }
+  .guide-content { padding: 2rem 0 5rem; }
+  .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+  .guide-content h2:first-of-type { border-top: none; margin-top: 0; }
+  .guide-content h3 { font-size: 1.0625rem; font-weight: 700; margin-top: 1.75rem; margin-bottom: 0.625rem; }
+  .guide-content p { margin-bottom: 1.125rem; }
+  .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+  .guide-content li { margin-bottom: 0.375rem; }
+  .guide-content strong { font-weight: 600; }
+  .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+  @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+  .callout { border-left: 4px solid var(--accent-border); background: var(--accent-light); padding: 0.875rem 1.125rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0; }
+  .callout-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.35rem; }
+  .callout p { margin-bottom: 0; }
+  pre { background: #1a1a1a; color: #e8e8e8; padding: 1.25rem 1.5rem; border-radius: 8px; font-size: 0.875rem; line-height: 1.65; margin: 1.5rem 0; overflow-x: auto; white-space: pre-wrap; }
+  pre code { font-family: 'Courier New', Courier, monospace; }
+
+  /* Download button */
+  .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+  .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+
+  /* VB1: Stat grid */
+  .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; background: linear-gradient(135deg, #fff 0%, var(--accent-light) 100%); border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.75rem; margin: 1.75rem 0; }
+  .stat-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; text-align: center; }
+  .stat-num { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; color: var(--accent); display: block; }
+  .stat-label { font-size: 0.8125rem; color: var(--muted); margin-top: 0.25rem; }
+
+  /* VB2: Feature stack */
+  .feature-stack { background: linear-gradient(135deg, #fff 0%, var(--accent-light) 100%); border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.5rem; margin: 1.75rem 0; display: flex; flex-direction: column; gap: 0.875rem; }
+  .feature-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.125rem 1.25rem; display: flex; gap: 1rem; align-items: flex-start; }
+  .feature-num { font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; font-weight: 700; background: var(--accent); color: #fff; border-radius: 9999px; padding: 0.2rem 0.55rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .feature-title { font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.3rem; }
+  .feature-desc { font-size: 0.8125rem; color: var(--muted); line-height: 1.6; margin: 0; }
+
+  /* VB3: Step flow */
+  .step-flow { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.5rem 1.75rem; margin: 1.75rem 0; }
+  .step-flow-item { display: flex; gap: 1.25rem; align-items: flex-start; position: relative; padding-bottom: 1.25rem; }
+  .step-flow-item:last-child { padding-bottom: 0; }
+  .step-flow-item::before { content: ''; position: absolute; left: 1rem; top: 2.25rem; bottom: 0; width: 2px; background: var(--accent-border); }
+  .step-flow-item:last-child::before { display: none; }
+  .step-circle { width: 2rem; height: 2rem; border-radius: 50%; background: var(--accent); color: #fff; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.8125rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step-flow-title { font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.2rem; }
+  .step-flow-desc { font-size: 0.8125rem; color: var(--muted); margin: 0; }
+
+  /* VB4/VB5: Two-col cards */
+  .two-col-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; background: linear-gradient(135deg, #fff 0%, var(--accent-light) 100%); border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.5rem; margin: 1.75rem 0; }
+  .two-col-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.125rem 1.25rem; }
+  .two-col-card-header { font-family: 'Space Grotesk', sans-serif; font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--accent); margin-bottom: 0.875rem; }
+  .two-col-card ul { list-style: none; padding: 0; margin: 0; }
+  .two-col-card li { font-size: 0.8375rem; padding: 0.3rem 0 0.3rem 1.25rem; position: relative; line-height: 1.5; }
+  .two-col-card li::before { content: "›"; position: absolute; left: 0; color: var(--accent); font-size: 1rem; }
+
+  @media (max-width: 640px) { .stat-grid, .two-col-cards { grid-template-columns: 1fr; } }
+
+  @page { margin: 1.5cm; }
+  @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .feature-card, .stat-card, .two-col-card, .step-flow-item { break-inside: avoid; page-break-inside: avoid; } .stat-grid, .feature-stack, .step-flow, .two-col-cards { break-inside: avoid; page-break-inside: avoid; } }
+ </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+  <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+  <div class="logo-divider"></div>
+  <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">&#8592; All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+  <span class="badge badge-cat">Tools &amp; Integrations</span>
+  <span class="badge badge-diff">Intermediate</span>
+ </div>
+ <h1>The Sandcastles Content Strategy Setup Guide</h1>
+ <div class="hero-author">
+  <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+  <div>
+   <span class="author-name">Max Johnson</span>
+   <span class="author-meta">AI Agency Founder · @maxjohnscn</span>
+  </div>
+ </div>
+</div>
+
+<div class="page-wrap">
+ <article class="guide-content">
+  <button class="download-btn" onclick="window.print()">&#8595; Download PDF</button>
+
+  <p class="intro-blurb">How to reverse-engineer any creator's winning content strategy inside Claude using the Sandcastles connector. Pull their top videos, find the hidden patterns, and build a data-backed content playbook.</p>
+
+  <h3>What's Inside</h3>
+  <ul>
+   <li>Why guessing what content works is costing you growth</li>
+   <li>What Sandcastles is and how it connects to Claude</li>
+   <li>How the outlier scoring system finds what's actually working</li>
+   <li>How to set up the Sandcastles connector inside Claude</li>
+   <li>How to run your first channel analysis with one prompt</li>
+   <li>What the analysis surfaces: hooks, formats, patterns, and more</li>
+   <li>How to turn those insights into your next content plan</li>
+  </ul>
+
+  <h2 id="ch-01">Chapter 01: The Problem With Guessing What Works</h2>
+
+  <p>Most creators spend hours scrolling through their niche, trying to reverse-engineer what's working. They watch videos, make notes, and try to spot patterns. Then they guess. And most of the time, they guess wrong.</p>
+
+  <p>The problem isn't effort. It's that manual research can't keep pace with the volume of data that actually explains content performance. You can watch twenty videos and miss the pattern that's hiding across two hundred. The real signal is buried in aggregate data: which hook types are driving views across an entire channel, which formats consistently outperform, and which topics are resonating in your niche right now, not six months ago.</p>
+
+  <div class="callout">
+   <div class="callout-label">The Core Problem</div>
+   <p>Content creation without data becomes reactive. You copy what competitors just did, post on schedule because it's Tuesday, and wonder why nothing compounds. Systematic research replaces guesswork with repeatable decisions.</p>
+  </div>
+
+  <div class="stat-grid">
+   <div class="stat-card">
+    <span class="stat-num">100K+</span>
+    <div class="stat-label">Creators using Sandcastles</div>
+   </div>
+   <div class="stat-card">
+    <span class="stat-num">1 to 2hrs</span>
+    <div class="stat-label">Saved daily on research tasks</div>
+   </div>
+   <div class="stat-card">
+    <span class="stat-num">3</span>
+    <div class="stat-label">Platforms tracked: IG, TikTok, YouTube</div>
+   </div>
+  </div>
+
+  <p>Sandcastles was built to solve this exactly. It tracks any channel across Instagram, TikTok, and YouTube, scores every video by outlier performance, and gives you full transcripts with in-depth analysis of hooks, storytelling structures, and formats. The connector that links it to Claude turns that data into something Claude can reason over, find patterns in, and translate directly into a content strategy you can act on.</p>
+
+  <div class="callout">
+   <p>When you run this on your own channel, it tells you which videos to remake, why your outliers outperformed, and what specific hook type is crushing for your audience. Those are not things you can reliably find by scrolling.</p>
+  </div>
+
+  <h2 id="ch-02">Chapter 02: How Sandcastles Works</h2>
+
+  <p>Sandcastles is a content research and scriptwriting platform built specifically for short-form video. It analyses millions of videos across Instagram, TikTok, and YouTube to surface the top performing content in any niche, then explains in detail why each video worked.</p>
+
+  <h3>The Four Core Features</h3>
+
+  <div class="feature-stack">
+   <div class="feature-card">
+    <span class="feature-num">01</span>
+    <div>
+     <div class="feature-title">Channel Tracking and Watchlists</div>
+     <p class="feature-desc">Add any creator or channel across all three platforms into a watchlist. Sandcastles monitors their output continuously and ranks videos by outlier score, so you always see what's performing, not just what's recent.</p>
+    </div>
+   </div>
+   <div class="feature-card">
+    <span class="feature-num">02</span>
+    <div>
+     <div class="feature-title">Outlier Score Ranking</div>
+     <p class="feature-desc">Every video gets an outlier score: a measure of how much it over-performed relative to the channel's baseline. Sort by outlier score over any timeframe (14 days, 40 days, 90 days) to find the true standouts, not just the most viewed.</p>
+    </div>
+   </div>
+   <div class="feature-card">
+    <span class="feature-num">03</span>
+    <div>
+     <div class="feature-title">Full Transcript and Deep Analysis</div>
+     <p class="feature-desc">Every outlier video comes with a full transcript plus a detailed breakdown of its hook type, storytelling structure, format, and style. This is what tells you why a video worked, not just that it did.</p>
+    </div>
+   </div>
+   <div class="feature-card">
+    <span class="feature-num">04</span>
+    <div>
+     <div class="feature-title">Hook Engine and Script Tools</div>
+     <p class="feature-desc">Once you know what's working, Sandcastles generates hook variations using proven templates that have driven millions of views. These feed directly into its scriptwriting tools or export into Claude for further development.</p>
+    </div>
+   </div>
+  </div>
+
+  <h3>The Claude Connection</h3>
+
+  <p>Sandcastles exports analysis directly into Claude via its MCP connector. This means Claude gets structured data it can reason over, not just a paste of text. It can compare patterns, identify what's consistent across outliers, and build a content strategy from the signal in that data.</p>
+
+  <h2 id="ch-03">Chapter 03: Setting Up the Sandcastles Connector</h2>
+
+  <p>The Sandcastles connector is an MCP integration that creates a live data bridge between Sandcastles and Claude. Once connected, Claude can pull channel data, outlier rankings, transcripts, and analysis directly into any conversation.</p>
+
+  <p><strong>01</strong> Create your Sandcastles account. Go to sandcastles.ai and sign up. The 7-day free trial gives full access to all features including the Claude connector. Plans start at $39 per month billed annually after the trial.</p>
+
+  <p><strong>02</strong> Build your first watchlist. Inside Sandcastles, add the channels you want to analyse. These can be competitors, top creators in your niche, or your own channel. The platform tracks Instagram, TikTok, and YouTube in one place.</p>
+
+  <p><strong>03</strong> Connect Sandcastles to Claude. In Claude, go to Settings, then Connectors. Search for Sandcastles or add it as a custom connector using the MCP server URL from your Sandcastles account settings. Authorise via OAuth when prompted.</p>
+
+  <p><strong>04</strong> Enable the connector in your conversation. Click the + button at the bottom of any Claude chat, select Connectors, and toggle Sandcastles on. Claude now has live access to your watchlist data and outlier analysis.</p>
+
+  <p><strong>05</strong> Run your first analysis. Paste a channel link or name a creator from your watchlist. Claude pulls their top performing videos, scores them by outlier performance, and begins the analysis automatically.</p>
+
+  <div class="callout">
+   <div class="callout-label">Connector Availability</div>
+   <p>The Sandcastles MCP connector works on Claude's Pro, Max, Team, and Enterprise plans. It is accessible via claude.ai, Claude Desktop, and the mobile apps once connected through your account settings.</p>
+  </div>
+
+  <div class="step-flow">
+   <div class="step-flow-item">
+    <div class="step-circle">1</div>
+    <div>
+     <div class="step-flow-title">Create your Sandcastles account</div>
+     <p class="step-flow-desc">sandcastles.ai, 7-day free trial, full access</p>
+    </div>
+   </div>
+   <div class="step-flow-item">
+    <div class="step-circle">2</div>
+    <div>
+     <div class="step-flow-title">Build your first watchlist</div>
+     <p class="step-flow-desc">Add competitors, niche creators, or your own channel</p>
+    </div>
+   </div>
+   <div class="step-flow-item">
+    <div class="step-circle">3</div>
+    <div>
+     <div class="step-flow-title">Connect Sandcastles to Claude</div>
+     <p class="step-flow-desc">Settings, then Connectors, search Sandcastles, authorise via OAuth</p>
+    </div>
+   </div>
+   <div class="step-flow-item">
+    <div class="step-circle">4</div>
+    <div>
+     <div class="step-flow-title">Enable the connector in your conversation</div>
+     <p class="step-flow-desc">Click +, select Connectors, toggle Sandcastles on</p>
+    </div>
+   </div>
+   <div class="step-flow-item">
+    <div class="step-circle">5</div>
+    <div>
+     <div class="step-flow-title">Run your first analysis</div>
+     <p class="step-flow-desc">Paste a channel link or name a creator from your watchlist</p>
+    </div>
+   </div>
+  </div>
+
+  <h2 id="ch-04">Chapter 04: Running a Channel Analysis in Claude</h2>
+
+  <p>With the Sandcastles connector active, you can pull a full content strategy analysis for any channel by describing what you want in plain English. No commands to memorise. No exports to manage. Just ask.</p>
+
+  <h3>Example Prompts That Work</h3>
+
+  <pre><code>Analyse my channel from the last 40 days. Show me the top
+outlier videos, why they performed, and which hook type
+is working best. Tell me which videos I should remake.</code></pre>
+
+  <pre><code>Pull the top performing videos from [channel link] over
+the last 30 days. Find the patterns in hooks, formats, and
+topics. Give me a content strategy I can use this week.</code></pre>
+
+  <pre><code>Compare my top 5 outliers with my 5 worst performers.
+What's different about the hook, the opening 3 seconds,
+and the storytelling structure?</code></pre>
+
+  <div class="two-col-cards">
+   <div class="two-col-card">
+    <div class="two-col-card-header">Pattern Analysis</div>
+    <ul>
+     <li>Which hook types drive views</li>
+     <li>Repeating topic formats</li>
+     <li>Storytelling structures used</li>
+     <li>Optimal video length patterns</li>
+     <li>Titles and thumbnail styles</li>
+    </ul>
+   </div>
+   <div class="two-col-card">
+    <div class="two-col-card-header">Actionable Output</div>
+    <ul>
+     <li>Videos to remake or expand</li>
+     <li>Hook templates to replicate</li>
+     <li>Topics with proven demand</li>
+     <li>Angles your competitors missed</li>
+     <li>A ranked content priority list</li>
+    </ul>
+   </div>
+  </div>
+
+  <div class="callout">
+   <div class="callout-label">How Max Uses This</div>
+   <p>Running this on his own channel for the last 40 days surfaced one specific hook type that was outperforming every other format by a significant margin. Claude identified it automatically from the outlier data. That kind of insight changes which videos get made next.</p>
+  </div>
+
+  <h2 id="ch-05">Chapter 05: Turning Insights Into a Content Plan</h2>
+
+  <p>The analysis is only useful if it drives action. Once Claude has run the channel recap, the next step is turning those findings into a concrete content plan: specific video ideas, hook frameworks, and a production order based on what the data says will work.</p>
+
+  <h3>The Three-Step Content Workflow</h3>
+
+  <p><strong>01</strong> Run the channel recap. Pull the top outliers for your channel or a competitor's channel. Set the timeframe to whatever gives you a meaningful sample (40 days is a good default for most active channels).</p>
+
+  <p><strong>02</strong> Extract the repeating patterns. Ask Claude to identify what's consistent across the top performers. Look for hook type, opening format, topic category, and video length. The pattern that appears across multiple outliers is the signal worth building on.</p>
+
+  <p><strong>03</strong> Generate your video ideas from the signal. Give Claude your niche, your voice, and the patterns it found. Ask it to generate five to ten video ideas using the hook types and formats that are proven to outperform. These ideas are not guesses. They are built on what is already working in your space.</p>
+
+  <div class="two-col-cards">
+   <div class="two-col-card">
+    <div class="two-col-card-header">Run It On Your Own Channel When</div>
+    <ul>
+     <li>Planning your next content batch</li>
+     <li>A video outperforms unexpectedly</li>
+     <li>Growth has stalled or plateaued</li>
+     <li>You want to find what to double down on</li>
+    </ul>
+   </div>
+   <div class="two-col-card">
+    <div class="two-col-card-header">Run It On Competitors When</div>
+    <ul>
+     <li>Entering or researching a new niche</li>
+     <li>Looking for angles they haven't covered</li>
+     <li>Finding what's working at larger scale</li>
+     <li>Building a benchmark for your own strategy</li>
+    </ul>
+   </div>
+  </div>
+
+  <div class="callout">
+   <p>This workflow replaces hours of manual research with a structured, data-backed process you can repeat every week. Instead of guessing what content works, you pull the answer straight from the data.</p>
+  </div>
+
+  <h2>Stop Guessing. Pull the Data.</h2>
+
+  <p>The content strategy of any creator on Instagram, TikTok, or YouTube is now readable. Their hook types, their best formats, their outlier patterns. All of it is in the data. Connect Sandcastles to Claude and you stop guessing what to make next. You ask, and the answer comes back from the data.</p>
+
+  <h3>Your Two Resources</h3>
+  <ul>
+   <li>Sandcastles: Channel tracking, outlier analysis, and the Claude connector. <a href="https://sandcastles.ai" target="_blank" rel="noopener noreferrer">sandcastles.ai</a></li>
+   <li>Claude Connectors: Add Sandcastles in Settings, then Connectors. <a href="https://claude.ai/settings" target="_blank" rel="noopener noreferrer">claude.ai/settings</a></li>
+  </ul>
+
+ </article>
+
+ <aside class="toc-sidebar">
+  <div class="toc-box">
+   <h3>Chapters</h3>
+   <ol>
+    <li><a href="#ch-01">The Problem With Guessing What Works</a></li>
+    <li><a href="#ch-02">How Sandcastles Works</a></li>
+    <li><a href="#ch-03">Setting Up the Sandcastles Connector</a></li>
+    <li><a href="#ch-04">Running a Channel Analysis in Claude</a></li>
+    <li><a href="#ch-05">Turning Insights Into a Content Plan</a></li>
+   </ol>
+  </div>
+ </aside>
+</div>
+
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+</body>
+</html>

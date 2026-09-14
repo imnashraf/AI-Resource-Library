@@ -1,0 +1,1067 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>The Ultimate Claude Starter Setup Guide</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✦%3C/text%3E%3C/svg%3E">
+ <style>
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+ :root {
+ --accent: #1A7A6A;
+ --accent-indigo: #6366F1;
+ --accent-light: #E8F5F3;
+ --accent-border: #9FD5CE;
+ --text: #000000;
+ --muted: #6B7280;
+ --bg: #FFFFFF;
+ --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+ --card-gradient: linear-gradient(160deg, #E8F5F3 0%, #FFFFFF 100%);
+ --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+ --shadow-hover: 0 8px 24px rgba(26,122,106,0.12), 0 2px 8px rgba(0,0,0,0.08);
+ --shadow-hard: 4px 4px 0px #000000;
+ --radius: 12px;
+ --header-height: 64px;
+ }
+
+ html { scroll-behavior: smooth; }
+
+ body {
+ font-family: 'Montserrat', sans-serif;
+ background: #F5F1EA;
+ color: var(--text);
+ line-height: 1.75;
+ -webkit-font-smoothing: antialiased;
+ font-size: 1rem;
+ }
+
+ /* ─── HEADER ─── */
+ .header {
+ position: sticky;
+ top: 0;
+ z-index: 100;
+ background: rgba(255,255,255,0.92);
+ backdrop-filter: blur(12px);
+ -webkit-backdrop-filter: blur(12px);
+ border-bottom: 1px solid transparent;
+ height: var(--header-height);
+ display: flex;
+ align-items: center;
+ padding: 0 2rem;
+ transition: border-color 0.2s;
+ }
+ .header.scrolled { border-color: var(--accent-border); }
+ .header-inner {
+ width: 100%;
+ max-width: 1100px;
+ margin: 0 auto;
+ display: flex;
+ align-items: center;
+ gap: 0.75rem;
+ }
+ .logo {
+ text-decoration: none;
+ display: flex;
+ align-items: center;
+ flex-shrink: 0;
+ }
+ .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+ .logo-mark { font-size: 1.1rem; color: var(--accent); margin-right: 0.25rem; line-height: 1; }
+ .logo-name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.9375rem; color: var(--text); letter-spacing: -0.02em; }
+ .logo-divider {
+ width: 1px;
+ height: 20px;
+ background: var(--accent-border);
+ flex-shrink: 0;
+ }
+ .logo-subtitle {
+ text-decoration: none;
+ transition: color 0.2s;
+ font-size: 0.8rem;
+ font-weight: 500;
+ color: var(--muted);
+ letter-spacing: 0.01em;
+ white-space: nowrap;
+ }
+ .back-btn {
+ margin-left: auto;
+ font-size: 0.8125rem;
+ font-weight: 600;
+ color: var(--text);
+ text-decoration: none;
+ padding: 0.375rem 0.875rem;
+ border: 1.5px solid var(--text);
+ border-radius: 9999px;
+ transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+ white-space: nowrap;
+ }
+ .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+
+ /* ─── LAYOUT ─── */
+ .page-wrap {
+ max-width: 1100px;
+ margin: 0 auto;
+ padding: 0 2rem;
+ display: grid;
+ grid-template-columns: 1fr 280px;
+ gap: 3rem;
+ align-items: start;
+ }
+ @media (max-width: 900px) {
+ .page-wrap { grid-template-columns: 1fr; gap: 0; }
+ .toc-sidebar { display: none; }
+ }
+
+ /* ─── HERO ─── */
+ .guide-hero {
+ padding: 3.5rem 2rem 2.5rem;
+ max-width: 1100px;
+ margin: 0 auto;
+ }
+ .hero-meta {
+ display: flex;
+ align-items: center;
+ gap: 0.5rem;
+ flex-wrap: wrap;
+ margin-bottom: 1.25rem;
+ }
+ .badge {
+ display: inline-block;
+ padding: 0.2rem 0.625rem;
+ border-radius: 9999px;
+ font-size: 0.6875rem;
+ font-weight: 600;
+ letter-spacing: 0.03em;
+ text-transform: uppercase;
+ }
+ .badge-cat { background: var(--accent); color: #fff; }
+ .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+ .guide-hero h1 {
+ font-family: 'Space Grotesk', sans-serif;
+ font-size: 2.25rem;
+ font-weight: 700;
+ letter-spacing: -0.02em;
+ line-height: 1.2;
+ margin-bottom: 1rem;
+ }
+ .hero-author {
+ display: flex;
+ align-items: center;
+ gap: 0.75rem;
+ margin-top: 0.75rem;
+ }
+ .author-avatar {
+ width: 44px;
+ height: 44px;
+ border-radius: 50%;
+ object-fit: cover;
+ object-position: center top;
+ flex-shrink: 0;
+ border: 2px solid var(--accent-border);
+ }
+ .author-name {
+ display: block;
+ font-weight: 600;
+ font-size: 0.875rem;
+ color: var(--text);
+ }
+ .author-meta {
+ display: block;
+ font-size: 0.8rem;
+ color: var(--muted);
+ margin-top: 0.1rem;
+ }
+
+ /* ─── TOC SIDEBAR ─── */
+ .toc-sidebar {
+ position: sticky;
+ top: 80px;
+ padding-top: 2rem;
+ }
+ .toc-box {
+ background: var(--accent-light);
+ border: 1px solid var(--accent-border);
+ border-radius: 10px;
+ padding: 1.25rem;
+ }
+ .toc-box h3 {
+ font-size: 0.75rem;
+ font-weight: 600;
+ text-transform: uppercase;
+ letter-spacing: 0.08em;
+ color: var(--muted);
+ margin-bottom: 0.875rem;
+ }
+ .toc-box ol {
+ list-style: none;
+ counter-reset: toc;
+ }
+ .toc-box li {
+ counter-increment: toc;
+ margin-bottom: 0.375rem;
+ }
+ .toc-box a {
+ font-size: 0.8125rem;
+ color: var(--muted);
+ text-decoration: none;
+ transition: color 0.15s;
+ display: flex;
+ gap: 0.5rem;
+ line-height: 1.5;
+ }
+ .toc-box a::before {
+ content: counter(toc, decimal-leading-zero);
+ color: var(--accent-border);
+ font-weight: 600;
+ font-size: 0.6875rem;
+ flex-shrink: 0;
+ padding-top: 0.1em;
+ }
+ .toc-box a:hover { color: var(--accent); }
+
+ /* ─── GUIDE CONTENT ─── */
+ .guide-content {
+ padding: 2rem 0 5rem;
+ }
+ .guide-content h2 {
+ font-family: 'Space Grotesk', sans-serif;
+ font-size: 1.5rem;
+ font-weight: 700;
+ letter-spacing: -0.01em;
+ margin-top: 3rem;
+ margin-bottom: 1rem;
+ padding-top: 1rem;
+ border-top: 1px solid #F3F4F6;
+ }
+ .guide-content h2:first-child { border-top: none; margin-top: 0; }
+ .guide-content h3 {
+ font-size: 1.125rem;
+ font-weight: 600;
+ margin-top: 1.75rem;
+ margin-bottom: 0.75rem;
+ }
+ .guide-content p { margin-bottom: 1.125rem; }
+ .guide-content p:last-child { margin-bottom: 0; }
+ .guide-content ul, .guide-content ol {
+ padding-left: 1.5rem;
+ margin-bottom: 1.125rem;
+ }
+ .guide-content li { margin-bottom: 0.375rem; }
+ .guide-content strong { font-weight: 600; }
+
+ /* Callout / tip box */
+ .callout {
+ background: var(--accent-light);
+ border-left: 3px solid var(--accent);
+ padding: 1rem 1.25rem;
+ border-radius: 0 8px 8px 0;
+ font-size: 0.9375rem;
+ margin: 1.25rem 0;
+ }
+ .callout p { margin: 0; }
+ .callout strong { color: var(--accent); }
+
+ /* Code blocks */
+ .code-block {
+ background: #000;
+ color: #fff;
+ font-family: 'Courier New', Courier, monospace;
+ font-size: 0.875rem;
+ line-height: 1.6;
+ padding: 1.25rem 1.5rem;
+ border-radius: 8px;
+ overflow-x: auto;
+ margin: 1.25rem 0;
+ }
+ .code-block code { background: none; color: inherit; }
+
+ /* What's inside list */
+ .intro-list {
+ background: var(--accent-light);
+ border: 1px solid var(--accent-border);
+ border-radius: 10px;
+ padding: 1.25rem 1.5rem;
+ margin-bottom: 1.5rem;
+ }
+ .intro-list ul { padding-left: 1.25rem; margin: 0; }
+ .intro-list li { font-size: 0.9375rem; margin-bottom: 0.375rem; }
+
+ /* Step labels */
+ .step-label {
+ display: inline-block;
+ background: var(--accent);
+ color: #fff;
+ font-size: 0.6875rem;
+ font-weight: 700;
+ letter-spacing: 0.06em;
+ text-transform: uppercase;
+ padding: 0.2rem 0.625rem;
+ border-radius: 4px;
+ margin-bottom: 0.5rem;
+ }
+
+ /* ─── CTA MID ─── */
+ .cta-mid {
+ border-left: 3px solid var(--accent-indigo);
+ background: #EEF2FF;
+ padding: 1.25rem 1.5rem;
+ border-radius: 0 10px 10px 0;
+ margin: 2.5rem 0;
+ }
+ .cta-mid p { margin-bottom: 0.875rem; font-size: 0.9375rem; }
+ .cta-mid p:last-child { margin-bottom: 0; }
+ .cta-btn-outline {
+ display: inline-block;
+ padding: 0.5625rem 1.25rem;
+ background: var(--accent-indigo);
+ color: #fff;
+ font-family: 'Montserrat', sans-serif;
+ font-size: 0.875rem;
+ font-weight: 600;
+ border-radius: 8px;
+ text-decoration: none;
+ transition: opacity 0.15s;
+ }
+ .cta-btn-outline:hover { opacity: 0.88; }
+
+ /* ─── CTA BOTTOM ─── */
+ .cta-bottom {
+ background: var(--accent-indigo);
+ color: #fff;
+ padding: 2.5rem 2rem;
+ border-radius: 12px;
+ text-align: center;
+ margin-top: 3rem;
+ }
+ .cta-bottom p { font-size: 1.0625rem; margin-bottom: 1.25rem; opacity: 0.9; }
+ .cta-btn-white {
+ display: inline-block;
+ padding: 0.625rem 1.5rem;
+ background: #fff;
+ color: var(--accent-indigo);
+ font-family: 'Montserrat', sans-serif;
+ font-size: 0.875rem;
+ font-weight: 700;
+ border-radius: 8px;
+ text-decoration: none;
+ transition: opacity 0.15s;
+ }
+ .cta-btn-white:hover { opacity: 0.9; }
+
+ /* ─── VISUAL BLOCKS ─── */
+
+ /* VB1: Pricing Table */
+ .pricing-table-wrap {
+ overflow-x: auto;
+ margin: 2rem 0;
+ border-radius: 12px;
+ border: 1px solid var(--accent-border);
+ box-shadow: var(--shadow-sm);
+ }
+ .pricing-table {
+ width: 100%;
+ border-collapse: collapse;
+ font-size: 0.9rem;
+ min-width: 560px;
+ }
+ .pricing-table th {
+ padding: 1rem 1.25rem;
+ text-align: center;
+ font-weight: 700;
+ font-size: 0.875rem;
+ border-bottom: 2px solid var(--accent-border);
+ background: var(--accent-light);
+ }
+ .pricing-table th.col-pro {
+ background: var(--accent);
+ color: #fff;
+ }
+ .pricing-table th.col-pro .rec-badge {
+ display: block;
+ font-size: 0.625rem;
+ font-weight: 600;
+ letter-spacing: 0.08em;
+ text-transform: uppercase;
+ background: rgba(255,255,255,0.2);
+ border-radius: 9999px;
+ padding: 0.15rem 0.5rem;
+ margin-top: 0.3rem;
+ }
+ .pricing-table td {
+ padding: 0.875rem 1.25rem;
+ text-align: center;
+ border-bottom: 1px solid #F3F4F6;
+ vertical-align: top;
+ font-size: 0.875rem;
+ line-height: 1.5;
+ }
+ .pricing-table tr:last-child td { border-bottom: none; }
+ .pricing-table td.col-pro {
+ background: #F5F7FF;
+ font-weight: 500;
+ }
+ .pricing-table td.row-label {
+ text-align: left;
+ font-weight: 600;
+ font-size: 0.8125rem;
+ color: var(--muted);
+ text-transform: uppercase;
+ letter-spacing: 0.04em;
+ background: var(--accent-light);
+ }
+ .pricing-table .yes { color: #16A34A; font-weight: 600; }
+ .pricing-table .no { color: var(--muted); }
+ .price-amount { font-size: 1.25rem; font-weight: 700; }
+ .price-period { font-size: 0.75rem; color: var(--muted); }
+
+ /* VB2: Memory + Projects Diagram */
+ .diagram-wrap {
+ margin: 2rem 0;
+ padding: 2rem;
+ background: var(--accent-light);
+ border: 1px solid var(--accent-border);
+ border-radius: 12px;
+ }
+ .diagram-panels {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 1.25rem;
+ margin-bottom: 1.5rem;
+ }
+ @media (max-width: 540px) { .diagram-panels { grid-template-columns: 1fr; } }
+ .diagram-panel {
+ background: #fff;
+ border: 2px solid var(--accent-border);
+ border-radius: 10px;
+ padding: 1.25rem;
+ }
+ .diagram-panel-title {
+ font-size: 0.8125rem;
+ font-weight: 700;
+ color: var(--accent);
+ text-transform: uppercase;
+ letter-spacing: 0.06em;
+ margin-bottom: 0.875rem;
+ display: flex;
+ align-items: center;
+ gap: 0.5rem;
+ }
+ .diagram-panel-title svg { flex-shrink: 0; }
+ .diagram-panel ul {
+ list-style: none;
+ padding: 0;
+ margin: 0 0 0.875rem;
+ }
+ .diagram-panel li {
+ font-size: 0.875rem;
+ padding: 0.25rem 0;
+ color: var(--text);
+ display: flex;
+ align-items: center;
+ gap: 0.5rem;
+ }
+ .diagram-panel li::before {
+ content: '';
+ width: 6px;
+ height: 6px;
+ border-radius: 50%;
+ background: var(--accent);
+ flex-shrink: 0;
+ }
+ .diagram-panel-sub {
+ font-size: 0.8125rem;
+ color: var(--muted);
+ border-top: 1px solid var(--accent-border);
+ padding-top: 0.625rem;
+ }
+ .diagram-arrow {
+ text-align: center;
+ color: var(--muted);
+ font-size: 1.25rem;
+ margin-bottom: 1rem;
+ }
+ .diagram-output {
+ background: var(--accent);
+ color: #fff;
+ border-radius: 8px;
+ padding: 0.875rem 1.25rem;
+ font-size: 0.875rem;
+ font-weight: 500;
+ text-align: center;
+ }
+
+ /* VB3: 5-Day Timeline */
+ .timeline-wrap {
+ margin: 2rem 0;
+ padding: 2rem 1.5rem;
+ background: var(--accent-light);
+ border: 1px solid var(--accent-border);
+ border-radius: 12px;
+ overflow-x: auto;
+ }
+ .timeline {
+ display: flex;
+ align-items: flex-start;
+ min-width: 480px;
+ position: relative;
+ }
+ .timeline-step {
+ flex: 1;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ position: relative;
+ }
+ .timeline-step:not(:last-child)::after {
+ content: '';
+ position: absolute;
+ top: 22px;
+ left: 50%;
+ width: 100%;
+ height: 2px;
+ background: var(--accent-border);
+ z-index: 0;
+ }
+ .timeline-circle {
+ width: 44px;
+ height: 44px;
+ border-radius: 50%;
+ background: var(--accent);
+ color: #fff;
+ font-size: 1rem;
+ font-weight: 700;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ position: relative;
+ z-index: 1;
+ flex-shrink: 0;
+ }
+ .timeline-label {
+ text-align: center;
+ margin-top: 0.75rem;
+ }
+ .timeline-day {
+ font-size: 0.6875rem;
+ font-weight: 700;
+ color: var(--accent);
+ text-transform: uppercase;
+ letter-spacing: 0.06em;
+ }
+ .timeline-desc {
+ font-size: 0.8125rem;
+ color: var(--muted);
+ margin-top: 0.25rem;
+ line-height: 1.4;
+ }
+
+ /* ─── FOOTER ─── */
+
+ @media (max-width: 640px) {
+ .guide-hero { padding: 2rem 1rem 1.5rem; }
+ .page-wrap { padding: 0 1rem; }
+ .guide-hero h1 { font-size: 1.75rem; }
+ .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; }
+ }
+
+
+     .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+    @page { margin: 1.5cm; } @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .chapter-card, .compare-card, .checklist-card, blockquote { break-inside: avoid; page-break-inside: avoid; } .chapter-overview, .compare-grid, .checklist-grid, .email-flow { break-inside: avoid; page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+
+
+<header class="header" id="site-header">
+ <div class="header-inner">
+ <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+ <div class="logo-divider"></div>
+ <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">← All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+ <span class="badge badge-cat">Getting Started</span>
+ <span class="badge badge-diff">Beginner</span>
+ </div>
+ <h1>The Ultimate Claude Starter Setup Guide</h1>
+ <div class="hero-author">
+ <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+ <div>
+ <span class="author-name">Max Johnson</span>
+ <span class="author-meta">AI Agency Founder · @maxjohnscn</span>
+ </div>
+ </div>
+</div>
+
+
+<div class="page-wrap">
+
+ <article class="guide-content">
+    <button class="download-btn" onclick="downloadPDF()">&#8595; Download PDF</button>
+
+ <div class="intro-list">
+ <ul>
+ <li>How to set up Claude Projects for consistent, high-quality output</li>
+ <li>The memory system that means Claude never forgets your preferences</li>
+ <li>Skills and MCP connectors that turn Claude into a real work tool</li>
+ <li>Ready-to-use prompts and templates you can paste straight in</li>
+ <li>The exact setup I use to run my AI agency</li>
+ </ul>
+ </div>
+
+ <div class="callout">
+ <p><strong>Note:</strong> This guide assumes you have a Claude account. If you don't, go to claude.ai and sign up first. You can do most of this on the free plan. I'll note where Pro is needed.</p>
+ </div>
+
+ <h2 id="ch1">Chapter 01: What Claude Actually Is</h2>
+
+ <p>Most people treat Claude like a search engine. You type a question, it gives you an answer, you close the tab. That's probably 5% of what it can do. The rest comes from understanding how to set it up properly.</p>
+
+ <p>Claude is made by Anthropic. It's a large language model, but that description undersells it. With the right setup, Claude becomes a work tool that handles real tasks: writing documents, analysing data, managing email, building software, creating presentations, and running automations.</p>
+
+ <p>The difference between someone who uses Claude casually and someone who uses it properly is entirely about setup. The same model, the same AI, producing completely different quality output. This guide covers that setup.</p>
+
+ <h3>What You Get Access To</h3>
+
+ <p><strong>Claude.ai</strong>: The web and mobile chat interface. This is where most people start.</p>
+ <p><strong>Claude Projects</strong>: Persistent workspaces with custom instructions and uploaded files.</p>
+ <p><strong>Memory</strong>: Claude remembers your preferences across conversations automatically.</p>
+ <p><strong>Skills</strong>: Packaged instructions that teach Claude how to handle specific workflows.</p>
+ <p><strong>MCP Connectors</strong>: Plug Claude into Gmail, Google Calendar, Notion, Figma, and more.</p>
+ <p><strong>Claude Code</strong>: A command line tool for developers. Agentic coding from your terminal.</p>
+
+ <h3>Free vs Pro: What You Actually Need</h3>
+
+ <p>The free plan gives you access to Claude's base model with limited messages. The Pro plan ($20/month) unlocks Projects, more messages, the latest models, and priority access. For this guide, I'll tell you when something needs Pro.</p>
+
+ <p>My honest take: if you're going to use Claude for actual work, the Pro plan pays for itself in the first week. But start free, run through this guide, and upgrade when you hit the limit. You'll know when.</p>
+
+ <!-- VISUAL BLOCK 1:Pricing Table -->
+ <div class="pricing-table-wrap">
+ <table class="pricing-table">
+ <thead>
+ <tr>
+ <th class="row-label" style="text-align:left;">Plan</th>
+ <th>Free</th>
+ <th class="col-pro">Pro<span class="rec-badge">Recommended</span></th>
+ <th>Max</th>
+ <th>Team</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td class="row-label">Price</td>
+ <td><span class="price-amount">$0</span><br><span class="price-period">/mo</span></td>
+ <td class="col-pro"><span class="price-amount">$20</span><br><span class="price-period">/mo</span></td>
+ <td><span class="price-amount">$100 $200</span><br><span class="price-period">/mo</span></td>
+ <td><span class="price-amount">$25</span><br><span class="price-period">/seat/mo</span></td>
+ </tr>
+ <tr>
+ <td class="row-label">Best for</td>
+ <td>Trying it out</td>
+ <td class="col-pro">Daily use</td>
+ <td>Power users</td>
+ <td>Businesses</td>
+ </tr>
+ <tr>
+ <td class="row-label">Usage</td>
+ <td>Limited</td>
+ <td class="col-pro">5× Free</td>
+ <td>5 20× Pro</td>
+ <td>5× Pro</td>
+ </tr>
+ <tr>
+ <td class="row-label">Claude Code</td>
+ <td class="no">No</td>
+ <td class="col-pro yes">Yes</td>
+ <td class="yes">Yes (extended)</td>
+ <td class="yes">Yes (premium)</td>
+ </tr>
+ <tr>
+ <td class="row-label">Projects</td>
+ <td class="no">No</td>
+ <td class="col-pro yes">Yes</td>
+ <td class="yes">Yes</td>
+ <td class="yes">Yes</td>
+ </tr>
+ </tbody>
+ </table>
+ </div>
+
+ <h2 id="ch2">Chapter 02: Claude Projects</h2>
+
+ <p>This is the single most important feature most people never set up. A Claude Project gives you a persistent workspace where Claude always has the context it needs. No more re-explaining who you are, what you do, or how you want things done.</p>
+
+ <p>Without a Project, every new conversation starts from zero. Claude has no idea who you are, what your business does, or what tone you want. With a Project, all of that is loaded automatically. The output quality difference is night and day.</p>
+
+ <p><span class="step-label">Step 1</span></p>
+ <p><strong>Create Your First Project</strong></p>
+ <p>Go to claude.ai and click 'Projects' in the sidebar. Click 'Create Project' and give it a clear name. Example: 'Content Writing' or 'Business Operations'.</p>
+
+ <div class="callout">
+ <p><strong>Tip:</strong> Start with one Project for your most common use case. You can create more later.</p>
+ </div>
+
+ <p><span class="step-label">Step 2</span></p>
+ <p><strong>Write Your Project Instructions</strong></p>
+ <p>This is the system prompt that loads every time you open a conversation inside this Project. It tells Claude who you are, what you do, and how to behave.</p>
+
+ <div class="callout">
+ <p><strong>Tip:</strong> Think of this as the brief you'd give a new employee on day one.</p>
+ </div>
+
+ <p><span class="step-label">Step 3</span></p>
+ <p><strong>Upload Your Knowledge Files</strong></p>
+ <p>Drag and drop up to 200 files per Project. Claude reads them automatically when relevant. Brand guides, SOPs, product docs, strategy docs, templates, style guides.</p>
+
+ <div class="callout">
+ <p><strong>Tip:</strong> PDFs, docs, text files, code files, spreadsheets. Claude reads them all.</p>
+ </div>
+
+ <p><strong>Example Project Instructions: paste this in:</strong></p>
+
+ <div class="code-block"><code>You are helping Max Johnson with content writing.
+Max runs an AI agency called Briix based in Manchester.
+Tone: British confidence, direct, no hype language.
+Always use short sentences. Maximum 15 words each.
+Never use em dashes or hyphens in scripts.
+When writing TikTok scripts, use the talking head format:
+Hook > Agitation > Content > Proof > CTA.
+CTA format: Comment [WORD] and I'll send you [thing].</code></div>
+
+ <p>Replace this with your own details. The more specific you are about who you are, what you do, and how you want Claude to behave, the better every single output will be.</p>
+
+ <h2 id="ch3">Chapter 03: The Memory System</h2>
+
+ <p>Claude has a memory system that learns about you over time. It picks up your preferences, your work context, your writing style, and applies that knowledge across every conversation. Most people don't even know it exists.</p>
+
+ <p>Memory works in the background. As you chat with Claude, it notices patterns and stores them. Your name, your role, tools you use, formatting preferences, things you've told it about your work. Next time you start a new conversation, that context is already there.</p>
+
+ <p><span class="step-label">Step 1</span></p>
+ <p><strong>Check Your Memory Settings</strong></p>
+ <p>Go to Settings > Memory in claude.ai. Make sure 'Learn from conversations' is enabled. You can view what Claude has learned about you here.</p>
+
+ <p><span class="step-label">Step 2</span></p>
+ <p><strong>Actively Teach Claude About You</strong></p>
+ <p>Don't wait for Claude to figure you out passively. Tell it directly: 'Remember that I run a design agency' or 'Remember I prefer British English spelling'.</p>
+
+ <div class="callout">
+ <p><strong>Tip:</strong> Say 'remember this' and Claude will store it explicitly. You can also say 'forget this'.</p>
+ </div>
+
+ <p><span class="step-label">Step 3</span></p>
+ <p><strong>Set Your User Preferences</strong></p>
+ <p>Go to Settings > User Preferences in claude.ai. Write a short paragraph about how you want Claude to behave. Your tone, formatting preferences, expertise level.</p>
+
+ <p><strong>Example User Preferences:</strong></p>
+
+ <div class="code-block"><code>I'm a business owner, not a developer. Keep technical
+explanations simple. I prefer British English. Use short,
+direct sentences. Don't give me long preambles before
+answering. When I ask for a document, just create it.
+No bullet points unless I ask for them.</code></div>
+
+ <!-- VISUAL BLOCK 2:Memory + Projects Diagram -->
+ <div class="diagram-wrap">
+ <div class="diagram-panels">
+ <div class="diagram-panel">
+ <div class="diagram-panel-title">
+ <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+ <circle cx="8" cy="8" r="7" stroke="#1A7A6A" stroke-width="1.5"/>
+ <path d="M8 4v4l3 2" stroke="#1A7A6A" stroke-width="1.5" stroke-linecap="round"/>
+ </svg>
+ Memory (Global)
+ </div>
+ <ul>
+ <li>Name &amp; role</li>
+ <li>Writing preferences</li>
+ <li>Tools you use</li>
+ <li>General habits</li>
+ </ul>
+ <p class="diagram-panel-sub">Applies to every conversation everywhere.</p>
+ </div>
+ <div class="diagram-panel">
+ <div class="diagram-panel-title">
+ <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+ <rect x="2" y="2" width="12" height="12" rx="2" stroke="#1A7A6A" stroke-width="1.5"/>
+ <path d="M5 8h6M5 5h6M5 11h3" stroke="#1A7A6A" stroke-width="1.5" stroke-linecap="round"/>
+ </svg>
+ Projects (Specific)
+ </div>
+ <ul>
+ <li>Task-specific instructions</li>
+ <li>Uploaded reference files</li>
+ <li>Workflow rules</li>
+ </ul>
+ <p class="diagram-panel-sub">Applies only inside this Project.</p>
+ </div>
+ </div>
+ <div class="diagram-arrow">↓ combined in every conversation ↓</div>
+ <div class="diagram-output">
+ Every conversation: Claude already knows you + the specific task context.
+ </div>
+ </div>
+
+ <p><strong>How Memory + Projects Work Together</strong></p>
+ <p>Memory is global. It applies everywhere. Project instructions are specific to that Project. Use memory for general preferences. Use Project instructions for task-specific context.</p>
+
+ <h2 id="ch4">Chapter 04: Custom Instructions That Change Everything</h2>
+
+ <p>The difference between mediocre Claude output and genuinely useful output almost always comes down to how well you've briefed it. Custom instructions are the highest-leverage thing you can write.</p>
+
+ <h3>The Anatomy of Great Instructions</h3>
+
+ <p><strong>Who you are</strong>: Your name, role, company, what you do. Claude needs to know who it's helping.</p>
+ <p><strong>What you need</strong>: The specific types of output you'll ask for. Scripts, emails, reports, code.</p>
+ <p><strong>How you want it</strong>: Tone, length, formatting rules. Be specific: 'short sentences, max 15 words'.</p>
+ <p><strong>What to avoid</strong>: Banned phrases, formatting you hate, approaches that don't work for you.</p>
+ <p><strong>Examples</strong>: Paste in real examples of output you like. This is the single most effective technique.</p>
+
+ <h3>Three Rules That Make Instructions Work</h3>
+
+ <p><strong>1: Be specific, not general.</strong> 'Write in a casual tone' is weak. 'Write like you're telling a mate about something you found, short sentences, British English, no hype' is strong.</p>
+
+ <p><strong>2: Include examples.</strong> Paste in a paragraph of writing you like and say 'match this tone and style'. Claude will mirror it almost exactly.</p>
+
+ <p><strong>3: Tell Claude what not to do.</strong> Banning specific phrases and patterns is often more effective than describing what you want. 'Never use em dashes, never start with In today's, never use bullet points unless asked' removes the most common AI tells.</p>
+
+ <h2 id="ch5">Chapter 05: Skills</h2>
+
+ <p>A skill is a set of instructions packaged as a folder that teaches Claude how to handle a specific task or workflow. Instead of re-explaining your process every time, skills let you teach Claude once and benefit every time.</p>
+
+ <p>Think of it like this: Claude is already good at general tasks. Skills make it excellent at specific ones. A frontend design skill gives Claude an actual design system to work from. A document creation skill makes it produce properly formatted Word docs, not just markdown. A marketing skill gives it your exact frameworks.</p>
+
+ <h3>How Skills Work</h3>
+
+ <p><span class="step-label">Step 1</span></p>
+ <p><strong>Find or Create a Skill</strong></p>
+ <p>Skills are folders containing a SKILL.md file with instructions. You can download community skills from GitHub or create your own. Anthropic has published a directory of official skills.</p>
+
+ <div class="callout">
+ <p><strong>Tip:</strong> GitHub search 'claude skills' to find community-built skills for almost anything.</p>
+ </div>
+
+ <p><span class="step-label">Step 2</span></p>
+ <p><strong>Upload the Skill to Claude</strong></p>
+ <p>Go to Settings > Capabilities > Skills in claude.ai. Click 'Upload skill' and select the skill folder (zipped). Toggle it on and Claude will load it automatically.</p>
+
+ <p><span class="step-label">Step 3</span></p>
+ <p><strong>Use the Skill</strong></p>
+ <p>You don't need to do anything special. Just start a chat. Claude reads the skill description and activates it when relevant. Ask for a document and the docx skill fires.</p>
+
+ <h3>Five Skills Worth Installing Right Now</h3>
+
+ <p><strong>Frontend Design</strong>: Gives Claude a proper design system for building web interfaces. The output quality change is immediate.</p>
+ <p><strong>Document Creation (docx)</strong>: Creates properly formatted Word documents with headers, tables, page numbers. Not just markdown.</p>
+ <p><strong>PDF Creation</strong>: Generate, fill, merge, and split PDF files directly inside Claude.</p>
+ <p><strong>Spreadsheet (xlsx)</strong>: Build and edit Excel files with formulas, charts, and formatting.</p>
+ <p><strong>Presentation (pptx)</strong>: Create slide decks with proper layouts, not just bullet points on white backgrounds.</p>
+
+ <h2 id="ch6">Chapter 06: MCP Connectors</h2>
+
+ <p>MCP stands for Model Context Protocol. In practical terms, it's how you plug Claude into your existing tools. Gmail, Google Calendar, Notion, Figma, Slack, databases, and more. Once connected, Claude can read your data and take actions inside those tools.</p>
+
+ <p>This is where Claude stops being a chatbot and starts being a work tool. Instead of copying information between apps, Claude sits in the middle and handles the coordination. Read your emails, check your calendar, draft a response, schedule a meeting. All from one conversation.</p>
+
+ <h3>How to Connect an MCP Server</h3>
+
+ <p><span class="step-label">Step 1</span></p>
+ <p><strong>Find the Connector</strong></p>
+ <p>In claude.ai, go to Settings > Connected Apps. You'll see available integrations listed. Click the one you want, for example Gmail or Google Calendar.</p>
+
+ <p><span class="step-label">Step 2</span></p>
+ <p><strong>Authorise the Connection</strong></p>
+ <p>Claude will ask you to sign in to your account for that service and grant permissions. Standard OAuth flow. Same as connecting any other app.</p>
+
+ <div class="callout">
+ <p><strong>Tip:</strong> You can revoke access at any time from Settings.</p>
+ </div>
+
+ <p><span class="step-label">Step 3</span></p>
+ <p><strong>Use It Naturally</strong></p>
+ <p>Once connected, just ask Claude to do things. 'Check my calendar for tomorrow' or 'Draft a reply to that email from Sarah'. Claude handles the rest.</p>
+
+ <h3>Connectors Available Right Now</h3>
+
+ <ul>
+ <li><strong>Gmail</strong>: Read, search, draft, and send emails</li>
+ <li><strong>Google Calendar</strong>: View, create, and manage events</li>
+ <li><strong>Google Drive</strong>: Search and access your files</li>
+ <li><strong>Notion</strong>: Read and write to your Notion workspace</li>
+ <li><strong>Figma</strong>: Access your design files and create diagrams</li>
+ <li><strong>Slack</strong>: Read messages and post updates</li>
+ <li><strong>Linear</strong>: Manage projects, issues, and sprints</li>
+ <li><strong>GitHub</strong>: Access repos, issues, and pull requests</li>
+ </ul>
+
+ <div class="callout">
+ <p><strong>Note:</strong> New connectors are being added regularly. Check Settings > Connected Apps for the latest. Community-built MCP servers are also available on GitHub for hundreds of other services.</p>
+ </div>
+
+ <h2 id="ch7">Chapter 07: Claude Code</h2>
+
+ <p>Claude Code is a command line tool that lets developers work with Claude directly from the terminal. If you write code, this changes how you work. If you don't write code, skip to Chapter 08.</p>
+
+ <p>Instead of copying code back and forth between Claude and your editor, Claude Code runs in your project directory. It can read your codebase, understand the full context, write code, run tests, fix bugs, and commit changes. It's agentic, meaning you give it a task and it figures out the steps.</p>
+
+ <p><span class="step-label">Step 1</span></p>
+ <p><strong>Install Claude Code</strong></p>
+ <p>You need Node.js 18 or higher installed first. Then run the install command in your terminal:</p>
+
+ <div class="code-block"><code>npm install -g @anthropic-ai/claude-code</code></div>
+
+ <p><span class="step-label">Step 2</span></p>
+ <p><strong>Authenticate</strong></p>
+ <p>Run 'claude' in your terminal. It will ask you to authenticate with your Anthropic account. Follow the prompts. Takes about 30 seconds.</p>
+
+ <p><span class="step-label">Step 3</span></p>
+ <p><strong>Use It in a Project</strong></p>
+ <p>Navigate to your project folder and run 'claude'. It reads your codebase automatically. Ask it to build features, fix bugs, refactor code, write tests.</p>
+
+ <h3>The CLAUDE.md File</h3>
+
+ <p>Add a CLAUDE.md file to your project root. Claude Code reads it automatically at the start of every session. Use it for project-specific instructions: coding standards, architecture decisions, file structure notes, testing requirements. This is the equivalent of Project instructions for the command line.</p>
+
+ <p><strong>Example CLAUDE.md:</strong></p>
+
+ <div class="code-block"><code># Project: My SaaS App
+Stack: Next.js 14, TypeScript, Tailwind, Supabase
+Always use server components unless client needed.
+Run 'npm test' after any code changes.
+Follow the existing file naming convention.
+Never modify files in /lib/core without asking.</code></div>
+
+ <h2 id="ch8">Chapter 08: Your First Week Setup</h2>
+
+ <p>Here's the exact sequence I'd follow if I was setting up Claude from scratch today. Do these in order. Each one builds on the last. By the end of the week, Claude will know you, your work, your preferences, and be genuinely useful for real tasks.</p>
+
+ <!-- VISUAL BLOCK 3:5-Day Timeline -->
+ <div class="timeline-wrap">
+ <div class="timeline">
+ <div class="timeline-step">
+ <div class="timeline-circle">1</div>
+ <div class="timeline-label">
+ <div class="timeline-day">Day 1</div>
+ <div class="timeline-desc">Account &amp; Memory</div>
+ </div>
+ </div>
+ <div class="timeline-step">
+ <div class="timeline-circle">2</div>
+ <div class="timeline-label">
+ <div class="timeline-day">Day 2</div>
+ <div class="timeline-desc">First Project</div>
+ </div>
+ </div>
+ <div class="timeline-step">
+ <div class="timeline-circle">3</div>
+ <div class="timeline-label">
+ <div class="timeline-day">Day 3</div>
+ <div class="timeline-desc">Connect Tools</div>
+ </div>
+ </div>
+ <div class="timeline-step">
+ <div class="timeline-circle">4</div>
+ <div class="timeline-label">
+ <div class="timeline-day">Day 4</div>
+ <div class="timeline-desc">Install Skills</div>
+ </div>
+ </div>
+ <div class="timeline-step">
+ <div class="timeline-circle">5</div>
+ <div class="timeline-label">
+ <div class="timeline-day">Day 5</div>
+ <div class="timeline-desc">Build Your System</div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <p><strong>Day 1: Account and Memory</strong></p>
+ <ul>
+ <li>Sign up at claude.ai (or sign in if you already have an account)</li>
+ <li>Enable Memory in Settings > Memory</li>
+ <li>Write your User Preferences (see Chapter 03 for the template)</li>
+ <li>Have three normal conversations so Claude starts learning about you</li>
+ </ul>
+
+ <p><strong>Day 2: Your First Project</strong></p>
+ <ul>
+ <li>Create a Project for your most common work task</li>
+ <li>Write custom instructions (use the template from Chapter 02)</li>
+ <li>Upload 3 to 5 relevant files (brand guide, SOP, examples)</li>
+ <li>Run a real task inside the Project and compare the output quality</li>
+ </ul>
+
+ <p><strong>Day 3: Connect Your Tools</strong></p>
+ <ul>
+ <li>Go to Settings > Connected Apps</li>
+ <li>Connect Gmail and Google Calendar as a starting point</li>
+ <li>Ask Claude to check your calendar for the week</li>
+ <li>Ask Claude to summarise your unread emails</li>
+ </ul>
+
+ <p><strong>Day 4: Skills</strong></p>
+ <ul>
+ <li>Download one skill that matches your work (see Chapter 05)</li>
+ <li>Upload it via Settings > Capabilities > Skills</li>
+ <li>Test it with a real task: create a document, build a page</li>
+ <li>Compare the output with and without the skill active</li>
+ </ul>
+
+ <p><strong>Day 5: Build Your System</strong></p>
+ <ul>
+ <li>Create 2 to 3 more Projects for different areas of your work</li>
+ <li>Upload relevant files to each one</li>
+ <li>Connect any other tools you use daily</li>
+ <li>You now have a Claude setup that actually works for you</li>
+ </ul>
+
+ <h2>You're Set Up. Now Use It.</h2>
+
+ <p>Most people who download a guide like this never actually do the setup. Don't be that person. Go to claude.ai right now, open Settings, and do Day 1. It takes 10 minutes. The difference between you now and you in a week with a properly set up Claude is genuinely significant.</p>
+
+ 
+
+ </article>
+
+ <aside class="toc-sidebar">
+ <div class="toc-box">
+ <h3>Contents</h3>
+ <ol>
+ <li><a href="#ch1">What Claude Actually Is</a></li>
+ <li><a href="#ch2">Claude Projects</a></li>
+ <li><a href="#ch3">The Memory System</a></li>
+ <li><a href="#ch4">Custom Instructions</a></li>
+ <li><a href="#ch5">Skills</a></li>
+ <li><a href="#ch6">MCP Connectors</a></li>
+ <li><a href="#ch7">Claude Code</a></li>
+ <li><a href="#ch8">Your First Week Setup</a></li>
+ </ol>
+ </div>
+ </aside>
+
+</div>
+
+
+<script>
+ const header = document.getElementById('site-header');
+ window.addEventListener('scroll', () => {
+ header.classList.toggle('scrolled', window.scrollY > 8);
+ }, { passive: true });
+</script>
+
+<script>
+function downloadPDF() {
+  window.print();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,238 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Claude Power Moves</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+ <style>
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+ html { scroll-behavior: smooth; }
+ body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+ .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+ .header.scrolled { border-color: var(--accent-border); }
+ .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+ .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+ .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+ .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+ .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+ a.logo-subtitle:hover { color: var(--accent); }
+ .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+ .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+ .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+ @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+ .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+ .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+ .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+ .badge-cat { background: var(--accent); color: #fff; }
+ .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+ .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+ .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+ .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+ .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+ .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+ .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+ .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+ .toc-box ol { list-style: none; counter-reset: toc; }
+ .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+ .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+ .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+ .toc-box a:hover { color: var(--accent); }
+ .guide-content { padding: 2rem 0 5rem; }
+ .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+ .guide-content h2:first-child { border-top: none; margin-top: 0; }
+ .guide-content h3 { font-size: 1.0625rem; font-weight: 700; margin-top: 1.75rem; margin-bottom: 0.625rem; }
+ .guide-content p { margin-bottom: 1.125rem; }
+ .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+ .guide-content li { margin-bottom: 0.375rem; }
+ .guide-content strong { font-weight: 600; }
+ .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+ pre { background: #1a1a1a; color: #e8e8e8; font-family: 'Courier New', Courier, monospace; font-size: 0.875rem; padding: 1.25rem 1.5rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1.25rem; line-height: 1.6; }
+ code { font-family: 'Courier New', Courier, monospace; }
+ .callout { background: var(--accent-light); border-left: 4px solid var(--accent); border-radius: 0 8px 8px 0; padding: 1rem 1.25rem; margin: 1.5rem 0; font-size: 0.9375rem; }
+ .callout strong { color: var(--accent); display: block; margin-bottom: 0.25rem; font-size: 0.8125rem; letter-spacing: 0.04em; text-transform: uppercase; }
+ .tip-box { background: var(--accent-light); border-left: 4px solid var(--accent-border); border-radius: 0 8px 8px 0; padding: 0.875rem 1.25rem; margin: 1.25rem 0; font-size: 0.9rem; color: var(--muted); }
+ .tip-box strong { color: var(--accent); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; display: block; margin-bottom: 0.2rem; }
+ .whats-inside { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+ .whats-inside h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.75rem; }
+ .whats-inside ul { padding-left: 1.25rem; margin: 0; }
+ .whats-inside li { font-size: 0.9375rem; margin-bottom: 0.375rem; }
+ .card-grid-2x2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+ @media (max-width: 640px) { .card-grid-2x2 { grid-template-columns: 1fr; } }
+ .move-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.125rem 1.25rem; }
+ .move-card .num { font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem; font-weight: 700; color: var(--accent); display: block; margin-bottom: 0.25rem; }
+ .move-card h4 { font-family: 'Space Grotesk', sans-serif; font-size: 0.9375rem; font-weight: 700; margin-bottom: 0.375rem; }
+ .move-card p { font-size: 0.875rem; color: var(--muted); margin: 0; }
+ .step-list { list-style: none; padding: 0; margin: 1rem 0 1.25rem; counter-reset: step; }
+ .step-list li { counter-increment: step; display: flex; gap: 0.875rem; margin-bottom: 1rem; }
+ .step-list li::before { content: counter(step); background: var(--accent); color: #fff; font-weight: 700; font-size: 0.8125rem; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.1rem; }
+ .step-list li div { font-size: 0.9375rem; line-height: 1.65; }
+ .step-list li strong { display: block; font-weight: 700; margin-bottom: 0.15rem; }
+ @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+     .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+    @page { margin: 1.5cm; } @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .chapter-card, .compare-card, .checklist-card, blockquote { break-inside: avoid; page-break-inside: avoid; } .chapter-overview, .compare-grid, .checklist-grid, .email-flow { break-inside: avoid; page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+ <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+ <div class="logo-divider"></div>
+ <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">← All guides</a>
+ </div>
+</header>
+<div class="guide-hero">
+ <div class="hero-meta">
+ <span class="badge badge-cat">Claude Code</span>
+ <span class="badge badge-diff">Intermediate</span>
+ </div>
+ <h1>Claude Power Moves</h1>
+ <div class="hero-author">
+ <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+ <div><span class="author-name">Max Johnson</span><span class="author-meta">@maxjohnscn</span></div>
+ </div>
+</div>
+<div class="page-wrap">
+ <article class="guide-content">
+    <button class="download-btn" onclick="downloadPDF()">&#8595; Download PDF</button>
+
+ <p class="intro-blurb">Four ways to stop correcting Claude and actually delegate to it. Plan it once, set the rules, and let it run, the real workflow inside Claude Code.</p>
+
+ <div class="whats-inside">
+ <h3>What's inside</h3>
+ <ul>
+ <li>Why you're stuck correcting Claude instead of delegating to it</li>
+ <li>Plan mode, get the approach right before a single file changes</li>
+ <li>The one-line prompt that kills most of your revision rounds</li>
+ <li>Bypass permissions, let Claude run the whole task uninterrupted</li>
+ <li>The CLAUDE.md file that makes Claude smarter every session</li>
+ </ul>
+ </div>
+
+ <div class="tip-box"><strong>Note</strong>These are Claude Code moves, plan mode, permission modes and the CLAUDE.md file all live in Claude Code (CLI, desktop, or IDE). You don't need anything beyond a Claude account and the tool installed to run every one of them.</div>
+
+ <!-- Four moves overview -->
+ <div class="card-grid-2x2">
+ <div class="move-card">
+ <span class="num">01</span>
+ <h4>Plan Mode</h4>
+ <p>Think before touching anything</p>
+ </div>
+ <div class="move-card">
+ <span class="num">02</span>
+ <h4>Ask Questions</h4>
+ <p>Kill the revision rounds</p>
+ </div>
+ <div class="move-card">
+ <span class="num">03</span>
+ <h4>Bypass Permissions</h4>
+ <p>Let it run uninterrupted</p>
+ </div>
+ <div class="move-card">
+ <span class="num">04</span>
+ <h4>The CLAUDE.md File</h4>
+ <p>Make it smarter each session</p>
+ </div>
+ </div>
+
+ <h2 id="the-problem">The Problem Is Probably You</h2>
+ <p>If you're always correcting Claude and going back and forth, the issue usually isn't the model, it's that you started building before you were aligned. You handed over a vague task, it made assumptions, and now you're fixing the gap one message at a time.</p>
+ <p>Delegating is different from correcting. When you delegate, you get the approach right up front, agree on it, then let Claude execute the whole thing without you hovering over every step. These four moves are how you make that switch. Get them right and you stop babysitting Claude and start handing it real work.</p>
+
+ <h2 id="move-01">Move 01: Always Start in Plan Mode</h2>
+ <p>Plan mode is a read-only state. Claude can read your files, search the codebase and ask you questions, but it can't change anything. It just thinks through the approach and hands you a proper plan to approve before any work begins.</p>
+
+ <ol class="step-list">
+ <li><div><strong>Turn it on</strong>In the CLI, press Shift + Tab to cycle through the modes, default, then accept-edits, then plan. The current mode shows in the status bar. You can also launch straight into it.</div></li>
+ </ol>
+
+ <pre><code>claude --permission-mode plan</code></pre>
+
+ <ol class="step-list" style="counter-reset: step 1;">
+ <li><div><strong>Let it build the plan</strong>Describe the goal. Claude inspects the relevant files, weighs the options, flags risks and proposes the exact steps it will take. Nothing is touched yet.</div></li>
+ <li><div><strong>Approve, then it switches to building</strong>Once the plan is right, approving it exits plan mode and Claude starts executing. Getting the plan right here is what saves you loads of back-and-forth later.</div></li>
+ </ol>
+
+ <div class="tip-box"><strong>Tip</strong>Want every session to open in plan mode? Set defaultMode to "plan" in your project's .claude/settings.json.</div>
+
+ <h2 id="move-02">Move 02: Make Claude Ask You Questions</h2>
+ <p>Plan mode already prompts a few questions on its own. But you can force the issue. Tell Claude to keep asking until it's almost certain what you want, and to make no assumptions. That one instruction kills most of your revision rounds before they happen.</p>
+ <p>Most bad output comes from a gap between what you meant and what Claude assumed. Closing that gap with questions up front is far cheaper than fixing it with corrections after the work is built. Paste a line like this at the start of your prompt:</p>
+
+ <pre><code>Before you do anything, ask me clarifying questions
+one at a time until you are 95% sure you know exactly
+what I want. Make zero assumptions.</code></pre>
+
+ <p><strong>Why it works:</strong> Claude defaults to being helpful, which often means guessing and pressing on. Telling it to reach 95% certainty turns that instinct into questions instead of assumptions.</p>
+ <p><strong>"Zero assumptions" is the key phrase:</strong> It's the line that stops Claude filling silent gaps with its best guess, the exact thing you end up correcting three messages later.</p>
+ <p><strong>Pair it with plan mode:</strong> Questions in plan mode cost nothing, no files change while you align. By the time you approve, you're building the right thing the first time.</p>
+
+ <h2 id="move-03">Move 03: Once Aligned, Bypass Permissions</h2>
+ <p>By default Claude pauses for approval before each edit or command. That's the right safety net while you're unsure, but once you've planned everything out and you're fully aligned, those prompts are just friction. Bypass permissions lets Claude run the entire task without stopping to ask.</p>
+
+ <ol class="step-list">
+ <li><div><strong>Only after the plan is locked</strong>This works precisely because you did Moves 01 and 02 first. You're not skipping oversight, you front-loaded it into the plan, so there's nothing left to approve step by step.</div></li>
+ <li><div><strong>Switch it on</strong>Use the bypass-permissions mode, or launch with the flag below. Claude then executes every step of the agreed task uninterrupted and reports back when it's done.</div></li>
+ </ol>
+
+ <pre><code>claude --dangerously-skip-permissions</code></pre>
+
+ <div class="callout"><strong>Use It Wisely</strong>The official guidance is to use full bypass in a trusted or isolated setup, a project where a bad command can't do lasting damage. Your deny rules still apply even in this mode. If you want most of the speed with a safety check, Claude Code's newer Auto mode runs without routine prompts while a classifier reviews actions before they execute.</div>
+
+ <h2 id="move-04">Move 04: Keep Updating Your CLAUDE.md File</h2>
+ <p>CLAUDE.md is a plain markdown file Claude Code loads at the start of every session. It's your project's permanent memory, conventions, preferences, the things you'd otherwise re-explain every time. The better that file is, the less back-and-forth you do.</p>
+
+ <ol class="step-list">
+ <li><div><strong>Tell Claude to update it</strong>The moment you learn something or set a new preference, don't just remember it, bank it. One sentence does the job.</div></li>
+ </ol>
+
+ <pre><code>Add that to CLAUDE.md so you remember it next time.</code></pre>
+
+ <ol class="step-list" style="counter-reset: step 1;">
+ <li><div><strong>Keep it under 200 lines</strong>CLAUDE.md loads into context every session, so a bloated file eats the room Claude needs to actually work. Anthropic's own guidance is to target under 200 lines, past that, adherence to your rules drops.</div></li>
+ <li><div><strong>Prune the old stuff</strong>Go in regularly and clear out anything stale or no longer true. A short, dense file where every line earns its place beats a long one every time.</div></li>
+ </ol>
+
+ <div class="callout"><strong>Note</strong>Claude Code also keeps its own auto-memory, quietly noting patterns it picks up as it works. CLAUDE.md is the part you control, the rules and preferences you want applied every single session.</div>
+
+ <h2 id="closing">You're Not Correcting. You're Delegating.</h2>
+ <p>Get these four right and the relationship flips. You stop babysitting Claude through every edit and start handing it whole tasks. Plan it once, set the rules, let it run.</p>
+ <ul>
+ <li><strong>01</strong> Start in plan mode, get the approach right before anything changes.</li>
+ <li><strong>02</strong> Make it ask questions, 95% sure, zero assumptions, no more revision rounds.</li>
+ <li><strong>03</strong> Bypass permissions, once aligned, let it run the whole task uninterrupted.</li>
+ <li><strong>04</strong> Update CLAUDE.md, bank every preference. Keep it under 200 lines.</li>
+ </ul>
+
+ </article>
+ <aside class="toc-sidebar">
+ <div class="toc-box">
+ <h3>Contents</h3>
+ <ol>
+ <li><a href="#the-problem">The Problem Is Probably You</a></li>
+ <li><a href="#move-01">Move 01: Plan Mode</a></li>
+ <li><a href="#move-02">Move 02: Make Claude Ask Questions</a></li>
+ <li><a href="#move-03">Move 03: Bypass Permissions</a></li>
+ <li><a href="#move-04">Move 04: CLAUDE.md</a></li>
+ </ol>
+ </div>
+ </aside>
+</div>
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+<script>
+function downloadPDF() {
+  window.print();
+}
+</script>
+</body>
+</html>

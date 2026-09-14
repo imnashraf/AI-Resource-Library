@@ -1,0 +1,207 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Indeed + Claude Job Hunter Setup Guide</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✦%3C/text%3E%3C/svg%3E">
+ <style>
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+ html { scroll-behavior: smooth; }
+ body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+ .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+ .header.scrolled { border-color: var(--accent-border); }
+ .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+ .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+ .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+ .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+ .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+ a.logo-subtitle:hover { color: var(--accent); }
+ .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+ .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+ .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+ @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+ .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+ .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+ .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+ .badge-cat { background: var(--accent); color: #fff; }
+ .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+ .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+ .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+ .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+ .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+ .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+ .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+ .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+ .toc-box ol { list-style: none; counter-reset: toc; }
+ .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+ .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+ .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+ .toc-box a:hover { color: var(--accent); }
+ .guide-content { padding: 2rem 0 5rem; }
+ .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+ .guide-content h2:first-child { border-top: none; margin-top: 0; }
+ .guide-content h3 { font-size: 1.125rem; font-weight: 600; margin-top: 1.75rem; margin-bottom: 0.75rem; }
+ .guide-content p { margin-bottom: 1.125rem; }
+ .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+ .guide-content li { margin-bottom: 0.375rem; }
+ .guide-content strong { font-weight: 600; }
+ .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+ .callout { background: var(--accent-light); border-left: 3px solid var(--accent); padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; font-size: 0.9375rem; margin: 1.25rem 0; }
+ .callout p { margin: 0; }
+ .callout strong { color: var(--accent); }
+ .code-block { background: #000; color: #e2e8f0; font-family: 'Courier New', Courier, monospace; font-size: 0.875rem; line-height: 1.6; padding: 1.25rem 1.5rem; border-radius: 8px; overflow-x: auto; margin: 1.25rem 0; white-space: pre; }
+
+ .step-list { margin: 1.5rem 0; display: flex; flex-direction: column; gap: 0.625rem; }
+ .step-item { display: flex; gap: 1rem; align-items: flex-start; background: #fff; border: 1px solid var(--accent-border); border-radius: 10px; padding: 0.875rem 1.125rem; }
+ .step-num { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 700; font-size: 0.8rem; flex-shrink: 0; margin-top: 0.1rem; }
+ .step-text { flex: 1; }
+ .step-title { font-weight: 600; font-size: 0.9rem; }
+ .step-desc { font-size: 0.8125rem; color: var(--muted); margin-top: 0.125rem; }
+
+ @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+     .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+    @page { margin: 1.5cm; } @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .chapter-card, .compare-card, .checklist-card, blockquote { break-inside: avoid; page-break-inside: avoid; } .chapter-overview, .compare-grid, .checklist-grid, .email-flow { break-inside: avoid; page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+ <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+ <div class="logo-divider"></div>
+ <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">← All guides</a>
+ </div>
+</header>
+<div class="guide-hero">
+ <div class="hero-meta">
+ <span class="badge badge-cat">Tools &amp; Integrations</span>
+ <span class="badge badge-diff">Beginner</span>
+ </div>
+ <h1>Indeed + Claude Job Hunter Setup Guide</h1>
+ <div class="hero-author">
+ <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+ <div><span class="author-name">Max Johnson</span><span class="author-meta">@maxjohnscn</span></div>
+ </div>
+</div>
+<div class="page-wrap">
+ <article class="guide-content">
+    <button class="download-btn" onclick="downloadPDF()">&#8595; Download PDF</button>
+ <p class="intro-blurb">Indeed + Claude: Your Personal Job Hunter. Connect Indeed to Claude and let it find, filter, and tailor applications for you.</p>
+ <p>By the end of this guide, Claude will be pulling live job listings from Indeed, matching them to your actual experience, and rewriting your CV for every role you want to apply for. No job board scrolling. No generic applications.</p>
+ <p><strong>What you'll be able to do:</strong></p>
+ <ul>
+ <li>Find the highest-paying roles matched to your skills automatically</li>
+ <li>Filter live Indeed listings without opening a single job board</li>
+ <li>Get your CV rewritten around the right keywords for each specific role</li>
+ <li>Go into every application looking like the strongest possible candidate</li>
+ </ul>
+ <p><strong>What you need:</strong></p>
+ <ul>
+ <li>A Claude.ai account (free or Pro)</li>
+ <li>Your CV saved as a PDF or Word document</li>
+ <li>An Indeed account (free to create at indeed.com)</li>
+ </ul>
+ <div class="callout"><p><strong>NOTE:</strong> The Indeed connector pulls live listings in real time. You'll see roles posted today, not cached results from days ago.</p></div>
+
+ <!-- VISUAL BLOCK 1 -->
+ <div class="step-list">
+ <div class="step-item"><div class="step-num">1</div><div class="step-text"><div class="step-title">Connect Indeed</div><div class="step-desc">Claude gets live job access</div></div></div>
+ <div class="step-item"><div class="step-num">2</div><div class="step-text"><div class="step-title">Upload your CV</div><div class="step-desc">Claude reads your full background</div></div></div>
+ <div class="step-item"><div class="step-num">3</div><div class="step-text"><div class="step-title">Search for top roles</div><div class="step-desc">Ranked shortlist matched to your CV</div></div></div>
+ <div class="step-item"><div class="step-num">4</div><div class="step-text"><div class="step-title">Filter and refine</div><div class="step-desc">Tighter criteria, better results</div></div></div>
+ <div class="step-item"><div class="step-num">5</div><div class="step-text"><div class="step-title">Tailor your CV</div><div class="step-desc">Rewritten for each specific role</div></div></div>
+ <div class="step-item"><div class="step-num">6</div><div class="step-text"><div class="step-title">Apply with confidence</div><div class="step-desc">Keyword-matched, role-specific</div></div></div>
+ </div>
+
+ <h2 id="step-1-connect-indeed-to-claude">Step 1, Connect Indeed to Claude</h2>
+ <p>Open Claude and go to Settings. Find the Connectors section and look for Indeed. Click Connect and follow the authorisation steps to link your Indeed account.</p>
+ <div class="callout"><p><strong>TIP:</strong> The connector only needs read access to Indeed's job listings. It doesn't post anything on your behalf or access your Indeed profile.</p></div>
+
+ <h2 id="step-2-upload-your-cv">Step 2, Upload your CV</h2>
+ <p>In a new Claude conversation, use the attachment button to upload your CV. PDF and Word files both work. Claude will read your experience, skills, and history from the document.</p>
+ <div class="callout"><p><strong>TIP:</strong> The more detail your CV includes, the better Claude's job matching will be. If your CV is outdated, update it before uploading.</p></div>
+
+ <h2 id="step-3-ask-claude-to-find-the-best-roles">Step 3, Ask Claude to find the best roles</h2>
+ <p>Once your CV is uploaded and Indeed is connected, paste this prompt into Claude:</p>
+ <div class="code-block">I've uploaded my CV. Using the Indeed connector, search for the
+highest paying jobs that match my experience and skills. Show me the
+top 10 results with job title, company, salary, and a brief note on
+why each one is a strong match for my background.</div>
+ <p>Claude will pull live listings from Indeed and cross-reference them against your actual CV. You'll get a ranked shortlist of real roles, with reasons why each one fits.</p>
+
+ <h2 id="step-4-filter-and-refine-your-results">Step 4, Filter and refine your results</h2>
+ <p>Not every result will be right. Tell Claude what to filter out and it will re-run the search with tighter criteria. Some examples:</p>
+ <div class="code-block">Filter out anything below £50,000.
+Remote only.
+No roles requiring more than 3 years in a specific technology I don't have.</div>
+ <div class="callout"><p><strong>TIP:</strong> Be specific about location, salary floor, and any deal-breakers. The more constraints you give Claude, the more relevant the shortlist becomes.</p></div>
+
+ <h2 id="step-5-tailor-your-cv-for-a-specific-role">Step 5, Tailor your CV for a specific role</h2>
+ <p>Once you've found a role you want to apply for, ask Claude to rewrite your CV around it. Paste the job listing or the job URL and use this prompt:</p>
+ <div class="code-block">Using my CV and this job listing, rewrite my CV to be as strong as
+possible for this specific role. Match the keywords from the job
+description, lead with the most relevant experience, and reframe any
+transferable skills to fit what they're asking for. Keep it truthful.</div>
+ <p>Claude will restructure and rewrite your CV around the exact language and requirements of that role. You're not fabricating anything. You're just presenting what you already have in the way that specific employer is looking for.</p>
+ <div class="callout"><p><strong>IMPORTANT:</strong> Always review the tailored CV before submitting. Claude rewrites around keywords and framing, but you know your own experience best. Check every line is accurate.</p></div>
+
+ <h2 id="step-6-repeat-for-every-role">Step 6, Repeat for every role you want to apply for</h2>
+ <p>Each application gets its own tailored CV. Keep your original CV uploaded in the conversation so Claude always has the full picture to work from.</p>
+
+ <h2 id="prompts-to-save">Prompts to Save</h2>
+ <p><strong>Finding roles:</strong></p>
+ <div class="code-block">I've uploaded my CV. Search Indeed for the highest paying roles that
+match my skills and experience. Focus on [your industry or job type].
+Show me the top 10 with salary, company, and a reason why each one fits.</div>
+ <p><strong>Filtering results:</strong></p>
+ <div class="code-block">Remove anything below [salary]. I want roles that are [remote / hybrid /
+in [city]]. Exclude roles requiring [specific thing you don't have].</div>
+ <p><strong>Tailoring your CV:</strong></p>
+ <div class="code-block">Using my CV and the job listing below, rewrite my CV for this specific role.
+Use the same keywords as the job description. Lead with my most relevant
+experience. Keep it accurate.
+[Paste job listing here]</div>
+ <p><strong>Writing a cover letter:</strong></p>
+ <div class="code-block">Using my tailored CV and this job listing, write a cover letter in a
+confident, direct tone. First person. No generic opening lines.
+Make it specific to this company and role.</div>
+ <p><strong>Tips:</strong></p>
+ <ul>
+ <li><strong>Keep your original CV in the conversation</strong>, Don't close the chat between tailoring different roles. Claude keeps your original CV in context for the whole session.</li>
+ <li><strong>Search by salary, not just job title</strong>, Try prompts like 'find all roles paying over £60,000 that match my experience' rather than searching for a specific title.</li>
+ <li><strong>Claude Pro</strong> handles longer CVs and more complex job listings without losing context. If you're applying for senior roles with detailed requirements, Pro will give you better tailoring.</li>
+ </ul>
+ </article>
+ <aside class="toc-sidebar">
+ <div class="toc-box">
+ <h3>Contents</h3>
+ <ol>
+ <li><a href="#step-1-connect-indeed-to-claude">Connect Indeed to Claude</a></li>
+ <li><a href="#step-2-upload-your-cv">Upload Your CV</a></li>
+ <li><a href="#step-3-ask-claude-to-find-the-best-roles">Find the Best Roles</a></li>
+ <li><a href="#step-4-filter-and-refine-your-results">Filter and Refine</a></li>
+ <li><a href="#step-5-tailor-your-cv-for-a-specific-role">Tailor Your CV</a></li>
+ <li><a href="#step-6-repeat-for-every-role">Repeat for Every Role</a></li>
+ <li><a href="#prompts-to-save">Prompts to Save</a></li>
+ </ol>
+ </div>
+ </aside>
+</div>
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+<script>
+function downloadPDF() {
+  window.print();
+}
+</script>
+</body>
+</html>

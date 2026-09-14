@@ -1,0 +1,330 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>How to Get the Most Out of Claude Fable 5</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✦%3C/text%3E%3C/svg%3E">
+ <style>
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+ html { scroll-behavior: smooth; }
+ body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+ .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+ .header.scrolled { border-color: var(--accent-border); }
+ .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+ .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+ .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+ .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+ .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+ a.logo-subtitle:hover { color: var(--accent); }
+ .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+ .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+ .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+ @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+ .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+ .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+ .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+ .badge-cat { background: var(--accent); color: #fff; }
+ .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+ .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+ .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+ .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+ .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+ .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+ .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+ .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+ .toc-box ol { list-style: none; counter-reset: toc; }
+ .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+ .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+ .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+ .toc-box a:hover { color: var(--accent); }
+ .guide-content { padding: 2rem 0 5rem; }
+ .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+ .guide-content h2:first-child { border-top: none; margin-top: 0; }
+ .guide-content h3 { font-size: 1.0625rem; font-weight: 700; margin-top: 1.75rem; margin-bottom: 0.625rem; }
+ .guide-content p { margin-bottom: 1.125rem; }
+ .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+ .guide-content li { margin-bottom: 0.375rem; }
+ .guide-content strong { font-weight: 600; }
+ .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+ pre code { display: block; background: #1a1a1a; color: #e5e7eb; font-family: 'Courier New', Courier, monospace; font-size: 0.875rem; line-height: 1.6; padding: 1.25rem 1.5rem; border-radius: 8px; overflow-x: auto; white-space: pre-wrap; margin-bottom: 1.125rem; }
+ .callout { background: var(--accent-light); border-left: 3px solid var(--accent); padding: 1rem 1.25rem; border-radius: 6px; margin-bottom: 1.25rem; font-size: 0.9375rem; line-height: 1.65; }
+ .callout strong { color: var(--accent); font-weight: 700; display: block; margin-bottom: 0.2rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+ .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0; background: var(--accent-light); border-radius: 10px; padding: 1.5rem; }
+ @media (max-width: 600px) { .stat-row { grid-template-columns: 1fr; } }
+ .stat-card { text-align: center; }
+ .stat-number { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; color: var(--accent); line-height: 1.1; }
+ .stat-label { font-size: 0.8125rem; color: var(--muted); margin-top: 0.25rem; }
+ .bench-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.875rem; border-radius: 10px; overflow: hidden; }
+ .bench-table thead tr { background: var(--accent); color: #fff; }
+ .bench-table thead th { padding: 0.75rem 1rem; text-align: left; font-weight: 600; font-size: 0.8125rem; }
+ .bench-table tbody tr:nth-child(even) { background: var(--accent-light); }
+ .bench-table tbody tr:nth-child(odd) { background: #fff; }
+ .bench-table tbody td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--accent-border); }
+ .bench-table tbody td:nth-child(2) { font-weight: 700; }
+ .bench-table tbody tr:last-child td { border-bottom: none; }
+ .bench-source { font-size: 0.8rem; color: var(--muted); margin-top: -0.75rem; margin-bottom: 1.25rem; font-style: italic; }
+ .use-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+ @media (max-width: 600px) { .use-grid { grid-template-columns: 1fr; } }
+ .use-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .use-num { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: var(--accent); color: #fff; border-radius: 50%; font-size: 0.8125rem; font-weight: 700; margin-bottom: 0.625rem; font-family: 'Space Grotesk', sans-serif; }
+ .use-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.5rem; }
+ .use-desc { font-size: 0.8125rem; color: var(--muted); line-height: 1.55; margin-bottom: 0.625rem; }
+ .use-stat { font-size: 0.775rem; font-weight: 600; color: var(--accent); background: var(--accent-light); border-radius: 4px; padding: 0.25rem 0.5rem; display: inline-block; }
+ .step-list { margin: 1.5rem 0; position: relative; padding-left: 2.5rem; border-left: 2px solid var(--accent-border); }
+ .step-item { position: relative; margin-bottom: 1.5rem; }
+ .step-item:last-child { margin-bottom: 0; }
+ .step-dot { position: absolute; left: -3.1rem; top: 0.1rem; width: 28px; height: 28px; background: var(--accent); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; font-family: 'Space Grotesk', sans-serif; flex-shrink: 0; }
+ .step-item-title { font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.25rem; }
+ .step-item-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.55; }
+ @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+     .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+    @page { margin: 1.5cm; } @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .chapter-card, .compare-card, .checklist-card, blockquote { break-inside: avoid; page-break-inside: avoid; } .chapter-overview, .compare-grid, .checklist-grid, .email-flow { break-inside: avoid; page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+ <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+ <div class="logo-divider"></div>
+ <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">&#8592; All guides</a>
+ </div>
+</header>
+<div class="guide-hero">
+ <div class="hero-meta">
+ <span class="badge badge-cat">Getting Started</span>
+ <span class="badge badge-diff">Beginner</span>
+ </div>
+ <h1>How to Get the Most Out of Claude Fable 5</h1>
+ <div class="hero-author">
+ <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+ <div><span class="author-name">Max Johnson</span><span class="author-meta">@maxjohnscn</span></div>
+ </div>
+</div>
+<div class="page-wrap">
+ <article class="guide-content">
+    <button class="download-btn" onclick="downloadPDF()">&#8595; Download PDF</button>
+
+ <p class="intro-blurb">Anthropic's most powerful model ever, and it's included free on Pro and Max plans until June 22. Here's exactly what it's best at, the fact-checked benchmarks, and how to set it up today.</p>
+
+ <p><strong>What's inside:</strong></p>
+ <ul>
+ <li>What makes Fable 5 different from every Claude before it</li>
+ <li>The free window, pricing, access, and the June 22 deadline</li>
+ <li>Fact-checked benchmarks vs GPT-5.5 and Gemini 3.1 Pro</li>
+ <li>The four use cases where Fable 5 pulls furthest ahead</li>
+ <li>A two-minute setup guide, claude.ai, Claude Code, and the API</li>
+ <li>How to prompt it differently (and when not to use it at all)</li>
+ </ul>
+
+ <div class="callout"><strong>Note</strong>Everything in this guide was fact-checked against Anthropic's official June 9, 2026 announcement and independent third-party coverage. Benchmark figures are Anthropic-published, and where OpenAI reports its own numbers for the same tests, the figures match.</div>
+
+ <h2 id="ch-01">Chapter 01: What Fable 5 Actually Is</h2>
+
+ <p>On June 9, 2026, Anthropic released Claude Fable 5, the first model in the Claude 5 family and the first of a new "Mythos-class" tier that sits above Opus, the previous flagship line. It's the most capable model Anthropic has ever made generally available.</p>
+
+ <p>Fable 5 shares the same underlying model as Claude Mythos 5, a restricted version available only to approved organisations. The difference: Fable 5 adds safeguards that hand off requests in a few high-risk areas (cybersecurity, biology, chemistry) to Opus 4.8 instead. For normal work, you'll almost never notice, over 95% of sessions never trigger a fallback.</p>
+
+ <div class="stat-row">
+ <div class="stat-card">
+ <div class="stat-number">1M</div>
+ <div class="stat-label">token context window</div>
+ </div>
+ <div class="stat-card">
+ <div class="stat-number">128k</div>
+ <div class="stat-label">max output tokens</div>
+ </div>
+ <div class="stat-card">
+ <div class="stat-number">95%+</div>
+ <div class="stat-label">of sessions, no safeguard fallback</div>
+ </div>
+ </div>
+
+ <h2 id="ch-02">Chapter 02: The Free Window</h2>
+
+ <p>Here's the part that matters right now. Through June 22, Fable 5 is included on Pro, Max, Team, and seat-based Enterprise plans at no extra cost. From June 23, Anthropic pulls it from those plans and it moves to usage credits, with subscription access planned to return later.</p>
+
+ <p>On the API, it costs $10 per million input tokens and $50 per million output, roughly twice the price of Opus 4.8, the previous flagship.</p>
+
+ <div class="callout"><strong>Tip</strong>The window is the play. You have until June 22 to run your heaviest workflows, big research jobs, long documents, multi-step agent tasks, on the strongest model available, for free. Test it on real work now so you know exactly what it's worth to you when the credits kick in.</div>
+
+ <h2 id="ch-03">Chapter 03: The Benchmarks, Fact-Checked</h2>
+
+ <p>Fable 5 is state-of-the-art on nearly every tested benchmark. But the pattern matters more than any single number: the longer and more complex the task, the larger Fable 5's lead.</p>
+
+ <p>These are Anthropic's published figures from the launch, compared against the current frontier models.</p>
+
+ <table class="bench-table">
+ <thead>
+ <tr>
+ <th>Benchmark</th>
+ <th>Fable 5</th>
+ <th>Opus 4.8</th>
+ <th>GPT-5.5</th>
+ <th>Gemini 3.1 Pro</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td>SWE-Bench Pro<br><small style="color:var(--muted);font-size:0.75rem;">Real-world agentic coding</small></td>
+ <td>80.3%</td>
+ <td>69.2%</td>
+ <td>58.6%</td>
+ <td>54.2%</td>
+ </tr>
+ <tr>
+ <td>Humanity's Last Exam<br><small style="color:var(--muted);font-size:0.75rem;">Frontier knowledge &amp; reasoning, no tools</small></td>
+ <td>59.0%</td>
+ <td>49.8%</td>
+ <td>41.4%</td>
+ <td>44.4%</td>
+ </tr>
+ <tr>
+ <td>GDPval-AA<br><small style="color:var(--muted);font-size:0.75rem;">Real-world knowledge work, Elo score</small></td>
+ <td>1932</td>
+ <td>-</td>
+ <td>1769</td>
+ <td>1314</td>
+ </tr>
+ <tr>
+ <td>OSWorld-Verified<br><small style="color:var(--muted);font-size:0.75rem;">Computer use, operating real interfaces</small></td>
+ <td>85.0%</td>
+ <td>83.4%</td>
+ <td>78.7%</td>
+ <td>76.2%</td>
+ </tr>
+ <tr>
+ <td>FrontierCode Diamond<br><small style="color:var(--muted);font-size:0.75rem;">The hardest production coding tasks</small></td>
+ <td>29.3%</td>
+ <td>-</td>
+ <td>5.7%</td>
+ <td>-</td>
+ </tr>
+ </tbody>
+ </table>
+
+ <p class="bench-source">Source: Anthropic's published benchmark table, June 9, 2026. Where OpenAI publishes its own results for the same tests (SWE-Bench Pro, OSWorld, Humanity's Last Exam), the figures match. A dash means no comparable published figure.</p>
+
+ <p><strong>The number everyone is talking about:</strong> In early testing, Stripe reported that Fable 5 completed a codebase-wide migration in a 50-million-line Ruby codebase in one day, work that would have taken a full team more than two months by hand.</p>
+
+ <div class="callout"><strong>Note</strong>Benchmark deltas of a point or two are normal between frontier releases. An 11-point jump on SWE-Bench Pro over Anthropic's own previous flagship is not, and the gains are concentrated exactly where long, multi-step work lives.</div>
+
+ <h2 id="ch-04">Chapter 04: Where Fable 5 Shines</h2>
+
+ <p>Fable 5 isn't a "use it for everything" model. It's slower and heavier than Sonnet or Opus, but on these four types of work, nothing else comes close.</p>
+
+ <div class="use-grid">
+ <div class="use-card">
+ <div class="use-num">01</div>
+ <div class="use-title">Deeper research tasks</div>
+ <div class="use-desc">Hand it a research objective and it works through multiple stages on its own, searching, analysing, pressure-testing, and coming back with a finished deliverable rather than a draft. Teams review completed work instead of supervising every step.</div>
+ <span class="use-stat">59.0% on Humanity's Last Exam vs 41.4% (GPT-5.5) and 44.4% (Gemini 3.1 Pro)</span>
+ </div>
+ <div class="use-card">
+ <div class="use-num">02</div>
+ <div class="use-title">Long-document analysis</div>
+ <div class="use-desc">The 1M-token context window means entire contracts, codebases, report packs, or months of transcripts go in at once, no chunking, no summarising in stages. It stays focused across millions of tokens and improves its output using its own notes.</div>
+ <span class="use-stat">1M token context, 128k output, top score on GDPval-AA knowledge work</span>
+ </div>
+ <div class="use-card">
+ <div class="use-num">03</div>
+ <div class="use-title">Reliable agentic workflows</div>
+ <div class="use-desc">This is the headline upgrade: multi-step tasks without falling apart. In an agent harness like Claude Code, it plans across stages, delegates to sub-agents, and checks its own work. With file-based memory it reached the final act of a long strategy game three times more often than Opus 4.8.</div>
+ <span class="use-stat">85.0% on OSWorld-Verified computer use, best of any frontier model</span>
+ </div>
+ <div class="use-card">
+ <div class="use-num">04</div>
+ <div class="use-title">Big coding work &amp; vibe coding</div>
+ <div class="use-desc">Large migrations, complex builds, multi-day autonomous sessions. It writes its own tests, implements designs with high fidelity, and uses vision to check outputs against goals. Cursor's CEO called it the state-of-the-art model on CursorBench.</div>
+ <span class="use-stat">80.3% on SWE-Bench Pro, 11 points clear of the next-best model</span>
+ </div>
+ </div>
+
+ <h2 id="ch-05">Chapter 05: Setup Guide</h2>
+
+ <p>There's nothing to install. If you're on the right plan, Fable 5 is already waiting in your model picker. Two minutes, start to finish.</p>
+
+ <div class="step-list">
+ <div class="step-item">
+ <div class="step-dot">1</div>
+ <div class="step-item-title">Check your plan</div>
+ <div class="step-item-desc">Fable 5 is included free on Pro, Max, Team, and seat-based Enterprise through June 22. From June 23 it requires usage credits.</div>
+ </div>
+ <div class="step-item">
+ <div class="step-dot">2</div>
+ <div class="step-item-title">Select it in claude.ai</div>
+ <div class="step-item-desc">Open claude.ai (or the Claude app), click the model picker at the top of a chat, and choose Claude Fable 5. That's the whole setup.</div>
+ </div>
+ <div class="step-item">
+ <div class="step-dot">3</div>
+ <div class="step-item-title">Set effort high and let it think</div>
+ <div class="step-item-desc">Anthropic's own guidance: default to high effort. Fable 5 reflects on and validates its own work before answering, the extra thinking is what makes the autonomy reliable. Don't rush it.</div>
+ </div>
+ <div class="step-item">
+ <div class="step-dot">4</div>
+ <div class="step-item-title">Using Claude Code? Switch models</div>
+ <div class="step-item-desc">Run the /model command in Claude Code and select Fable 5. Point it at your biggest task, migrations, refactors, full builds, not quick edits.</div>
+ </div>
+ <div class="step-item">
+ <div class="step-dot">5</div>
+ <div class="step-item-title">Building on the API?</div>
+ <div class="step-item-desc">The model string is <code style="background:#e5e7eb;padding:0.1em 0.35em;border-radius:3px;font-size:0.875em;">claude-fable-5</code>. Pricing is $10 / $50 per million input/output tokens, with a 1M context window and up to 128k output tokens.</div>
+ </div>
+ </div>
+
+ <div class="callout"><strong>Note</strong>If a request touches a restricted area (cybersecurity, biology, chemistry), Fable 5 automatically hands it to Opus 4.8 and tells you it has. For everyday research, coding, content, and analysis work you will almost certainly never see this happen.</div>
+
+ <h2 id="ch-06">Chapter 06: Prompt It Differently</h2>
+
+ <p>The biggest shift early users report: stop giving Fable 5 tasks and start giving it objectives. It plans, breaks work into stages, and checks itself, so the prompt that works is the one that describes the outcome, not the steps.</p>
+
+ <p>Instead of this:</p>
+ <pre><code>"Summarise this report."</code></pre>
+
+ <p>Give it this:</p>
+ <pre><code>"Here are 12 months of our analytics exports. Find the
+three biggest growth opportunities, pressure-test each
+one against the data, and give me a one-page
+recommendation I could action this week."</code></pre>
+
+ <p><strong>Let it run:</strong> Long, multi-stage responses are the point, not a bug. Send the objective, let it finish all stages, then review. Interrupting mid-flight wastes the model's biggest strength.</p>
+
+ <p><strong>Rewrite your old instructions:</strong> Anthropic advises rewriting old prompt scaffolding written for weaker models, heavy step-by-step hand-holding now gets in the way. Give Fable 5 more judgment, not less.</p>
+
+ <p><strong>When NOT to use it:</strong> Quick lookups, short edits, simple drafts, one-line code fixes. Fable 5 is slower and token-hungry, early testers describe it as best reserved for heavy jobs. Use Sonnet or Haiku for the quick stuff and save Fable for work that earns it.</p>
+
+ <div class="callout"><strong>Tip</strong>A simple filter: if the task would take you more than an hour, it's a Fable 5 job. If it takes under a minute, it isn't.</div>
+
+ </article>
+ <aside class="toc-sidebar">
+ <div class="toc-box">
+ <h3>Contents</h3>
+ <ol>
+ <li><a href="#ch-01">What Fable 5 Actually Is</a></li>
+ <li><a href="#ch-02">The Free Window</a></li>
+ <li><a href="#ch-03">The Benchmarks</a></li>
+ <li><a href="#ch-04">Where Fable 5 Shines</a></li>
+ <li><a href="#ch-05">Setup Guide</a></li>
+ <li><a href="#ch-06">Prompt It Differently</a></li>
+ </ol>
+ </div>
+ </aside>
+</div>
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+<script>
+function downloadPDF() {
+  window.print();
+}
+</script>
+</body>
+</html>

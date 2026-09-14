@@ -1,0 +1,362 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Claude Routines Setup Guide</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✦%3C/text%3E%3C/svg%3E">
+ <style>
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+ html { scroll-behavior: smooth; }
+ body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+ .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+ .header.scrolled { border-color: var(--accent-border); }
+ .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+ .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+ .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+ .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+ .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+ a.logo-subtitle:hover { color: var(--accent); }
+ .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+ .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+ .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+ @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+ .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+ .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+ .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+ .badge-cat { background: var(--accent); color: #fff; }
+ .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+ .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+ .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+ .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+ .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+ .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+ .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+ .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+ .toc-box ol { list-style: none; counter-reset: toc; }
+ .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+ .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+ .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+ .toc-box a:hover { color: var(--accent); }
+ .guide-content { padding: 2rem 0 5rem; }
+ .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+ .guide-content h2:first-child { border-top: none; margin-top: 0; }
+ .guide-content h3 { font-size: 1.125rem; font-weight: 600; margin-top: 1.75rem; margin-bottom: 0.75rem; }
+ .guide-content p { margin-bottom: 1.125rem; }
+ .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+ .guide-content li { margin-bottom: 0.375rem; }
+ .guide-content strong { font-weight: 600; }
+ .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+ .callout { background: var(--accent-light); border-left: 3px solid var(--accent); padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; font-size: 0.9375rem; margin: 1.25rem 0; }
+ .callout p { margin: 0; }
+ .callout strong { color: var(--accent); }
+ .code-block { background: #000; color: #fff; font-family: 'Courier New', Courier, monospace; font-size: 0.875rem; line-height: 1.6; padding: 1.25rem 1.5rem; border-radius: 8px; overflow-x: auto; margin: 1.25rem 0; }
+ .code-block code { background: none; color: inherit; }
+ .prompt-example { background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 8px; padding: 1.125rem 1.25rem; margin: 1rem 0; font-size: 0.9rem; font-family: 'Courier New', Courier, monospace; line-height: 1.65; white-space: pre-wrap; }
+ .vb-cards { display: flex; gap: 1rem; flex-wrap: wrap; margin: 1.5rem 0; }
+ .vb-card { flex: 1; min-width: 200px; background: #fff; border: 1.5px solid #E5E7EB; border-radius: 10px; padding: 1.125rem 1rem; }
+ .vb-card .vb-num { font-size: 0.75rem; font-weight: 700; color: var(--accent); letter-spacing: 0.04em; margin-bottom: 0.3rem; }
+ .vb-card .vb-title { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.35rem; }
+ .vb-card .vb-desc { font-size: 0.825rem; color: var(--muted); line-height: 1.5; }
+ .flow-steps { display: flex; align-items: stretch; gap: 0; flex-wrap: wrap; margin: 1.5rem 0; }
+ .flow-step { flex: 1; min-width: 140px; background: #fff; border: 1.5px solid #E5E7EB; border-radius: 8px; padding: 1rem; text-align: center; position: relative; }
+ .flow-step .fs-num { display: inline-block; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 0.8rem; font-weight: 700; line-height: 28px; margin-bottom: 0.5rem; }
+ .flow-step .fs-title { font-size: 0.875rem; font-weight: 600; margin-bottom: 0.25rem; }
+ .flow-step .fs-desc { font-size: 0.775rem; color: var(--muted); }
+ @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } .vb-cards { flex-direction: column; } .flow-steps { flex-direction: column; } }
+     .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+    @page { margin: 1.5cm; } @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .chapter-card, .compare-card, .checklist-card, blockquote { break-inside: avoid; page-break-inside: avoid; } .chapter-overview, .compare-grid, .checklist-grid, .email-flow { break-inside: avoid; page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+ <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+ <div class="logo-divider"></div>
+ <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">← All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+ <span class="badge badge-cat">Claude Code</span>
+ <span class="badge badge-diff">Intermediate</span>
+ </div>
+ <h1>Claude Routines Setup Guide</h1>
+ <div class="hero-author">
+ <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+ <div>
+ <span class="author-name">Max Johnson</span>
+ <span class="author-meta">@maxjohnscn</span>
+ </div>
+ </div>
+</div>
+
+<div class="page-wrap">
+ <main class="guide-content">
+
+ <h2 id="what-routines-are">What Routines Are</h2>
+
+ <p>Most automation tools, N8N, Make, Zapier, run fixed sequences. You define the steps, they execute them in order, every single time. They're pipelines, not thinkers.</p>
+
+ <p>Routines are different. A Routine is a saved Claude Code configuration: a prompt, one or more repositories, and a set of connectors. When it runs, Claude reads the situation, reasons about what it finds, and decides what to do. The same Routine can take completely different actions depending on what it encounters.</p>
+
+ <p>The other key difference: Routines run on Anthropic's servers. Your laptop doesn't need to be open. Your terminal doesn't need to be running. No cron job on your machine. No infrastructure to maintain. You configure it once and it keeps working in the background indefinitely.</p>
+
+ <h3>What a Routine Contains</h3>
+
+ <p>Every Routine has four configurable parts:</p>
+ <ul>
+ <li><strong>Prompt</strong>, Natural language instructions. What Claude should do, how to behave, what to output.</li>
+ <li><strong>Repositories</strong>, One or more GitHub repos Claude can read and write to during each run.</li>
+ <li><strong>Environment</strong>, Network access controls, environment variables (API keys, secrets), and a setup script that runs before each session.</li>
+ <li><strong>Connectors</strong>, Pre-built integrations with services like Slack, Linear, Gmail, and Google Calendar.</li>
+ </ul>
+
+ <h3>Where to Find It</h3>
+
+ <p>Routines are a Claude Code feature. You can create and manage them from three places, they all write to the same cloud account:</p>
+ <ul>
+ <li>Web, go to claude.ai/code/routines</li>
+ <li>Desktop app, click New task, then New remote task</li>
+ <li>CLI, run /schedule inside any Claude Code session</li>
+ </ul>
+
+ <div class="callout"><p><strong>Note:</strong> Routines are currently in research preview. Behaviour, limits, and the API surface may change.</p></div>
+
+ <!-- VISUAL BLOCK 1 -->
+ <div class="vb-cards">
+ <div class="vb-card">
+ <div class="vb-num" style="color: var(--accent);">TRIGGER TYPE</div>
+ <div class="vb-title" style="color: var(--accent);">Schedule Trigger</div>
+ <div class="vb-desc">Runs on a recurring cadence. Hourly, daily, weekdays, weekly, or custom cron. Minimum interval: 60 minutes.</div>
+ </div>
+ <div class="vb-card">
+ <div class="vb-num" style="color: var(--accent);">TRIGGER TYPE</div>
+ <div class="vb-title" style="color: var(--accent);">GitHub Trigger</div>
+ <div class="vb-desc">Fires when something happens in your repo. PR opened, merged, release published. Filter by author, branch, or label.</div>
+ </div>
+ <div class="vb-card">
+ <div class="vb-num" style="color: var(--accent);">TRIGGER TYPE</div>
+ <div class="vb-title" style="color: var(--accent);">API Trigger</div>
+ <div class="vb-desc">Every Routine gets its own endpoint. POST to it from anywhere, monitoring tools, CI/CD pipelines, internal apps.</div>
+ </div>
+ </div>
+
+ <h2 id="chapter-02-setting-up-a-routine">Chapter 02, Setting Up a Routine</h2>
+
+ <p>The entire configuration is one form. Prompt, repos, connectors, trigger. That's it. No YAML. No workflow builder. No node diagrams. You describe what you want done in plain language and Claude handles the rest.</p>
+
+ <h3>1 Write Your Prompt</h3>
+
+ <p>The prompt is the instruction Claude follows every time the Routine runs. Write it like you'd brief a smart assistant: what to look at, what to decide, what to produce.</p>
+
+ <div class="callout"><p><strong>TIP:</strong> Be specific about the output. If you want a Slack message, say so. If you want a draft PR, say so. Vague prompts produce vague results.</p></div>
+
+ <p>Example prompt for a nightly PR review:</p>
+ <div class="code-block"><pre>Review all pull requests opened today in this repository.
+For each PR: check for security issues, performance regressions,
+and adherence to our coding standards (see CLAUDE.md).
+Post a summary comment on each PR and send a digest to #dev-reviews
+in Slack with any PRs that need urgent attention.</pre></div>
+
+ <h3>2 Connect Your Repositories</h3>
+
+ <p>Add the GitHub repositories the Routine needs access to. Claude will be able to clone these repos, read the codebase, and push changes during each run.</p>
+
+ <div class="callout"><p><strong>TIP:</strong> By default, Routines can only push to branches prefixed with claude/. This protects main and other long-lived branches from accidental writes.</p></div>
+
+ <h3>3 Add Connectors</h3>
+
+ <p>Connectors give Claude tools to read from and write to external services during each run. Add the ones your Routine needs:</p>
+ <ul>
+ <li>Slack, post messages, send digests, notify channels</li>
+ <li>Linear, create issues, update tickets, assign owners</li>
+ <li>Gmail, read emails, draft replies, send summaries</li>
+ <li>Google Calendar, check schedules, create events</li>
+ <li>GitHub, read issues, create PRs, post comments</li>
+ </ul>
+
+ <p>Once your prompt, repos, and connectors are set, the last step is picking a trigger.</p>
+
+ <h2 id="chapter-03-schedule-triggers">Chapter 03, Schedule Triggers</h2>
+
+ <p>A Schedule trigger fires your Routine at a recurring time. Hourly, daily, weekdays, weekly, or a custom cron expression if you need something specific. You set the time in your local zone and Anthropic converts it automatically.</p>
+
+ <h3>Setting a Schedule</h3>
+
+ <p>In the Routine creation form, select Schedule as the trigger type. Choose one of the presets or enter a custom cron expression:</p>
+ <ul>
+ <li>Hourly, fires every hour</li>
+ <li>Daily, fires once per day at a time you choose</li>
+ <li>Weekdays, fires Monday to Friday at a time you choose</li>
+ <li>Weekly, fires once per week on a day and time you choose</li>
+ <li>Custom cron, enter any valid cron expression</li>
+ </ul>
+
+ <div class="callout"><p><strong>IMPORTANT:</strong> Cron expressions that run more frequently than once per hour are rejected. The minimum interval is 60 minutes.</p></div>
+
+ <h3>What It's Good For</h3>
+
+ <p>Schedule triggers are best for maintenance tasks that should happen regularly regardless of what's going on in the codebase:</p>
+ <ul>
+ <li>Nightly backlog triage, reads new issues, applies labels, assigns owners, posts a summary to Slack</li>
+ <li>Weekly docs drift detection, scans merged PRs, flags documentation that references changed APIs</li>
+ <li>Daily standup prep, pulls open PRs, summarises overnight activity, posts to the team channel</li>
+ <li>Dependency audit, checks for outdated packages and opens a draft PR with updates</li>
+ </ul>
+
+ <div class="callout"><p><strong>TIP:</strong> You can combine a Schedule trigger with other trigger types on the same Routine.</p></div>
+
+ <h2 id="chapter-04-github-triggers">Chapter 04, GitHub Triggers</h2>
+
+ <p>A GitHub trigger fires your Routine automatically when something happens in your repository. No manual prompting. No cron. Claude reacts to the event in real time.</p>
+
+ <h3>Available GitHub Events</h3>
+
+ <ul>
+ <li>Pull request opened</li>
+ <li>Pull request merged</li>
+ <li>Release published</li>
+ <li>And more, check the trigger configuration form for the full list</li>
+ </ul>
+
+ <h3>Filtering Events</h3>
+
+ <p>You can narrow exactly which events fire the Routine using filters:</p>
+ <ul>
+ <li>PR author, only fire for PRs from specific team members or bots</li>
+ <li>Branch name, only fire for PRs targeting specific branches</li>
+ <li>Labels, only fire when a PR has a specific label applied</li>
+ <li>Draft status, ignore draft PRs, or only process them</li>
+ </ul>
+
+ <h3>Setting Up a GitHub Trigger</h3>
+
+ <p>GitHub event-triggered Routines must be created from the web UI at claude.ai/code/routines. In the creation form, select GitHub event as the trigger type, choose your event, and select the target repository.</p>
+
+ <div class="callout"><p><strong>NOTE:</strong> GitHub triggers are not available from the CLI or Desktop app creation flow, use the web interface.</p></div>
+
+ <h3>What It's Good For</h3>
+
+ <ul>
+ <li>Automated code review, fires on PR opened, applies your review checklist, posts inline comments</li>
+ <li>Library porting, fires on PR merged to one SDK, ports the change to a parallel SDK in another language</li>
+ <li>Deploy verification, fires after a release, runs smoke checks, posts go/no-go to the release channel</li>
+ <li>Issue labelling, fires on issue created, reads the content, applies relevant labels and assigns an owner</li>
+ </ul>
+
+ <h2 id="chapter-05-api-triggers">Chapter 05, API Triggers</h2>
+
+ <p>Every Routine gets its own API endpoint. Send a POST request to that endpoint and the Routine fires immediately. No schedule to wait for. No GitHub event required. Fire it from anywhere.</p>
+
+ <h3>How It Works</h3>
+
+ <p>When you add an API trigger to a Routine, you get:</p>
+ <ul>
+ <li>A unique endpoint URL at api.anthropic.com</li>
+ <li>A bearer token scoped to that Routine only, it cannot access any other account data</li>
+ </ul>
+
+ <div class="callout"><p><strong>IMPORTANT:</strong> The bearer token is shown once in the modal and cannot be retrieved later. Copy it immediately and store it securely as an environment variable.</p></div>
+
+ <h3>Making the Request</h3>
+
+ <p>A POST request with your bearer token fires the Routine. You can pass optional context in the request body:</p>
+
+ <div class="code-block"><pre>curl -X POST https://api.anthropic.com/v1/claude_code/routines/$ROUTINE_ID/fire \
+-H "Authorization: Bearer $ROUTINE_TOKEN" \
+-H "anthropic-beta: experimental-cc-routine-2026-04-01" \
+-H "Content-Type: application/json" \
+-d '{"text": "Alert ID 4521, stack trace: TypeError at line 83..."}'</pre></div>
+
+ <p>The optional text field (up to 65,536 characters) passes freeform context to the Routine alongside the saved prompt.</p>
+
+ <h3>What It's Good For</h3>
+
+ <ul>
+ <li>Alert triage, your monitoring tool calls the endpoint when an error threshold is crossed, passing the alert body as the text field</li>
+ <li>Deploy verification, your CD pipeline calls the endpoint after each production deploy</li>
+ <li>On-demand reports, internal tools can fire a Routine to generate a summary, analysis, or document without anyone opening Claude manually</li>
+ </ul>
+
+ <h2 id="chapter-06-real-world-examples">Chapter 06, Real-World Examples</h2>
+
+ <p><strong>Nightly Backlog Triage.</strong> Trigger: Schedule (Weekdays, 8am). Connectors: GitHub, Slack, Linear. Reads issues opened since the last run. Applies labels, assigns owners based on the area of the codebase referenced, and posts a summary to Slack so the team starts the day with a groomed queue.</p>
+
+ <p><strong>Automated PR Review.</strong> Trigger: GitHub (PR opened). Connectors: GitHub. Fires whenever a new PR is opened. Applies your review checklist, leaves inline comments for security, performance, and style issues, and adds a summary comment so human reviewers can focus on design decisions instead of mechanical checks.</p>
+
+ <p><strong>Deploy Verification.</strong> Trigger: API. Connectors: GitHub, Slack. Your CD pipeline calls the endpoint after each production deploy, passing the deploy ID and environment as the text field. Claude runs smoke checks against the new build, scans error logs for regressions, and posts go/no-go to the release channel before the deploy window closes.</p>
+
+ <p><strong>Weekly Documentation Drift.</strong> Trigger: Schedule (Weekly, Monday 9am). Connectors: GitHub. Scans all merged PRs from the past week. Flags documentation that references changed APIs and opens update PRs against the docs repository for a human editor to review and merge.</p>
+
+ <h2 id="chapter-07-plan-limits-and-gotchas">Chapter 07, Plan Limits and Gotchas</h2>
+
+ <p>Routines are in research preview. A few things to know before you rely on them in a production workflow.</p>
+
+ <h3>Daily Run Limits</h3>
+
+ <p>Each plan tier has a cap on how many Routine runs can fire per day:</p>
+ <ul>
+ <li>Pro, 5 runs per day</li>
+ <li>Max, 15 runs per day</li>
+ <li>Team or Enterprise, 25 runs per day</li>
+ </ul>
+
+ <p>Usage beyond those caps can be billed as metered overage if extra usage is enabled on your account.</p>
+
+ <h3>Branch Protection</h3>
+
+ <p>By default, Routines can only push to branches prefixed with claude/. This prevents accidental writes to main, develop, release/*, or any long-lived branch. To allow pushes to any branch for a specific repository, enable Allow unrestricted branch pushes in the Routine's edit form.</p>
+
+ <h3>Schedule Frequency</h3>
+
+ <p>The minimum schedule interval is one hour. Cron expressions that run more frequently are rejected automatically.</p>
+
+ <h3>API Token Security</h3>
+
+ <p>Each API trigger token is shown once and cannot be retrieved later. Store it immediately as an environment variable. Tokens are scoped to a single Routine.</p>
+
+ <h3>Research Preview Caveats</h3>
+
+ <p>Behaviour, limits, and the API surface may change during the preview. Anthropic plans to expand webhook support beyond GitHub and graduate Routines to general availability, but no timeline has been confirmed.</p>
+
+ <div class="callout"><p><strong>TIP:</strong> You can manage Routines at claude.ai/code/routines. Each Routine's detail page shows past runs, click any run to open it as a full Claude Code session.</p></div>
+
+ </main>
+
+ <aside class="toc-sidebar">
+ <div class="toc-box">
+ <h3>Contents</h3>
+ <ol>
+ <li><a href="#what-routines-are">What Routines Are</a></li>
+ <li><a href="#chapter-02-setting-up-a-routine">Setting Up a Routine</a></li>
+ <li><a href="#chapter-03-schedule-triggers">Schedule Triggers</a></li>
+ <li><a href="#chapter-04-github-triggers">GitHub Triggers</a></li>
+ <li><a href="#chapter-05-api-triggers">API Triggers</a></li>
+ <li><a href="#chapter-06-real-world-examples">Real-World Examples</a></li>
+ <li><a href="#chapter-07-plan-limits-and-gotchas">Plan Limits and Gotchas</a></li>
+ </ol>
+ </div>
+ </aside>
+</div>
+
+
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+<script>
+function downloadPDF() {
+  window.print();
+}
+</script>
+</body>
+</html>

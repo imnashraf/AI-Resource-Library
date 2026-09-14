@@ -1,0 +1,33 @@
+{
+  "id": "AI-042",
+  "slug": "your-brutally-honest-ai-cofounder",
+  "title": "Your Brutally Honest AI Cofounder",
+  "category": "Prompts & Skills",
+  "subcategory": "Custom Skills",
+  "difficulty": "Beginner",
+  "description": "Drop Sam Altman's Startup Playbook into Claude and pressure-test your idea. The full cofounder prompt scores your idea across five fronts and surfaces the quiet ways you're most likely to kill it yourself.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Prompts & Skills",
+    "What's inside",
+    "The Opportunity",
+    "The Rule That Matters Most",
+    "Read & Forget",
+    "Run It Through Claude",
+    "The Three Inputs",
+    "Custom Skills"
+  ],
+  "ai_tools": [
+    "Claude"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-042_your-brutally-honest-ai-cofounder.html",
+  "summary_file": "summaries/AI-042.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

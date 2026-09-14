@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>3 Free Ways to Actually Learn Claude</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+ <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+  .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+  .header.scrolled { border-color: var(--accent-border); }
+  .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+  .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+  .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+  .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+  .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+  a.logo-subtitle:hover { color: var(--accent); }
+  .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+  .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+  .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+  @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+  .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+  .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+  .badge-cat { background: var(--accent); color: #fff; }
+  .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+  .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+  .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+  .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+  .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+  .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+  .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+  .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+  .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+  .toc-box ol { list-style: none; counter-reset: toc; }
+  .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+  .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+  .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+  .toc-box a:hover { color: var(--accent); }
+  .guide-content { padding: 2rem 0 5rem; }
+  .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+  .guide-content h2:first-of-type { border-top: none; margin-top: 0; }
+  .guide-content h3 { font-size: 1.0625rem; font-weight: 700; margin-top: 1.75rem; margin-bottom: 0.625rem; }
+  .guide-content p { margin-bottom: 1.125rem; }
+  .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+  .guide-content li { margin-bottom: 0.5rem; }
+  .guide-content strong { font-weight: 600; }
+  .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+  @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .back-btn { margin-left: 0; flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+  .callout { border-left: 4px solid var(--accent-border); background: var(--accent-light); padding: 0.875rem 1.125rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0; }
+  .callout-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.35rem; }
+  .callout p { margin-bottom: 0; }
+  .callout-warning { border-left-color: #D97706; background: #FFFBEB; }
+  .callout-warning .callout-label { color: #D97706; }
+  .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+  .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+  @page { margin: 1.5cm; }
+  @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; } p { orphans: 3; widows: 3; } pre, .callout { break-inside: avoid; } }
+
+  .guide-content pre { background: #0a0a0a; color: #f8f8f8; border-radius: 10px; padding: 1.25rem 1.5rem; overflow-x: auto; font-size: 0.8125rem; line-height: 1.6; margin: 0.5rem 0 1.25rem; border: 1px solid #1f1f1f; white-space: pre-wrap; }
+  .guide-content pre code { background: none; border: none; padding: 0; color: inherit; font-size: inherit; }
+  .guide-content code { font-family: 'Courier New', Courier, monospace; }
+  .link-line { font-family: 'Courier New', Courier, monospace; font-size: 0.8125rem; color: var(--accent); margin: 0 0 1.125rem; }
+
+  /* VB1: 3-step process row */
+  .step-row { display: flex; gap: 0.875rem; margin: 1.75rem 0; flex-wrap: wrap; }
+  .step-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.25rem 1.375rem; flex: 1 1 200px; text-align: center; }
+  .step-num { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--accent); font-size: 1.75rem; margin-bottom: 0.4rem; }
+  .step-title { font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.2rem; }
+  .step-sub { font-size: 0.8125rem; color: var(--muted); margin: 0; }
+  /* VB2: two-column start-here cards */
+  .start-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+  @media (max-width: 700px) { .start-grid { grid-template-columns: 1fr; } }
+  .start-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.25rem 1.375rem; }
+  .start-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.5rem; }
+  .start-desc { font-size: 0.8375rem; color: var(--muted); margin: 0; }
+  /* VB3: trust-level rows */
+  .trust-row-list { display: flex; flex-direction: column; gap: 0.75rem; margin: 1.75rem 0; }
+  .trust-row { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1rem 1.25rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; justify-content: space-between; }
+  .trust-row-info { flex: 1; min-width: 200px; }
+  .trust-row-name { font-weight: 700; font-size: 0.9375rem; }
+  .trust-row-desc { font-size: 0.8125rem; color: var(--muted); margin: 0; }
+  .trust-badge { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; border-radius: 9999px; padding: 0.25rem 0.75rem; white-space: nowrap; }
+  .trust-badge-official { background: var(--accent); color: #fff; }
+  .trust-badge-community { background: #E5E7EB; color: #374151; }
+  /* VB4: time estimate rows */
+  .time-row-list { display: flex; flex-direction: column; gap: 0.625rem; margin: 1.75rem 0; }
+  .time-row { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 0.875rem 1.125rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .time-row-text { font-size: 0.875rem; }
+  .time-pill { font-size: 0.75rem; font-weight: 700; color: var(--accent); background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 9999px; padding: 0.2rem 0.75rem; white-space: nowrap; }
+ </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+  <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+  <div class="logo-divider"></div>
+  <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">&#8592; All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+  <span class="badge badge-cat">Getting Started</span>
+  <span class="badge badge-diff">Beginner</span>
+ </div>
+ <h1>3 Free Ways to Actually Learn Claude</h1>
+ <p class="intro-blurb">The official course library, the official Skills repo, and the community subagent collection I'd use if I were starting from zero today. Fully researched and verified, link by link.</p>
+ <ul>
+  <li>Anthropic's official course library, and exactly where to start in it</li>
+  <li>The official Claude Skills repository, and what it actually unlocks</li>
+  <li>Awesome Claude Code Subagents, a free collection of 150+ specialist agents</li>
+  <li>What's built by Anthropic versus built by the community, and why that matters</li>
+  <li>A sensible order to actually use all three together</li>
+ </ul>
+ <div class="hero-author">
+  <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+  <div><span class="author-name">Max Johnson</span><span class="author-meta">@maxjohnscn</span></div>
+ </div>
+</div>
+
+<div class="page-wrap">
+ <main class="guide-content">
+
+  <button class="download-btn" onclick="window.print()">&#8595; Download PDF</button>
+
+  <h2 id="contents">Contents: What You'll Learn</h2>
+  <ul>
+   <li><strong>Why This Is Worth Your Time:</strong> What Anthropic's own CEO keeps warning about, and why it changes the maths on learning this properly</li>
+   <li><strong>Claude Academy, The Free Course Library:</strong> Anthropic's own training platform, and where to actually start</li>
+   <li><strong>The Official Claude Skills Library:</strong> The plug-ins that make Claude sharper at specific jobs</li>
+   <li><strong>Awesome Claude Code Subagents:</strong> 150+ free, community-built specialist agents for Claude Code</li>
+   <li><strong>Official vs Community: Know the Difference.</strong> Why these three tools aren't all backed the same way, and why that's fine</li>
+   <li><strong>How To Actually Use All Three:</strong> A simple order to work through them without wasting a weekend</li>
+  </ul>
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>This guide covers Claude and Claude Code specifically. Two of the three tools below are built and maintained by Anthropic. The third is a free, well-regarded community project, clearly flagged as such in Chapter 05.</p>
+  </div>
+
+  <h2 id="chapter-01">Chapter 01: Why This Is Worth Your Time</h2>
+  <p>Dario Amodei, the CEO of Anthropic, has spent the last year warning publicly that AI is set to concentrate wealth and power faster than almost anyone is prepared for. He has described the shift happening "almost overnight" and "almost by accident," and has floated the idea that AI could mint the world's first trillionaires while leaving a lot of people behind if the gains aren't shared.</p>
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>This is a summary of several separate statements Amodei has made in essays and interviews through 2026, not one single quote. The underlying point, that AI's benefits could concentrate quickly among a small number of people and companies, is something he has repeated consistently.</p>
+  </div>
+  <p>That's the uncomfortable backdrop. The more grounded, practical version of it is this: most people who use Claude are only using a small fraction of what's actually available to them, for free, from Anthropic directly. They type into the chat box and stop there.</p>
+  <p>The people pulling ahead right now aren't necessarily smarter or more technical. They've just gone one layer deeper: they've taken the free training, installed the tools that extend what Claude can do, and built a small stack of specialist agents that do more of the work for them. None of it costs anything to start.</p>
+  <p>If I were starting completely from scratch, these are the exact three resources I'd use, in the order I'd use them.</p>
+
+  <div class="step-row">
+   <div class="step-card"><div class="step-num">01</div><div class="step-title">Claude Academy</div><p class="step-sub">Learn it properly</p></div>
+   <div class="step-card"><div class="step-num">02</div><div class="step-title">Skills Library</div><p class="step-sub">Extend what it does</p></div>
+   <div class="step-card"><div class="step-num">03</div><div class="step-title">Subagents</div><p class="step-sub">Multiply the work</p></div>
+  </div>
+
+  <p>Each one solves a different problem: the Academy fixes not knowing what Claude can do, the Skills library fixes Claude doing the same job slightly differently every time, and subagents fix having to explain the same specialist context over and over. Stacked together, they compound.</p>
+
+  <h2 id="chapter-02">Chapter 02: Claude Academy, Anthropic's Own Free Course Library</h2>
+  <p>Anthropic has literally built free courses to teach people how to get the most out of Claude. The platform is called Claude Academy, and it sits at academy.claude.com. It covers everyday use in Claude.ai, hands-off work in Claude Cowork, building with Claude Code, team workflows in Claude Tag, and developer work on the Claude Platform (the API, Console, and MCP).</p>
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>This platform used to be called Anthropic Academy. It was rebuilt and rebranded as Claude Academy in August 2026, with a much larger library of courses, tutorials, and use cases than the earlier version. If you see older articles calling it a "13-course" or "20-course" catalogue, that's the previous version.</p>
+  </div>
+  <h3>What makes it worth using</h3>
+  <ul>
+   <li>Every course is free and self-paced, built directly by the team behind Claude, not a third party reinterpreting the docs</li>
+   <li>You can read public lessons without signing in; signing in with a Claude account saves your progress and unlocks quizzes and a completion badge</li>
+   <li>Alongside full courses there are shorter tutorials and role-based "use cases," so you're not always committing to an hour-long course just to answer one question</li>
+   <li>There's a dedicated AI Fluency track built around a "4D" framework, delegation, description, discernment, and diligence, for people who need to think about AI use more broadly, not just click buttons</li>
+  </ul>
+
+  <div class="start-grid">
+   <div class="start-card">
+    <div class="start-title">If you're non-technical</div>
+    <p class="start-desc">Start with "Claude 101," then "AI Capabilities and Limitations." Both assume zero prior experience.</p>
+   </div>
+   <div class="start-card">
+    <div class="start-title">If you build or code</div>
+    <p class="start-desc">Start with "Claude Code 101," then move into the Model Context Protocol (MCP) courses when you're ready to connect Claude to real tools.</p>
+   </div>
+  </div>
+
+  <p class="link-line">academy.claude.com</p>
+
+  <h2 id="chapter-03">Chapter 03: The Official Claude Skills Library, Anthropic's Own Plug-Ins for Claude</h2>
+  <p>A Skill is a folder of instructions, scripts, and resources that Claude loads on demand to get better at a specific job, whether that's producing a document in your brand style, following your organisation's exact workflow, or handling a niche technical task. Think of them less as plug-ins in the app-store sense, and more as detailed, reusable briefing packs Claude reads before it starts work.</p>
+  <p>Anthropic publishes its own official set at github.com/anthropics/skills. It's split into two parts: the document skills (PDF, Word, PowerPoint, Excel) that power Claude's own file-creation features under the hood, and a broader set of example skills spanning creative and design work, technical and development tasks, and enterprise workflows like internal comms and branding.</p>
+  <div class="callout callout-warning">
+   <div class="callout-label">Warning</div>
+   <p>The repository itself is free and public to browse. Actually using pre-built skills, or uploading your own, inside Claude.ai currently requires a paid plan (Pro, Max, or Team) with code execution switched on. In Claude Code, skills work regardless of plan once installed as a plugin.</p>
+  </div>
+  <h3>Why this one matters</h3>
+  <ul>
+   <li>These are the same building blocks that power features like document creation inside Claude.ai, so browsing them is a genuinely useful way to see how Anthropic itself structures instructions for Claude</li>
+   <li>Each skill is self-contained in its own folder with a single SKILL.md file, which makes them easy to read, copy, and adapt even if you've never built one before</li>
+   <li>If you've ever wanted Claude to consistently follow your own brand guidelines, tone of voice, or internal process, this is the exact mechanism, and the official repo is the cleanest set of examples to learn the pattern from</li>
+  </ul>
+  <h3>Install (run inside Claude Code to install the official example skills as a plugin)</h3>
+  <pre><code>/plugin marketplace add anthropics/skills
+/plugin install example-skills@anthropic-agent-skills</code></pre>
+  <p class="link-line">github.com/anthropics/skills</p>
+
+  <h2 id="chapter-04">Chapter 04: Awesome Claude Code Subagents, 150+ Free Specialist Agents for Claude Code</h2>
+  <p>This one lives at github.com/VoltAgent/awesome-claude-code-subagents, a free collection of 150+ subagents you can add to Claude Code. Each subagent is a specialised system prompt built for one type of work, a security auditor, a database optimiser, a technical writer, and so on, with its own tool permissions and its own isolated context window so it doesn't clutter your main conversation.</p>
+  <h3>How it's organised</h3>
+  <p>The agents are grouped into ten categories: Core Development, Language Specialists, Infrastructure, Quality &amp; Security, Data &amp; AI, Developer Experience, Specialised Domains, Business &amp; Product, Meta &amp; Orchestration, and Research &amp; Analysis.</p>
+  <ul>
+   <li><strong>Smart model routing:</strong> Each subagent is pre-set to a model, Opus for deep reasoning like security audits, Sonnet for everyday coding, Haiku for quick tasks like docs or dependency checks.</li>
+   <li><strong>Granular permissions:</strong> Read-only agents like reviewers get Read, Grep, and Glob only. Agents that write code get Bash and Edit too. You can adjust this yourself.</li>
+  </ul>
+  <h3>Install (run inside Claude Code; swap "voltagent-lang" for any category plugin, or install agents individually)</h3>
+  <pre><code>claude plugin marketplace add VoltAgent/awesome-claude-code-subagents
+claude plugin install voltagent-lang</code></pre>
+  <p class="link-line">github.com/VoltAgent/awesome-claude-code-subagents</p>
+  <p><strong>A few worth knowing by name</strong></p>
+  <p>code-reviewer &#183; security-auditor &#183; database-optimizer &#183; technical-writer &#183; debugger &#183; seo-specialist &#183; prompt-engineer &#183; business-analyst</p>
+  <p>There's also a small orchestration category (Meta &amp; Orchestration) for agents that coordinate other agents, useful once you're running more than a couple at once, but worth ignoring completely until you are.</p>
+
+  <h2 id="chapter-05">Chapter 05: Official vs Community, Know the Difference Before You Build on Any of Them</h2>
+  <p>Two of these three tools are built and maintained by Anthropic. The third is a well-regarded, actively maintained community project, but it is not an Anthropic product, and it's worth being clear-eyed about what that means before you rely on it for anything serious.</p>
+
+  <div class="trust-row-list">
+   <div class="trust-row"><div class="trust-row-info"><div class="trust-row-name">Claude Academy</div><p class="trust-row-desc">Free course library</p></div><span class="trust-badge trust-badge-official">Anthropic &#183; Official</span></div>
+   <div class="trust-row"><div class="trust-row-info"><div class="trust-row-name">Claude Skills Library</div><p class="trust-row-desc">github.com/anthropics/skills</p></div><span class="trust-badge trust-badge-official">Anthropic &#183; Official</span></div>
+   <div class="trust-row"><div class="trust-row-info"><div class="trust-row-name">Awesome Claude Code Subagents</div><p class="trust-row-desc">github.com/VoltAgent/awesome-claude-code-subagents</p></div><span class="trust-badge trust-badge-community">Community &#183; VoltAgent</span></div>
+  </div>
+
+  <div class="callout callout-warning">
+   <div class="callout-label">Warning</div>
+   <p>The subagent repo is MIT-licensed and openly says it doesn't audit or guarantee the security or correctness of every submission. That's normal for open-source, community-maintained collections, not a red flag exactly, but it does mean you should read a subagent's instructions before installing it, the same way you'd review any code you didn't write yourself.</p>
+  </div>
+  <p>None of this means avoid the community tool. It's one of the most-starred resources of its kind for a reason. It just means treat "official Anthropic" and "community-built" as two different trust levels, and choose accordingly for anything that touches sensitive data or production systems.</p>
+
+  <h2 id="chapter-06">Chapter 06: How To Actually Use All Three</h2>
+  <ol>
+   <li><strong>Start with Claude Academy:</strong> Pick the track that matches your role. "Claude 101" if you're new, "Claude Code 101" if you build. Finish one course before touching anything else. It's an hour, not a weekend.</li>
+   <li><strong>Browse the official Skills library:</strong> Look through the example skills and find one or two close to your actual work. Install them in Claude Code, or upload one in Claude.ai if you're on a paid plan with code execution on.</li>
+   <li><strong>Add two or three subagents, not fifty:</strong> If you use Claude Code, pick the two or three subagents closest to your actual stack from the community repo. Read what each one does before installing it. Expand later, once you're actually using the first few.</li>
+  </ol>
+  <div class="callout"><p><strong>Tip:</strong> Do this in order. Skipping straight to subagents without the Academy fundamentals or a couple of relevant Skills is the fastest way to end up with a cluttered setup you don't actually understand or use.</p></div>
+
+  <h3>What week one actually looks like</h3>
+  <div class="time-row-list">
+   <div class="time-row"><span class="time-row-text">Finish one Claude Academy course</span><span class="time-pill">~1 hour</span></div>
+   <div class="time-row"><span class="time-row-text">Install one Skill relevant to your actual work</span><span class="time-pill">~10 min</span></div>
+   <div class="time-row"><span class="time-row-text">Add two subagents and try each on a real task</span><span class="time-pill">~15 min</span></div>
+  </div>
+  <p>Under two hours, spread across a week if that's easier. The point isn't speed, it's that none of this requires a weekend you don't have or a plan you haven't already got.</p>
+
+  <h2 id="closing">Closing: The Gap Isn't Talent. It's Who Actually Started.</h2>
+  <p>Everything in this guide is free. None of it requires code you don't already have, or a subscription you don't already want. The people who go one layer past the chat box are the ones who end up with a real advantage over the next few years, and that layer is genuinely three free links away.</p>
+  <p><strong>Your Three Links</strong></p>
+  <ul>
+   <li><strong>Claude Academy:</strong> academy.claude.com</li>
+   <li><strong>Claude Skills Library:</strong> github.com/anthropics/skills</li>
+   <li><strong>Awesome Claude Code Subagents:</strong> github.com/VoltAgent/awesome-claude-code-subagents</li>
+  </ul>
+
+ </main>
+
+ <aside class="toc-sidebar">
+  <div class="toc-box">
+   <h3>In this guide</h3>
+   <ol>
+    <li><a href="#contents">Contents</a></li>
+    <li><a href="#chapter-01">Why It's Worth Your Time</a></li>
+    <li><a href="#chapter-02">Claude Academy</a></li>
+    <li><a href="#chapter-03">Skills Library</a></li>
+    <li><a href="#chapter-04">Awesome Subagents</a></li>
+    <li><a href="#chapter-05">Official vs Community</a></li>
+    <li><a href="#chapter-06">How To Use All Three</a></li>
+    <li><a href="#closing">The Gap Isn't Talent</a></li>
+   </ol>
+  </div>
+ </aside>
+</div>
+
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+</body>
+</html>

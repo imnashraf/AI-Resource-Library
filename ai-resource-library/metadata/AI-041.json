@@ -1,0 +1,34 @@
+{
+  "id": "AI-041",
+  "slug": "claude-power-moves",
+  "title": "Claude Power Moves",
+  "category": "Claude Code",
+  "subcategory": "CLI Workflows",
+  "difficulty": "Intermediate",
+  "description": "Four moves to stop correcting Claude and start delegating to it. Plan mode, the clarifying-questions prompt, bypass permissions, and CLAUDE.md, with the exact commands and settings for each.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Claude Code",
+    "What's inside",
+    "Plan Mode",
+    "Ask Questions",
+    "Bypass Permissions",
+    "The CLAUDE.md File",
+    "The Problem Is Probably You",
+    "CLI Workflows"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-041_claude-power-moves.html",
+  "summary_file": "summaries/AI-041.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

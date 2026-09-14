@@ -1,0 +1,37 @@
+{
+  "id": "AI-027",
+  "slug": "the-top-13-claude-skills",
+  "title": "The Top 13 Claude Skills",
+  "category": "Prompts & Skills",
+  "subcategory": "Custom Skills",
+  "difficulty": "Beginner",
+  "description": "A curated list of the 13 most useful Claude skills available right now, what each one does, where to install it, and which workflows it transforms. Updated as new skills are released.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Prompts & Skills",
+    "Skill 01, marketingskills",
+    "Skill 02, UI-UX-Pro-Max",
+    "Skill 03, superpowers",
+    "Skill 04, remotion",
+    "Skill 06, find-skills",
+    "Custom Skills"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude Desktop",
+    "Claude Skills",
+    "Claude",
+    "Cursor",
+    "Remotion"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-027_the-top-13-claude-skills.html",
+  "summary_file": "summaries/AI-027.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

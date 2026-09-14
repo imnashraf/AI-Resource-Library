@@ -1,0 +1,449 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>The Creator Tracking System</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✦%3C/text%3E%3C/svg%3E">
+ <style>
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ :root {
+ --accent: #1A7A6A;
+ --accent-indigo: #6366F1;
+ --accent-light: #E8F5F3;
+ --accent-border: #9FD5CE;
+ --text: #000000;
+ --muted: #6B7280;
+ --bg: #FFFFFF;
+ --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+ --card-gradient: linear-gradient(160deg, #E8F5F3 0%, #FFFFFF 100%);
+ --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+ --shadow-hover: 0 8px 24px rgba(26,122,106,0.12), 0 2px 8px rgba(0,0,0,0.08);
+ --shadow-hard: 4px 4px 0px #000000;
+ --radius: 12px;
+ --header-height: 64px;
+ }
+ html { scroll-behavior: smooth; }
+ body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+
+ .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+ .header.scrolled { border-color: var(--accent-border); }
+ .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+ .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+ .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+ .logo-mark { font-size: 1.1rem; color: var(--accent); margin-right: 0.25rem; line-height: 1; }
+ .logo-name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.9375rem; color: var(--text); letter-spacing: -0.02em; }
+ .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+ .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+ a.logo-subtitle:hover { color: var(--accent); }
+ .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+ .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+
+ .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+ @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+
+ .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+ .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+ .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+ .badge-cat { background: var(--accent); color: #fff; }
+ .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+ .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+ .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+ .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+ .author-name { display: block; font-weight: 600; font-size: 0.875rem; color: var(--text); }
+ .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+
+ .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+ .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+ .toc-box ol { list-style: none; counter-reset: toc; }
+ .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+ .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+ .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+ .toc-box a:hover { color: var(--accent); }
+
+ .guide-content { padding: 2rem 0 5rem; }
+ .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+ .guide-content h2:first-child { border-top: none; margin-top: 0; }
+ .guide-content h3 { font-size: 1.125rem; font-weight: 600; margin-top: 1.75rem; margin-bottom: 0.75rem; }
+ .guide-content p { margin-bottom: 1.125rem; }
+ .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+ .guide-content li { margin-bottom: 0.375rem; }
+ .guide-content strong { font-weight: 600; }
+
+ .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 1.5rem; line-height: 1.7; }
+ .intro-list { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+ .intro-list ul { padding-left: 1.25rem; margin: 0; }
+ .intro-list li { font-size: 0.9375rem; margin-bottom: 0.375rem; }
+
+ .callout { background: var(--accent-light); border-left: 3px solid var(--accent); padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; font-size: 0.9375rem; margin: 1.25rem 0; }
+ .callout p { margin: 0; }
+ .callout strong { color: var(--accent); }
+
+ .prompt-block { background: #000; color: #fff; font-family: 'Courier New', Courier, monospace; font-size: 0.875rem; line-height: 1.65; padding: 1.25rem 1.5rem; border-radius: 8px; overflow-x: auto; margin: 1.25rem 0; white-space: pre-wrap; }
+ .prompt-label { display: inline-flex; align-items: center; gap: 0.375rem; background: var(--accent-indigo); color: #fff; font-family: 'Montserrat', sans-serif; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.25rem 0.625rem; border-radius: 4px; margin-bottom: 0.625rem; }
+
+ .tab-list { margin: 1.5rem 0; }
+ .tab-item { display: flex; gap: 1.125rem; padding: 1rem 0; border-bottom: 1px solid #F3F4F6; }
+ .tab-item:last-child { border-bottom: none; }
+ .tab-num { font-size: 0.75rem; font-weight: 700; color: var(--accent-indigo); background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 6px; padding: 0.2rem 0.5rem; height: fit-content; white-space: nowrap; flex-shrink: 0; }
+ .tab-body { flex: 1; }
+ .tab-title { font-weight: 600; font-size: 0.9375rem; margin-bottom: 0.375rem; }
+ .tab-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.6; margin: 0; }
+
+ .cta-mid { border-left: 3px solid var(--accent-indigo); background: #EEF2FF; padding: 1.25rem 1.5rem; border-radius: 0 10px 10px 0; margin: 2.5rem 0; }
+ .cta-mid p { margin-bottom: 0.875rem; font-size: 0.9375rem; }
+ .cta-mid p:last-child { margin-bottom: 0; }
+ .cta-btn-outline { display: inline-block; padding: 0.5625rem 1.25rem; background: var(--accent-indigo); color: #fff; font-family: 'Montserrat', sans-serif; font-size: 0.875rem; font-weight: 600; border-radius: 8px; text-decoration: none; transition: opacity 0.15s; }
+ .cta-btn-outline:hover { opacity: 0.88; }
+
+ .cta-bottom { background: var(--accent-indigo); color: #fff; padding: 2.5rem 2rem; border-radius: 12px; text-align: center; margin-top: 3rem; }
+ .cta-bottom p { font-size: 1.0625rem; margin-bottom: 1.25rem; opacity: 0.9; }
+ .cta-btn-white { display: inline-block; padding: 0.625rem 1.5rem; background: #fff; color: var(--accent-indigo); font-family: 'Montserrat', sans-serif; font-size: 0.875rem; font-weight: 700; border-radius: 8px; text-decoration: none; transition: opacity 0.15s; }
+ .cta-btn-white:hover { opacity: 0.9; }
+
+ /* VB1: 4-Pillar Grid */
+ .pillar-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.125rem; margin: 2rem 0; }
+ @media (max-width: 580px) { .pillar-grid { grid-template-columns: 1fr; } }
+ .pillar-card { background: linear-gradient(160deg, #E8F5F3 0%, #FFFFFF 100%); border: 1px solid var(--accent-border); border-radius: 12px; padding: 1.375rem; }
+ .pillar-num { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; color: var(--accent-indigo); text-transform: uppercase; margin-bottom: 0.375rem; }
+ .pillar-title { font-weight: 700; font-size: 1rem; margin-bottom: 0.25rem; }
+ .pillar-job { font-size: 0.75rem; font-weight: 600; color: var(--accent-indigo); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.625rem; }
+ .pillar-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.6; margin-bottom: 0.875rem; }
+ .pillar-kpis { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+ .kpi-tag { display: inline-block; padding: 0.15rem 0.5rem; background: var(--accent-light); color: var(--accent-indigo); font-size: 0.6875rem; font-weight: 600; border-radius: 9999px; border: 1px solid var(--accent-border); }
+
+ /* VB2: KPI Table */
+ .kpi-table-wrap { overflow-x: auto; margin: 2rem 0; border-radius: 10px; border: 1px solid var(--accent-border); box-shadow: var(--shadow-sm); }
+ .kpi-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; min-width: 560px; }
+ .kpi-table th { background: var(--accent-indigo); color: #fff; padding: 0.75rem 1rem; text-align: left; font-weight: 600; font-size: 0.8125rem; }
+ .kpi-table th:first-child { border-radius: 0; }
+ .kpi-table td { padding: 0.75rem 1rem; border-bottom: 1px solid #F3F4F6; vertical-align: top; font-size: 0.8125rem; line-height: 1.55; }
+ .kpi-table tr:last-child td { border-bottom: none; }
+ .kpi-table tr:nth-child(even) td { background: var(--accent-light); }
+ .kpi-table td:first-child { font-weight: 600; }
+ .kpi-table .signal { color: var(--accent-indigo); font-weight: 600; }
+ .kpi-table .warning { color: #DC2626; font-size: 0.8125rem; }
+ .kpi-table .action { color: var(--muted); }
+
+
+ @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+
+
+ /* ─── FOOTER ─── */
+
+     .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+    @page { margin: 1.5cm; } @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .chapter-card, .compare-card, .checklist-card, blockquote { break-inside: avoid; page-break-inside: avoid; } .chapter-overview, .compare-grid, .checklist-grid, .email-flow { break-inside: avoid; page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+
+
+<header class="header" id="site-header">
+ <div class="header-inner">
+ <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+ <div class="logo-divider"></div>
+ <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">← All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+ <span class="badge badge-cat">Building &amp; Monetising</span>
+ <span class="badge badge-diff">Intermediate</span>
+ </div>
+ <h1>The Creator Tracking System</h1>
+ <div class="hero-author">
+ <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+ <div>
+ <span class="author-name">Max Johnson</span>
+ <span class="author-meta">@maxjohnscn</span>
+ </div>
+ </div>
+</div>
+
+
+<div class="page-wrap">
+
+ <article class="guide-content">
+    <button class="download-btn" onclick="downloadPDF()">&#8595; Download PDF</button>
+
+ <p class="intro-blurb">Stop guessing what's working. Build a content pillar system that shows you exactly which posts drive reach, authority, and revenue: and use AI prompts inside Excel to analyse it all automatically.</p>
+
+ <div class="intro-list">
+ <ul>
+ <li>The four content pillars: what each one does and why it matters</li>
+ <li>How to build the full five-tab tracking spreadsheet</li>
+ <li>Seven Agent Mode prompts you can paste straight into Excel</li>
+ <li>Monthly performance analysis, growth forecasting and pattern spotting</li>
+ <li>How to use the data to plan next month before you create a single post</li>
+ </ul>
+ </div>
+
+ <h2 id="ch1">Chapter 01: The Content Pillar System</h2>
+
+ <p>Most creators track content by volume: how many posts went out, how often, which days. The problem is that tells you how busy you were, not why something worked.</p>
+
+ <p>A pillar system organises your content into distinct categories before you post it. Every piece belongs to a pillar. Every pillar has a job. When you review your performance at the end of the month, you're not just looking at numbers: you're looking at which categories are driving which outcomes.</p>
+
+ <p>That distinction is the difference between being a content creator and being a content operator.</p>
+
+ <p><strong>The core idea:</strong> Assign every piece of content to a pillar before it goes out. The pillar defines the job. The job defines the metric. The metric defines whether it's working: and what to do more of.</p>
+
+ <!-- VISUAL BLOCK 1:4-Pillar Grid -->
+ <div class="pillar-grid">
+ <div class="pillar-card">
+ <div class="pillar-num">Pillar 01</div>
+ <div class="pillar-title">Tutorial / Tool</div>
+ <div class="pillar-job">Job: Reach &amp; Growth</div>
+ <div class="pillar-desc">Highest-volume, widest-reach. You're showing people how to do something specific. These posts travel because they're useful to people who've never heard of you.</div>
+ <div class="pillar-kpis">
+ <span class="kpi-tag">Views</span>
+ <span class="kpi-tag">Saves</span>
+ <span class="kpi-tag">New Followers</span>
+ </div>
+ </div>
+ <div class="pillar-card">
+ <div class="pillar-num">Pillar 02</div>
+ <div class="pillar-title">Concept / Insight</div>
+ <div class="pillar-job">Job: Authority &amp; Retention</div>
+ <div class="pillar-desc">Teach the thinking behind the tools. Not how to use something but why it matters, what's changing, what most people are missing.</div>
+ <div class="pillar-kpis">
+ <span class="kpi-tag">Comments</span>
+ <span class="kpi-tag">Shares</span>
+ <span class="kpi-tag">Watch Time</span>
+ </div>
+ </div>
+ <div class="pillar-card">
+ <div class="pillar-num">Pillar 03</div>
+ <div class="pillar-title">Social Proof / Results</div>
+ <div class="pillar-job">Job: Conversion</div>
+ <div class="pillar-desc">These are the posts that turn followers into community members or buyers. Real outcomes. You don't need many: you need them to be specific.</div>
+ <div class="pillar-kpis">
+ <span class="kpi-tag">Link Clicks</span>
+ <span class="kpi-tag">Sign-Ups</span>
+ <span class="kpi-tag">DMs</span>
+ </div>
+ </div>
+ <div class="pillar-card">
+ <div class="pillar-num">Pillar 04</div>
+ <div class="pillar-title">Founder / Behind the Scenes</div>
+ <div class="pillar-job">Job: Trust &amp; Relatability</div>
+ <div class="pillar-desc">Reminds people there's a real person doing this. This pillar makes the other three feel credible because it shows the work behind them.</div>
+ <div class="pillar-kpis">
+ <span class="kpi-tag">Engagement Rate</span>
+ <span class="kpi-tag">Saves</span>
+ <span class="kpi-tag">Story Replies</span>
+ </div>
+ </div>
+ </div>
+
+ <h2 id="ch2">Chapter 02: The Five-Tab Spreadsheet</h2>
+
+ <p>The tracking sheet has five tabs. Each has a specific job. Together they give you everything you need to run your content like a system rather than a series of individual posts.</p>
+
+ <div class="tab-list">
+ <div class="tab-item">
+ <span class="tab-num">Tab 1</span>
+ <div class="tab-body">
+ <div class="tab-title">Monthly Content Log</div>
+ <p class="tab-desc">Every piece of content entered here after posting. Columns: Date, Platform, Pillar, Content Title, Format (short-form / long-form / static), Views, Reach, Saves, Comments, Shares, Follows, Link Clicks. One row per post.</p>
+ </div>
+ </div>
+ <div class="tab-item">
+ <span class="tab-num">Tab 2</span>
+ <div class="tab-body">
+ <div class="tab-title">Monthly Pillar Breakdown</div>
+ <p class="tab-desc">Auto-calculated from Tab 1. Shows volume per pillar, average views per pillar, total saves, and pillar share of total reach. This is the tab you look at when deciding what to make more of.</p>
+ </div>
+ </div>
+ <div class="tab-item">
+ <span class="tab-num">Tab 3</span>
+ <div class="tab-body">
+ <div class="tab-title">Platform Comparison</div>
+ <p class="tab-desc">Same content logged across TikTok, Instagram, and YouTube Shorts. See where each pillar performs best by platform.</p>
+ </div>
+ </div>
+ <div class="tab-item">
+ <span class="tab-num">Tab 4</span>
+ <div class="tab-body">
+ <div class="tab-title">Growth Tracker</div>
+ <p class="tab-desc">Monthly follower counts across platforms, net new followers per month, and a running total. One row per month.</p>
+ </div>
+ </div>
+ <div class="tab-item">
+ <span class="tab-num">Tab 5</span>
+ <div class="tab-body">
+ <div class="tab-title">90-Day Forward Plan</div>
+ <p class="tab-desc">Content planned but not yet posted. Pillar assigned, platform assigned, rough title. Not a rigid calendar: a thinking tool.</p>
+ </div>
+ </div>
+ </div>
+
+ <div class="callout"><p><strong>Tip:</strong> Tab 2 is the most important tab for decision-making. Once a month, look at which pillar is underperforming and ask whether it's a volume problem or a quality problem before changing anything.</p></div>
+
+ <h2 id="ch3">Chapter 03: Agent Mode Prompts: Build &amp; Analyse</h2>
+
+ <p>These are the prompts worth actually using inside Agent Mode in Excel. Each one is built around a specific job to be done. Paste your data in, run the prompt, get something useful back.</p>
+
+ <h3>Prompt 1: Build the Full Tracking System</h3>
+
+ <p>Use this when setting up for the first time. Give Agent Mode a blank workbook and paste this in.</p>
+ <div class="prompt-label">Prompt 1</div>
+ <div class="prompt-block">Build me a social media content tracking system with five tabs. Tab 1 is a Monthly Content Log
+with columns for Date, Platform, Pillar, Content Title, Format, Views, Reach, Saves, Comments,
+Shares, New Followers, and Link Clicks. Tab 2 is a Pillar Breakdown that automatically calculates
+total posts, average views, total saves, and percentage of total reach for each of my four
+pillars: Tutorial, Concept, Social Proof, and Founder. Tab 3 is a Platform Comparison that shows
+average views and saves by platform per pillar. Tab 4 is a Growth Tracker with monthly follower
+counts and net new followers. Tab 5 is a Forward Plan with columns for Planned Date, Platform,
+Pillar, and Content Title. Apply conditional formatting to highlight any pillar producing below-
+average views. Make it clean and easy to use.</div>
+
+ <h3>Prompt 2: Monthly Performance Analysis</h3>
+
+ <p>Paste in a month of data from Tab 1 and run this.</p>
+ <div class="prompt-label">Prompt 2</div>
+ <div class="prompt-block">Analyse this content performance data. Tell me which pillar is driving the most reach, which is
+driving the most saves, and which is driving the most new followers. Identify if any pillar is
+underperforming. Flag any individual posts that significantly outperformed the average and
+suggest what they might have in common. Give me three specific things I should do differently
+next month based on this data.</div>
+
+ <h2 id="ch4">Chapter 04: Agent Mode Prompts: Plan &amp; Grow</h2>
+
+ <h3>Prompt 3: Platform Breakdown</h3>
+ <div class="prompt-label">Prompt 3</div>
+ <div class="prompt-block">Using this data, compare performance across TikTok, Instagram, and YouTube Shorts. For each
+platform, tell me which content pillar is performing best and which is performing worst. Identify
+if the same content is resonating differently across platforms and explain why. Create a summary
+table showing average views, saves, and follower growth by platform and by pillar.</div>
+
+ <h3>Prompt 4: Growth Forecasting</h3>
+
+ <p>Use with at least two to three months of data in the Growth Tracker tab.</p>
+ <div class="prompt-label">Prompt 4</div>
+ <div class="prompt-block">Based on my follower growth data across the last [X] months, project how long it would take to
+reach [target follower count] if current trends continue. Tell me what growth rate I'd need to
+hit that target in half the time. Based on which content pillars are currently driving the most
+new followers, suggest how I should shift my content mix to increase that rate. Build a simple
+chart showing the current trajectory and the accelerated one.</div>
+
+ <h3>Prompt 5: Content Mix Planning</h3>
+ <div class="prompt-label">Prompt 5</div>
+ <div class="prompt-block">I want to plan my content for the next month. I post [X] times per week across [platforms].
+Based on my historical performance data, suggest a content mix by pillar that would maximise
+reach while maintaining enough Concept and Founder content to protect engagement rate. Give me a
+recommended split as a percentage, tell me why, and build a 30-day content calendar with
+placeholder titles organised by pillar.</div>
+
+ <h3>Prompt 6: Identify the Pattern in Your Best Posts</h3>
+ <div class="prompt-label">Prompt 6</div>
+ <div class="prompt-block">Filter my content log to the top 10 posts by views and the top 10 by saves. Identify patterns
+across both lists: pillar, platform, format, day of the week, content topic. Tell me what the
+top posts have in common that the average posts don't. Flag any posts that appear in both lists 
+these are my highest-value content types.</div>
+
+ <h2 id="ch5">Chapter 05: The Quarterly Health Check</h2>
+
+ <p>At the end of every quarter, run a full audit of your pillar system. This prompt looks at three months at once and tells you exactly where the strategy is working and where it needs changing.</p>
+
+ <h3>Prompt 7: Pillar Health Check</h3>
+ <div class="prompt-label">Prompt 7</div>
+ <div class="prompt-block">Run a quarterly health check on my content pillars using the last three months of data. For each
+pillar, tell me: is volume appropriate relative to its job, is it hitting its primary KPI (reach
+for Tutorial, engagement for Concept, conversions for Social Proof, trust signals for Founder),
+and is it trending up or down over the three months. Summarise the overall health of the content
+strategy in three sentences and give me two priorities for next quarter.</div>
+
+ <!-- VISUAL BLOCK 2:KPI Table -->
+ <div class="kpi-table-wrap">
+ <table class="kpi-table">
+ <thead>
+ <tr>
+ <th>Pillar</th>
+ <th>Primary Signal</th>
+ <th>Warning Sign</th>
+ <th>Action if Underperforming</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td>Tutorial / Tool</td>
+ <td class="signal">Views + Saves</td>
+ <td class="warning">Reach is flat</td>
+ <td class="action">Topic or hook is the problem: not the format</td>
+ </tr>
+ <tr>
+ <td>Concept / Insight</td>
+ <td class="signal">Comments + Shares</td>
+ <td class="warning">Watch time drops</td>
+ <td class="action">Opening isn't earning attention fast enough</td>
+ </tr>
+ <tr>
+ <td>Social Proof / Results</td>
+ <td class="signal">Link Clicks + DMs</td>
+ <td class="warning">Low conversion</td>
+ <td class="action">Proof isn't specific enough</td>
+ </tr>
+ <tr>
+ <td>Founder / BTS</td>
+ <td class="signal">Engagement Rate + Story Replies</td>
+ <td class="warning">Engagement is flat</td>
+ <td class="action">Less polish, more real</td>
+ </tr>
+ </tbody>
+ </table>
+ </div>
+
+ <p><strong>Tutorial / Tool</strong>: Primary signal: Views and Saves. If reach is flat, the topic or hook is the problem: not the format.</p>
+
+ <p><strong>Concept / Insight</strong>: Primary signal: Comments and Shares. If watch time drops, the opening isn't earning attention fast enough.</p>
+
+ <p><strong>Social Proof / Results</strong>: Primary signal: Link Clicks and DMs. If these aren't converting, the proof isn't specific enough.</p>
+
+ <p><strong>Founder / BTS</strong>: Primary signal: Engagement Rate and Story Replies. Lower reach is normal: high engagement is the goal.</p>
+
+ <p><strong>The core principle:</strong> You're not just a content creator. You're a content operator. The difference is that operators use data to make decisions before they make content: not after.</p>
+
+ <h2>Build the System. Run the Prompts.</h2>
+
+ <p>Set up your five-tab tracker, assign every post to a pillar from day one, and run these Agent Mode prompts at the end of each month. Within 90 days you'll know exactly what to make more of: and exactly what to stop.</p>
+
+ </article>
+
+ <aside class="toc-sidebar">
+ <div class="toc-box">
+ <h3>Contents</h3>
+ <ol>
+ <li><a href="#ch1">The Content Pillar System</a></li>
+ <li><a href="#ch2">The Five-Tab Spreadsheet</a></li>
+ <li><a href="#ch3">Agent Mode: Build &amp; Analyse</a></li>
+ <li><a href="#ch4">Agent Mode: Plan &amp; Grow</a></li>
+ <li><a href="#ch5">The Quarterly Health Check</a></li>
+ </ol>
+ </div>
+ </aside>
+
+</div>
+
+
+<script>
+ const header = document.getElementById('site-header');
+ window.addEventListener('scroll', () => {
+ header.classList.toggle('scrolled', window.scrollY > 8);
+ }, { passive: true });
+</script>
+
+<script>
+function downloadPDF() {
+  window.print();
+}
+</script>
+</body>
+</html>

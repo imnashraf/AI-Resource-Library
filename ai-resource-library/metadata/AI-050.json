@@ -1,0 +1,33 @@
+{
+  "id": "AI-050",
+  "slug": "loop-engineering-setup-guide",
+  "title": "Loop Engineering",
+  "category": "Claude Code",
+  "subcategory": "Environment Setup",
+  "difficulty": "Advanced",
+  "description": "The head of Claude Code stopped prompting and started writing loops. How to build the four pieces: automations, worktrees, skills, and subagents, and wire them into a loop that runs while you're away.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Claude Code",
+    "What's Inside",
+    "The Shift",
+    "What a Loop Actually Is",
+    "Piece One: Automations",
+    "Piece Two: Worktrees",
+    "Environment Setup"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-050_loop-engineering-setup-guide.html",
+  "summary_file": "summaries/AI-050.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

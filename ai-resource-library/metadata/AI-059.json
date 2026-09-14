@@ -1,0 +1,31 @@
+{
+  "id": "AI-059",
+  "slug": "the-weekend-ai-systems-guide",
+  "title": "The Weekend AI Systems Guide",
+  "category": "Getting Started",
+  "subcategory": "Core Fundamentals",
+  "difficulty": "Beginner",
+  "description": "Eight no-code Claude systems you can build in a weekend, a proposal generator, competitor watch, sales call debrief, SOP builder, contract reviewer, hiring filter, website copy auditor, and a personal learning coach. Full setup steps and prompts for each.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Getting Started",
+    "Contents",
+    "Before You Start",
+    "Setup",
+    "System 02 of 08: Competitor Watch",
+    "Core Fundamentals"
+  ],
+  "ai_tools": [
+    "Claude"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-059_the-weekend-ai-systems-guide.html",
+  "summary_file": "summaries/AI-059.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

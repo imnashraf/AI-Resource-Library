@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>10 AI Automations That Run Your Week</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+ <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+  .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+  .header.scrolled { border-color: var(--accent-border); }
+  .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+  .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+  .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+  .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+  .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+  a.logo-subtitle:hover { color: var(--accent); }
+  .nav-agent-link { font-size: 0.8125rem; font-weight: 700; color: var(--accent); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--accent); border-radius: 9999px; letter-spacing: 0.04em; text-transform: uppercase; transition: all 0.2s; white-space: nowrap; }
+  .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+  .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+  .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+  @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+  .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+  .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+  .badge-cat { background: var(--accent); color: #fff; }
+  .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+  .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+  .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+  .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+  .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+  .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+  .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+  .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+  .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+  .toc-box ol { list-style: none; counter-reset: toc; }
+  .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+  .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+  .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+  .toc-box a:hover { color: var(--accent); }
+  .guide-content { padding: 2rem 0 5rem; }
+  .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+  .guide-content h2:first-of-type { border-top: none; margin-top: 0; }
+  .guide-content h3 { font-size: 1.0625rem; font-weight: 700; margin-top: 1.75rem; margin-bottom: 0.625rem; }
+  .guide-content p { margin-bottom: 1.125rem; }
+  .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+  .guide-content li { margin-bottom: 0.375rem; }
+  .guide-content strong { font-weight: 600; }
+  .guide-content em { font-style: italic; color: var(--muted); }
+  .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+  @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+  .callout { border-left: 4px solid var(--accent-border); background: var(--accent-light); padding: 0.875rem 1.125rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0; }
+  .callout-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.35rem; }
+  .callout p { margin-bottom: 0; }
+  .callout-warning { border-left-color: #D97706; background: #FFFBEB; }
+  .callout-warning .callout-label { color: #D97706; }
+  .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+  .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+  @page { margin: 1.5cm; }
+  @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider, .nav-agent-link { display: none !important; } .page-wrap { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .setup-grid { break-inside: avoid; } }
+
+  /* Prompt code blocks */
+  .guide-content pre { background: #0a0a0a; color: #f8f8f8; border-radius: 10px; padding: 1.25rem 1.5rem; overflow-x: auto; font-size: 0.8125rem; line-height: 1.6; margin: 0.5rem 0 1.25rem; border: 1px solid #1f1f1f; white-space: pre-wrap; }
+  .guide-content pre code { background: none; border: none; padding: 0; color: inherit; font-size: inherit; }
+  .guide-content code { font-family: 'Courier New', Courier, monospace; }
+  .prompt-label { font-size: 0.8125rem; font-weight: 700; color: var(--accent); margin: 0.5rem 0 0.25rem; }
+
+  /* Automation spec lines */
+  .autospec { display: flex; flex-direction: column; gap: 0.4rem; margin: 1rem 0 1.25rem; }
+  .autospec-row { font-size: 0.9375rem; margin: 0; }
+  .autospec-row strong { color: var(--accent); }
+
+  /* Setup platform cards */
+  .setup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.25rem 0; }
+  @media (max-width: 700px) { .setup-grid { grid-template-columns: 1fr; } }
+  .setup-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1rem 1.125rem; }
+  .setup-card-platform { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: var(--accent); margin-bottom: 0.5rem; }
+  .setup-card p { font-size: 0.8375rem; color: var(--muted); margin-bottom: 0.35rem; }
+  .setup-card p:last-child { margin-bottom: 0; }
+
+  /* VB1: 10-automation overview grid */
+  .autogrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.75rem 0; }
+  @media (max-width: 700px) { .autogrid { grid-template-columns: 1fr; } }
+  .autogrid-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.125rem 1.25rem; }
+  .autogrid-head { display: flex; align-items: baseline; gap: 0.625rem; margin-bottom: 0.4rem; }
+  .autogrid-num { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--accent); font-size: 1rem; flex-shrink: 0; }
+  .autogrid-name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.9375rem; }
+  .autogrid-desc { font-size: 0.8125rem; color: var(--muted); margin: 0; }
+  .closing-line { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.125rem; margin: 2.5rem 0 1rem; }
+ </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+  <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+  <div class="logo-divider"></div>
+  <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">&#8592; All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+  <span class="badge badge-cat">Getting Started</span>
+  <span class="badge badge-diff">Intermediate</span>
+ </div>
+ <h1>10 AI Automations That Run Your Week</h1>
+ <p class="intro-blurb">The exact setup for ten automations that run on a schedule, built for both Claude and ChatGPT. Every prompt is written out in full and ready to paste.</p>
+ <ul>
+  <li>Ten automations, from inbox triage to your Sunday content digest</li>
+  <li>The full prompt for each one, written for Claude and for ChatGPT</li>
+  <li>Which connectors to switch on before you start</li>
+  <li>The cadence, the settings, and where to click on both platforms</li>
+  <li>The honest limits, so nothing breaks the first time it runs</li>
+ </ul>
+ <div class="hero-author">
+  <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+  <div><span class="author-name">Max Johnson</span><span class="author-meta">@maxjohnscn</span></div>
+ </div>
+</div>
+
+<div class="page-wrap">
+ <main class="guide-content">
+
+  <button class="download-btn" onclick="window.print()">&#8595; Download PDF</button>
+
+  <h2 id="contents">Contents</h2>
+  <h3>What You'll Set Up</h3>
+  <p>Every automation runs on a clock and lands finished work in front of you. Start with one. Get three clean runs out of it, then add the next.</p>
+  <ul>
+   <li><strong>Before You Start:</strong> The two engines, the connectors, and what to switch on</li>
+   <li><strong>Ground Rules:</strong> Six things that stop an automation breaking on run one</li>
+  </ul>
+
+  <div class="autogrid">
+   <div class="autogrid-card">
+    <div class="autogrid-head"><span class="autogrid-num">01</span><span class="autogrid-name">7am Inbox Triage &amp; Draft Replies</span></div>
+    <p class="autogrid-desc">Claude sorts your inbox by urgency and drafts replies to the easy ones overnight.</p>
+   </div>
+   <div class="autogrid-card">
+    <div class="autogrid-head"><span class="autogrid-num">02</span><span class="autogrid-name">Pre-Meeting Dossier</span></div>
+    <p class="autogrid-desc">An hour before any call, Claude researches the person and sends you a one page brief.</p>
+   </div>
+   <div class="autogrid-card">
+    <div class="autogrid-head"><span class="autogrid-num">03</span><span class="autogrid-name">Post-Meeting Recap to Task List</span></div>
+    <p class="autogrid-desc">Claude reads the call transcript and adds everything you agreed to straight into your tasks.</p>
+   </div>
+   <div class="autogrid-card">
+    <div class="autogrid-head"><span class="autogrid-num">04</span><span class="autogrid-name">Friday 5pm Downloads &amp; Desktop Cleanup</span></div>
+    <p class="autogrid-desc">Claude sorts your messy folders into place and deletes the junk, every Friday.</p>
+   </div>
+   <div class="autogrid-card">
+    <div class="autogrid-head"><span class="autogrid-num">05</span><span class="autogrid-name">Monday 7:30am Founder Brief</span></div>
+    <p class="autogrid-desc">One message with your week ahead: meetings, DMs, cash, content due.</p>
+   </div>
+   <div class="autogrid-card">
+    <div class="autogrid-head"><span class="autogrid-num">06</span><span class="autogrid-name">Monthly Expense Organiser</span></div>
+    <p class="autogrid-desc">Claude pulls receipts from your inbox, sorts by category, ready for your accountant.</p>
+   </div>
+   <div class="autogrid-card">
+    <div class="autogrid-head"><span class="autogrid-num">07</span><span class="autogrid-name">Daily 6pm Build Log to Content Bank</span></div>
+    <p class="autogrid-desc">Ask what you worked on today, Claude turns it into tomorrow's content hooks.</p>
+   </div>
+   <div class="autogrid-card">
+    <div class="autogrid-head"><span class="autogrid-num">08</span><span class="autogrid-name">Weekly Content Repurposing</span></div>
+    <p class="autogrid-desc">One long video in, a week of shorts and carousel copy out, in your voice.</p>
+   </div>
+   <div class="autogrid-card">
+    <div class="autogrid-head"><span class="autogrid-num">09</span><span class="autogrid-name">Brand Deal &amp; DM Scanner</span></div>
+    <p class="autogrid-desc">Claude checks every brand email against your playbook and flags the DMs worth replying to.</p>
+   </div>
+   <div class="autogrid-card">
+    <div class="autogrid-head"><span class="autogrid-num">10</span><span class="autogrid-name">Weekly Content Performance Digest</span></div>
+    <p class="autogrid-desc">Every Sunday: what worked, what flopped, what to make more of.</p>
+   </div>
+  </div>
+
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>Scheduled tasks sit behind a paid plan on both platforms. On Claude they live in Cowork, available on Pro, Max, Team and Enterprise. On ChatGPT they are available on Plus, Pro, Business and Enterprise, with Go limited to three active tasks. Setup details in this guide were checked against Anthropic and OpenAI documentation in August 2026.</p>
+  </div>
+
+  <h2 id="before-you-start">Before You Start</h2>
+  <h3>The Two Engines</h3>
+  <p>Every automation in this guide is the same shape: a saved prompt plus a cadence. You write it once, the platform runs it forever. Here is where that lives on each tool.</p>
+
+  <p><strong>Claude Cowork scheduled tasks</strong></p>
+  <p>Click Scheduled in the left sidebar, then New task. Choose Setup manually and fill in the name, the prompt, the approval mode, the cadence and the model. Or choose Create with Claude and describe what you want in plain English.</p>
+  <p>Cadence options are hourly, daily, weekly, weekdays or manual. Tasks run remotely, so they fire even when your laptop is shut. Anything that needs local files runs locally instead.</p>
+
+  <p><strong>ChatGPT Scheduled tasks</strong></p>
+  <p>Open Scheduled in the sidebar on web, mobile or desktop, then create a new task and pick when it runs. You can also just ask in a chat: describe the job and the timing and it will set the task up for you.</p>
+  <p>Tasks run at most once an hour. Active task limits are three on Go, five on Plus, ten on Business and fifteen on Pro and Enterprise. Voice chats and custom GPTs are not supported inside a task.</p>
+
+  <h3>Switch These On First</h3>
+  <p><strong>In Claude</strong></p>
+  <p>Click the plus sign in the chat bar, or open Settings &#8594; Connectors. Connect Gmail, Google Calendar and Google Drive, then sign in with Google and approve the permissions. Each is a separate toggle, so connect only what you need.</p>
+
+  <p><strong>In ChatGPT</strong></p>
+  <p>Open Settings &#8594; Apps and connect Gmail, Google Calendar and Drive. Connected apps need a paid plan, and on Business or Enterprise a workspace admin has to approve them before the connection will hold.</p>
+
+  <div class="callout">
+   <div class="callout-label">Set the folders up now</div>
+   <p>Six of the ten automations read from a Drive folder. Create these before you build anything: /Meetings/Transcripts, /Content/LongForm, /Content/Analytics, /Finance/Receipts. Empty folders are fine. The tasks will fill them.</p>
+  </div>
+
+  <h2 id="ground-rules">Ground Rules</h2>
+  <h3>Six Things to Know First</h3>
+  <p>These are the limits that trip people up on the first run. Read them once and every automation in this guide behaves the way you expect.</p>
+
+  <p><strong>01 They run on a clock, not on an event</strong></p>
+  <p>Neither platform fires when an email lands or a file appears. There are no event triggers. Everything here is a timer that looks back at what changed, which is why the cadences in this guide are chosen carefully.</p>
+
+  <p><strong>02 Claude drafts email, it does not send it</strong></p>
+  <p>Anthropic's own documentation is explicit: the Gmail connector creates drafts in your account but cannot send on your behalf. ChatGPT can send a single approved message on paid plans, though that send action is reported as unavailable in the UK and EU.</p>
+
+  <p><strong>03 Cloud tasks cannot see your computer</strong></p>
+  <p>A remote scheduled task has no access to a folder on your machine. Anything touching Downloads, Desktop or a local project has to run as a local task, which only fires while the app is open and the machine is awake.</p>
+
+  <p><strong>04 Keep the approval mode tight at first</strong></p>
+  <p>For anything that leaves your account or changes a file, have the task produce a draft and review it. Move to fully unattended only once you have watched it behave for a few weeks.</p>
+
+  <p><strong>05 Watch the first three runs</strong></p>
+  <p>Scheduled jobs drift. A folder gets renamed, an export changes shape, a connector needs reauthorising. Check the first three runs properly, then trust it and stop looking.</p>
+
+  <p><strong>06 One at a time</strong></p>
+  <p>Do not build all ten this week. Pick the one that costs you the most time, run it for a fortnight, then add the next. Ten half working automations are worse than one you rely on.</p>
+
+  <h2 id="automation-01">Automation 01: 7am Inbox Triage &amp; Draft Replies</h2>
+  <p><em>Claude &amp; ChatGPT</em></p>
+  <p>Claude sorts your inbox by urgency and drafts replies to the easy ones overnight.</p>
+  <div class="autospec">
+   <p class="autospec-row"><strong>Trigger:</strong> Weekday mornings at 7:00, before you open your laptop.</p>
+   <p class="autospec-row"><strong>It does:</strong> Reads everything since 5pm yesterday, sorts into high, medium and low, drafts the routine replies.</p>
+   <p class="autospec-row"><strong>You get:</strong> A three line summary and a drafts folder that is already half your morning, done.</p>
+   <p class="autospec-row"><strong>You'll need:</strong> Gmail or Microsoft 365, a paid plan on either tool.</p>
+  </div>
+  <h3>Setup</h3>
+  <div class="setup-grid">
+   <div class="setup-card">
+    <div class="setup-card-platform">Claude</div>
+    <p>Scheduled &#8594; New task &#8594; Setup manually</p>
+    <p>Runs: Weekdays, 7:00am</p>
+    <p>Needs: Gmail connector</p>
+   </div>
+   <div class="setup-card">
+    <div class="setup-card-platform">ChatGPT</div>
+    <p>Scheduled &#8594; New task</p>
+    <p>Runs: Weekdays, 7:00am</p>
+    <p>Needs: Gmail app enabled in Apps</p>
+   </div>
+  </div>
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>Anthropic's Gmail connector creates drafts but cannot send. Every reply waits in your drafts for you to press send. ChatGPT can send a single approved message on paid plans, though that send action is reported as restricted in the UK and EU, so treat both as draft engines.</p>
+  </div>
+  <p class="prompt-label">Paste this as the task prompt (Claude):</p>
+  <pre><code>Search my inbox for every email received since 5pm yesterday.
+
+Sort them into three buckets:
+HIGH: needs a reply from me today
+MEDIUM: needs a reply this week
+LOW: FYI, newsletters, receipts, no reply needed
+
+For anything in HIGH or MEDIUM with an obvious, low risk answer,
+write the reply as a draft in my account. Short, direct, British
+English, no filler, no "I hope this finds you well".
+
+Do not draft anything that involves money, legal terms, a new
+commitment or a refusal. List those under NEEDS YOU instead.
+
+Finish with: counts per bucket, the three things that actually
+matter today, and which drafts are waiting for me.</code></pre>
+  <p class="prompt-label">Paste this as the task prompt (ChatGPT):</p>
+  <pre><code>Every weekday at 7am, check my Gmail for messages received
+since 5pm the previous day.
+
+Sort into HIGH, MEDIUM and LOW priority. For HIGH and MEDIUM
+messages with a clear low risk answer, write a draft reply in
+my voice: short, direct, British English.
+
+Never draft anything involving money, legal terms, a new
+commitment or a refusal. Flag those for me instead.
+
+Reply with the bucket counts, my top three for today, and the
+drafts you have written. Do not send anything without asking.</code></pre>
+
+  <h2 id="automation-02">Automation 02: Pre-Meeting Dossier</h2>
+  <p><em>Claude &amp; ChatGPT</em></p>
+  <p>An hour before any call, Claude researches the person and sends you a one page brief.</p>
+  <div class="autospec">
+   <p class="autospec-row"><strong>Trigger:</strong> Runs hourly across your working day and looks ahead at the calendar.</p>
+   <p class="autospec-row"><strong>It does:</strong> Pulls the attendee, their company, recent news and your past emails with them.</p>
+   <p class="autospec-row"><strong>You get:</strong> One page: who they are, what changed, what to ask, what a good outcome looks like.</p>
+   <p class="autospec-row"><strong>You'll need:</strong> Google Calendar, Gmail, web search on.</p>
+  </div>
+  <h3>Setup</h3>
+  <div class="setup-grid">
+   <div class="setup-card">
+    <div class="setup-card-platform">Claude</div>
+    <p>Scheduled &#8594; New task &#8594; Setup manually</p>
+    <p>Runs: Hourly, 8:00am to 6:00pm</p>
+    <p>Needs: Calendar, Gmail, web search</p>
+   </div>
+   <div class="setup-card">
+    <div class="setup-card-platform">ChatGPT</div>
+    <p>Scheduled &#8594; New task</p>
+    <p>Runs: Hourly, working hours</p>
+    <p>Needs: Google Calendar app, Gmail app</p>
+   </div>
+  </div>
+  <div class="callout">
+   <div class="callout-label">Honest limit</div>
+   <p>Neither tool has event triggers, so nothing fires exactly sixty minutes before a call. Both run on a clock. Hourly is the tightest cadence ChatGPT allows, and looking 90 minutes ahead means you always get the brief before the meeting rather than during it.</p>
+  </div>
+  <p class="prompt-label">Paste this as the task prompt (Claude):</p>
+  <pre><code>Check my calendar for events starting in the next 90 minutes
+that have at least one attendee outside my own domain.
+
+If there are none, reply "Nothing upcoming" and stop.
+
+For each one, research the external attendee and their company
+and write me a single page brief:
+
+OVERVIEW: who they are, role, how long they have been there
+COMPANY: what it does, size, business model, funding if public
+RECENT NEWS: anything from the last 90 days, with the source
+OUR HISTORY: what my past emails with them say we agreed
+TALKING POINTS: five, specific to them, not generic
+QUESTIONS: three worth asking
+GOOD OUTCOME: one line on what I want to leave with
+
+Say when something is unverified rather than guessing.</code></pre>
+  <p class="prompt-label">Paste this as the task prompt (ChatGPT):</p>
+  <pre><code>Look at my calendar for meetings starting in the next 90
+minutes with an external attendee. If there are none, say
+"Nothing upcoming" and stop.
+
+For each meeting, search the web for the attendee and their
+company, then give me a one page brief with these headings:
+Overview, Company snapshot, Recent news, Past interactions,
+Five talking points, Three questions, What a good outcome
+looks like.
+
+Keep it to one screen. Mark anything you could not verify.</code></pre>
+
+  <h2 id="automation-03">Automation 03: Post-Meeting Recap to Task List</h2>
+  <p><em>Claude &amp; ChatGPT</em></p>
+  <p>Claude reads the call transcript and adds everything you agreed to straight into your tasks.</p>
+  <div class="autospec">
+   <p class="autospec-row"><strong>Trigger:</strong> Every weekday at 6pm, after the calls are done.</p>
+   <p class="autospec-row"><strong>It does:</strong> Reads any new transcript, pulls the decisions, actions, owners and dates.</p>
+   <p class="autospec-row"><strong>You get:</strong> A clean recap plus your own actions written into your task list.</p>
+   <p class="autospec-row"><strong>You'll need:</strong> A notetaker saving transcripts, Google Drive or a synced folder, a task tool or a tasks file.</p>
+  </div>
+  <h3>Setup</h3>
+  <div class="setup-grid">
+   <div class="setup-card">
+    <div class="setup-card-platform">Claude</div>
+    <p>Scheduled &#8594; New task &#8594; Setup manually</p>
+    <p>Runs: Weekdays, 6:00pm</p>
+    <p>Needs: Drive connector, task connector if you have one</p>
+   </div>
+   <div class="setup-card">
+    <div class="setup-card-platform">ChatGPT</div>
+    <p>Scheduled &#8594; New task</p>
+    <p>Runs: Weekdays, 6:00pm</p>
+    <p>Needs: Google Drive app, task app if connected</p>
+   </div>
+  </div>
+  <div class="callout">
+   <div class="callout-label">You'll need this first</div>
+   <p>Neither Claude nor ChatGPT sits in your calls. You need a notetaker that writes transcripts into a folder they can read, such as Drive. Task creation depends on which task connector you have available. If you have none, have it output the list and paste it in.</p>
+  </div>
+  <p class="prompt-label">Paste this as the task prompt (Claude):</p>
+  <pre><code>Check my Drive folder /Meetings/Transcripts for files added
+in the last 24 hours. If there are none, stop.
+
+For each transcript, produce:
+DECISIONS: what was actually agreed, not what was discussed
+ACTIONS: one line each, with owner and due date. If a date was
+not said, propose one and mark it PROPOSED.
+OPEN QUESTIONS: anything left unresolved
+FOLLOW UP: any email that needs to go out, drafted
+
+Then take only the actions owned by me and add them to my task
+list with their due dates. Leave everyone else's in the recap.
+
+Save the recap to /Meetings/Recaps as recap-[date]-[title].md
+
+Do not invent an action that nobody committed to.</code></pre>
+  <p class="prompt-label">Paste this as the task prompt (ChatGPT):</p>
+  <pre><code>Check my Google Drive folder Meetings/Transcripts for anything
+added in the last 24 hours. If nothing is new, stop.
+
+For each transcript give me: decisions agreed, action items with
+an owner and a due date, open questions, and any follow up email
+drafted and ready.
+
+Then list my actions separately as a numbered task list I can
+paste or add straight into my task app.
+
+Never invent an action nobody committed to. If a due date was
+not agreed, propose one and label it as proposed.</code></pre>
+
+  <h2 id="automation-04">Automation 04: Friday 5pm Downloads &amp; Desktop Cleanup</h2>
+  <p><em>Claude &amp; ChatGPT</em></p>
+  <p>Claude sorts your messy folders into place and deletes the junk, every Friday.</p>
+  <div class="autospec">
+   <p class="autospec-row"><strong>Trigger:</strong> Every Friday at 5pm, as you close the laptop.</p>
+   <p class="autospec-row"><strong>It does:</strong> Scans Downloads and Desktop, dedupes, renames, sorts into real folders.</p>
+   <p class="autospec-row"><strong>You get:</strong> A clean desktop and a report of what moved and what was quarantined.</p>
+   <p class="autospec-row"><strong>You'll need:</strong> A local task, not a cloud one, Claude Code Desktop or the ChatGPT desktop app.</p>
+  </div>
+  <h3>Setup</h3>
+  <div class="setup-grid">
+   <div class="setup-card">
+    <div class="setup-card-platform">Claude</div>
+    <p>Claude Code Desktop &#8594; Routines &#8594; New routine &#8594; Local</p>
+    <p>Runs: Weekly, Friday 5:00pm</p>
+    <p>Needs: Local folder access</p>
+   </div>
+   <div class="setup-card">
+    <div class="setup-card-platform">ChatGPT</div>
+    <p>Desktop app &#8594; Scheduled &#8594; New task, pointed at a local project</p>
+    <p>Runs: Weekly, Friday 5:00pm</p>
+    <p>Needs: Local project directory</p>
+   </div>
+  </div>
+  <div class="callout callout-warning">
+   <div class="callout-label">Warning</div>
+   <p>This is the one that cannot run in the cloud. Scheduled tasks that run remotely have no access to folders on your computer. A local task only fires while the app is open and the machine is awake, so leave it running on a Friday. And never let it delete permanently. Quarantine, review, then delete yourself.</p>
+  </div>
+  <p class="prompt-label">Paste this as the task prompt (Claude):</p>
+  <pre><code>Tidy my Downloads and Desktop folders.
+
+1. List everything, with size and date added.
+2. Find exact duplicates. Keep the newest, move the rest to
+_Review/Duplicates.
+3. Rename anything with a meaningless name (IMG_9321, untitled,
+data_v2) to something descriptive based on its contents.
+4. Sort into: Invoices & Receipts, Contracts, Images,
+Presentations, Other Documents. Create folders if missing.
+5. Move obvious junk (.tmp, empty folders, half finished
+downloads) to _Review/ToDelete. Do not delete anything
+permanently.
+6. Print a report: what moved where, what was renamed, what is
+sitting in _Review waiting on me.
+
+Never touch anything outside Downloads and Desktop.</code></pre>
+  <p class="prompt-label">Paste this as the task prompt (ChatGPT):</p>
+  <pre><code>Every Friday at 5pm, tidy the folders in this project
+directory.
+
+Sort files into Invoices & Receipts, Contracts, Images,
+Presentations and Other Documents. Rename anything with a
+meaningless filename to something descriptive. Move exact
+duplicates and obvious junk into a _Review folder rather than
+deleting them.
+
+Then give me a short report: how many files moved, what was
+renamed, and what is waiting in _Review for me to confirm.</code></pre>
+
+  <h2 id="automation-05">Automation 05: Monday 7:30am Founder Brief</h2>
+  <p><em>Claude &amp; ChatGPT</em></p>
+  <p>One message with your week ahead: meetings, DMs, cash, content due.</p>
+  <div class="autospec">
+   <p class="autospec-row"><strong>Trigger:</strong> Monday morning at 7:30, before anyone needs anything.</p>
+   <p class="autospec-row"><strong>It does:</strong> Pulls the week's calendar, unanswered mail, your numbers and what is due.</p>
+   <p class="autospec-row"><strong>You get:</strong> One message that replaces the first hour of Monday.</p>
+   <p class="autospec-row"><strong>You'll need:</strong> Google Calendar, Gmail, a numbers sheet in Drive.</p>
+  </div>
+  <h3>Setup</h3>
+  <div class="setup-grid">
+   <div class="setup-card">
+    <div class="setup-card-platform">Claude</div>
+    <p>Scheduled &#8594; New task &#8594; Setup manually</p>
+    <p>Runs: Weekly, Monday 7:30am</p>
+    <p>Needs: Calendar, Gmail, Drive</p>
+   </div>
+   <div class="setup-card">
+    <div class="setup-card-platform">ChatGPT</div>
+    <p>Scheduled &#8594; New task</p>
+    <p>Runs: Weekly, Monday morning</p>
+    <p>Needs: Calendar app, Gmail app, Drive app</p>
+   </div>
+  </div>
+  <div class="callout">
+   <div class="callout-label">Tip</div>
+   <p>The brief is only as good as what it can reach. If your numbers live in a bank app rather than a sheet, export a CSV into the same Drive folder once a week and point the prompt at it. Neither tool connects to a bank account directly.</p>
+  </div>
+  <p class="prompt-label">Paste this as the task prompt (Claude):</p>
+  <pre><code>Build my founder brief for the week ahead.
+
+WEEK AHEAD: every meeting Monday to Sunday, day, time, who
+with. Flag anything I have not prepared for.
+
+NEEDS A REPLY: emails from the last seven days I have not
+answered. Count them, then list the eight that matter, one line
+each, with why.
+
+CASH: read the latest figures in my Drive sheet
+/Business/Numbers.xlsx and give me current balance, this
+month's income and spend, and runway in weeks.
+
+DUE THIS WEEK: anything with a deadline in the next seven days.
+
+CONTENT: what I said I would publish this week and what is
+still unmade.
+
+Then, FOCUS: the three things that would make this week a win.
+Be specific and pick the boring, high leverage ones. If the
+numbers or the calendar look off, say so.</code></pre>
+  <p class="prompt-label">Paste this as the task prompt (ChatGPT):</p>
+  <pre><code>Every Monday at 7:30am, write my week at a glance.
+
+Include: every meeting this week with day and time; how many
+emails are waiting on a reply plus the eight that matter most;
+the latest numbers from my Drive spreadsheet with runway; tasks
+and deadlines falling this week; and the content I planned to
+publish.
+
+Finish with the three things to focus on this week and one line
+on why each one moves the needle. Keep the whole thing under a
+screen and a half.</code></pre>
+
+  <h2 id="automation-06">Automation 06: Monthly Expense Organiser</h2>
+  <p><em>Claude &amp; ChatGPT</em></p>
+  <p>Claude pulls receipts from your inbox, sorts by category, ready for your accountant.</p>
+  <div class="autospec">
+   <p class="autospec-row"><strong>Trigger:</strong> The 1st of every month, for the month just gone.</p>
+   <p class="autospec-row"><strong>It does:</strong> Finds every receipt and invoice, extracts the detail, groups and totals it.</p>
+   <p class="autospec-row"><strong>You get:</strong> A clean spreadsheet, categorised, with the gaps flagged.</p>
+   <p class="autospec-row"><strong>You'll need:</strong> Gmail, Google Drive, card statement CSV in a folder.</p>
+  </div>
+  <h3>Setup</h3>
+  <div class="setup-grid">
+   <div class="setup-card">
+    <div class="setup-card-platform">Claude</div>
+    <p>Scheduled &#8594; New task &#8594; Setup manually</p>
+    <p>Runs: Monthly, 1st at 9:00am</p>
+    <p>Needs: Gmail, Drive</p>
+   </div>
+   <div class="setup-card">
+    <div class="setup-card-platform">ChatGPT</div>
+    <p>Scheduled &#8594; New task</p>
+    <p>Runs: Monthly, 1st of the month</p>
+    <p>Needs: Gmail app, Drive app</p>
+   </div>
+  </div>
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>Card and bank transactions are not reachable from either tool. Export the month's statement as a CSV into the same folder and the prompt above will reconcile against it. Attachment contents in Gmail are limited too, so keep PDF receipts saved into Drive where they can be read properly.</p>
+  </div>
+  <p class="prompt-label">Paste this as the task prompt (Claude):</p>
+  <pre><code>Collect every business expense from last month.
+
+Search my inbox for receipts, invoices, order confirmations and
+subscription renewals dated last month. Also check my Drive
+folder /Finance/Receipts and any statement CSV in
+/Finance/Statements.
+
+For each one extract: date, vendor, description, category,
+amount, currency, VAT if shown, and where you found it.
+Categories: Software, Advertising, Contractors, Equipment,
+Travel, Subscriptions, Office, Other.
+
+Build a spreadsheet in /Finance/Reports named
+expenses-[month]-[year].xlsx, one row per expense, plus a
+summary sheet totalling by category and by vendor.
+
+Finish with total spend, the number of expenses, and a MISSING
+list where an amount, VAT or vendor is unclear. Never guess a
+figure. Flag it instead.</code></pre>
+  <p class="prompt-label">Paste this as the task prompt (ChatGPT):</p>
+  <pre><code>On the 1st of each month, find every receipt, invoice and
+subscription renewal from last month in my Gmail and my Drive
+receipts folder.
+
+Pull out date, vendor, description, category, amount, currency
+and VAT for each one. Categorise them, total them by category
+and by vendor, and give me the result as a table I can export.
+
+List separately anything where a figure is unclear or a receipt
+looks missing. Never estimate an amount.</code></pre>
+
+  <h2 id="automation-07">Automation 07: Daily 6pm Build Log to Content Bank</h2>
+  <p><em>Claude &amp; ChatGPT</em></p>
+  <p>Ask what you worked on today, Claude turns it into tomorrow's content hooks.</p>
+  <div class="autospec">
+   <p class="autospec-row"><strong>Trigger:</strong> Every day at 6pm, one question lands.</p>
+   <p class="autospec-row"><strong>It does:</strong> Takes your two line answer and mines it for the actual story.</p>
+   <p class="autospec-row"><strong>You get:</strong> Two or three hooks saved to your content bank, ready for tomorrow.</p>
+   <p class="autospec-row"><strong>You'll need:</strong> Notifications on, a content bank doc in Drive.</p>
+  </div>
+  <h3>Setup</h3>
+  <div class="setup-grid">
+   <div class="setup-card">
+    <div class="setup-card-platform">Claude</div>
+    <p>Scheduled &#8594; New task &#8594; Setup manually</p>
+    <p>Runs: Daily, 6:00pm</p>
+    <p>Needs: Drive connector</p>
+   </div>
+   <div class="setup-card">
+    <div class="setup-card-platform">ChatGPT</div>
+    <p>Scheduled &#8594; New task</p>
+    <p>Runs: Daily, 6:00pm</p>
+    <p>Needs: Drive app optional</p>
+   </div>
+  </div>
+  <div class="callout">
+   <div class="callout-label">How this one actually works</div>
+   <p>A scheduled run cannot pause and wait for you. What happens is the 6pm run asks the question and notifies you, then you reply in that same thread and the hooks come back straight away. Two minutes of typing on your phone, and tomorrow's content is written.</p>
+  </div>
+  <p class="prompt-label">Paste this as the task prompt (Claude):</p>
+  <pre><code>Ask me one question and stop: "What did you work on today?"
+
+When I reply, turn my answer into two or three short form
+content hooks for tomorrow.
+
+Rules for the hooks:
+- Lead with the specific thing that happened, not the lesson
+- A number, a mistake or a result in the first line
+- Written how I talk, not how a brand talks
+- No "in today's video", no "let's dive in"
+- Each one: the hook line, then three bullets for the body
+
+Then append them to /Content/content-bank.md under today's date,
+with a one word tag for the format (talking head, screen record,
+story).
+
+If my answer is thin, ask one follow up question before writing.</code></pre>
+  <p class="prompt-label">Paste this as the task prompt (ChatGPT):</p>
+  <pre><code>Every day at 6pm, message me with one question: "What did you
+work on today?"
+
+When I answer, turn it into two or three content hooks for
+tomorrow. Lead each one with the specific thing that happened,
+not the lesson. Include a number, a mistake or a result in the
+first line. Write it how I talk. No "in today's video".
+
+Give me the hook line plus three body bullets for each, then
+save them to my content bank file with today's date.</code></pre>
+
+  <h2 id="automation-08">Automation 08: Weekly Content Repurposing</h2>
+  <p><em>Claude &amp; ChatGPT</em></p>
+  <p>One long video in, a week of shorts and carousel copy out, in your voice.</p>
+  <div class="autospec">
+   <p class="autospec-row"><strong>Trigger:</strong> Every Monday, against whatever you dropped in the folder.</p>
+   <p class="autospec-row"><strong>It does:</strong> Breaks the long form into core ideas, then rewrites each one for its platform.</p>
+   <p class="autospec-row"><strong>You get:</strong> Five shorts, a carousel, a post, a short and a newsletter snippet.</p>
+   <p class="autospec-row"><strong>You'll need:</strong> A transcript in Drive, a voice sample doc.</p>
+  </div>
+  <h3>Setup</h3>
+  <div class="setup-grid">
+   <div class="setup-card">
+    <div class="setup-card-platform">Claude</div>
+    <p>Scheduled &#8594; New task &#8594; Setup manually</p>
+    <p>Runs: Weekly, Monday 8:00am</p>
+    <p>Needs: Drive connector</p>
+   </div>
+   <div class="setup-card">
+    <div class="setup-card-platform">ChatGPT</div>
+    <p>Scheduled &#8594; New task</p>
+    <p>Runs: Weekly, Monday morning</p>
+    <p>Needs: Drive app</p>
+   </div>
+  </div>
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>A scheduled run cannot accept a file upload at the moment it fires. Keep the transcript in a connected Drive folder and the task will pick up whatever is newest. The voice sample matters more than the prompt. Paste in three of your own captions and the output stops sounding like a brand.</p>
+  </div>
+  <p class="prompt-label">Paste this as the task prompt (Claude):</p>
+  <pre><code>Read the newest transcript in /Content/LongForm and my voice
+sample in /Content/voice.md.
+
+Pull out the core ideas worth their own piece of content, then
+write all of the following in my voice:
+
+5 x short form scripts, 30 to 45 seconds. Hook, body, last
+line. One idea each, never a recap of the whole video.
+1 x Instagram carousel, 7 slides, under 15 words per slide
+1 x LinkedIn post, 150 to 200 words, no hashtags
+1 x YouTube Short script, tighter than the others
+1 x newsletter snippet, 120 words, ending on one action
+
+British English, no em dashes, no "in this video", no filler.
+If an idea is too thin to carry its own video, say so rather
+than padding it out.
+
+Save it all to /Content/Repurposed/week-[date].md</code></pre>
+  <p class="prompt-label">Paste this as the task prompt (ChatGPT):</p>
+  <pre><code>Read the newest transcript in my Drive folder Content/LongForm
+and the voice sample saved alongside it.
+
+Break it into the core ideas, then write in my voice: five short
+form scripts of 30 to 45 seconds, one seven slide Instagram
+carousel, one LinkedIn post of 150 to 200 words, one YouTube
+Short script and one 120 word newsletter snippet.
+
+British English. No hashtags, no "in this video", no filler.
+Tell me if an idea is too thin to carry its own piece rather
+than padding it.</code></pre>
+
+  <h2 id="automation-09">Automation 09: Brand Deal &amp; DM Scanner</h2>
+  <p><em>Claude &amp; ChatGPT</em></p>
+  <p>Claude checks every brand email against your playbook and flags the DMs worth replying to.</p>
+  <div class="autospec">
+   <p class="autospec-row"><strong>Trigger:</strong> Twice a day, midday and end of day.</p>
+   <p class="autospec-row"><strong>It does:</strong> Scores every inbound against your rates, red lines and deliverables.</p>
+   <p class="autospec-row"><strong>You get:</strong> Worth replying, worth negotiating, or pass. With the reply already drafted.</p>
+   <p class="autospec-row"><strong>You'll need:</strong> Gmail, a playbook doc with your rates, DMs forwarded to that inbox.</p>
+  </div>
+  <h3>Setup</h3>
+  <div class="setup-grid">
+   <div class="setup-card">
+    <div class="setup-card-platform">Claude</div>
+    <p>Scheduled &#8594; New task &#8594; Setup manually</p>
+    <p>Runs: Daily, 12:00pm and 5:00pm</p>
+    <p>Needs: Gmail, Drive</p>
+   </div>
+   <div class="setup-card">
+    <div class="setup-card-platform">ChatGPT</div>
+    <p>Scheduled &#8594; New task</p>
+    <p>Runs: Twice daily</p>
+    <p>Needs: Gmail app, Drive app</p>
+   </div>
+  </div>
+  <div class="callout">
+   <div class="callout-label">Honest limit</div>
+   <p>There is no official connector to Instagram or TikTok DMs, so nothing can read them directly. The workaround that actually holds: set your DM auto reply to point brands at your email, and forward the serious ones in yourself. The playbook doc is what makes this work. Without it, it is just a summariser.</p>
+  </div>
+  <p class="prompt-label">Paste this as the task prompt (Claude):</p>
+  <pre><code>Read my playbook at /Business/brand-playbook.md first. It has
+my rate floor, usage terms, exclusivity limits and red lines.
+
+Then search my inbox since the last run for any brand,
+sponsorship, gifting or partnership approach, including
+messages I have forwarded in from social DMs.
+
+Score each against the playbook:
+- Fee at or above my floor, or no fee named at all
+- Usage rights and exclusivity, and for how long
+- Deliverables versus the fee, and the turnaround
+- Anything sitting on my red lines list
+
+Classify each as WORTH REPLYING, NEGOTIATE or PASS with one
+line of reasoning, then draft a reply for the first two. Warm,
+brief, and always ask for the fee if none was named.
+
+Never accept, decline or commit on my behalf.</code></pre>
+  <p class="prompt-label">Paste this as the task prompt (ChatGPT):</p>
+  <pre><code>Read my brand playbook in Drive, then check my inbox since the
+last run for brand, sponsorship, gifting or partnership emails,
+including forwarded DMs.
+
+Score each against the playbook: fee versus my floor, usage
+rights, exclusivity, deliverables, turnaround, and any red
+lines. Classify as worth replying, negotiate, or pass, with one
+line of reasoning.
+
+Draft a short reply for the first two. Always ask for the fee if
+none was named. Do not commit to anything on my behalf.</code></pre>
+
+  <h2 id="automation-10">Automation 10: Weekly Content Performance Digest</h2>
+  <p><em>Claude &amp; ChatGPT</em></p>
+  <p>Every Sunday: what worked, what flopped, what to make more of.</p>
+  <div class="autospec">
+   <p class="autospec-row"><strong>Trigger:</strong> Every Sunday evening, on the week just finished.</p>
+   <p class="autospec-row"><strong>It does:</strong> Compares this week's numbers to the last four, in plain English.</p>
+   <p class="autospec-row"><strong>You get:</strong> What worked, what flopped, what to make more of, and three ideas.</p>
+   <p class="autospec-row"><strong>You'll need:</strong> Analytics exports in Drive, four weeks of history to compare.</p>
+  </div>
+  <h3>Setup</h3>
+  <div class="setup-grid">
+   <div class="setup-card">
+    <div class="setup-card-platform">Claude</div>
+    <p>Scheduled &#8594; New task &#8594; Setup manually</p>
+    <p>Runs: Weekly, Sunday 6:00pm</p>
+    <p>Needs: Drive connector</p>
+   </div>
+   <div class="setup-card">
+    <div class="setup-card-platform">ChatGPT</div>
+    <p>Scheduled &#8594; New task</p>
+    <p>Runs: Weekly, Sunday evening</p>
+    <p>Needs: Drive app</p>
+   </div>
+  </div>
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>There is no official Instagram, TikTok or YouTube analytics connector on either platform. Export the CSV from each app's native analytics into one Drive folder each Sunday. It takes two minutes and it is the only part of this you do by hand.</p>
+  </div>
+  <p class="prompt-label">Paste this as the task prompt (Claude):</p>
+  <pre><code>Read every export in /Content/Analytics, including the previous
+four weeks, not just this one.
+
+Write my weekly digest:
+
+WHAT WORKED: the three best performing posts. For each: the
+numbers, and your best read on why it worked. Watch time and
+saves matter more than views, so weight them that way.
+
+WHAT FLOPPED: the two weakest. Same treatment. Be blunt.
+
+PATTERNS: anything true across four weeks rather than one good
+post. Format, length, hook style, posting time.
+
+MAKE MORE OF: three specific things, not "post consistently".
+
+NEXT WEEK: three content ideas built on what is working, with
+a hook line for each.
+
+Plain English, no marketing language. If a week is too small a
+sample to conclude anything, say that instead of inventing a
+trend.</code></pre>
+  <p class="prompt-label">Paste this as the task prompt (ChatGPT):</p>
+  <pre><code>Every Sunday, read the analytics exports in my Drive folder,
+including the last four weeks.
+
+Tell me: the three posts that worked and why, the two that
+flopped and why, any pattern that holds across four weeks
+rather than one post, three specific things to make more of,
+and three ideas for next week with a hook line each.
+
+Weight watch time and saves above views. Plain English. If the
+sample is too small to draw a conclusion, say so.</code></pre>
+
+  <h2 id="ten-automations-start-with-one">Ten Automations. Start With One.</h2>
+  <p>Every one of these is a saved prompt and a cadence. That is the whole trick. The tools are already on your account, the connectors take two minutes, and the prompts are written out in full on the pages you just read.</p>
+  <ul>
+   <li><strong>Pick one:</strong> The one that costs you the most time this week. Not the most exciting one.</li>
+   <li><strong>Run it manually first:</strong> Paste the prompt into a normal chat and check the output before you schedule anything.</li>
+   <li><strong>Then schedule it:</strong> Same prompt, saved as a task, on the cadence in this guide.</li>
+   <li><strong>Watch three runs:</strong> Then leave it alone and add the next one.</li>
+  </ul>
+
+ </main>
+
+ <aside class="toc-sidebar">
+  <div class="toc-box">
+   <h3>In this guide</h3>
+   <ol>
+    <li><a href="#contents">Contents</a></li>
+    <li><a href="#before-you-start">Before You Start</a></li>
+    <li><a href="#ground-rules">Ground Rules</a></li>
+    <li><a href="#automation-01">Inbox Triage</a></li>
+    <li><a href="#automation-02">Pre-Meeting Dossier</a></li>
+    <li><a href="#automation-03">Post-Meeting Recap</a></li>
+    <li><a href="#automation-04">Downloads &amp; Desktop</a></li>
+    <li><a href="#automation-05">Founder Brief</a></li>
+    <li><a href="#automation-06">Expense Organiser</a></li>
+    <li><a href="#automation-07">Build Log</a></li>
+    <li><a href="#automation-08">Content Repurposing</a></li>
+    <li><a href="#automation-09">Brand Deal Scanner</a></li>
+    <li><a href="#automation-10">Performance Digest</a></li>
+    <li><a href="#ten-automations-start-with-one">Start With One</a></li>
+   </ol>
+  </div>
+ </aside>
+</div>
+
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+</body>
+</html>

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>How to Scrape Thousands of Leads with Claude</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+ <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+  .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+  .header.scrolled { border-color: var(--accent-border); }
+  .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+  .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+  .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+  .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+  .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+  a.logo-subtitle:hover { color: var(--accent); }
+  .nav-agent-link { font-size: 0.8125rem; font-weight: 700; color: var(--accent); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--accent); border-radius: 9999px; letter-spacing: 0.04em; text-transform: uppercase; transition: all 0.2s; white-space: nowrap; }
+  .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+  .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+  .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+  @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+  .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+  .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+  .badge-cat { background: var(--accent); color: #fff; }
+  .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+  .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+  .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+  .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+  .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+  .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+  .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+  .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+  .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+  .toc-box ol { list-style: none; counter-reset: toc; }
+  .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+  .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+  .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+  .toc-box a:hover { color: var(--accent); }
+  .guide-content { padding: 2rem 0 5rem; }
+  .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+  .guide-content h2:first-of-type { border-top: none; margin-top: 0; }
+  .guide-content h3 { font-size: 1.0625rem; font-weight: 700; margin-top: 1.75rem; margin-bottom: 0.625rem; }
+  .guide-content p { margin-bottom: 1.125rem; }
+  .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+  .guide-content li { margin-bottom: 0.375rem; }
+  .guide-content strong { font-weight: 600; }
+  .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+  @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+  .callout { border-left: 4px solid var(--accent-border); background: var(--accent-light); padding: 0.875rem 1.125rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0; }
+  .callout-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.35rem; }
+  .callout p { margin-bottom: 0; }
+  .callout-warning { border-left-color: #D97706; background: #FFFBEB; }
+  .callout-warning .callout-label { color: #D97706; }
+  .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+  .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+  @page { margin: 1.5cm; }
+  @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider, .nav-agent-link { display: none !important; } .page-wrap { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; } p { orphans: 3; widows: 3; } pre, .callout { break-inside: avoid; } }
+
+  /* Prompt code blocks */
+  .guide-content pre { background: #0a0a0a; color: #f8f8f8; border-radius: 10px; padding: 1.25rem 1.5rem; overflow-x: auto; font-size: 0.8125rem; line-height: 1.6; margin: 0.5rem 0 1.25rem; border: 1px solid #1f1f1f; white-space: pre-wrap; }
+  .guide-content pre code { background: none; border: none; padding: 0; color: inherit; font-size: inherit; }
+  .guide-content code { font-family: 'Courier New', Courier, monospace; }
+  .guide-content p code { background: var(--accent-light); color: var(--accent); padding: 0.1em 0.4em; border-radius: 4px; font-size: 0.875em; border: 1px solid var(--accent-border); }
+  .prompt-label { font-size: 0.8125rem; font-weight: 700; color: var(--accent); margin: 0.5rem 0 0.25rem; }
+
+  /* Table */
+  .table-wrap { overflow-x: auto; margin: 1.25rem 0; }
+  .guide-content table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+  .guide-content th, .guide-content td { border: 1px solid var(--accent-border); padding: 0.5rem 0.75rem; text-align: left; }
+  .guide-content th { background: var(--accent-light); font-weight: 700; }
+
+  /* Repo mini-card */
+  .repo-card { background: #0a0a0a; color: #f8f8f8; border-radius: 10px; padding: 1rem 1.25rem; margin: 1.25rem 0; }
+  .repo-card .repo-name { font-family: 'Courier New', Courier, monospace; font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.3rem; }
+  .repo-card .repo-meta { color: #9ca3af; font-size: 0.8125rem; }
+  .repo-card .repo-link { color: var(--accent-border); font-size: 0.8125rem; font-family: 'Courier New', Courier, monospace; }
+
+  /* VISUAL BLOCKS */
+  /* VB1: 3-stat strip */
+  .stat-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.75rem 0; }
+  @media (max-width: 700px) { .stat-strip { grid-template-columns: 1fr; } }
+  .stat-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.25rem; text-align: center; }
+  .stat-value { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.5rem; color: var(--accent); margin-bottom: 0.25rem; }
+  .stat-caption { font-size: 0.8125rem; color: var(--muted); }
+  /* VB2: 2-card comparison */
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+  @media (max-width: 700px) { .compare-grid { grid-template-columns: 1fr; } }
+  .compare-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.25rem 1.375rem; }
+  .compare-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--accent); font-size: 0.9375rem; margin-bottom: 0.5rem; }
+  .compare-desc { font-size: 0.8375rem; color: var(--muted); margin: 0; }
+  /* VB3: 4-step flow */
+  .flow-strip { display: flex; align-items: stretch; gap: 0.5rem; margin: 1.75rem 0; flex-wrap: wrap; }
+  .flow-step { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1rem 1.125rem; flex: 1 1 200px; }
+  .flow-num { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--accent); font-size: 0.875rem; margin-bottom: 0.4rem; }
+  .flow-text { font-size: 0.8125rem; color: var(--muted); margin: 0; }
+  .flow-arrow { display: flex; align-items: center; justify-content: center; color: var(--accent-border); font-size: 1.25rem; flex: 0 0 auto; }
+  @media (max-width: 800px) { .flow-strip { flex-direction: column; } .flow-arrow { transform: rotate(90deg); } }
+  /* VB4: 3-card recap */
+  .recap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.75rem 0; }
+  @media (max-width: 700px) { .recap-grid { grid-template-columns: 1fr; } }
+  .recap-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.125rem 1.25rem; }
+  .recap-label { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--accent); font-size: 0.9375rem; margin-bottom: 0.5rem; }
+  .recap-desc { font-size: 0.8125rem; color: var(--muted); margin: 0; }
+ </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+  <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+  <div class="logo-divider"></div>
+  <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">&#8592; All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+  <span class="badge badge-cat">Tools &amp; Integrations</span>
+  <span class="badge badge-diff">Intermediate</span>
+ </div>
+ <h1>How to Scrape Thousands of Leads with Claude</h1>
+ <p class="intro-blurb">Connect the open-source ScrapeGraphAI scraper to Claude and pull business names, websites and public contact details straight into a clean list, then set it to top itself up every morning.</p>
+ <ul>
+  <li>How ScrapeGraphAI compares to paying per company scraped</li>
+  <li>Connecting ScrapeGraphAI to Claude the way that actually works</li>
+  <li>Prompting Claude to build your first lead list</li>
+  <li>Turning results into a clean, exportable sheet</li>
+  <li>Scheduling it to run automatically every morning</li>
+ </ul>
+ <div class="hero-author">
+  <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+  <div><span class="author-name">Max Johnson</span><span class="author-meta">@maxjohnscn</span></div>
+ </div>
+</div>
+
+<div class="page-wrap">
+ <main class="guide-content">
+
+  <button class="download-btn" onclick="window.print()">&#8595; Download PDF</button>
+
+  <div class="stat-strip">
+   <div class="stat-card"><div class="stat-value">~10 min</div><div class="stat-caption">Setup time</div></div>
+   <div class="stat-card"><div class="stat-value">Free tier</div><div class="stat-caption">To get started</div></div>
+   <div class="stat-card"><div class="stat-value">No code</div><div class="stat-caption">Required</div></div>
+  </div>
+
+  <h2 id="contents">Contents</h2>
+  <h3>What You'll Build</h3>
+  <ul>
+   <li><strong>01 The Opportunity:</strong> Why an AI scraper beats paying per company</li>
+   <li><strong>02 Get Your ScrapeGraphAI Account:</strong> Sign up and find your API key</li>
+   <li><strong>03 Connect It to Claude:</strong> The real setup, step by step</li>
+   <li><strong>04 Run Your First Lead Search:</strong> One prompt, real results</li>
+   <li><strong>05 Turn Results Into a Clean Sheet:</strong> From chat table to spreadsheet</li>
+   <li><strong>06 Automate It:</strong> Run it every morning without asking</li>
+   <li><strong>07 Prompts &amp; Troubleshooting:</strong> Ready-to-paste examples and common fixes</li>
+  </ul>
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>This guide uses Claude's built-in connectors, so no code, terminal, or API integration work beyond pasting one URL. Custom connectors work on Claude's free plan too, though the automation in Chapter 06 needs a paid plan.</p>
+  </div>
+
+  <h2 id="chapter-01">Chapter 01: The Opportunity</h2>
+  <p>ScrapeGraphAI is a real, open-source project: an AI-powered web scraping library with an MIT licence and close to 29,500 stars on GitHub. It lets a language model like Claude read the instruction "find me every gym owner in Manchester with a public email" and actually go and do it, searching the web, pulling the right fields off each page, and handing back structured data instead of a pile of raw HTML.</p>
+
+  <div class="repo-card">
+   <div class="repo-name">ScrapeGraphAI/Scrapegraph-ai</div>
+   <div class="repo-meta">Open-source, MIT licensed, ~29,500 stars</div>
+   <div class="repo-link">github.com/ScrapeGraphAI/Scrapegraph-ai</div>
+  </div>
+
+  <p>Tools like Apify typically charge per run: every new company you scrape costs you again. ScrapeGraphAI's hosted API, which is the part that actually plugs into Claude, works on a credit system with a free tier instead. For a modest daily lead list, most people won't touch a paid tier at all.</p>
+
+  <div class="callout">
+   <div class="callout-label">Note: On "Completely Free"</div>
+   <p>The open-source library is genuinely free (MIT licence, no cost to run). But the piece that connects to Claude is ScrapeGraphAI's hosted API, and that runs on a free tier plus paid credits beyond it, not unlimited scraping forever. Chapter 02 shows you exactly what the free tier includes.</p>
+  </div>
+
+  <h3>What You're Actually Building</h3>
+  <div class="compare-grid">
+   <div class="compare-card">
+    <div class="compare-title">Open-source library</div>
+    <p class="compare-desc">The code in the GitHub repo. You run it yourself, bring your own LLM key, and manage the browser and proxies. Free, but more setup.</p>
+   </div>
+   <div class="compare-card">
+    <div class="compare-title">Hosted API (what plugs into Claude)</div>
+    <p class="compare-desc">A managed service with a free tier of credits, then pay-as-you-go. Nothing to run yourself, this is what Chapter 03 connects.</p>
+   </div>
+  </div>
+  <ul>
+   <li>Claude searches the web or a specific directory on your instruction</li>
+   <li>It pulls out business names, websites and public contact details</li>
+   <li>It hands you a clean, structured list you can turn into a sheet</li>
+   <li>You can schedule the same search to run again each morning</li>
+  </ul>
+
+  <h2 id="chapter-02">Chapter 02: Get Your ScrapeGraphAI Account</h2>
+  <p>About two minutes, most of it is a sign-up form.</p>
+
+  <p><strong>1. Go to scrapegraphai.com and sign up</strong></p>
+  <p>Use the "Sign up" button in the top right. Signing in with Google is the fastest option and it's also what makes Chapter 03's connector step easiest.</p>
+
+  <p><strong>2. Open your dashboard</strong></p>
+  <p>Once you're signed in, you land on the ScrapeGraphAI dashboard. This is where your API key lives, if you'd rather authenticate with a key than with Google sign-in.</p>
+
+  <p><strong>3. Note your starting credits</strong></p>
+  <p>New accounts start with a free tier of credits, enough to complete this whole guide and run a handful of extra searches afterwards. You can check your balance any time from the dashboard.</p>
+
+  <div class="callout"><p><strong>Tip:</strong> If you plan to run this daily (Chapter 06), keep an eye on your credit balance for the first week so you know whether the free tier covers your habit.</p></div>
+
+  <p><strong>4. Keep the tab open</strong></p>
+  <p>You'll come back to this dashboard in the next chapter, either to copy your API key or to confirm the Google account you'll sign in with.</p>
+
+  <div class="callout">
+   <div class="callout-label">How the credits work</div>
+   <p>Each search, extract or crawl through ScrapeGraphAI uses a small number of credits depending on how much it has to fetch and read. The free tier is enough for testing this guide and running occasional lead lists by hand. If you move to the daily automation in Chapter 06, you'll likely want to check pricing on the dashboard once your free credits run low.</p>
+  </div>
+
+  <p><strong>Quick reference</strong><br>Sign up: scrapegraphai.com<br>Dashboard: scrapegraphai.com/dashboard</p>
+
+  <h2 id="chapter-03">Chapter 03: Connect It to Claude</h2>
+  <div class="callout callout-warning">
+   <div class="callout-label">Warning: Not "Paste the Repo Link"</div>
+   <p>Copying the GitHub link and pasting it into a Claude chat doesn't connect anything. That link is the source code for the open-source library. What actually gives Claude scraping tools is adding ScrapeGraphAI as a custom connector, using the steps below.</p>
+  </div>
+
+  <p><strong>1. Open Claude and go to Connectors</strong></p>
+  <p>In Claude, open Settings, then Customize, then Connectors.</p>
+
+  <p><strong>2. Add a custom connector</strong></p>
+  <p>Click the "+" next to Connectors, then choose "Add custom connector".</p>
+
+  <p><strong>3. Paste the ScrapeGraphAI server URL</strong></p>
+  <p>Give it a name, e.g. "ScrapeGraphAI", and paste this as the remote MCP server URL:</p>
+  <pre><code>https://mcp.scrapegraphai.com/mcp</code></pre>
+
+  <p><strong>4. Click Add, then Connect</strong></p>
+  <p>Sign in with the Google account tied to your ScrapeGraphAI account, or paste your API key if you'd rather authenticate that way.</p>
+
+  <p><strong>5. Switch it on for your chat</strong></p>
+  <p>Open a new conversation, open the tools menu, and turn ScrapeGraphAI on for that chat. Connectors aren't enabled everywhere by default.</p>
+
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>Custom connectors work in Claude on the web, in Claude Desktop, and in Cowork, on free and paid plans alike. Free plans are limited to one custom connector at a time.</p>
+  </div>
+
+  <div class="callout">
+   <div class="callout-label">How to know it worked</div>
+   <p>Ask Claude to check your ScrapeGraphAI credit balance. A real number back means the connector is live end to end. An error or a generic "I can't check that" means the connection or the toggle needs another look.</p>
+  </div>
+
+  <h2 id="chapter-04">Chapter 04: Run Your First Lead Search</h2>
+  <p>With the connector switched on, Claude can search the web and pull structured data through ScrapeGraphAI's tools. Describe exactly who you're looking for and what you want back, in plain English.</p>
+
+  <p class="prompt-label">Example prompt:</p>
+  <pre><code>Find 20 gym owners in Manchester with a public website and a
+contact email. For each one, give me: business name, website,
+contact email, and city. Put it in a table.</code></pre>
+
+  <h3>What Happens Next</h3>
+  <div class="flow-strip">
+   <div class="flow-step"><div class="flow-num">01</div><p class="flow-text">Claude searches the web for businesses matching your description</p></div>
+   <div class="flow-arrow">&#8594;</div>
+   <div class="flow-step"><div class="flow-num">02</div><p class="flow-text">It extracts the specific fields you asked for from each result</p></div>
+   <div class="flow-arrow">&#8594;</div>
+   <div class="flow-step"><div class="flow-num">03</div><p class="flow-text">Results land back in the chat as a table, with a source for each row</p></div>
+   <div class="flow-arrow">&#8594;</div>
+   <div class="flow-step"><div class="flow-num">04</div><p class="flow-text">You can keep refining: narrow the niche, change the location, add a field</p></div>
+  </div>
+
+  <div class="callout">
+   <div class="callout-label">Tip</div>
+   <p>Be specific about the niche, the location, and exactly what "found" should include. "Gym owners in Manchester with a public email" beats "fitness businesses" every time. A narrow prompt returns a usable list; a vague one returns noise you'll have to clean up by hand.</p>
+  </div>
+
+  <p><strong>Fields you can ask for:</strong> Business name, Website, Public email, Phone number, LinkedIn profile, City / address, Employee count</p>
+
+  <p class="prompt-label">Follow-up prompt:</p>
+  <pre><code>Drop anything without a public email. For the rest, also find
+their Instagram handle if they have one.</code></pre>
+
+  <h2 id="chapter-05">Chapter 05: Turn Results Into a Clean Sheet</h2>
+  <p>A table in the chat is useful, but a sheet you can sort, filter and hand to someone else is better. You don't need a separate tool for this, just ask.</p>
+
+  <p class="prompt-label">Export prompt:</p>
+  <pre><code>Turn this into an Excel file with the same columns, and sort it
+alphabetically by business name.</code></pre>
+
+  <h3>Two Ways to Get Your Sheet</h3>
+  <p><strong>Download a spreadsheet</strong></p>
+  <p>Ask Claude to build the list as an Excel file. It generates a downloadable .xlsx with the same columns, ready to open in Excel, Sheets, or Numbers.</p>
+
+  <p><strong>Push straight to Google Sheets</strong></p>
+  <p>If you also have a Google Sheets or Drive connector enabled, ask Claude to add the results directly to an existing sheet instead of a download.</p>
+
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>Pushing straight into Google Sheets needs that connector added and switched on separately, it isn't part of the ScrapeGraphAI connection. Add it the same way as Chapter 03: Settings &#8594; Customize &#8594; Connectors.</p>
+  </div>
+
+  <h3>What a Finished Sheet Looks Like</h3>
+  <div class="table-wrap">
+  <table>
+   <thead><tr><th>Business Name</th><th>Website</th><th>Email</th><th>City</th></tr></thead>
+   <tbody>
+    <tr><td>Northside Fitness</td><td>northsidefitness.co.uk</td><td>hello@northside...</td><td>Manchester</td></tr>
+    <tr><td>Ironclad Gym</td><td>ironcladgym.com</td><td>owner@ironclad...</td><td>Manchester</td></tr>
+    <tr><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td></tr>
+   </tbody>
+  </table>
+  </div>
+
+  <h2 id="chapter-06">Chapter 06: Automate It</h2>
+  <div class="callout callout-warning">
+   <div class="callout-label">Warning: This Doesn't Happen by Itself</div>
+   <p>Asking Claude to find leads once doesn't make it repeat that search every morning on its own. To get a daily refill, you save the prompt as a scheduled task in Claude Cowork.</p>
+  </div>
+
+  <p><strong>1. Open Cowork</strong></p>
+  <p>Cowork is Anthropic's agentic workspace for handing off recurring, multi-step work, and it's where scheduled tasks live.</p>
+
+  <p><strong>2. Describe the recurring job once</strong></p>
+  <p>Something like: "Every morning, find any new gym owners in Manchester that weren't in yesterday's list, and add them to the sheet."</p>
+
+  <p><strong>3. Set the cadence to daily</strong></p>
+  <p>Choose how often it runs. Cowork saves your connectors, including ScrapeGraphAI, along with the task, so it doesn't need re-authorising each morning.</p>
+
+  <p><strong>4. Confirm and let it run</strong></p>
+  <p>Each run is its own Cowork session. Come back whenever you like to review the fresh leads it's added.</p>
+
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>Scheduled tasks in Cowork are available on paid Claude plans (Pro, Max, Team, Enterprise), not the free plan. Everything before this chapter works on a free account; this last step is the one that needs an upgrade.</p>
+  </div>
+
+  <div class="callout">
+   <div class="callout-label">Morning Isn't the Only Option</div>
+   <p>Cowork's scheduled tasks aren't locked to daily runs. Pick hourly if you're testing a hot niche, weekdays-only to skip weekends when nobody's checking, or weekly if a fresh batch every Monday is plenty. Set the cadence to whatever actually matches how often you follow up on leads.</p>
+  </div>
+
+  <h2 id="chapter-07">Chapter 07: Prompts &amp; Troubleshooting</h2>
+  <h3>Prompts to Get You Started</h3>
+
+  <p><strong>Local business owners</strong></p>
+  <pre><code>Find 15 independent coffee shop owners in Leeds with a public email address.</code></pre>
+
+  <p><strong>Find by role</strong></p>
+  <pre><code>Find marketing managers at UK ecommerce brands with under 50 staff, with a public LinkedIn profile.</code></pre>
+
+  <p><strong>Refresh a list</strong></p>
+  <pre><code>Compare this to yesterday's list and only add companies that weren't already on it.</code></pre>
+
+  <p><strong>Export</strong></p>
+  <pre><code>Turn the results into a spreadsheet with these columns: name, company, email, website.</code></pre>
+
+  <p><strong>Narrow a big list</strong></p>
+  <pre><code>From this list, keep only the businesses with fewer than 10 employees and a live Instagram account.</code></pre>
+
+  <h3>If Something Doesn't Work</h3>
+  <p><strong>Connector won't authenticate</strong></p>
+  <p>Check you're signing in with the same Google account, or the same API key, that's tied to your ScrapeGraphAI account.</p>
+
+  <p><strong>Claude says it can't browse the web</strong></p>
+  <p>Make sure ScrapeGraphAI is switched on for that specific chat in the tools menu. Connectors aren't on in every conversation by default.</p>
+
+  <p><strong>Credits running low</strong></p>
+  <p>Check your balance from the ScrapeGraphAI dashboard. Daily scheduled runs use credits faster than occasional one-off searches.</p>
+
+  <div class="callout">
+   <div class="callout-label">Before You Schedule It Daily</div>
+   <p>Run the search manually two or three times first. Confirm the fields come back clean and the niche is narrow enough, then hand the exact same prompt to Cowork. It's much easier to fix a prompt once than to untangle a week of scheduled runs built on a vague one.</p>
+  </div>
+
+  <h2 id="stop-paying-per-company">Stop Paying Per Company. Start Scraping.</h2>
+  <p>The setup takes about ten minutes the first time. After that, it's one prompt for a fresh list, or nothing at all once it's scheduled. Connect the account, wire it into Claude properly, and let it work every morning while you focus on the calls it hands you.</p>
+
+  <h3>Your Three Moves</h3>
+  <ul>
+   <li>Connect ScrapeGraphAI to Claude as a custom connector</li>
+   <li>Run your first search and turn it into a sheet</li>
+   <li>Schedule it in Cowork to refill every morning</li>
+  </ul>
+
+  <h3>A Quick Recap of What Goes Where</h3>
+  <div class="recap-grid">
+   <div class="recap-card">
+    <div class="recap-label">GitHub Repo</div>
+    <p class="recap-desc">The open-source code. Reference only, not something you paste into Claude.</p>
+   </div>
+   <div class="recap-card">
+    <div class="recap-label">Custom Connector</div>
+    <p class="recap-desc">The hosted MCP URL from Chapter 03. This is what actually connects.</p>
+   </div>
+   <div class="recap-card">
+    <div class="recap-label">Cowork</div>
+    <p class="recap-desc">Where the daily schedule lives, once you're ready to automate it.</p>
+   </div>
+  </div>
+
+ </main>
+
+ <aside class="toc-sidebar">
+  <div class="toc-box">
+   <h3>In this guide</h3>
+   <ol>
+    <li><a href="#contents">Contents</a></li>
+    <li><a href="#chapter-01">The Opportunity</a></li>
+    <li><a href="#chapter-02">Get Your Account</a></li>
+    <li><a href="#chapter-03">Connect It to Claude</a></li>
+    <li><a href="#chapter-04">Run Your First Search</a></li>
+    <li><a href="#chapter-05">Turn Into a Clean Sheet</a></li>
+    <li><a href="#chapter-06">Automate It</a></li>
+    <li><a href="#chapter-07">Prompts &amp; Troubleshooting</a></li>
+    <li><a href="#stop-paying-per-company">Start Scraping</a></li>
+   </ol>
+  </div>
+ </aside>
+</div>
+
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+</body>
+</html>

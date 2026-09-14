@@ -1,0 +1,36 @@
+{
+  "id": "AI-001",
+  "slug": "the-ultimate-claude-starter-setup-guide",
+  "title": "The Ultimate Claude Starter Setup Guide",
+  "category": "Getting Started",
+  "subcategory": "Account & Setup",
+  "difficulty": "Beginner",
+  "description": "How to set up Claude Projects, the memory system, custom instructions, Skills, and MCP connectors, the exact setup used to run an AI agency. From account basics to your first-week roadmap.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Getting Started",
+    "What Claude Actually Is",
+    "What You Get Access To",
+    "Claude Projects",
+    "The Memory System",
+    "Account & Setup"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude Projects",
+    "Claude Skills",
+    "Claude",
+    "Figma",
+    "Supabase"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-001_the-ultimate-claude-starter-setup-guide.html",
+  "summary_file": "summaries/AI-001.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

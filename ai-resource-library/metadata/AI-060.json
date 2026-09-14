@@ -1,0 +1,30 @@
+{
+  "id": "AI-060",
+  "slug": "skill-mcp-safety-check",
+  "title": "Skill & MCP Safety Check",
+  "category": "Prompts & Skills",
+  "subcategory": "Security & Auditing",
+  "difficulty": "Beginner",
+  "description": "A ready-to-paste security audit prompt to run before installing any Claude Skill or MCP server. Checks credential access, network activity, code execution, file system access, obfuscation, and prompt injection, with a strict safe or not safe verdict.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Prompts & Skills",
+    "Before You Install Anything",
+    "Security & Auditing"
+  ],
+  "ai_tools": [
+    "Claude",
+    "ChatGPT",
+    "Gemini"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-060_skill-mcp-safety-check.html",
+  "summary_file": "summaries/AI-060.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

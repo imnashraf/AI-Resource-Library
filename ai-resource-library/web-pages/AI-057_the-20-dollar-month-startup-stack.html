@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>The $20/Month Startup Stack</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+ <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+  .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+  .header.scrolled { border-color: var(--accent-border); }
+  .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+  .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+  .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+  .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+  .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+  a.logo-subtitle:hover { color: var(--accent); }
+  .nav-agent-link { font-size: 0.8125rem; font-weight: 700; color: var(--accent); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--accent); border-radius: 9999px; letter-spacing: 0.04em; text-transform: uppercase; transition: all 0.2s; white-space: nowrap; }
+  .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+  .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+  .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+  @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+  .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+  .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+  .badge-cat { background: var(--accent); color: #fff; }
+  .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+  .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+  .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+  .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+  .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+  .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+  .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+  .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+  .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+  .toc-box ol { list-style: none; counter-reset: toc; }
+  .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+  .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+  .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+  .toc-box a:hover { color: var(--accent); }
+  .guide-content { padding: 2rem 0 5rem; }
+  .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+  .guide-content h2:first-of-type { border-top: none; margin-top: 0; }
+  .guide-content h3 { font-size: 1.0625rem; font-weight: 700; margin-top: 1.75rem; margin-bottom: 0.625rem; }
+  .guide-content p { margin-bottom: 1.125rem; }
+  .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+  .guide-content li { margin-bottom: 0.375rem; }
+  .guide-content strong { font-weight: 600; }
+  .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+  @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+  .callout { border-left: 4px solid var(--accent-border); background: var(--accent-light); padding: 0.875rem 1.125rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0; }
+  .callout-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.35rem; }
+  .callout p { margin-bottom: 0; }
+  .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+  .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+  @page { margin: 1.5cm; }
+  @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider, .nav-agent-link { display: none !important; } .page-wrap { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; } p { orphans: 3; widows: 3; } }
+
+  /* VISUAL BLOCKS */
+  /* VB1: 13-tool quick reference rows */
+  .refrow-list { display: flex; flex-direction: column; margin: 1.75rem 0; border: 1.5px solid var(--accent-border); border-radius: 12px; overflow: hidden; }
+  .refrow { display: flex; align-items: center; gap: 1rem; padding: 0.75rem 1.125rem; background: #fff; }
+  .refrow:nth-child(even) { background: var(--accent-light); }
+  .refrow-num { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.8125rem; color: var(--accent); width: 1.5rem; flex-shrink: 0; }
+  .refrow-name { font-weight: 700; font-size: 0.875rem; width: 108px; flex-shrink: 0; }
+  .refrow-cost { font-size: 0.6875rem; font-weight: 600; color: var(--accent); background: #fff; border: 1px solid var(--accent-border); border-radius: 9999px; padding: 0.15rem 0.625rem; white-space: nowrap; flex-shrink: 0; }
+  .refrow:nth-child(even) .refrow-cost { background: var(--accent-light); }
+  .refrow-purpose { font-size: 0.8125rem; color: var(--muted); line-height: 1.5; }
+  @media (max-width: 640px) { .refrow { flex-wrap: wrap; } .refrow-purpose { width: 100%; margin-left: 2.5rem; } }
+  /* Tool cards */
+  .tool-stack { display: flex; flex-direction: column; gap: 1rem; margin: 1.75rem 0; }
+  .tool-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.25rem 1.5rem; display: flex; gap: 1.25rem; align-items: flex-start; transition: transform 0.2s, box-shadow 0.2s; }
+  .tool-card:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent-border); }
+  .tool-num { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; color: var(--accent); line-height: 1; flex-shrink: 0; width: 2.5rem; text-align: center; padding-top: 0.1rem; }
+  .tool-body { flex: 1; }
+  .tool-head { display: flex; align-items: center; gap: 0.625rem; flex-wrap: wrap; margin-bottom: 0.35rem; }
+  .tool-name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.0625rem; }
+  .tool-cost { font-size: 0.6875rem; font-weight: 600; background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); border-radius: 9999px; padding: 0.15rem 0.625rem; }
+  .tool-tagline { font-size: 0.875rem; color: var(--muted); margin-bottom: 0.75rem; }
+  .tool-body ul { padding-left: 1.25rem; margin-bottom: 0; }
+  .tool-body li { font-size: 0.875rem; margin-bottom: 0.375rem; }
+  /* VB2: four-stage cards */
+  .stage-stack { display: flex; flex-direction: column; gap: 0.875rem; margin: 1.75rem 0; }
+  .stage-card { background: var(--accent-light); border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.25rem 1.5rem; }
+  .stage-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.4rem; }
+  .stage-tools { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.35rem; }
+  .stage-desc { font-size: 0.8375rem; color: var(--muted); margin: 0; }
+ </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+  <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+  <div class="logo-divider"></div>
+  <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">&#8592; All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+  <span class="badge badge-cat">Building &amp; Monetising</span>
+  <span class="badge badge-diff">Intermediate</span>
+ </div>
+ <h1>The $20/Month Startup Stack</h1>
+ <p class="intro-blurb">What each tool is for, when you'd actually reach for it, and what it costs. Thirteen tools, in the order you'd actually add them.</p>
+ <ul>
+  <li>Domain, DNS and hosting: the parts you set up once and forget</li>
+  <li>Backend, auth and deploy: the free stack that runs your app</li>
+  <li>Email, payments and analytics: what fires once real users show up</li>
+  <li>Error tracking, caching and vector search: add these when you need them, not before</li>
+  <li>What it actually costs at each stage, no hidden tiers</li>
+ </ul>
+ <div class="hero-author">
+  <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+  <div><span class="author-name">Max Johnson</span><span class="author-meta">@maxjohnscn</span></div>
+ </div>
+</div>
+
+<div class="page-wrap">
+ <main class="guide-content">
+
+  <button class="download-btn" onclick="window.print()">&#8595; Download PDF</button>
+
+  <h2 id="the-full-stack">The Full Stack</h2>
+  <p>Thirteen tools, roughly in the order you'd add them. Most are free until you have real users. The list price next to each one is what it costs the moment you actually need it.</p>
+
+  <div class="refrow-list">
+   <div class="refrow"><span class="refrow-num">01</span><span class="refrow-name">Namecheap</span><span class="refrow-cost">$12/yr</span><span class="refrow-purpose">Buying the domain</span></div>
+   <div class="refrow"><span class="refrow-num">02</span><span class="refrow-name">Cloudflare</span><span class="refrow-cost">Free</span><span class="refrow-purpose">DNS, but it does more than just point your domain</span></div>
+   <div class="refrow"><span class="refrow-num">03</span><span class="refrow-name">GitHub</span><span class="refrow-cost">Free</span><span class="refrow-purpose">Version control, and your safety net</span></div>
+   <div class="refrow"><span class="refrow-num">04</span><span class="refrow-name">Claude</span><span class="refrow-cost">$20/mo</span><span class="refrow-purpose">Writing and shipping the code, the only paid tool until you've got users</span></div>
+   <div class="refrow"><span class="refrow-num">05</span><span class="refrow-name">Supabase</span><span class="refrow-cost">Free</span><span class="refrow-purpose">Your backend, database included</span></div>
+   <div class="refrow"><span class="refrow-num">06</span><span class="refrow-name">Clerk</span><span class="refrow-cost">Free</span><span class="refrow-purpose">Auth, so you're not building login from scratch</span></div>
+   <div class="refrow"><span class="refrow-num">07</span><span class="refrow-name">Vercel</span><span class="refrow-cost">Free</span><span class="refrow-purpose">Deploying, connected straight to GitHub</span></div>
+   <div class="refrow"><span class="refrow-num">08</span><span class="refrow-name">Resend</span><span class="refrow-cost">Free</span><span class="refrow-purpose">Transactional email, the emails your app has to send</span></div>
+   <div class="refrow"><span class="refrow-num">09</span><span class="refrow-name">Stripe</span><span class="refrow-cost">2.9% per txn</span><span class="refrow-purpose">Payments, no monthly cost so set it up early</span></div>
+   <div class="refrow"><span class="refrow-num">10</span><span class="refrow-name">PostHog</span><span class="refrow-cost">Free</span><span class="refrow-purpose">Analytics, so you're not guessing what users do</span></div>
+   <div class="refrow"><span class="refrow-num">11</span><span class="refrow-name">Sentry</span><span class="refrow-cost">Free</span><span class="refrow-purpose">Error tracking, so bugs don't rely on users reporting them</span></div>
+   <div class="refrow"><span class="refrow-num">12</span><span class="refrow-name">Upstash</span><span class="refrow-cost">Free</span><span class="refrow-purpose">Redis, add this once something is slow or needs limits</span></div>
+   <div class="refrow"><span class="refrow-num">13</span><span class="refrow-name">Pinecone</span><span class="refrow-cost">Free</span><span class="refrow-purpose">Vector database, only if you're building AI search or recommendations</span></div>
+  </div>
+
+  <div class="callout">
+   <div class="callout-label">How to read this</div>
+   <p>You do not need all thirteen on day one. Namecheap through Vercel gets a real product live. Resend and Stripe get added when you have users and a price. PostHog, Sentry, Upstash and Pinecone get added only once something specific calls for them, slow queries, silent bugs, an AI feature. Add tools when the problem shows up, not before.</p>
+  </div>
+
+  <h2 id="tools-01-03">Tools 01-03 of 13</h2>
+
+  <div class="tool-stack">
+   <div class="tool-card">
+    <div class="tool-num">01</div>
+    <div class="tool-body">
+     <div class="tool-head"><span class="tool-name">Namecheap</span><span class="tool-cost">$12/yr</span></div>
+     <p class="tool-tagline">Buying the domain.</p>
+     <ul>
+      <li>Registering your main domain and any variants you want to redirect (e.g. buying both .com and .co so someone else can't grab it)</li>
+      <li>Setting up domain privacy so your name and address aren't public in WHOIS lookups (usually included free, check at checkout)</li>
+      <li>Buying a second domain for a landing page or side project without committing to a full hosting setup</li>
+     </ul>
+    </div>
+   </div>
+
+   <div class="tool-card">
+    <div class="tool-num">02</div>
+    <div class="tool-body">
+     <div class="tool-head"><span class="tool-name">Cloudflare</span><span class="tool-cost">Free</span></div>
+     <p class="tool-tagline">DNS, but it does more than just point your domain.</p>
+     <ul>
+      <li>Free SSL certificate so your site runs on https without you doing anything</li>
+      <li>Proxying your traffic through Cloudflare so your actual server IP is hidden, which cuts down bot traffic and basic DDoS attempts</li>
+      <li>Page rules to redirect old URLs, force www or non-www, or cache static assets at the edge so your site loads faster globally</li>
+     </ul>
+    </div>
+   </div>
+
+   <div class="tool-card">
+    <div class="tool-num">03</div>
+    <div class="tool-body">
+     <div class="tool-head"><span class="tool-name">GitHub</span><span class="tool-cost">Free</span></div>
+     <p class="tool-tagline">Version control, and your safety net.</p>
+     <ul>
+      <li>Every commit is a point you can roll back to, especially useful if Claude makes a change that breaks something</li>
+      <li>Branching so you can build a new feature without touching your live code, then merge once it works</li>
+      <li>GitHub Actions for basic automation, like running tests automatically every time you push</li>
+      <li>Private repos by default if you're not ready for anyone to see the code</li>
+     </ul>
+    </div>
+   </div>
+  </div>
+
+  <h2 id="tools-04-06">Tools 04-06 of 13</h2>
+
+  <div class="tool-stack">
+   <div class="tool-card">
+    <div class="tool-num">04</div>
+    <div class="tool-body">
+     <div class="tool-head"><span class="tool-name">Claude</span><span class="tool-cost">$20/mo</span></div>
+     <p class="tool-tagline">Writing and shipping the code, the only paid tool until you've got users.</p>
+     <ul>
+      <li>Scaffolding a new feature from a plain English description instead of writing boilerplate yourself</li>
+      <li>Debugging: paste an error and the surrounding code, get the actual fix instead of guessing</li>
+      <li>Refactoring old code once it works but is messy, without breaking what already works</li>
+      <li>Writing tests you'd otherwise skip because you're moving fast solo</li>
+     </ul>
+    </div>
+   </div>
+
+   <div class="tool-card">
+    <div class="tool-num">05</div>
+    <div class="tool-body">
+     <div class="tool-head"><span class="tool-name">Supabase</span><span class="tool-cost">Free</span></div>
+     <p class="tool-tagline">Your backend, database included.</p>
+     <ul>
+      <li>Postgres database for anything structured: users, orders, posts, whatever your app stores</li>
+      <li>Storage buckets for file uploads, profile pictures, documents, generated files</li>
+      <li>Row-level security so users can only see and edit their own data, set once and it's enforced everywhere</li>
+      <li>Edge functions for backend logic you don't want running in the browser, like calling a paid API with a secret key</li>
+     </ul>
+    </div>
+   </div>
+
+   <div class="tool-card">
+    <div class="tool-num">06</div>
+    <div class="tool-body">
+     <div class="tool-head"><span class="tool-name">Clerk</span><span class="tool-cost">Free</span></div>
+     <p class="tool-tagline">Auth, so you're not building login from scratch.</p>
+     <ul>
+      <li>Email and password, or social login (Google, GitHub) with almost no setup</li>
+      <li>Session handling so users stay logged in without you managing tokens manually</li>
+      <li>Webhooks that fire when someone signs up, so you can create their record in Supabase automatically</li>
+      <li>Multi factor auth if you're handling anything sensitive, turned on with a toggle not custom code</li>
+     </ul>
+    </div>
+   </div>
+  </div>
+
+  <h2 id="tools-07-09">Tools 07-09 of 13</h2>
+
+  <div class="tool-stack">
+   <div class="tool-card">
+    <div class="tool-num">07</div>
+    <div class="tool-body">
+     <div class="tool-head"><span class="tool-name">Vercel</span><span class="tool-cost">Free</span></div>
+     <p class="tool-tagline">Deploying, connected straight to GitHub.</p>
+     <ul>
+      <li>Push to GitHub, it deploys automatically, no manual upload</li>
+      <li>Preview deployments: every pull request gets its own live URL so you can test a feature before merging it</li>
+      <li>Environment variables kept out of your code, so API keys never end up in a public repo by accident</li>
+      <li>Serverless functions if you need small bits of backend logic without spinning up a whole server</li>
+     </ul>
+    </div>
+   </div>
+
+   <div class="tool-card">
+    <div class="tool-num">08</div>
+    <div class="tool-body">
+     <div class="tool-head"><span class="tool-name">Resend</span><span class="tool-cost">Free</span></div>
+     <p class="tool-tagline">Transactional email, the emails your app has to send.</p>
+     <ul>
+      <li>Welcome email when someone signs up</li>
+      <li>Password reset links</li>
+      <li>Receipts after a Stripe payment goes through</li>
+      <li>Using React Email to design these so they don't look like plain text dumped into an inbox</li>
+     </ul>
+    </div>
+   </div>
+
+   <div class="tool-card">
+    <div class="tool-num">09</div>
+    <div class="tool-body">
+     <div class="tool-head"><span class="tool-name">Stripe</span><span class="tool-cost">2.9% per txn</span></div>
+     <p class="tool-tagline">Payments, no monthly cost so set it up early.</p>
+     <ul>
+      <li>Stripe Checkout for a hosted payment page, fastest way to start taking money</li>
+      <li>Subscriptions if you're charging monthly or yearly instead of once</li>
+      <li>Webhooks so your app knows the moment a payment succeeds or fails, and can update the user's account automatically</li>
+      <li>Usage based billing if you're charging per action instead of a flat fee</li>
+     </ul>
+    </div>
+   </div>
+  </div>
+
+  <h2 id="tools-10-13">Tools 10-13 of 13</h2>
+
+  <div class="tool-stack">
+   <div class="tool-card">
+    <div class="tool-num">10</div>
+    <div class="tool-body">
+     <div class="tool-head"><span class="tool-name">PostHog</span><span class="tool-cost">Free</span></div>
+     <p class="tool-tagline">Analytics, so you're not guessing what users do.</p>
+     <ul>
+      <li>Tracking key events: signup, first action taken, upgrade, so you know where people drop off</li>
+      <li>Funnels to see exactly what percentage of visitors make it from landing page to paying customer</li>
+      <li>Session recordings to literally watch a user struggle with something in your app</li>
+      <li>Feature flags to roll out a new feature to a small percentage of users before everyone gets it</li>
+     </ul>
+    </div>
+   </div>
+
+   <div class="tool-card">
+    <div class="tool-num">11</div>
+    <div class="tool-body">
+     <div class="tool-head"><span class="tool-name">Sentry</span><span class="tool-cost">Free</span></div>
+     <p class="tool-tagline">Error tracking, so bugs don't rely on users reporting them.</p>
+     <ul>
+      <li>Full stack traces the second something breaks in production</li>
+      <li>Alerts sent to you the moment an error happens, not when someone emails to complain</li>
+      <li>Release tracking so you know exactly which deploy introduced a bug</li>
+     </ul>
+    </div>
+   </div>
+
+   <div class="tool-card">
+    <div class="tool-num">12</div>
+    <div class="tool-body">
+     <div class="tool-head"><span class="tool-name">Upstash</span><span class="tool-cost">Free</span></div>
+     <p class="tool-tagline">Redis, add this once something is slow or needs limits.</p>
+     <ul>
+      <li>Caching data you fetch often but doesn't change much, so you're not hitting your database every time</li>
+      <li>Rate limiting an API endpoint so one user can't spam it and rack up your costs</li>
+      <li>Storing temporary session data outside your main database</li>
+     </ul>
+    </div>
+   </div>
+
+   <div class="tool-card">
+    <div class="tool-num">13</div>
+    <div class="tool-body">
+     <div class="tool-head"><span class="tool-name">Pinecone</span><span class="tool-cost">Free</span></div>
+     <p class="tool-tagline">Vector database, only if you're building AI search or recommendations.</p>
+     <ul>
+      <li>Semantic search, letting users search by meaning instead of exact keyword match</li>
+      <li>Powering a RAG setup, where your AI feature pulls relevant context from your own data before answering</li>
+      <li>Recommendation logic based on similarity, this is like that</li>
+     </ul>
+    </div>
+   </div>
+  </div>
+
+  <div class="callout">
+   <div class="callout-label">Total monthly cost while building and validating</div>
+   <p>~$20. Everything past Claude is free until you've got real users, and Stripe only takes a cut once money is actually moving.</p>
+  </div>
+
+  <div class="stage-stack">
+   <div class="stage-card">
+    <div class="stage-label">Ship first</div>
+    <div class="stage-tools">Namecheap, Cloudflare, GitHub, Claude, Supabase, Clerk, Vercel</div>
+    <p class="stage-desc">That's a live, working product.</p>
+   </div>
+   <div class="stage-card">
+    <div class="stage-label">Add when you charge</div>
+    <div class="stage-tools">Resend, Stripe</div>
+    <p class="stage-desc">The emails a paying product has to send. When money starts moving.</p>
+   </div>
+   <div class="stage-card">
+    <div class="stage-label">Add when you have users</div>
+    <div class="stage-tools">PostHog, Sentry</div>
+    <p class="stage-desc">See what they actually do. So bugs don't rely on someone emailing you.</p>
+   </div>
+   <div class="stage-card">
+    <div class="stage-label">Add when something specific hurts</div>
+    <div class="stage-tools">Upstash, Pinecone</div>
+    <p class="stage-desc">For a slow query or a rate limit. Only if you're building AI search.</p>
+   </div>
+  </div>
+
+  <h2 id="one-at-a-time">Thirteen Tools. One At A Time.</h2>
+  <p>You don't need the full stack to start. Most of it is free, the paid parts only bite once you actually have something worth paying for, and every tool here earns its place at a specific point, not before.</p>
+  <ul>
+   <li><strong>Ship first:</strong> Namecheap, Cloudflare, GitHub, Claude, Supabase, Clerk, Vercel. That's a live, working product.</li>
+   <li><strong>Add when you charge:</strong> Resend for the emails a paying product has to send. Stripe when money starts moving.</li>
+   <li><strong>Add when you have users:</strong> PostHog to see what they actually do. Sentry so bugs don't rely on someone emailing you.</li>
+   <li><strong>Add when something specific hurts:</strong> Upstash for a slow query or a rate limit. Pinecone only if you're building AI search.</li>
+  </ul>
+
+ </main>
+
+ <aside class="toc-sidebar">
+  <div class="toc-box">
+   <h3>In this guide</h3>
+   <ol>
+    <li><a href="#the-full-stack">The Full Stack</a></li>
+    <li><a href="#tools-01-03">Tools 01-03</a></li>
+    <li><a href="#tools-04-06">Tools 04-06</a></li>
+    <li><a href="#tools-07-09">Tools 07-09</a></li>
+    <li><a href="#tools-10-13">Tools 10-13</a></li>
+    <li><a href="#one-at-a-time">One At A Time</a></li>
+   </ol>
+  </div>
+ </aside>
+</div>
+
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+</body>
+</html>

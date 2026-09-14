@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>The 5 Checks: Full Verification Guide</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+ <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+  .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+  .header.scrolled { border-color: var(--accent-border); }
+  .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+  .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+  .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+  .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+  .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+  a.logo-subtitle:hover { color: var(--accent); }
+  .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+  .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+  .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+  @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+  .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+  .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+  .badge-cat { background: var(--accent); color: #fff; }
+  .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+  .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+  .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+  .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+  .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+  .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+  .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+  .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+  .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+  .toc-box ol { list-style: none; counter-reset: toc; }
+  .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+  .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+  .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+  .toc-box a:hover { color: var(--accent); }
+  .guide-content { padding: 2rem 0 5rem; }
+  .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+  .guide-content h2:first-of-type { border-top: none; margin-top: 0; }
+  .guide-content h3 { font-size: 1.0625rem; font-weight: 700; margin-top: 1.75rem; margin-bottom: 0.625rem; }
+  .guide-content p { margin-bottom: 1.125rem; }
+  .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+  .guide-content li { margin-bottom: 0.5rem; }
+  .guide-content strong { font-weight: 600; }
+  .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+  @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .back-btn { margin-left: 0; flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+  .callout { border-left: 4px solid var(--accent-border); background: var(--accent-light); padding: 0.875rem 1.125rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0; }
+  .callout-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.35rem; }
+  .callout p { margin-bottom: 0; }
+  .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+  .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+  @page { margin: 1.5cm; }
+  @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; } p { orphans: 3; widows: 3; } pre, .callout { break-inside: avoid; } }
+
+  .guide-content pre { background: #0a0a0a; color: #f8f8f8; border-radius: 10px; padding: 1.25rem 1.5rem; overflow-x: auto; font-size: 0.8125rem; line-height: 1.6; margin: 0.5rem 0 1.25rem; border: 1px solid #1f1f1f; white-space: pre-wrap; }
+  .guide-content pre code { background: none; border: none; padding: 0; color: inherit; font-size: inherit; }
+  .guide-content code { font-family: 'Courier New', Courier, monospace; }
+  .guide-content p code, .guide-content li code { background: var(--accent-light); color: var(--accent); padding: 0.1em 0.4em; border-radius: 4px; font-size: 0.875em; border: 1px solid var(--accent-border); }
+
+  /* prompt quote + tip line */
+  .prompt-quote { background: #fff; border-left: 3px solid var(--accent); padding: 0.875rem 1.125rem; border-radius: 0 8px 8px 0; margin: 0.75rem 0; font-style: italic; }
+  .prompt-quote p { margin: 0; }
+  .tip-note { font-size: 0.8375rem; color: var(--muted); margin: 0.5rem 0 1.5rem; }
+  .tip-note strong { color: var(--accent); font-style: normal; }
+
+  /* VB1: five-check breakdown rows */
+  .checkrow-list { display: flex; flex-direction: column; gap: 0.75rem; margin: 1.75rem 0; }
+  .checkrow { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1rem 1.25rem; display: flex; gap: 1.25rem; align-items: baseline; flex-wrap: wrap; }
+  .checkrow-label { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--accent); font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.04em; flex-shrink: 0; width: 8rem; }
+  .checkrow-desc { font-size: 0.875rem; margin: 0; flex: 1; min-width: 200px; }
+
+  /* VB2: 2-col tool cards */
+  .tool-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+  @media (max-width: 700px) { .tool-grid { grid-template-columns: 1fr; } }
+  .tool-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.125rem 1.25rem; }
+  .tool-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--accent); font-size: 0.9375rem; margin-bottom: 0.5rem; }
+  .tool-desc { font-size: 0.8375rem; color: var(--muted); margin: 0; }
+
+  /* VB3: fake-evidence warning rows */
+  .warnrow-list { display: flex; flex-direction: column; gap: 0.75rem; margin: 1.75rem 0; }
+  .warnrow { background: #FFFBEB; border: 1.5px solid #FCD34D; border-radius: 10px; padding: 1rem 1.25rem; display: flex; gap: 0.875rem; align-items: flex-start; }
+  .warnrow-icon { color: #D97706; font-weight: 700; font-size: 1.0625rem; flex-shrink: 0; line-height: 1.5; }
+  .warnrow-body { flex: 1; }
+  .warnrow-title { font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.3rem; }
+  .warnrow-desc { font-size: 0.8375rem; color: var(--muted); margin: 0; }
+ </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+  <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+  <div class="logo-divider"></div>
+  <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">&#8592; All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+  <span class="badge badge-cat">Claude Code</span>
+  <span class="badge badge-diff">Intermediate</span>
+ </div>
+ <h1>The 5 Checks: Full Verification Guide</h1>
+ <p class="intro-blurb">The exact prompts, setup and failure patterns for catching AI coding agents that report a task as done when it hasn't actually been tested.</p>
+ <ul>
+  <li>Why agents report confidence as if it were evidence</li>
+  <li>The CLAUDE.md / .cursorrules / AGENTS.md rule that makes it automatic</li>
+  <li><strong>The five prompts:</strong> Requirement, Test, Regression, Diff, Unproven</li>
+  <li>The one combined prompt for running all five at once</li>
+  <li>Hooks and subagents that enforce it instead of just asking for it</li>
+  <li>The common ways "evidence" still turns out to be fake</li>
+ </ul>
+ <div class="hero-author">
+  <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+  <div><span class="author-name">Max Johnson</span><span class="author-meta">@maxjohnscn</span></div>
+ </div>
+</div>
+
+<div class="page-wrap">
+ <main class="guide-content">
+
+  <button class="download-btn" onclick="window.print()">&#8595; Download PDF</button>
+
+  <h2 id="contents">Contents: What You'll Learn</h2>
+  <ul>
+   <li><strong>Why This Matters More Than It Sounds:</strong> Reporting confidence isn't the same as reporting evidence</li>
+   <li><strong>Step 1, Make It Automatic:</strong> Put the rule where the tool reads it every session</li>
+   <li><strong>Step 2, The Five Prompts:</strong> Requirement, Test, Regression, Diff, Unproven</li>
+   <li><strong>Step 3, The One Prompt Version:</strong> All five checks in a single paste</li>
+   <li><strong>Step 4, Make It Enforce Itself:</strong> Hooks and a dedicated regression subagent</li>
+   <li><strong>Common Ways This Still Gets Faked:</strong> The patterns that slip past even a careful check</li>
+  </ul>
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>This works for Claude Code, Cursor and Codex, the same five checks, filed in whichever rule file your tool reads automatically.</p>
+  </div>
+
+  <h2 id="chapter-01">Chapter 01: Why This Matters More Than It Sounds</h2>
+  <p>Claude, Codex and Cursor will all tell you something is done because the code compiles and the change looks reasonable, not because it was actually tested. That's not the model lying: it's the model reporting confidence as if it were evidence. The fix isn't trusting it less, it's asking it to show its work in a way that can't be faked with a sentence.</p>
+  <div class="callout"><p><strong>Tip:</strong> If an agent's answer to "did you test it" is a paragraph and not an output, that's your signal.</p></div>
+
+  <h3>The five sections every DONE claim needs</h3>
+  <div class="checkrow-list">
+   <div class="checkrow"><span class="checkrow-label">Requirement</span><p class="checkrow-desc">the exact requirement, quoted or paraphrased.</p></div>
+   <div class="checkrow"><span class="checkrow-label">Test</span><p class="checkrow-desc">the actual test run and its actual output, not a description.</p></div>
+   <div class="checkrow"><span class="checkrow-label">Regression</span><p class="checkrow-desc">what this change could affect, and what was checked.</p></div>
+   <div class="checkrow"><span class="checkrow-label">Diff</span><p class="checkrow-desc">every changed file and the specific reason it needed to change.</p></div>
+   <div class="checkrow"><span class="checkrow-label">Unproven</span><p class="checkrow-desc">anything that couldn't be verified. Never omitted.</p></div>
+  </div>
+
+  <h2 id="chapter-02">Chapter 02: Step 1, Make It Automatic, Not Something You Remember</h2>
+  <p>Don't rely on typing these five checks in every session. Put the rule where the tool reads it automatically.</p>
+  <p>For Claude Code, add this to your CLAUDE.md (project root or ~/.claude/CLAUDE.md for every project):</p>
+  <pre><code>Never report a task as done from implementation alone. Before saying DONE,
+provide:
+
+REQUIREMENT: the exact requirement this change addresses, quoted or paraphrased
+from what was asked.
+
+TEST: the actual test run and its actual output, not a description of what
+should happen.
+
+REGRESSION: which existing behaviour could this change affect, and what you
+checked to confirm it still works.
+
+DIFF: every changed file and the specific reason it needed to change.
+
+UNPROVEN: anything you could not verify. If nothing is unproven, say so
+explicitly rather than omitting the section.
+
+Do not use the word "done" or "complete" without all five present.</code></pre>
+
+  <div class="tool-grid">
+   <div class="tool-card">
+    <div class="tool-title">Cursor</div>
+    <p class="tool-desc">The same block goes in .cursor/rules (or .cursorrules on older setups).</p>
+   </div>
+   <div class="tool-card">
+    <div class="tool-title">Codex</div>
+    <p class="tool-desc">It goes in AGENTS.md at the repo root: Codex reads this automatically at the start of a session, the same way Claude Code reads CLAUDE.md.</p>
+   </div>
+  </div>
+
+  <div class="callout"><p><strong>Tip:</strong> Keep it under the five points above. The longer a persistent rule file gets, the more of it gets ignored under pressure. This one rule earns its place at the top.</p></div>
+
+  <h2 id="chapter-03">Chapter 03: Step 2, The Prompts For Each Check, On Demand</h2>
+  <p>Even with the rule in place, some sessions need a manual nudge, especially long ones where context has drifted. These are the exact prompts.</p>
+
+  <h3>1. REQUIREMENT</h3>
+  <div class="prompt-quote"><p>"Quote the exact requirement this change was supposed to satisfy. If you inferred anything I didn't explicitly ask for, flag it separately."</p></div>
+  <p class="tip-note"><strong>Tip:</strong> this catches scope creep. Agents regularly implement the version of the task they assumed, not the one you wrote. Quoting forces the gap into view.</p>
+
+  <h3>2. TEST</h3>
+  <div class="prompt-quote"><p>"Run the actual test for this now and paste the real output. Not what you expect it to say, the output."</p></div>
+  <p class="tip-note"><strong>Tip:</strong> if there's no test for the behaviour yet, the correct answer is "no test exists for this, here's one I've written and run", not a description of manual reasoning dressed up as testing.</p>
+
+  <h3>3. REGRESSION</h3>
+  <div class="prompt-quote"><p>"List every function, file or route that calls or depends on what you just changed. For each one, tell me what you did to confirm it still behaves correctly."</p></div>
+  <p class="tip-note"><strong>Tip:</strong> this is the one people skip because it takes longest. It's also the one that actually prevents the 2am production bug. Worth the extra thirty seconds.</p>
+
+  <h2 id="chapter-03-continued">Chapter 03 (continued): The Prompts, Continued</h2>
+
+  <h3>4. DIFF</h3>
+  <div class="prompt-quote"><p>"Go file by file through the diff. For each file, one sentence on why the change in that specific file was necessary. If you can't justify a file, remove the change and re-check."</p></div>
+  <p class="tip-note"><strong>Tip:</strong> agents sometimes touch files that weren't part of the task because it was easier than isolating the change properly. This prompt surfaces that.</p>
+
+  <h3>5. UNPROVEN</h3>
+  <div class="prompt-quote"><p>"What could you not verify with certainty. Be specific, not just 'the integration' but which part of it, and why you couldn't confirm it."</p></div>
+  <p class="tip-note"><strong>Tip:</strong> a vague UNPROVEN is almost as useless as no UNPROVEN. "Couldn't verify the API integration" tells you nothing. "Couldn't verify the webhook fires correctly in production because I don't have access to the live endpoint" tells you exactly what to check yourself.</p>
+
+  <h2 id="chapter-04">Chapter 04: Step 3, The One Prompt Version</h2>
+  <p>For when you just want to run all five at once, paste this after any DONE claim:</p>
+  <pre><code>Before I accept this as done, give me REQUIREMENT (what was actually implemented,
+quoted), TEST (the real command you ran and its real output), REGRESSION (what
+you checked and how), DIFF (every changed file and why), and UNPROVEN (anything
+you couldn't confirm, specifically). If any section would be empty, say so, don't
+skip it.</code></pre>
+
+  <h2 id="chapter-05">Chapter 05: Step 4, Make It Enforce Itself</h2>
+  <p>This is the part most people don't know exists. Claude Code supports hooks: small scripts that run automatically on an event, like right after Claude edits a file. You can set a PostToolUse hook that runs your actual test suite automatically every time Claude finishes editing code, so the TEST section isn't something Claude chooses to do: it's something that happens whether it wants to or not.</p>
+  <div class="callout"><p><strong>Tip:</strong> This matters because a persistent rule in CLAUDE.md is a strong suggestion: the model can still forget it under a long context window. A hook is not a suggestion, it runs regardless of what the model decides.</p></div>
+  <p>You can also spin up a separate subagent whose only job is the REGRESSION check, a second Claude instance that goes and reads what depends on the changed code and reports back, so the regression check isn't done by the same agent that's motivated to say everything's fine.</p>
+  <div class="callout"><p><strong>Tip:</strong> If you're not ready to set up hooks or subagents yet, the CLAUDE.md rule from Step 1 gets you most of the way there on its own. Add the enforcement layer once the manual version becomes second nature.</p></div>
+
+  <h2 id="chapter-06">Chapter 06: Common Ways This Still Gets Faked</h2>
+  <p>Even with all of the above, watch for these patterns: they're the most common way "evidence" turns out not to be evidence.</p>
+
+  <div class="warnrow-list">
+   <div class="warnrow"><span class="warnrow-icon">&#10005;</span><div class="warnrow-body"><div class="warnrow-title">Test output that's suspiciously clean</div><p class="warnrow-desc">If every test passes on the first run with zero output noise, ask to see the full terminal output, not a summary of it.</p></div></div>
+   <div class="warnrow"><span class="warnrow-icon">&#10005;</span><div class="warnrow-body"><div class="warnrow-title">Regression checks that only look at the changed file</div><p class="warnrow-desc">A real regression check looks at what calls that file, not just the file itself.</p></div></div>
+   <div class="warnrow"><span class="warnrow-icon">&#10005;</span><div class="warnrow-body"><div class="warnrow-title">UNPROVEN sections that are technically true but strategically vague</div><p class="warnrow-desc">"Couldn't verify edge cases" is not an UNPROVEN, it's a way of avoiding one.</p></div></div>
+   <div class="warnrow"><span class="warnrow-icon">&#10005;</span><div class="warnrow-body"><div class="warnrow-title">Diff explanations that describe what the code does instead of why it changed</div><p class="warnrow-desc">"This function handles user auth" is not a justification for why it was touched.</p></div></div>
+  </div>
+
+  <h2 id="closing">Closing: Ask For Evidence. Not Confidence.</h2>
+  <h3>Quick Recap To Save</h3>
+  <ul>
+   <li>Put the five-check rule in CLAUDE.md, .cursorrules or AGENTS.md depending on your tool, so it runs by default.</li>
+   <li>Use the five prompts individually when a session needs a manual check.</li>
+   <li>Use the one combined prompt when you want everything at once.</li>
+   <li>If you're comfortable going further, a PostToolUse hook and a dedicated regression subagent take this from "asked for" to "guaranteed."</li>
+   <li>Watch for clean-looking evidence that isn't actually evidence.</li>
+  </ul>
+
+ </main>
+
+ <aside class="toc-sidebar">
+  <div class="toc-box">
+   <h3>In this guide</h3>
+   <ol>
+    <li><a href="#contents">Contents</a></li>
+    <li><a href="#chapter-01">Why It Matters</a></li>
+    <li><a href="#chapter-02">Make It Automatic</a></li>
+    <li><a href="#chapter-03">The Prompts</a></li>
+    <li><a href="#chapter-03-continued">Diff &amp; Unproven</a></li>
+    <li><a href="#chapter-04">One Prompt Version</a></li>
+    <li><a href="#chapter-05">Enforce Itself</a></li>
+    <li><a href="#chapter-06">How It Gets Faked</a></li>
+    <li><a href="#closing">Ask For Evidence</a></li>
+   </ol>
+  </div>
+ </aside>
+</div>
+
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+{
+  "id": "AI-026",
+  "slug": "5-skills-no-one-is-telling-you-about",
+  "title": "5 Skills No One Is Telling You About",
+  "category": "Prompts & Skills",
+  "subcategory": "Custom Skills",
+  "difficulty": "Beginner",
+  "description": "Five underused Claude skills that produce dramatically better output for specific tasks. Covers what each skill does, where to get it, and the exact use cases where it outperforms standard prompting.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Prompts & Skills",
+    "01, Frontend Design",
+    "Anthropic (Official)",
+    "02, User Research",
+    "Cookiy AI",
+    "03, Superpowers",
+    "Jesse Vincent",
+    "Custom Skills"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude",
+    "Cookiy AI"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-026_5-skills-no-one-is-telling-you-about.html",
+  "summary_file": "summaries/AI-026.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

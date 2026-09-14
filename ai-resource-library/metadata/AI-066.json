@@ -1,0 +1,36 @@
+{
+  "id": "AI-066",
+  "slug": "9-things-youre-still-paying-for-that-claude-builds-for-free",
+  "title": "9 Things You're Still Paying For That Claude Builds for Free",
+  "category": "Tools & Integrations",
+  "subcategory": "Third-Party Connectors",
+  "difficulty": "Intermediate",
+  "description": "Nine real builds, one per role, each set up with the specific Claude feature that fits the job: Projects, Skills, Chrome, Mobile + Memory, Artifacts, Cowork, Excel, Word and Code. Full setup steps and the exact prompt for each, from interior designer to meal planner.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Tools & Integrations",
+    "Build 01 of 09: Interior Designer",
+    "The Build",
+    "Build 02 of 09: Copywriter",
+    "Build 03 of 09: Travel Agent",
+    "Build 04 of 09: Language Tutor",
+    "Third-Party Connectors"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude Projects",
+    "Claude Desktop",
+    "Claude Skills",
+    "Claude"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-066_9-things-youre-still-paying-for-that-claude-builds-for-free.html",
+  "summary_file": "summaries/AI-066.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "AI-029",
+  "slug": "the-llm-council-setup-guide",
+  "title": "The LLM Council Setup Guide",
+  "category": "Prompts & Skills",
+  "subcategory": "Custom Skills",
+  "difficulty": "Intermediate",
+  "description": "Set up a multi-model council where Claude, GPT-4, and other LLMs critique and improve each other's outputs. The architecture, the prompts, and the use cases where collective model reasoning wins.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Prompts & Skills",
+    "Chapter 02, How the Council Works",
+    "Chapter 03, The Five Advisors",
+    "Chapter 04, The Full Prompt",
+    "Chapter 05, How to Run It",
+    "Chapter 06, When to Use It",
+    "Custom Skills"
+  ],
+  "ai_tools": [
+    "Claude",
+    "Gemini"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-029_the-llm-council-setup-guide.html",
+  "summary_file": "summaries/AI-029.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

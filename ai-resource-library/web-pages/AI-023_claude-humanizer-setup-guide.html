@@ -1,0 +1,216 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Claude Humanizer Setup Guide</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✦%3C/text%3E%3C/svg%3E">
+ <style>
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+ html { scroll-behavior: smooth; }
+ body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+ .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+ .header.scrolled { border-color: var(--accent-border); }
+ .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+ .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+ .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+ .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+ .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+ a.logo-subtitle:hover { color: var(--accent); }
+ .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+ .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+ .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+ @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+ .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+ .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+ .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+ .badge-cat { background: var(--accent); color: #fff; }
+ .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+ .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+ .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+ .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+ .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+ .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+ .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+ .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+ .toc-box ol { list-style: none; counter-reset: toc; }
+ .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+ .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+ .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+ .toc-box a:hover { color: var(--accent); }
+ .guide-content { padding: 2rem 0 5rem; }
+ .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+ .guide-content h2:first-child { border-top: none; margin-top: 0; }
+ .guide-content h3 { font-size: 1.125rem; font-weight: 600; margin-top: 1.75rem; margin-bottom: 0.75rem; }
+ .guide-content p { margin-bottom: 1.125rem; }
+ .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+ .guide-content li { margin-bottom: 0.375rem; }
+ .guide-content strong { font-weight: 600; }
+ .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+ .callout { background: var(--accent-light); border-left: 3px solid var(--accent); padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; font-size: 0.9375rem; margin: 1.25rem 0; }
+ .callout p { margin: 0; }
+ .callout strong { color: var(--accent); }
+ .code-block { background: #000; color: #e2e8f0; font-family: 'Courier New', Courier, monospace; font-size: 0.875rem; line-height: 1.6; padding: 1.25rem 1.5rem; border-radius: 8px; overflow-x: auto; margin: 1.25rem 0; white-space: pre; }
+ .prompt-example { background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 8px; padding: 1.125rem 1.25rem; margin: 1rem 0; font-size: 0.9rem; font-family: 'Courier New', Courier, monospace; line-height: 1.65; white-space: pre-wrap; }
+ .fix-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; margin: 1.5rem 0; }
+ @media (max-width: 500px) { .fix-grid { grid-template-columns: 1fr; } }
+ .fix-tag { display: flex; align-items: center; gap: 0.5rem; background: #fff; border: 1px solid var(--accent-border); border-radius: 8px; padding: 0.5rem 0.75rem; font-size: 0.875rem; }
+ .fix-tag-check { color: var(--accent); font-weight: 700; flex-shrink: 0; }
+ .fix-tag-text { text-decoration: line-through; color: var(--muted); }
+ @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+     .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+    @page { margin: 1.5cm; } @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .chapter-card, .compare-card, .checklist-card, blockquote { break-inside: avoid; page-break-inside: avoid; } .chapter-overview, .compare-grid, .checklist-grid, .email-flow { break-inside: avoid; page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+ <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+ <div class="logo-divider"></div>
+ <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">← All guides</a>
+ </div>
+</header>
+<div class="guide-hero">
+ <div class="hero-meta">
+ <span class="badge badge-cat">Tools &amp; Integrations</span>
+ <span class="badge badge-diff">Beginner</span>
+ </div>
+ <h1>Claude Humanizer Setup Guide</h1>
+ <div class="hero-author">
+ <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+ <div><span class="author-name">Max Johnson</span><span class="author-meta">@maxjohnscn</span></div>
+ </div>
+</div>
+<div class="page-wrap">
+ <article class="guide-content">
+    <button class="download-btn" onclick="downloadPDF()">&#8595; Download PDF</button>
+ <p class="intro-blurb">Claude Humanizer Setup Guide, Make your AI writing sound human.</p>
+ <p>The Claude Humanizer is a free, open-source skill for Claude Code that rewrites AI-generated text to sound natural and human. It's based on Wikipedia's guide to spotting AI writing, and it fixes all the classic AI tells: the em dashes, the buzzwords, the robotic sentence structures, the overly formal phrasing.</p>
+ <p>In short: paste in your AI-written content, and get back something that actually sounds like a person wrote it.</p>
+
+ <!-- VISUAL BLOCK 1 -->
+ <div class="fix-grid">
+ <div class="fix-tag"><span class="fix-tag-check">✓</span><span class="fix-tag-text">Em dash overuse</span></div>
+ <div class="fix-tag"><span class="fix-tag-check">✓</span><span class="fix-tag-text">Buzzwords</span></div>
+ <div class="fix-tag"><span class="fix-tag-check">✓</span><span class="fix-tag-text">Filler openers</span></div>
+ <div class="fix-tag"><span class="fix-tag-check">✓</span><span class="fix-tag-text">Rule of three</span></div>
+ <div class="fix-tag"><span class="fix-tag-check">✓</span><span class="fix-tag-text">Vague attributions</span></div>
+ <div class="fix-tag"><span class="fix-tag-check">✓</span><span class="fix-tag-text">Over-hyphenation</span></div>
+ <div class="fix-tag"><span class="fix-tag-check">✓</span><span class="fix-tag-text">Promotional language</span></div>
+ <div class="fix-tag"><span class="fix-tag-check">✓</span><span class="fix-tag-text">Robotic sentence structure</span></div>
+ </div>
+
+ <p><strong>What you need:</strong></p>
+ <ul>
+ <li>A computer running Mac, Windows, or Linux</li>
+ <li>Claude Code installed, the free command-line tool from Anthropic</li>
+ <li>A terminal / command prompt</li>
+ <li>Git installed, a free tool for downloading code from the internet</li>
+ </ul>
+
+ <h2 id="step-1-install-claude-code">Step 1, Install Claude Code</h2>
+ <p>Claude Code is the tool that runs the Humanizer skill. If you already have it, skip to Step 2.</p>
+ <div class="code-block"># Install Claude Code
+npm install -g @anthropic-ai/claude-code
+
+# Log in
+claude login</div>
+ <p>Follow the instructions, it will open a browser window for you to authorise.</p>
+ <div class="callout"><p><strong>TIP:</strong> If you see 'command not found' when typing npm, you need to install Node.js first. Visit nodejs.org and download the LTS version.</p></div>
+
+ <h2 id="step-2-install-git-if-needed">Step 2, Install Git (if needed)</h2>
+ <p>Git is what we use to download the Humanizer from GitHub. Most Macs already have it. To check, open your terminal and type:</p>
+ <div class="code-block">git --version</div>
+ <p>If you see a version number, you're good, skip to Step 3. If you get an error, download and install Git from: https://git-scm.com/downloads</p>
+
+ <h2 id="step-3-install-the-humanizer-skill">Step 3, Install the Humanizer Skill</h2>
+ <p>The GitHub repository: github.com/blader/humanizer</p>
+ <p>Run the install commands. Open your terminal and run these two commands, one at a time:</p>
+ <div class="code-block"># First, create the skills folder:
+mkdir -p ~/.claude/skills
+
+# Then, download the Humanizer into it:
+git clone https://github.com/blader/humanizer.git ~/.claude/skills/humanizer</div>
+ <div class="callout"><p><strong>Done!</strong> You should see a message saying 'Cloning into...' followed by some download progress. That means it worked.</p></div>
+ <p><strong>Already downloaded the file manually?</strong> If you already have the SKILL.md file saved somewhere, you can copy it manually instead:</p>
+ <div class="code-block">mkdir -p ~/.claude/skills/humanizer
+cp SKILL.md ~/.claude/skills/humanizer/</div>
+
+ <h2 id="step-4-use-the-humanizer">Step 4, Use the Humanizer</h2>
+ <ol>
+ <li>Open your terminal</li>
+ <li>Navigate to the folder containing the text you want to humanize (or just stay in your home folder)</li>
+ <li>Start Claude Code by typing: <code>claude</code></li>
+ <li>Once Claude Code is running, paste your AI-generated text and ask it to humanize it:</li>
+ </ol>
+ <div class="prompt-example">Humanize this text: [paste your text here]</div>
+ <p>Claude Code will detect the Humanizer skill automatically and rewrite your content to remove AI patterns.</p>
+ <div class="callout"><p><strong>BEST RESULTS:</strong> The skill works best on content that's already mostly written, blog posts, emails, captions, LinkedIn posts, etc. It's designed to strip out robotic phrasing, not write from scratch.</p></div>
+
+ <h2 id="what-the-humanizer-fixes">What the Humanizer Fixes</h2>
+ <p>The skill is based on Wikipedia's guide to AI writing patterns. Here are some of the things it removes:</p>
+ <ul>
+ <li><strong>Em dash overuse</strong>, the constant 'em dashes' AI loves</li>
+ <li><strong>Buzzwords</strong>, 'testament', 'delve', 'nuanced', 'pivotal', 'transformative'</li>
+ <li><strong>Filler openers</strong>, 'Great question!', 'Certainly!', 'Of course!'</li>
+ <li><strong>Rule of three</strong>, AI always lists things in threes</li>
+ <li><strong>Vague attributions</strong>, 'Industry observers have noted...'</li>
+ <li><strong>Over-hyphenation</strong>, 'cross-functional', 'data-driven', 'client-facing'</li>
+ <li><strong>Promotional language</strong>, making everything sound like a press release</li>
+ </ul>
+ <p>It also runs a final 'obviously AI-generated' audit pass and rewrites anything that still sounds off.</p>
+
+ <h2 id="troubleshooting">Troubleshooting</h2>
+ <p><strong>'command not found: git'</strong>, Git isn't installed. Go to git-scm.com/downloads and install it, then try again.</p>
+ <p><strong>'command not found: claude'</strong>, Claude Code isn't installed or the install didn't complete. Re-run: <code>npm install -g @anthropic-ai/claude-code</code></p>
+ <p><strong>The skill doesn't seem to activate</strong>, Make sure the file is in exactly the right place. Run this to check: <code>ls ~/.claude/skills/humanizer/</code>. You should see SKILL.md listed. If the folder is empty or doesn't exist, re-run the git clone command from Step 3.</p>
+ <p><strong>Something else isn't working</strong>, Check the GitHub repo for the latest instructions and known issues: https://github.com/blader/humanizer</p>
+
+ <h2 id="quick-reference">Quick Reference</h2>
+ <div class="code-block"># Install Claude Code
+npm install -g @anthropic-ai/claude-code
+
+# Log in to Claude Code
+claude login
+
+# Install the Humanizer skill
+mkdir -p ~/.claude/skills
+git clone https://github.com/blader/humanizer.git ~/.claude/skills/humanizer
+
+# Run Claude Code
+claude</div>
+ 
+ </article>
+ <aside class="toc-sidebar">
+ <div class="toc-box">
+ <h3>Contents</h3>
+ <ol>
+ <li><a href="#step-1-install-claude-code">Install Claude Code</a></li>
+ <li><a href="#step-2-install-git-if-needed">Install Git</a></li>
+ <li><a href="#step-3-install-the-humanizer-skill">Install the Humanizer Skill</a></li>
+ <li><a href="#step-4-use-the-humanizer">Use the Humanizer</a></li>
+ <li><a href="#what-the-humanizer-fixes">What It Fixes</a></li>
+ <li><a href="#troubleshooting">Troubleshooting</a></li>
+ <li><a href="#quick-reference">Quick Reference</a></li>
+ </ol>
+ </div>
+ </aside>
+</div>
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+<script>
+function downloadPDF() {
+  window.print();
+}
+</script>
+</body>
+</html>

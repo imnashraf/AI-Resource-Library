@@ -1,0 +1,30 @@
+{
+  "id": "AI-021",
+  "slug": "posthog-claude-code-setup-guide",
+  "title": "PostHog + Claude Code Setup Guide",
+  "category": "Tools & Integrations",
+  "subcategory": "Analytics & Sheets",
+  "difficulty": "Intermediate",
+  "description": "Connect PostHog product analytics to Claude Code via MCP. Query events, funnels, and user data in plain English, then use Claude Code to act on what you find without leaving the terminal.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Tools & Integrations",
+    "Your Landing Page Is Now Learning",
+    "Analytics & Sheets"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude",
+    "PostHog"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-021_posthog-claude-code-setup-guide.html",
+  "summary_file": "summaries/AI-021.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

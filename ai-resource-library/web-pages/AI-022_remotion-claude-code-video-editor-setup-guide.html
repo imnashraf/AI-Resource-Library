@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Remotion + Claude Code Video Editor Setup Guide</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✦%3C/text%3E%3C/svg%3E">
+ <style>
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+ html { scroll-behavior: smooth; }
+ body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+ .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+ .header.scrolled { border-color: var(--accent-border); }
+ .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+ .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+ .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+ .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+ .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+ a.logo-subtitle:hover { color: var(--accent); }
+ .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+ .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+ .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+ @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+ .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+ .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+ .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+ .badge-cat { background: var(--accent); color: #fff; }
+ .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+ .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+ .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+ .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+ .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+ .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+ .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+ .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+ .toc-box ol { list-style: none; counter-reset: toc; }
+ .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+ .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+ .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+ .toc-box a:hover { color: var(--accent); }
+ .guide-content { padding: 2rem 0 5rem; }
+ .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+ .guide-content h2:first-child { border-top: none; margin-top: 0; }
+ .guide-content h3 { font-size: 1.125rem; font-weight: 600; margin-top: 1.75rem; margin-bottom: 0.75rem; }
+ .guide-content p { margin-bottom: 1.125rem; }
+ .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+ .guide-content li { margin-bottom: 0.375rem; }
+ .guide-content strong { font-weight: 600; }
+ .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+ .callout { background: var(--accent-light); border-left: 3px solid var(--accent); padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; font-size: 0.9375rem; margin: 1.25rem 0; }
+ .callout p { margin: 0; }
+ .callout strong { color: var(--accent); }
+ .code-block { background: #000; color: #e2e8f0; font-family: 'Courier New', Courier, monospace; font-size: 0.875rem; line-height: 1.6; padding: 1.25rem 1.5rem; border-radius: 8px; overflow-x: auto; margin: 1.25rem 0; white-space: pre; }
+ .prompt-example { background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 8px; padding: 1.125rem 1.25rem; margin: 1rem 0; font-size: 0.9rem; font-family: 'Courier New', Courier, monospace; line-height: 1.65; white-space: pre-wrap; }
+ .flow-steps { display: flex; gap: 0; margin: 1.5rem 0; flex-wrap: wrap; }
+ .flow-step { flex: 1; min-width: 160px; background: #fff; border: 1px solid var(--accent-border); padding: 1rem; position: relative; }
+ .flow-step:not(:last-child)::after { content: "→"; position: absolute; right: -14px; top: 50%; transform: translateY(-50%); color: var(--accent); font-weight: 700; font-size: 1.1rem; z-index: 1; }
+ @media (max-width: 600px) { .flow-steps { flex-direction: column; } .flow-step:not(:last-child)::after { content: "↓"; right: auto; left: 50%; bottom: -14px; top: auto; transform: translateX(-50%); } }
+ .flow-step-num { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 700; font-size: 0.8rem; margin-bottom: 0.5rem; }
+ .flow-step-title { font-weight: 600; font-size: 0.875rem; margin-bottom: 0.25rem; }
+ .flow-step-desc { font-size: 0.8rem; color: var(--muted); }
+ @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+     .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+    @page { margin: 1.5cm; } @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .chapter-card, .compare-card, .checklist-card, blockquote { break-inside: avoid; page-break-inside: avoid; } .chapter-overview, .compare-grid, .checklist-grid, .email-flow { break-inside: avoid; page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+ <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+ <div class="logo-divider"></div>
+ <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">← All guides</a>
+ </div>
+</header>
+<div class="guide-hero">
+ <div class="hero-meta">
+ <span class="badge badge-cat">Tools &amp; Integrations</span>
+ <span class="badge badge-diff">Beginner</span>
+ </div>
+ <h1>Remotion + Claude Code Video Editor Setup Guide</h1>
+ <div class="hero-author">
+ <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+ <div><span class="author-name">Max Johnson</span><span class="author-meta">@maxjohnscn</span></div>
+ </div>
+</div>
+<div class="page-wrap">
+ <article class="guide-content">
+    <button class="download-btn" onclick="downloadPDF()">&#8595; Download PDF</button>
+ <p class="intro-blurb">Remotion + Claude Code Video Editor Setup Guide.</p>
+ <p>By the end of this guide you will have Remotion connected to Claude Code and be able to create or edit videos directly from Claude using plain English instructions.</p>
+ <p><strong>What you'll be able to do:</strong></p>
+ <ul>
+ <li>Describe a video in plain English and Claude builds it</li>
+ <li>Reference any video file on your computer for editing</li>
+ <li>Ask for revisions and watch Claude update the editor live</li>
+ <li>No separate editing software required</li>
+ </ul>
+ <p><strong>Requirements:</strong></p>
+ <ul>
+ <li>Claude Desktop with Claude Code enabled</li>
+ <li>A computer running macOS or Windows</li>
+ <li>An internet connection for the initial install</li>
+ </ul>
+
+ <!-- VISUAL BLOCK 1 -->
+ <div class="flow-steps">
+ <div class="flow-step">
+ <div class="flow-step-num">1</div>
+ <div class="flow-step-title">Open Claude Desktop</div>
+ <div class="flow-step-desc">Switch to Code mode</div>
+ </div>
+ <div class="flow-step">
+ <div class="flow-step-num">2</div>
+ <div class="flow-step-title">Install Remotion</div>
+ <div class="flow-step-desc"><code>npx create-video@latest</code></div>
+ </div>
+ <div class="flow-step">
+ <div class="flow-step-num">3</div>
+ <div class="flow-step-title">Open editor</div>
+ <div class="flow-step-desc"><code>/remotion video</code></div>
+ </div>
+ </div>
+
+ <h2 id="setup-three-steps-to-get-running">Setup, Three Steps to Get Running</h2>
+ <p><strong>Step 1, Open Claude Desktop and switch to Claude Code.</strong> Open the Claude Desktop app. In the top navigation, select Code to switch into Claude Code mode. This is where all the setup happens.</p>
+ <div class="callout"><p><strong>TIP:</strong> If you do not see a Code tab in Claude Desktop, make sure your app is up to date. Check for updates in the menu bar under Help.</p></div>
+ <p><strong>Step 2, Get the Remotion install command.</strong> Open a browser and search Remotion. Click the first result, which should be remotion.dev. On the site, find the install command and copy it. It looks like this:</p>
+ <div class="code-block">npx create-video@latest</div>
+ <p>Copy that command. Head back to Claude Code, paste it into the input and press Enter. Claude will handle the rest of the installation automatically.</p>
+ <div class="callout"><p><strong>INFO:</strong> The install takes about a minute depending on your connection. Claude will let you know when it is done.</p></div>
+ <p><strong>Step 3, Open the Remotion interface inside Claude.</strong> Once the install is complete, open a new tab inside Claude Code. In the address bar type:</p>
+ <div class="code-block">/remotion video</div>
+ <p>This opens Remotion's video editor directly inside Claude. You are now ready to create and edit videos.</p>
+
+ <h2 id="using-it-creating-and-editing-videos">Using It, Creating and Editing Videos</h2>
+ <p><strong>Creating a new video.</strong> Once the editor is open, describe the video you want in plain English. Tell Claude the style, the content, the length. It will start building it out in the editor immediately.</p>
+ <p><strong>Editing an existing video.</strong> To edit a video file from your computer, reference it by file path in your message to Claude. For example:</p>
+ <div class="code-block">Edit the video at /Users/yourname/Downloads/myclip.mp4, add text overlays
+and trim the first 5 seconds</div>
+ <p><strong>Requesting revisions.</strong> If you want changes, just ask. Type your revision instructions in plain English and Claude updates the editor live. There is no need to restart or re-run anything.</p>
+ <div class="callout"><p><strong>TIP:</strong> Be specific with your instructions. The more detail you give Claude about what you want, the closer the first result will be to what you are after.</p></div>
+
+ <h2 id="quick-reference-commands">Quick Reference, Commands at a Glance</h2>
+ <p><strong>Install command (run once):</strong></p>
+ <div class="code-block">npx create-video@latest</div>
+ <p><strong>Open the video editor:</strong></p>
+ <div class="code-block">/remotion video</div>
+ <p><strong>Example prompt to create a video:</strong></p>
+ <div class="code-block">Create a 30 second intro video with my company name in bold text, dark
+background, fade in from black</div>
+ <p><strong>Example prompt to edit a file:</strong></p>
+ <div class="code-block">Edit /path/to/video.mp4, add subtitles and remove the last 10 seconds</div>
+ <div class="callout"><p><strong>NOTE:</strong> Remotion renders videos using your computer's processing power. Longer or more complex videos will take more time to export.</p></div>
+ <p>That is everything. You now have a full AI video editor running inside Claude.</p>
+ </article>
+ <aside class="toc-sidebar">
+ <div class="toc-box">
+ <h3>Contents</h3>
+ <ol>
+ <li><a href="#setup-three-steps-to-get-running">Setup, Three Steps</a></li>
+ <li><a href="#using-it-creating-and-editing-videos">Creating and Editing Videos</a></li>
+ <li><a href="#quick-reference-commands">Quick Reference</a></li>
+ </ol>
+ </div>
+ </aside>
+</div>
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+<script>
+function downloadPDF() {
+  window.print();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,374 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>7 Claude Code Agent Types</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✦%3C/text%3E%3C/svg%3E">
+ <style>
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+ html { scroll-behavior: smooth; }
+ body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+ .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+ .header.scrolled { border-color: var(--accent-border); }
+ .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+ .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+ .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+ .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+ .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+ a.logo-subtitle:hover { color: var(--accent); }
+ .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+ .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+ .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+ @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+ .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+ .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+ .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+ .badge-cat { background: var(--accent); color: #fff; }
+ .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+ .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+ .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+ .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+ .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+ .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+ .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+ .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+ .toc-box ol { list-style: none; counter-reset: toc; }
+ .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+ .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+ .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+ .toc-box a:hover { color: var(--accent); }
+ .guide-content { padding: 2rem 0 5rem; }
+ .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+ .guide-content h2:first-child { border-top: none; margin-top: 0; }
+ .guide-content h3 { font-size: 1.125rem; font-weight: 600; margin-top: 1.75rem; margin-bottom: 0.75rem; }
+ .guide-content p { margin-bottom: 1.125rem; }
+ .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+ .guide-content li { margin-bottom: 0.375rem; }
+ .guide-content strong { font-weight: 600; }
+ .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+ .callout { background: var(--accent-light); border-left: 3px solid var(--accent); padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; font-size: 0.9375rem; margin: 1.25rem 0; }
+ .callout p { margin: 0; }
+ .callout strong { color: var(--accent); }
+ .code-block { background: #000; color: #fff; font-family: 'Courier New', Courier, monospace; font-size: 0.875rem; line-height: 1.6; padding: 1.25rem 1.5rem; border-radius: 8px; overflow-x: auto; margin: 1.25rem 0; }
+ .code-block code { background: none; color: inherit; }
+ .prompt-example { background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 8px; padding: 1.125rem 1.25rem; margin: 1rem 0; font-size: 0.9rem; font-family: 'Courier New', Courier, monospace; line-height: 1.65; white-space: pre-wrap; }
+ .vb-cards { display: flex; gap: 1rem; flex-wrap: wrap; margin: 1.5rem 0; }
+ .vb-card { flex: 1; min-width: 200px; background: #fff; border: 1.5px solid #E5E7EB; border-radius: 10px; padding: 1.125rem 1rem; }
+ .vb-card .vb-num { font-size: 0.75rem; font-weight: 700; color: var(--accent); letter-spacing: 0.04em; margin-bottom: 0.3rem; }
+ .vb-card .vb-title { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.35rem; }
+ .vb-card .vb-desc { font-size: 0.825rem; color: var(--muted); line-height: 1.5; }
+ .agent-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.75rem; margin: 1.5rem 0; }
+ .agent-mini-card { background: #fff; border: 1.5px solid #E5E7EB; border-radius: 8px; padding: 0.875rem 0.875rem; }
+ .agent-mini-card .amn { font-size: 1.1rem; font-weight: 700; color: var(--accent); font-family: 'Space Grotesk', sans-serif; margin-bottom: 0.2rem; }
+ .agent-mini-card .amt { font-size: 0.8rem; font-weight: 600; margin-bottom: 0.2rem; }
+ .agent-mini-card .amd { font-size: 0.75rem; color: var(--muted); line-height: 1.4; }
+ .flow-steps { display: flex; align-items: stretch; gap: 0; flex-wrap: wrap; margin: 1.5rem 0; }
+ .flow-step { flex: 1; min-width: 140px; background: #fff; border: 1.5px solid #E5E7EB; border-radius: 8px; padding: 1rem; text-align: center; position: relative; }
+ .flow-step .fs-num { display: inline-block; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 0.8rem; font-weight: 700; line-height: 28px; margin-bottom: 0.5rem; }
+ .flow-step .fs-title { font-size: 0.875rem; font-weight: 600; margin-bottom: 0.25rem; }
+ .flow-step .fs-desc { font-size: 0.775rem; color: var(--muted); }
+ @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } .vb-cards { flex-direction: column; } .flow-steps { flex-direction: column; } }
+     .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+    @page { margin: 1.5cm; } @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .chapter-card, .compare-card, .checklist-card, blockquote { break-inside: avoid; page-break-inside: avoid; } .chapter-overview, .compare-grid, .checklist-grid, .email-flow { break-inside: avoid; page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+ <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+ <div class="logo-divider"></div>
+ <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">← All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+ <span class="badge badge-cat">Claude Code</span>
+ <span class="badge badge-diff">Intermediate</span>
+ </div>
+ <h1>7 Claude Code Agent Types</h1>
+ <div class="hero-author">
+ <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+ <div>
+ <span class="author-name">Max Johnson</span>
+ <span class="author-meta">@maxjohnscn</span>
+ </div>
+ </div>
+</div>
+
+<div class="page-wrap">
+ <main class="guide-content">
+
+ <p class="intro-blurb">Build Agents That Automate Basically Anything Inside Claude Code.</p>
+
+ <p>Most people using Claude Code do not know these seven agent types exist. Each one is a different pattern for how an agent can be structured, and each one solves a different class of problem. Master all seven and you can build agents that handle real work, not just demos.</p>
+
+ <p><strong>What you will have when this is done:</strong></p>
+ <ul>
+ <li>A clear understanding of all seven agent types and when to use each one</li>
+ <li>The setup pattern for each agent with ready-to-use prompts</li>
+ <li>A framework for combining agent types to tackle complex real-world tasks</li>
+ </ul>
+
+ <!-- VISUAL BLOCK 1 -->
+ <div class="agent-grid">
+ <div class="agent-mini-card">
+ <div class="amn">01</div>
+ <div class="amt">Basic Agent</div>
+ <div class="amd">Tool access and autonomous execution</div>
+ </div>
+ <div class="agent-mini-card">
+ <div class="amn">02</div>
+ <div class="amt">MCP Agent</div>
+ <div class="amd">Connected to your actual data systems</div>
+ </div>
+ <div class="agent-mini-card">
+ <div class="amn">03</div>
+ <div class="amt">Sequential</div>
+ <div class="amd">Assembly line, one output feeds the next</div>
+ </div>
+ <div class="agent-mini-card">
+ <div class="amn">04</div>
+ <div class="amt">Parallel</div>
+ <div class="amd">Multiple agents, simultaneous, merged result</div>
+ </div>
+ <div class="agent-mini-card">
+ <div class="amn">05</div>
+ <div class="amt">Router</div>
+ <div class="amd">Classifies and directs incoming tasks</div>
+ </div>
+ <div class="agent-mini-card">
+ <div class="amn">06</div>
+ <div class="amt">Human in Loop</div>
+ <div class="amd">Full prep, waits for your approval</div>
+ </div>
+ <div class="agent-mini-card">
+ <div class="amn">07</div>
+ <div class="amt">Orchestrator</div>
+ <div class="amd">Spawns the right agents for any task</div>
+ </div>
+ </div>
+
+ <h2 id="agent-type-01">Agent Type 01, Basic Agent With Tools, The starting point</h2>
+
+ <p>Give Claude access to external tools, calendar, Gmail, contacts, and it can plan and execute tasks on its own. This is the foundation every other agent type builds on.</p>
+
+ <p><strong>What it does:</strong></p>
+ <ul>
+ <li>Accesses connected tools autonomously</li>
+ <li>Plans multi-step tasks without being told each step</li>
+ <li>Executes actions, booking, emailing, updating, without hand-holding</li>
+ </ul>
+
+ <div class="code-block"><pre>$ Claude Code, basic agent setup
+
+You are an autonomous agent with access to the following tools:
+- Calendar: read and create events
+- Gmail: read, draft and send emails
+- Contacts: search and retrieve contact information
+When given a task, plan the steps needed and execute them
+using the available tools. Do not ask for confirmation on
+each step unless the action is irreversible.</pre></div>
+
+ <div class="callout"><p><strong>TIP:</strong> Start here before building any other agent type. Getting comfortable with tool access and autonomous execution is the foundation everything else relies on.</p></div>
+
+ <h2 id="agent-type-02">Agent Type 02, Agent With MCP Servers, This is where it gets powerful</h2>
+
+ <p>Connect your agent to Notion, Atlassian, databases and any service with an MCP integration. The agent can now read and write to everything you store and manage, not just execute tasks.</p>
+
+ <p><strong>What it does:</strong></p>
+ <ul>
+ <li>Connects to Notion, Jira, Confluence, databases via MCP</li>
+ <li>Reads existing data before acting, context-aware decisions</li>
+ <li>Writes back to your systems, updates tickets, pages, records</li>
+ </ul>
+
+ <div class="code-block"><pre>$ Claude Code, add MCP server connection
+
+# Add Notion MCP
+claude mcp add notion --api-key YOUR_NOTION_KEY
+# Add Atlassian MCP
+claude mcp add atlassian --api-key YOUR_ATLASSIAN_KEY
+# Verify connections
+claude mcp list</pre></div>
+
+ <div class="callout"><p><strong>NOTE:</strong> Each MCP server gives the agent a new domain of access. The more servers connected, the more the agent can see and act on. Start with one and expand.</p></div>
+
+ <h2 id="agent-type-03">Agent Type 03, Sequential Agents, An assembly line built from AI</h2>
+
+ <p>Chain multiple agents together so the output of one becomes the input of the next. Agent 1 reads your contacts, passes the data to Agent 2 which writes the email, Agent 3 sends it. Each agent specialises in one step.</p>
+
+ <p><strong>What it does:</strong></p>
+ <ul>
+ <li>Breaks complex tasks into specialist steps</li>
+ <li>Each agent receives the previous agent's output as context</li>
+ <li>Errors stay contained, one broken step does not corrupt the whole chain</li>
+ </ul>
+
+ <div class="code-block"><pre>$ Claude Code, sequential agent chain
+
+# Agent 1, reads and formats contact data
+AGENT_1_OUTPUT=$(claude run 'Read contacts matching [criteria].
+Return structured JSON with name, email, company.')
+
+# Agent 2, writes personalised email from the data
+AGENT_2_OUTPUT=$(echo $AGENT_1_OUTPUT | claude run 'Using
+this contact data, write a personalised outreach email.')
+# Agent 3, sends the email
+echo $AGENT_2_OUTPUT | claude run 'Send this email via Gmail.'</pre></div>
+
+ <div class="callout"><p><strong>TIP:</strong> The key to sequential agents is clean handoffs. Each agent should output something specific and structured that the next agent can consume without ambiguity.</p></div>
+
+ <h2 id="agent-type-04">Agent Type 04, Parallel Execution Agents, Multiple agents, one result</h2>
+
+ <p>Split a task across multiple agents running simultaneously. Agent A does research, Agent B does analysis, Agent C does writing, all at the same time. Results merge at the end. What takes one agent ten minutes takes three agents two.</p>
+
+ <p><strong>What it does:</strong></p>
+ <ul>
+ <li>Runs multiple specialist agents simultaneously</li>
+ <li>Each agent works on a different aspect of the same goal</li>
+ <li>Results are merged into a single unified output</li>
+ </ul>
+
+ <div class="code-block"><pre>$ Claude Code, parallel execution pattern
+
+# Launch three agents in parallel
+claude run 'Research the market landscape for [topic].
+Return key findings as JSON.' &amp;
+claude run 'Analyse competitor positioning for [topic].
+Return strengths and weaknesses as JSON.' &amp;
+claude run 'Write an executive summary for [topic]
+using the provided context.' &amp;
+# Wait for all to complete then merge
+wait</pre></div>
+
+ <div class="callout"><p><strong>NOTE:</strong> Parallel agents work best when the sub-tasks are genuinely independent. If one task depends on another's output, use sequential agents instead.</p></div>
+
+ <h2 id="agent-type-05">Agent Type 05, Agents With Routers, The AI traffic controller</h2>
+
+ <p>Add smart routing logic that directs incoming tasks to different workflows based on the content. Urgent tasks go to the fast track. Sales enquiries go to the CRM workflow. Support requests go to triage. The right task always goes to the right place.</p>
+
+ <p><strong>What it does:</strong></p>
+ <ul>
+ <li>Reads incoming input and classifies it before acting</li>
+ <li>Routes to different agent workflows based on the classification</li>
+ <li>Handles mixed input streams without manual sorting</li>
+ </ul>
+
+ <div class="code-block"><pre>$ Claude Code, router agent pattern
+
+You are a routing agent. When you receive a task:
+1. Classify it as one of: URGENT, SALES, SUPPORT, GENERAL
+2. Route accordingly:
+- URGENT: invoke fast-track-agent with priority flag
+- SALES: invoke sales-workflow-agent with CRM context
+- SUPPORT: invoke support-triage-agent
+- GENERAL: invoke standard-agent
+Always explain your classification before routing.</pre></div>
+
+ <div class="callout"><p><strong>TIP:</strong> Router agents are most valuable when you are dealing with high volumes of varied input, emails, messages, tickets, where manual sorting is the bottleneck.</p></div>
+
+ <h2 id="agent-type-06">Agent Type 06, Human In The Loop, For high stakes tasks</h2>
+
+ <p>The agent does all the work but stops and waits for your approval before executing. It prepares everything, explains what it is about to do, and only proceeds when you confirm. The right agent for anything irreversible or high risk.</p>
+
+ <p><strong>What it does:</strong></p>
+ <ul>
+ <li>Completes all preparation and planning autonomously</li>
+ <li>Presents the proposed action clearly before executing</li>
+ <li>Waits for explicit human approval, does not proceed until confirmed</li>
+ </ul>
+
+ <div class="code-block"><pre>$ Claude Code, human in the loop pattern
+
+You are an agent with human approval required for all actions.
+Workflow:
+1. Analyse the task and plan every step
+2. Present your complete plan in plain English
+3. List every action you will take and its consequences
+4. Ask: 'Do you approve this plan? Reply YES to proceed.'
+5. Only execute after receiving explicit approval
+6. If anything changes mid-execution, pause and re-confirm</pre></div>
+
+ <div class="callout"><p><strong>WARNING:</strong> Never skip the approval step for human-in-the-loop agents. The value of this pattern is the human checkpoint, removing it defeats the purpose entirely.</p></div>
+
+ <h2 id="agent-type-07">Agent Type 07, Orchestrator Agent, The most powerful agent type</h2>
+
+ <p>A main agent that dynamically spawns specialist sub-agents on demand. When the orchestrator decides it needs help with a specific part of a task, it creates the right agent for that job in real time. No fixed pipeline, adapts to whatever the task requires.</p>
+
+ <p><strong>What it does:</strong></p>
+ <ul>
+ <li>Acts as a team lead, breaks complex goals into specialist tasks</li>
+ <li>Spawns sub-agents dynamically based on what each task requires</li>
+ <li>Coordinates sub-agent outputs into a unified result</li>
+ <li>Adapts its team structure based on what the work actually needs</li>
+ </ul>
+
+ <div class="code-block"><pre>$ Claude Code, orchestrator agent pattern
+
+You are an orchestrator agent. Your job is to break complex
+goals into specialist tasks and spawn sub-agents to handle them.
+When you receive a goal:
+1. Identify the distinct specialist tasks required
+2. For each task, spawn a sub-agent with a specific role and
+precise instructions
+3. Collect and synthesise all sub-agent outputs
+4. Deliver a unified final result
+Spawn sub-agents using: claude run '[specific instructions]'
+You may spawn sub-agents that themselves spawn further agents
+if the task requires it.</pre></div>
+
+ <div class="callout"><p><strong>TIP:</strong> The orchestrator pattern has no hard limit on scope. It can spawn agents that spawn agents. Start with simple two-level orchestration, one orchestrator, two or three sub-agents, before going deeper.</p></div>
+
+ <h2 id="combining-all-seven">Combining All Seven, How to Think About Agent Architecture</h2>
+
+ <p>These seven types are not mutually exclusive. Real-world agent systems combine multiple patterns. A common pattern for a business automation system:</p>
+ <ul>
+ <li>A router agent (Type 5) receives all incoming requests</li>
+ <li>Routes urgent tasks to a human-in-the-loop agent (Type 6)</li>
+ <li>Routes standard tasks to an orchestrator (Type 7) that spawns parallel sub-agents (Type 4)</li>
+ <li>Each sub-agent connects to relevant services via MCP (Type 2)</li>
+ <li>Complex workflows run as sequential chains (Type 3)</li>
+ </ul>
+
+ <div class="callout"><p><strong>TIP:</strong> Start with Type 1 and get comfortable. Add MCP connections when you need external data. Use sequential or parallel patterns when a single agent is not enough. Add routing when input volume grows. Add orchestration when tasks become genuinely complex.</p></div>
+
+ </main>
+
+ <aside class="toc-sidebar">
+ <div class="toc-box">
+ <h3>Contents</h3>
+ <ol>
+ <li><a href="#agent-type-01">Basic Agent With Tools</a></li>
+ <li><a href="#agent-type-02">Agent With MCP Servers</a></li>
+ <li><a href="#agent-type-03">Sequential Agents</a></li>
+ <li><a href="#agent-type-04">Parallel Execution Agents</a></li>
+ <li><a href="#agent-type-05">Agents With Routers</a></li>
+ <li><a href="#agent-type-06">Human In The Loop</a></li>
+ <li><a href="#agent-type-07">Orchestrator Agent</a></li>
+ <li><a href="#combining-all-seven">Combining All Seven</a></li>
+ </ol>
+ </div>
+ </aside>
+</div>
+
+
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+<script>
+function downloadPDF() {
+  window.print();
+}
+</script>
+</body>
+</html>

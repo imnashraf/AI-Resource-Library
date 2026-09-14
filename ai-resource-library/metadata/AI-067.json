@@ -1,0 +1,36 @@
+{
+  "id": "AI-067",
+  "slug": "5-claude-code-plugins-every-vibe-coder-needs",
+  "title": "5 Claude Code Plugins Every Vibe Coder Needs",
+  "category": "Claude Code",
+  "subcategory": "Model & Tool Interop",
+  "difficulty": "Intermediate",
+  "description": "The exact plugins for databases, security testing, browser QA, design cloning and live docs: Supabase, Strix, Playwright CLI, SkillUI and Context7, each with the install command and a prompt to confirm it's working.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Claude Code",
+    "Why These Five",
+    "Plugin 01 · Database: Supabase",
+    "What it does",
+    "Install",
+    "Plugin 02 · Security: Strix",
+    "Model & Tool Interop"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude",
+    "ChatGPT",
+    "Supabase",
+    "Playwright"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-067_5-claude-code-plugins-every-vibe-coder-needs.html",
+  "summary_file": "summaries/AI-067.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

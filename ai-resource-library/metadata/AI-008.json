@@ -1,0 +1,28 @@
+{
+  "id": "AI-008",
+  "slug": "claude-code-10x-setup-guide",
+  "title": "Claude Code 10x Setup Guide",
+  "category": "Claude Code",
+  "subcategory": "Environment Setup",
+  "difficulty": "Intermediate",
+  "description": "The full Claude Code setup that maximises output quality, CLAUDE.md configuration, hooks, permissions, MCP servers, and the project structure that makes agentic coding actually reliable.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Claude Code",
+    "Environment Setup"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-008_claude-code-10x-setup-guide.html",
+  "summary_file": "summaries/AI-008.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

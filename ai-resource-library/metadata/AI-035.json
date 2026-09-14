@@ -1,0 +1,38 @@
+{
+  "id": "AI-035",
+  "slug": "the-3-business-processes-you-can-automate-this-week",
+  "title": "The 3 Business Processes You Can Automate This Week",
+  "category": "Building & Monetising",
+  "subcategory": "Business Automation",
+  "difficulty": "Beginner",
+  "description": "Lead follow-up, meeting summaries, and weekly reporting, three complete automation walkthroughs you can have running by Friday. Full build steps, variations, and 11 15 hours back every week.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Building & Monetising",
+    "Intro",
+    "Who this is for",
+    "Before You Start: One-Time Setup",
+    "Automation 01: Lead Follow-Up",
+    "The problem",
+    "What we're building",
+    "Business Automation"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude Desktop",
+    "Claude",
+    "n8n",
+    "Zapier",
+    "PostHog"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-035_the-3-business-processes-you-can-automate-this-week.html",
+  "summary_file": "summaries/AI-035.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

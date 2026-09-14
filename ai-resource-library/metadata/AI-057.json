@@ -1,0 +1,36 @@
+{
+  "id": "AI-057",
+  "slug": "the-20-dollar-month-startup-stack",
+  "title": "The $20/Month Startup Stack",
+  "category": "Building & Monetising",
+  "subcategory": "Startup & Products",
+  "difficulty": "Intermediate",
+  "description": "Thirteen tools, in the order you'd actually add them, what each one is for, when to reach for it, and what it costs. From domain and DNS through backend, auth, payments, analytics, and vector search.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Building & Monetising",
+    "The Full Stack",
+    "Tools 01-03 of 13",
+    "Tools 04-06 of 13",
+    "Tools 07-09 of 13",
+    "Tools 10-13 of 13",
+    "Thirteen Tools. One At A Time.",
+    "Startup & Products"
+  ],
+  "ai_tools": [
+    "Claude",
+    "PostHog",
+    "Supabase",
+    "Sentry"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-057_the-20-dollar-month-startup-stack.html",
+  "summary_file": "summaries/AI-057.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

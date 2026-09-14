@@ -1,0 +1,35 @@
+{
+  "id": "AI-047",
+  "slug": "carousels-that-dont-look-ai-generated",
+  "title": "Carousels That Don't Look AI-Generated",
+  "category": "Tools & Integrations",
+  "subcategory": "Creative & Design",
+  "difficulty": "Intermediate",
+  "description": "Give Claude Design a topic and a style, get a designer-grade Instagram carousel in minutes. Covers the six AI tells to kill, the full ready-to-paste prompt, and how to refine slide by slide until it looks like a human made it.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Tools & Integrations",
+    "What's Inside",
+    "What Claude Design Is",
+    "Why AI Carousels Look AI",
+    "The Setup: Topic, Style, Brand",
+    "Narrow and outcome-led",
+    "Reference, don't describe",
+    "Creative & Design"
+  ],
+  "ai_tools": [
+    "Claude",
+    "ChatGPT",
+    "Canva"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-047_carousels-that-dont-look-ai-generated.html",
+  "summary_file": "summaries/AI-047.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

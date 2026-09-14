@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>The Apollo Lead List Playbook</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+ <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+  .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+  .header.scrolled { border-color: var(--accent-border); }
+  .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+  .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+  .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+  .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+  .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+  a.logo-subtitle:hover { color: var(--accent); }
+  .nav-agent-link { font-size: 0.8125rem; font-weight: 700; color: var(--accent); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--accent); border-radius: 9999px; letter-spacing: 0.04em; text-transform: uppercase; transition: all 0.2s; white-space: nowrap; }
+  .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+  .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+  .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+  @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+  .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+  .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+  .badge-cat { background: var(--accent); color: #fff; }
+  .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+  .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+  .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+  .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+  .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+  .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+  .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+  .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+  .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+  .toc-box ol { list-style: none; counter-reset: toc; }
+  .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+  .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+  .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+  .toc-box a:hover { color: var(--accent); }
+  .guide-content { padding: 2rem 0 5rem; }
+  .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+  .guide-content h2:first-of-type { border-top: none; margin-top: 0; }
+  .guide-content h3 { font-size: 1.0625rem; font-weight: 700; margin-top: 1.75rem; margin-bottom: 0.625rem; }
+  .guide-content p { margin-bottom: 1.125rem; }
+  .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+  .guide-content li { margin-bottom: 0.375rem; }
+  .guide-content strong { font-weight: 600; }
+  .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+  @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+  .callout { border-left: 4px solid var(--accent-border); background: var(--accent-light); padding: 0.875rem 1.125rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0; }
+  .callout-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.35rem; }
+  .callout p { margin-bottom: 0; }
+  .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+  .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+  @page { margin: 1.5cm; }
+  @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider, .nav-agent-link { display: none !important; } .page-wrap { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; } p { orphans: 3; widows: 3; } pre, .callout, blockquote { break-inside: avoid; } }
+
+  /* VISUAL BLOCKS */
+  /* Step flow (VB1) */
+  .step-flow { background: linear-gradient(135deg, #fff 0%, var(--accent-light) 100%); border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.5rem; margin: 1.75rem 0; }
+  .step-flow-item { display: flex; gap: 1rem; align-items: flex-start; padding-bottom: 1.125rem; margin-bottom: 1.125rem; border-bottom: 1px solid var(--accent-border); }
+  .step-flow-item:last-child { padding-bottom: 0; margin-bottom: 0; border-bottom: none; }
+  .step-circle { width: 2.25rem; height: 2.25rem; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; font-weight: 700; color: #fff; flex-shrink: 0; }
+  .step-flow-body { flex: 1; }
+  .step-flow-title { font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.25rem; }
+  .step-flow-desc { font-size: 0.8125rem; color: var(--muted); line-height: 1.6; margin: 0; }
+  /* Piece stack (VB2) */
+  .piece-stack { background: linear-gradient(135deg, #fff 0%, var(--accent-light) 100%); border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.5rem; margin: 1.75rem 0; display: flex; flex-direction: column; gap: 0.875rem; }
+  .piece-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.125rem 1.25rem; display: flex; gap: 1rem; align-items: flex-start; }
+  .piece-badge { font-family: 'Space Grotesk', sans-serif; font-size: 0.9375rem; font-weight: 700; background: var(--accent); color: #fff; border-radius: 50%; width: 2.25rem; height: 2.25rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .piece-body { flex: 1; }
+  .piece-title { font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.25rem; }
+  .piece-desc { font-size: 0.8125rem; color: var(--muted); margin: 0; line-height: 1.6; }
+  /* 2x2 grid (VB3) */
+  .signal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.875rem; margin: 1.75rem 0; }
+  @media (max-width: 600px) { .signal-grid { grid-template-columns: 1fr; } }
+  .signal-card { background: #fff; border: 1.5px solid var(--accent-border); border-top: 3px solid var(--accent); border-radius: 10px; padding: 1.125rem 1.25rem; }
+  .signal-title { font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.375rem; }
+  .signal-desc { font-size: 0.8125rem; color: var(--muted); line-height: 1.6; margin: 0; }
+ </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+  <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+  <div class="logo-divider"></div>
+  <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">&#8592; All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+  <span class="badge badge-cat">Tools &amp; Integrations</span>
+  <span class="badge badge-diff">Intermediate</span>
+ </div>
+ <h1>The Apollo Lead List Playbook</h1>
+ <div class="hero-author">
+  <img src="assets/Headshot.jpg.JPG.jpeg" alt="" class="author-avatar">
+  <div>
+   <span class="author-name">Max Johnson</span>
+   <span class="author-meta">Briix · Tools &amp; Integrations</span>
+  </div>
+ </div>
+</div>
+
+<div class="page-wrap">
+ <main class="guide-content">
+
+  <button class="download-btn" onclick="window.print()">&#8595; Download PDF</button>
+
+  <p class="intro-blurb">Apollo.io gives you access to over 275 million contacts, but a big database is only useful if you know how to filter it down to the right people. This playbook walks you through building targeted, clean, and reusable lead lists: from defining your ideal customer to scaling past Apollo's built-in export limits.</p>
+
+  <h3>What's Inside</h3>
+  <ul>
+   <li>How to define your ICP before you touch a single filter</li>
+   <li>The correct order to stack Apollo filters for maximum precision</li>
+   <li>How to save and reuse personas so you never rebuild from scratch</li>
+   <li>Three lookalike methods to find more accounts like your best ones</li>
+   <li>Trigger-based targeting: job changes, funding, headcount growth, and job postings</li>
+   <li>List hygiene practices that keep your deliverability safe</li>
+   <li>How to scale past the 25,000-contact selection limit</li>
+  </ul>
+
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>Apollo's free Starter plan gives you access to most of the filters covered in this guide. A few advanced features (certain trigger signals, CSV enrichment) require a paid plan. Where limits apply, they are called out in context.</p>
+  </div>
+
+  <!-- Chapter 01 -->
+  <h2 id="ch01">Chapter 01: Define Your ICP First</h2>
+
+  <p>The biggest mistake people make in Apollo is jumping straight to the filters. Filters are just a tool for expressing your Ideal Customer Profile (ICP). If you haven't defined your ICP clearly, you'll burn through search credits building lists that don't convert.</p>
+
+  <p>Before you open Apollo, spend five minutes writing one sentence that describes your best-fit customer:</p>
+
+  <ol>
+   <li><strong>Who is the buyer?</strong> Name the job function (Sales, Marketing, Operations, Finance, IT) and seniority level (VP and above, Director, Manager, individual contributor).</li>
+   <li><strong>What kind of company do they work at?</strong> Pick a headcount band (for example: 50 to 200 employees, or 500 to 5,000) and one or two industries.</li>
+   <li><strong>What geography are you targeting?</strong> Country, region, or time zone matters for outreach timing and language.</li>
+  </ol>
+
+  <p>Example sentence: "I sell to VP-level Sales leaders at B2B SaaS companies with 100 to 500 employees in the US or Canada."</p>
+
+  <p>That single sentence maps directly to Apollo filters. Everything in the chapters that follow is just translating that sentence into search settings.</p>
+
+  <div class="callout">
+   <div class="callout-label">Tip</div>
+   <p>If you already have a handful of closed-won customers, list their company sizes, industries, and buyer titles before writing your ICP sentence. Let real data drive the definition rather than assumptions.</p>
+  </div>
+
+  <!-- Chapter 02 -->
+  <h2 id="ch02">Chapter 02: Stack Your Filters in Order</h2>
+
+  <p>Apollo has dozens of filters. Using them in a random order makes it hard to diagnose why a list is too big, too small, or off-target. Apply them in this sequence instead, working from broadest to most specific:</p>
+
+  <div class="step-flow">
+   <div class="step-flow-item">
+    <div class="step-circle">01</div>
+    <div class="step-flow-body">
+     <div class="step-flow-title">Job Function &amp; Seniority</div>
+     <p class="step-flow-desc">Start with the role and how senior it is, before any exact title. Apollo's job function categories (Sales, Marketing, Engineering, etc.) catch more people than title keywords alone, because titles vary wildly across companies. Layer seniority on top: C-Suite, VP, Director, Manager, or Individual Contributor.</p>
+    </div>
+   </div>
+   <div class="step-flow-item">
+    <div class="step-circle">02</div>
+    <div class="step-flow-body">
+     <div class="step-flow-title">Location</div>
+     <p class="step-flow-desc">Set your target country or region. Apollo lets you filter by person location (where the contact works) or company location (where the HQ is). Use person location when you want local buyers. Use company location when you're prospecting into HQ decision-makers regardless of where they personally sit.</p>
+    </div>
+   </div>
+   <div class="step-flow-item">
+    <div class="step-circle">03</div>
+    <div class="step-flow-body">
+     <div class="step-flow-title">Employee Count</div>
+     <p class="step-flow-desc">Apply the headcount band from your ICP sentence. This is often the fastest way to cut an oversized list in half. A VP of Sales at a 20-person startup and a VP of Sales at a 2,000-person company have completely different budgets, buying processes, and pain points.</p>
+    </div>
+   </div>
+   <div class="step-flow-item">
+    <div class="step-circle">04</div>
+    <div class="step-flow-body">
+     <div class="step-flow-title">Industry / Keyword</div>
+     <p class="step-flow-desc">Finish with your target niche, narrowed with keywords if the category is broad. Apollo's industry taxonomy can be coarse (for example, "Information Technology and Services" covers thousands of very different companies). Adding keyword filters like "SaaS," "fintech," or "e-commerce" on the company name or description tightens the list considerably.</p>
+    </div>
+   </div>
+  </div>
+
+  <div class="callout">
+   <div class="callout-label">Tip</div>
+   <p>Check the result count after each filter layer. If adding a filter cuts the list by more than 80%, you may have made that criterion too strict. If it barely moves the number, the criterion is probably not a meaningful differentiator for your ICP.</p>
+  </div>
+
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>Apollo shows a "Contacts" count and an "Accounts" count separately. Watch both. A high contact count with a low account count means you're pulling many people from the same small set of companies, which can look like a big list but is actually quite narrow.</p>
+  </div>
+
+  <h3>Save the Search</h3>
+
+  <p>Once your filter stack produces a list you're happy with, save it before you do anything else. Click "Save Search" and give it a name that reflects the ICP and date (for example: "VP Sales, US SaaS 100 to 500, June 2026"). This lets you re-run the same search later to find new people who match the criteria, without rebuilding the filters from memory.</p>
+
+  <!-- Chapter 03 -->
+  <h2 id="ch03">Chapter 03: Build a Reusable Persona</h2>
+
+  <p>Apollo's Personas feature is an underused time-saver. A Persona is a saved bundle of filters that you can apply in one click across any search or sequence. Instead of rebuilding your filter stack every time you target a new account list, you call up the Persona and all your criteria are applied instantly.</p>
+
+  <ol>
+   <li><strong>Go to Personas</strong> in the left navigation under "Prospects." Click "Create Persona" and give it a clear name tied to the buyer type (for example: "Head of Sales, Mid-Market SaaS").</li>
+   <li><strong>Set the criteria.</strong> Add the same job function, seniority, and any title keywords you use in your standard search. You can also include exclusions (for example: exclude "Intern," exclude "Assistant") to keep the quality high.</li>
+   <li><strong>Apply it to account lists.</strong> When you have a list of target accounts, you can use a Persona to pull the right contacts from those accounts without re-entering every filter. Apollo matches contacts at each account who fit the Persona criteria.</li>
+  </ol>
+
+  <div class="callout">
+   <div class="callout-label">Tip</div>
+   <p>Build one Persona per distinct buyer role you sell to. If you have two entry points into a deal (for example, a technical buyer and a business buyer), create two Personas and run them both against the same account list. You'll end up with multi-threaded prospect sets that reflect how deals actually get done.</p>
+  </div>
+
+  <!-- Chapter 04 -->
+  <h2 id="ch04">Chapter 04: The Lookalike Shortcut</h2>
+
+  <p>When you have a set of companies that are already great customers, Apollo can find more companies that look like them. This is faster than trying to define every attribute of a good account from scratch, and often surfaces companies you wouldn't have found through manual filtering.</p>
+
+  <div class="piece-stack">
+   <div class="piece-card">
+    <div class="piece-badge">01</div>
+    <div class="piece-body">
+     <div class="piece-title">Company Lookalikes</div>
+     <p class="piece-desc">Go to any company's profile in Apollo and click "Find Similar Companies." Apollo returns a list of accounts that share characteristics like industry, size, technology stack, and growth signals. You can then add those accounts to a list and prospect into them using your saved Persona. This works best when you seed it with 5 to 10 of your strongest existing customers rather than a mixed sample.</p>
+    </div>
+   </div>
+   <div class="piece-card">
+    <div class="piece-badge">02</div>
+    <div class="piece-body">
+     <div class="piece-title">People Lookalikes (beta)</div>
+     <p class="piece-desc">Apollo's People Lookalikes feature (in beta as of mid-2025) lets you select a set of contacts who are strong buyers and ask Apollo to find other contacts across its database who share similar professional attributes: career path, seniority progression, company type history, and skill set signals. It's particularly useful when your best buyers share a background that doesn't show up in a standard title or function filter.</p>
+    </div>
+   </div>
+   <div class="piece-card">
+    <div class="piece-badge">03</div>
+    <div class="piece-body">
+     <div class="piece-title">The Chrome Extension's "Similar Companies" Widget</div>
+     <p class="piece-desc">When you have the Apollo Chrome extension installed and you're viewing a company's website or LinkedIn page, the extension sidebar surfaces a "Similar Companies" panel. This is useful during live prospecting sessions: if you find a company that looks like a fit but is too small or the wrong region, you can immediately surface similar ones from the sidebar without going back into the main Apollo interface.</p>
+    </div>
+   </div>
+  </div>
+
+  <div class="callout">
+   <div class="callout-label">Tip</div>
+   <p>Lookalike quality depends on seed quality. If you seed with a mix of great and mediocre customers, the results will be diluted. Run the lookalike search twice: once seeded with your top 10 closed-won accounts, and once seeded with your 10 fastest deals. Compare the outputs. The overlap is your highest-priority prospecting target.</p>
+  </div>
+
+  <!-- Chapter 05 -->
+  <h2 id="ch05">Chapter 05: Trigger-Based Targeting</h2>
+
+  <p>The best time to reach a prospect is when something has changed for them. Apollo tracks several intent and change signals that you can layer on top of your standard filters to prioritize the people most likely to be in a buying window right now.</p>
+
+  <div class="signal-grid">
+   <div class="signal-card">
+    <div class="signal-title">Job Change</div>
+    <p class="signal-desc">Filter for contacts who have changed jobs in the last 30, 60, or 90 days. New leaders almost always evaluate the tools their team is using within the first 90 days. This is the highest-intent trigger Apollo offers, and it works well for both outbound to the new hire and for re-engaging their former employer (now without a champion).</p>
+   </div>
+   <div class="signal-card">
+    <div class="signal-title">Headcount Growth</div>
+    <p class="signal-desc">Filter for companies that have grown their employee count by a certain percentage over the past 6 or 12 months. Fast-growing companies are often outgrowing their current tools and processes. You can combine this with a headcount band to catch companies at the exact inflection point where your product typically becomes relevant.</p>
+   </div>
+   <div class="signal-card">
+    <div class="signal-title">Funding &amp; News</div>
+    <p class="signal-desc">Apollo surfaces recent funding rounds (Seed through Series C and beyond) and news mentions. A company that just raised a round typically has fresh budget and a mandate to grow. Filter by funding stage to match the company size and maturity level where you win most often.</p>
+   </div>
+   <div class="signal-card">
+    <div class="signal-title">Job Postings</div>
+    <p class="signal-desc">Companies advertising for specific roles are signaling both growth and priorities. If a company is hiring five salespeople, they likely need a sales enablement or CRM solution. Filter for companies posting jobs with keywords that match the pain points your product solves. This requires an Apollo paid plan.</p>
+   </div>
+  </div>
+
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>Job Change and Headcount Growth signals are available on Apollo's free Starter plan with limited monthly views. Funding data is partially available for free. Job Postings filters require a paid plan. Check your plan limits before building a workflow that depends heavily on these signals.</p>
+  </div>
+
+  <!-- Chapter 06 -->
+  <h2 id="ch06">Chapter 06: Keep the List Clean</h2>
+
+  <p>A large list with bad data is worse than a small list with clean data. Poor list hygiene leads to bounced emails, spam complaints, and damaged sender reputation that affects every email you send, not just the ones that bounced.</p>
+
+  <ol>
+   <li><strong>Filter by email status.</strong> Apollo scores email confidence as "Verified," "Likely to Engage," or lower-confidence tiers. Restrict your outreach exports to "Verified" contacts unless you have a specific reason to go wider. This alone dramatically reduces bounce rates.</li>
+   <li><strong>Exclude your existing contacts and customers.</strong> Before exporting or adding to a sequence, use Apollo's "Exclude" filter or suppress list upload to remove people already in your CRM. Emailing existing customers with cold outreach is one of the fastest ways to damage relationships and trigger spam flags.</li>
+   <li><strong>Set a re-import cadence.</strong> Don't treat a saved list as permanent. People change jobs, companies get acquired, and email addresses go stale. Re-run your saved searches every 60 to 90 days and only add net-new contacts who weren't in the previous pull.</li>
+  </ol>
+
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>Apollo's email verification covers addresses in its database, but it cannot guarantee deliverability for every contact. For high-volume outreach (more than 500 emails per day), consider running your final export through a dedicated email verification tool like NeverBounce or ZeroBounce before loading contacts into your sending platform.</p>
+  </div>
+
+  <!-- Chapter 07 -->
+  <h2 id="ch07">Chapter 07: Scale Past the Selection Limit</h2>
+
+  <p>Apollo limits how many contacts you can select and export in a single batch (25,000 contacts on most plans). If your search returns more than 25,000 results, you need a strategy for working through the full list systematically without duplicating effort or missing contacts.</p>
+
+  <ol>
+   <li><strong>Segment by a rotating variable.</strong> Split your search into sub-searches using a filter that has clear, mutually exclusive buckets. Employee count ranges work well: run one search for 1 to 50 employees, another for 51 to 200, another for 201 to 500, and so on. Each segment stays under the limit, and together they cover the full population.</li>
+   <li><strong>Use alphabetical account segmentation.</strong> If you're prospecting into a defined list of accounts, sort them alphabetically and process them in batches (A through G, H through P, Q through Z). Apollo's account name filter supports this approach. It's manual but reliable.</li>
+   <li><strong>Schedule recurring pulls instead of one giant export.</strong> Rather than trying to export 100,000 contacts at once, set up a workflow where you export 2,000 to 5,000 new contacts each week on a rolling basis. This keeps your outreach volume manageable, your list fresher, and your sending reputation healthier. Saved searches and trigger filters make this easier: each week's pull surfaces the people who newly match your criteria.</li>
+  </ol>
+
+  <div class="callout">
+   <div class="callout-label">Tip</div>
+   <p>Before scaling volume, validate the approach on a small segment first. Pull 200 to 300 contacts from one sub-segment, run them through your sequence, and measure reply rates and bounce rates. If the numbers look good, expand. Scaling a broken approach faster just compounds the problem.</p>
+  </div>
+
+  <!-- Closing -->
+  <h2 id="closing">A List Worth Sending</h2>
+
+  <p>Apollo is one of the most powerful prospecting tools available, but the output is only as good as the thinking you put in before you start filtering. The playbook above gives you a repeatable process that starts with a clear ICP, applies filters in a logical sequence, uses the platform's more advanced features to find lookalikes and trigger-based opportunities, and keeps the list clean enough to actually send to.</p>
+
+  <p>Before you export your next list, run through these three checkpoints:</p>
+
+  <ul style="list-style: none; padding-left: 0;">
+   <li style="margin-bottom: 0.625rem;">&#10003; &nbsp;<strong>ICP match.</strong> Every contact on the list fits the role, seniority, company size, and industry you defined in Chapter 01.</li>
+   <li style="margin-bottom: 0.625rem;">&#10003; &nbsp;<strong>Email status.</strong> You've filtered to Verified contacts and suppressed existing customers and CRM records.</li>
+   <li style="margin-bottom: 0.625rem;">&#10003; &nbsp;<strong>Saved search.</strong> The search is saved with a clear name and date so you can pull net-new contacts from the same criteria next month.</li>
+  </ul>
+
+  <p>A list that passes all three checkpoints is a list worth sending.</p>
+
+ </main>
+
+ <aside class="toc-sidebar">
+  <div class="toc-box">
+   <h3>In This Guide</h3>
+   <ol>
+    <li><a href="#ch01">Define Your ICP First</a></li>
+    <li><a href="#ch02">Stack Your Filters in Order</a></li>
+    <li><a href="#ch03">Build a Reusable Persona</a></li>
+    <li><a href="#ch04">The Lookalike Shortcut</a></li>
+    <li><a href="#ch05">Trigger-Based Targeting</a></li>
+    <li><a href="#ch06">Keep the List Clean</a></li>
+    <li><a href="#ch07">Scale Past the Selection Limit</a></li>
+   </ol>
+  </div>
+ </aside>
+</div>
+
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+</body>
+</html>

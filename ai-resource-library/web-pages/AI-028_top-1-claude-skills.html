@@ -1,0 +1,189 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Top 1% Claude Skills</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✦%3C/text%3E%3C/svg%3E">
+ <style>
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+ html { scroll-behavior: smooth; }
+ body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+ .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+ .header.scrolled { border-color: var(--accent-border); }
+ .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+ .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+ .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+ .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+ .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+ a.logo-subtitle:hover { color: var(--accent); }
+ .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+ .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+ .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+ @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+ .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+ .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+ .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+ .badge-cat { background: var(--accent); color: #fff; }
+ .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+ .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+ .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+ .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+ .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+ .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+ .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+ .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+ .toc-box ol { list-style: none; counter-reset: toc; }
+ .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+ .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+ .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+ .toc-box a:hover { color: var(--accent); }
+ .guide-content { padding: 2rem 0 5rem; }
+ .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+ .guide-content h2:first-child { border-top: none; margin-top: 0; }
+ .guide-content p { margin-bottom: 1.125rem; }
+ .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+ .guide-content li { margin-bottom: 0.375rem; }
+ .guide-content strong { font-weight: 600; }
+ .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+ .callout { background: var(--accent-light); border-left: 3px solid var(--accent); padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; font-size: 0.9375rem; margin: 1.25rem 0; }
+ .callout p { margin: 0; }
+ .callout strong { color: var(--accent); }
+ .callout-warn { background: #FFF8E7; border-left: 3px solid #F59E0B; padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; font-size: 0.9375rem; margin: 1.25rem 0; }
+ .callout-warn p { margin: 0; }
+ .callout-warn strong { color: #B45309; }
+ .code-block { background: #000; color: #e2e8f0; font-family: 'Courier New', Courier, monospace; font-size: 0.875rem; line-height: 1.6; padding: 1.25rem 1.5rem; border-radius: 8px; overflow-x: auto; margin: 1.25rem 0; white-space: pre-wrap; }
+ .three-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0; }
+ @media (max-width: 700px) { .three-cards { grid-template-columns: 1fr; } }
+ .three-card { background: #fff; border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .three-card-title { font-weight: 700; color: var(--accent); font-size: 1rem; margin-bottom: 0.5rem; }
+ .three-card-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.5; }
+ @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+     .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+    @page { margin: 1.5cm; } @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .chapter-card, .compare-card, .checklist-card, blockquote { break-inside: avoid; page-break-inside: avoid; } .chapter-overview, .compare-grid, .checklist-grid, .email-flow { break-inside: avoid; page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+ <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+ <div class="logo-divider"></div>
+ <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">← All guides</a>
+ </div>
+</header>
+<div class="guide-hero">
+ <div class="hero-meta">
+ <span class="badge badge-cat">Prompts &amp; Skills</span>
+ <span class="badge badge-diff">Intermediate</span>
+ </div>
+ <h1>Top 1% Claude Skills</h1>
+ <div class="hero-author">
+ <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+ <div><span class="author-name">Max Johnson</span><span class="author-meta">@maxjohnscn</span></div>
+ </div>
+</div>
+<div class="page-wrap">
+ <article class="guide-content">
+    <button class="download-btn" onclick="downloadPDF()">&#8595; Download PDF</button>
+ <p class="intro-blurb">Three Things That Separate Basic Claude Users From Everyone Else.</p>
+ <p>Most people using Claude skills are working with a single markdown file and hoping for the best. These three things change what a skill actually is, from a static prompt to something that learns, stays organised, and works intelligently every time you invoke it.</p>
+ <p><strong>What you will have when this is done:</strong></p>
+ <ul>
+ <li>A gotcha section that logs mistakes and prevents them from repeating</li>
+ <li>A proper folder structure that keeps your context window clean</li>
+ <li>Instructions that guide Claude without trapping it</li>
+ </ul>
+
+ <!-- VISUAL BLOCK 1 -->
+ <div class="three-cards">
+ <div class="three-card"><div class="three-card-title">Gotcha Section</div><div class="three-card-desc">Logs every mistake. Claude reads it before the next run. Mistakes don't repeat.</div></div>
+ <div class="three-card"><div class="three-card-title">Folder Structure</div><div class="three-card-desc">Skills are folders, not files. Progressive disclosure keeps your context window clean.</div></div>
+ <div class="three-card"><div class="three-card-title">Context not Scripts</div><div class="three-card-desc">Constraints + intent beats rigid step-by-step. Claude adapts; it doesn't break.</div></div>
+ </div>
+
+ <h2 id="step-01">Step 01, Build a Gotcha Section, The part most people skip</h2>
+ <p>A gotcha section is a dedicated list inside your skill file that logs every mistake Claude has made while using it. Every time Claude does something wrong, wrong format, wrong tone, ignored a constraint, you add it to the list. The next time the skill runs, Claude reads the list first. The mistake does not repeat.</p>
+ <p>Add this section to the bottom of your SKILL.md file:</p>
+ <div class="code-block">## Gotcha Section
+# Things Claude has done wrong using this skill.
+# Each entry is specific. Vague entries do not work.
+- Never use bullet points inside the executive summary.
+ Use short paragraphs only.
+- Do not open with 'Great question!' or any variation.
+ Start directly with the answer.
+- Do not add a conclusion section unless explicitly asked.
+ The output ends after the final point.</div>
+ <div class="callout"><p><strong>TIP:</strong> The gotcha section only works if the entries are specific. 'Be more professional' does nothing. 'Do not use exclamation marks in business writing' works every time.</p></div>
+ <div class="callout"><p><strong>NOTE:</strong> Every time you use the skill and Claude makes a mistake, add it immediately while it is fresh. The list builds up over time and the skill gets noticeably better within a few sessions.</p></div>
+
+ <h2 id="step-02">Step 02, Use the File System Properly, A skill is a folder, not a file</h2>
+ <p>Most people put everything in one markdown file. A properly structured skill is a folder. Scripts, templates, examples, and references all live alongside the prompt in subfolders, and they do not clutter your context window because Claude uses progressive disclosure. It only pulls a file in when the task actually needs it.</p>
+ <p>Structure your skill folder like this:</p>
+ <div class="code-block">mkdir my-skill
+mkdir my-skill/scripts
+mkdir my-skill/examples
+mkdir my-skill/templates
+mkdir my-skill/references
+# Your main prompt file
+touch my-skill/SKILL.md</div>
+ <p>Then reference the subfolders inside your SKILL.md so Claude knows they exist:</p>
+ <div class="code-block">## Available Resources
+- scripts/format.py, use this when formatting output as a table
+- examples/good-output.md, reference this for tone and structure
+- templates/report-template.md, use this for any report output
+- references/style-guide.md, consult this for brand voice questions</div>
+ <div class="callout"><p><strong>TIP:</strong> You do not need all four folders on day one. Start with examples/, drop in one good output and one bad output and reference them. That alone will improve consistency immediately.</p></div>
+ <div class="callout"><p><strong>NOTE:</strong> Progressive disclosure means Claude reads your SKILL.md first and only opens a subfolder file if the current task requires it. Your context window only ever contains what is relevant right now.</p></div>
+
+ <h2 id="step-03">Step 03, Give Context and Constraints, Not Scripts, Stop railroading Claude</h2>
+ <p>Instructions that are too rigid make a skill brittle. When Claude is told exactly what to do at every step, it cannot handle edge cases and output becomes robotic. The fix is to give Claude the context behind each rule and define constraints rather than scripts. Claude follows intent far better than it follows rigid commands.</p>
+ <p><strong>The difference in practice:</strong></p>
+ <p>Too rigid, breaks on edge cases:</p>
+ <div class="code-block">Step 1. Always write exactly 3 bullet points.
+Step 2. Use this exact sentence structure every time.
+Step 3. Never deviate from the template under any circumstances.</div>
+ <p>Adaptive, works every time:</p>
+ <div class="code-block">Use bullet points for lists of 3 or more items.
+Use prose for fewer than 3 items.
+Write in a direct, plain-English tone.
+Avoid jargon unless the audience requires it.
+Follow this structure as a guide.
+Adapt if the content genuinely requires it.</div>
+ <div class="callout"><p><strong>TIP:</strong> When writing a constraint, ask yourself: does this rule tell Claude what to do, or why to do it? The why produces better results. 'Avoid jargon because this audience is non-technical' beats 'do not use technical words'.</p></div>
+ <div class="callout-warn"><p><strong>WARNING:</strong> If you are correcting Claude on almost every run, the problem is not Claude, it is the skill. Overly rigid instructions produce inconsistent output. Loosen the script and tighten the constraints.</p></div>
+
+ <h2 id="all-three">All Three Together, What You Now Have</h2>
+ <p>Each of these three things is useful on its own. A gotcha section that prevents repeated mistakes. A file system that keeps context clean. Instructions that let Claude think rather than just follow.</p>
+ <p>Running all three together is what most people building with Claude are not doing. The skill learns over time, handles edge cases without breaking, and pulls in exactly the resources it needs for each task.</p>
+ <div class="callout"><p><strong>TIP:</strong> The fastest way to get started is to take a skill you already use, add a gotcha section to the bottom of it, and run it three times. By the third run you will have two or three entries in the gotcha list and the output will already be noticeably more consistent.</p></div>
+ </article>
+ <aside class="toc-sidebar">
+ <div class="toc-box">
+ <h3>Steps</h3>
+ <ol>
+ <li><a href="#step-01">Gotcha Section</a></li>
+ <li><a href="#step-02">File System</a></li>
+ <li><a href="#step-03">Context not Scripts</a></li>
+ <li><a href="#all-three">All Three Together</a></li>
+ </ol>
+ </div>
+ </aside>
+</div>
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+<script>
+function downloadPDF() {
+  window.print();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,274 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>10 Ways to Stop Burning Your Claude Usage Limit</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✦%3C/text%3E%3C/svg%3E">
+ <style>
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+ html { scroll-behavior: smooth; }
+ body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+ .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+ .header.scrolled { border-color: var(--accent-border); }
+ .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+ .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+ .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+ .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+ .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+ a.logo-subtitle:hover { color: var(--accent); }
+ .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+ .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+ .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+ @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+ .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+ .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+ .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+ .badge-cat { background: var(--accent); color: #fff; }
+ .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+ .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+ .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+ .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+ .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+ .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+ .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+ .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+ .toc-box ol { list-style: none; counter-reset: toc; }
+ .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+ .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+ .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+ .toc-box a:hover { color: var(--accent); }
+ .guide-content { padding: 2rem 0 5rem; }
+ .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+ .guide-content h2:first-child { border-top: none; margin-top: 0; }
+ .guide-content h3 { font-size: 1.125rem; font-weight: 600; margin-top: 1.75rem; margin-bottom: 0.75rem; }
+ .guide-content p { margin-bottom: 1.125rem; }
+ .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+ .guide-content li { margin-bottom: 0.375rem; }
+ .guide-content strong { font-weight: 600; }
+ .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+ .callout { background: var(--accent-light); border-left: 3px solid var(--accent); padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; font-size: 0.9375rem; margin: 1.25rem 0; }
+ .callout p { margin: 0; }
+ .callout strong { color: var(--accent); }
+ .code-block { background: #000; color: #fff; font-family: 'Courier New', Courier, monospace; font-size: 0.875rem; line-height: 1.6; padding: 1.25rem 1.5rem; border-radius: 8px; overflow-x: auto; margin: 1.25rem 0; }
+ .code-block code { background: none; color: inherit; }
+
+ /* Visual block: 2-col tip grid */
+ .tips-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.875rem; margin: 1.5rem 0; }
+ @media (max-width: 640px) { .tips-grid { grid-template-columns: 1fr; } }
+ .tip-card { background: #fff; border: 1.5px solid #E5E7EB; border-radius: 8px; padding: 1rem 1.125rem; display: flex; gap: 0.875rem; align-items: flex-start; }
+ .tip-card .tip-num { font-size: 1.125rem; font-weight: 700; color: var(--accent); flex-shrink: 0; min-width: 1.75rem; }
+ .tip-card .tip-name { font-size: 0.875rem; font-weight: 600; margin-bottom: 0.2rem; }
+ .tip-card .tip-desc { font-size: 0.8rem; color: var(--muted); }
+
+ @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+     .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+    @page { margin: 1.5cm; } @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .chapter-card, .compare-card, .checklist-card, blockquote { break-inside: avoid; page-break-inside: avoid; } .chapter-overview, .compare-grid, .checklist-grid, .email-flow { break-inside: avoid; page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+ <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+ <div class="logo-divider"></div>
+ <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">← All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+ <span class="badge badge-cat">Getting Started</span>
+ <span class="badge badge-diff">Beginner</span>
+ </div>
+ <h1>10 Ways to Stop Burning Your Claude Usage Limit</h1>
+ <div class="hero-author">
+ <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+ <div>
+ <span class="author-name">Max Johnson</span>
+ <span class="author-meta">@maxjohnscn</span>
+ </div>
+ </div>
+</div>
+
+<div class="page-wrap">
+ <article class="guide-content">
+    <button class="download-btn" onclick="downloadPDF()">&#8595; Download PDF</button>
+ <p class="intro-blurb">Most people burning through their Claude usage limit are doing it completely by accident. Claude re-reads the entire conversation every single time you send a message. The longer the chat, the more it costs. These 10 tips will cut your usage significantly, and some of them take less than two minutes to set up.</p>
+
+ <p>By the end of this guide you will have:</p>
+ <ul>
+ <li>10 practical habits and settings that reduce token usage</li>
+ <li>An understanding of why chats get expensive and when to reset</li>
+ <li>The exact commands, settings and workflows to implement each one</li>
+ </ul>
+
+ <!-- VISUAL BLOCK 1 -->
+ <div class="tips-grid">
+ <div class="tip-card"><div class="tip-num">1</div><div><div class="tip-name">/compact</div><div class="tip-desc">Compress long chats without losing context</div></div></div>
+ <div class="tip-card"><div class="tip-num">2</div><div><div class="tip-name">Edit not follow-up</div><div class="tip-desc">Replace bad responses, not add to them</div></div></div>
+ <div class="tip-card"><div class="tip-num">3</div><div><div class="tip-name">Fresh chat reset</div><div class="tip-desc">Keep context light, not heavy</div></div></div>
+ <div class="tip-card"><div class="tip-num">4</div><div><div class="tip-name">Batch questions</div><div class="tip-desc">One send, one context load</div></div></div>
+ <div class="tip-card"><div class="tip-num">5</div><div><div class="tip-name">Project files</div><div class="tip-desc">Upload once, never re-upload</div></div></div>
+ <div class="tip-card"><div class="tip-num">6</div><div><div class="tip-name">Memory &amp; Preferences</div><div class="tip-desc">Set context once, use it forever</div></div></div>
+ <div class="tip-card"><div class="tip-num">7</div><div><div class="tip-name">Tight prompts</div><div class="tip-desc">Keep system instructions lean</div></div></div>
+ <div class="tip-card"><div class="tip-num">8</div><div><div class="tip-name">Right model</div><div class="tip-desc">Match the tool to the task</div></div></div>
+ <div class="tip-card"><div class="tip-num">9</div><div><div class="tip-name">Short outputs</div><div class="tip-desc">Ask for what you need, nothing more</div></div></div>
+ <div class="tip-card"><div class="tip-num">10</div><div><div class="tip-name">No double-pasting</div><div class="tip-desc">Reference docs, don't paste them twice</div></div></div>
+ </div>
+
+ <h2 id="1-use-compact">1, Use /compact to Compress a Long Chat</h2>
+ <p>When a conversation gets long, the token cost of each new message snowballs fast. The /compact command synthesises the entire chat into a condensed summary and replaces the full history with it. You keep context but cut the overhead dramatically.</p>
+ <p><strong>How to do it:</strong></p>
+ <ol>
+ <li>Open a long-running Claude chat. Navigate to any conversation that has been going for more than 15 to 20 messages.</li>
+ <li>Type the compact command. In the message box, type the forward slash followed by the word compact and hit enter.</li>
+ <li>Continue in the same chat. Claude synthesises the conversation into a summary recap. You can carry on from there without restarting.</li>
+ </ol>
+ <div class="code-block"><pre>// Type this into the Claude message box
+/compact
+// Claude will summarise and compress your full chat history
+// You keep context. You lose the dead weight.</pre></div>
+ <div class="callout"><p><strong>TIP:</strong> Use /compact before a chat gets painful, not after. Once you are past 30 messages it is already costing you. Run it at 15 to 20 as a habit.</p></div>
+
+ <h2 id="2-edit-your-prompt">2, Edit Your Prompt Instead of Sending a Follow-Up</h2>
+ <p>When Claude misses the mark, most people type a correction and send it as a new message. That adds the bad response and your correction to the conversation history. Claude then re-reads all of it next time. Instead, click edit on your original message, adjust it, and regenerate. The old response gets replaced, not added.</p>
+ <p><strong>How to do it:</strong></p>
+ <ol>
+ <li>Hover over your message. Find the message you want to change. Hover over it to reveal the edit option.</li>
+ <li>Click edit and update your prompt. Rewrite or adjust what you originally sent.</li>
+ <li>Hit send to regenerate. Claude regenerates from that point. The old response is gone from the thread entirely.</li>
+ </ol>
+ <div class="callout"><p><strong>WHY IT MATTERS:</strong> Over 10 rounds of back-and-forth editing, using edit instead of follow-up messages can cut token use by 80 to 90 percent. The history stays lean.</p></div>
+
+ <h2 id="3-fresh-chat-reset">3, Start a Fresh Chat Every 15 to 20 Messages</h2>
+ <p>Your first message costs around 200 tokens. By message 30, that same simple question costs 50,000 or more. The fix is simple: when a chat gets long, ask Claude to summarise where things are up to, open a new chat, paste the summary in, and carry on.</p>
+ <p><strong>How to do it:</strong></p>
+ <ol>
+ <li>Ask Claude to summarise at message 15 to 20. Send this message: Summarise everything we have covered so far in this chat, including any key decisions, outputs, and context I need to continue.</li>
+ <li>Copy the summary. Select and copy the full summary Claude produces.</li>
+ <li>Open a new chat and paste it in. Start fresh. Paste the summary as the first message and continue from there.</li>
+ </ol>
+ <div class="code-block"><pre>// Paste this into Claude when ready to reset:
+Summarise everything we have covered so far in this chat,
+including any key decisions, outputs, and context I need to
+continue in a new conversation.</pre></div>
+
+ <h2 id="4-batch-questions">4, Batch Your Questions into One Message</h2>
+ <p>Three separate messages means three separate context loads. One message with three questions means one. List your questions together and ask Claude to answer them all. The answers are usually better too because Claude sees the full picture before it responds.</p>
+ <p><strong>How to do it:</strong></p>
+ <ol>
+ <li>Group your questions before sending. Instead of sending each question as it comes to you, write them all out first.</li>
+ <li>Format them as a numbered list. Use simple numbering. Tell Claude you have a few questions and to answer them all.</li>
+ <li>Send as one message. One send, one context load, three answers.</li>
+ </ol>
+ <div class="code-block"><pre>// Example: instead of three messages, send one
+I have a few questions. Please answer all of them:
+1. [Question one]
+2. [Question two]
+3. [Question three]</pre></div>
+
+ <h2 id="5-project-files">5, Upload Recurring Files to Projects</h2>
+ <p>If you are sending the same PDF, brief, or document across multiple chats, Claude is re-counting those tokens every single time. Projects cache your files so they do not cost tokens on each new conversation. Upload once, stop paying every time.</p>
+ <p><strong>How to do it:</strong></p>
+ <ol>
+ <li>Open or create a Project in Claude. Go to claude.ai and click Projects in the left sidebar. Create a new one or open an existing one.</li>
+ <li>Upload your recurring documents. Add any files you use regularly. Briefs, brand guidelines, templates, reference docs.</li>
+ <li>Start all relevant chats inside that Project. Every conversation inside the Project has access to those files without re-uploading them.</li>
+ </ol>
+ <div class="callout"><p><strong>TIP:</strong> Projects are also where Memory and User Preferences apply automatically. If you are not using Projects yet, this single change will save you more tokens than almost anything else on this list.</p></div>
+
+ <h2 id="6-memory-and-preferences">6, Set Up Memory and User Preferences</h2>
+ <p>Every conversation you start without context burns 3 to 5 messages just re-explaining who you are and how you work. Go to Settings, then Memory and User Preferences, and store it once. Claude carries it into every chat automatically.</p>
+ <p><strong>How to do it:</strong></p>
+ <ol>
+ <li>Go to Settings. In Claude.ai, click your profile icon or name in the bottom left and open Settings.</li>
+ <li>Find Memory and User Preferences. Look for the Memory section and the User Preferences tab inside Settings.</li>
+ <li>Write in your context once. Describe who you are, how you work, your tone preferences, your role. Claude will read this at the start of every new chat.</li>
+ </ol>
+ <div class="code-block"><pre>// Example User Preferences entry:
+I am a founder running an AI agency called Briix based in Manchester.
+I build and create content about AI tools. Write in British English.
+Keep responses concise and direct. No bullet points unless I ask.
+When writing content, match the voice in my Project instructions.</pre></div>
+ <div class="callout"><p><strong>WHAT THIS REPLACES:</strong> The usual first 3 to 5 messages of every chat where you re-explain your role, preferences, and context. Stored once. Never repeated.</p></div>
+
+ <h2 id="7-tight-system-prompts">7, Keep Your System Prompts Tight</h2>
+ <p>If you use a Project with a system prompt (the instructions you write in the Project Knowledge section), that prompt gets loaded into every conversation. A bloated system prompt with 2,000 words of context you never actually need is costing you tokens on every single message, in every chat, forever.</p>
+ <p><strong>How to do it:</strong></p>
+ <ol>
+ <li>Open your Project and review the instructions. Go to your Project and look at the instructions or knowledge you have set.</li>
+ <li>Cut anything Claude does not need every session. If it is context that only applies to specific tasks, remove it from the Project instructions and paste it in when you actually need it.</li>
+ <li>Aim for under 500 words in your standing instructions. Lean instructions. Essential context only. The rest lives in your documents and you reference it when needed.</li>
+ </ol>
+ <div class="callout"><p><strong>WATCH OUT:</strong> Project instructions are loaded on every message in every chat inside that Project. A 3,000 word instruction set running across 50 chats a week adds up fast.</p></div>
+
+ <h2 id="8-right-model">8, Use the Right Model for the Right Task</h2>
+ <p>Claude Sonnet and Claude Haiku are lighter, faster models. Claude Opus is the most powerful but also the most expensive on token usage. If you are using Opus for tasks that do not need that level of reasoning, you are burning usage on a sledgehammer when a normal hammer would do.</p>
+ <p><strong>When to use which:</strong></p>
+ <ol>
+ <li><strong>Claude Haiku</strong>, Quick tasks. Summarising short documents. Simple Q and A. Drafting short responses. Fast turnaround with low token cost.</li>
+ <li><strong>Claude Sonnet</strong>, Most everyday work. Longer documents, content creation, code, research. The best balance of quality and usage.</li>
+ <li><strong>Claude Opus</strong>, Complex reasoning, nuanced analysis, tasks that genuinely need the highest intelligence. Not for everyday use if you are watching usage.</li>
+ </ol>
+ <div class="callout"><p><strong>TIP:</strong> On claude.ai, you can switch models from the dropdown at the bottom of the chat. Get into the habit of matching the model to the task instead of always defaulting to the most powerful one.</p></div>
+
+ <h2 id="9-shorter-outputs">9, Ask for Shorter Outputs by Default</h2>
+ <p>Claude defaults to thorough. If you ask a question, it will often give you a full essay when a paragraph would do. That essay is tokens coming back to you, and those output tokens count toward your usage. Tell Claude how long you want the answer to be.</p>
+ <p><strong>How to do it:</strong></p>
+ <ol>
+ <li>Set a length instruction in your User Preferences. Add a line like: Keep answers concise unless I ask for detail. This applies globally.</li>
+ <li>Specify length per request when it matters. Add a word count or format instruction to the end of your prompt.</li>
+ <li>Ask for bullet points for factual answers. Bullets force Claude to be concise. A 500-word explanation becomes 5 crisp lines.</li>
+ </ol>
+ <div class="code-block"><pre>// Add length control to any message:
+Answer in 3 sentences or fewer.
+// Or in your User Preferences:
+Default to brief, direct answers. I will ask for detail when I need it.</pre></div>
+
+ <h2 id="10-no-double-pasting">10, Do Not Paste Content You Already Have in the Project</h2>
+ <p>If a document is already uploaded to your Project, do not paste its content into the chat as well. You are double-loading it. Reference it by name instead. Claude already has access to it. Pasting it in again means counting every token twice.</p>
+ <p><strong>How to do it:</strong></p>
+ <ol>
+ <li>Check what is already in your Project Knowledge. Before uploading or pasting, review what is already stored in the Project.</li>
+ <li>Reference documents by name, not by pasting. Instead of pasting a full document in, say: Using the brand guidelines document in this Project, do the following.</li>
+ <li>Only paste in what is not already stored. If it is new content that will not be reused, pasting is fine. If it is something you use regularly, it belongs in the Project.</li>
+ </ol>
+ <div class="callout"><p><strong>QUICK TEST:</strong> Ask yourself before pasting: will I need this document again in another chat? If yes, upload it to the Project instead of pasting it in again.</p></div>
+ </article>
+ <aside class="toc-sidebar">
+ <div class="toc-box">
+ <h3>Contents</h3>
+ <ol>
+ <li><a href="#1-use-compact">/compact command</a></li>
+ <li><a href="#2-edit-your-prompt">Edit, don't follow up</a></li>
+ <li><a href="#3-fresh-chat-reset">Fresh chat reset</a></li>
+ <li><a href="#4-batch-questions">Batch questions</a></li>
+ <li><a href="#5-project-files">Project files</a></li>
+ <li><a href="#6-memory-and-preferences">Memory &amp; Preferences</a></li>
+ <li><a href="#7-tight-system-prompts">Tight system prompts</a></li>
+ <li><a href="#8-right-model">Right model</a></li>
+ <li><a href="#9-shorter-outputs">Shorter outputs</a></li>
+ <li><a href="#10-no-double-pasting">No double-pasting</a></li>
+ </ol>
+ </div>
+ </aside>
+</div>
+
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+<script>
+function downloadPDF() {
+  window.print();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+{
+  "id": "AI-048",
+  "slug": "sandcastles-content-strategy-setup-guide",
+  "title": "The Sandcastles Content Strategy Setup Guide",
+  "category": "Tools & Integrations",
+  "subcategory": "Third-Party Connectors",
+  "difficulty": "Intermediate",
+  "description": "How to reverse-engineer any creator's winning content strategy inside Claude using the Sandcastles connector. Pull their top videos, find the hidden patterns, and build a data-backed content playbook from outlier data.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Tools & Integrations",
+    "What's Inside",
+    "How Sandcastles Works",
+    "The Four Core Features",
+    "The Claude Connection",
+    "Third-Party Connectors"
+  ],
+  "ai_tools": [
+    "Claude Desktop",
+    "Claude"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-048_sandcastles-content-strategy-setup-guide.html",
+  "summary_file": "summaries/AI-048.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

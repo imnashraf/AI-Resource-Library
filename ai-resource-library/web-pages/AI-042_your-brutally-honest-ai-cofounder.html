@@ -1,0 +1,291 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Your Brutally Honest AI Cofounder</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+ <style>
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+ html { scroll-behavior: smooth; }
+ body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+ .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+ .header.scrolled { border-color: var(--accent-border); }
+ .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+ .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+ .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+ .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+ .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+ a.logo-subtitle:hover { color: var(--accent); }
+ .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+ .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+ .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+ @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+ .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+ .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+ .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+ .badge-cat { background: var(--accent); color: #fff; }
+ .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+ .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+ .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+ .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+ .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+ .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+ .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+ .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+ .toc-box ol { list-style: none; counter-reset: toc; }
+ .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+ .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+ .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+ .toc-box a:hover { color: var(--accent); }
+ .guide-content { padding: 2rem 0 5rem; }
+ .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+ .guide-content h2:first-child { border-top: none; margin-top: 0; }
+ .guide-content h3 { font-size: 1.0625rem; font-weight: 700; margin-top: 1.75rem; margin-bottom: 0.625rem; }
+ .guide-content p { margin-bottom: 1.125rem; }
+ .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+ .guide-content li { margin-bottom: 0.375rem; }
+ .guide-content strong { font-weight: 600; }
+ .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+ pre { background: #1a1a1a; color: #e8e8e8; font-family: 'Courier New', Courier, monospace; font-size: 0.875rem; padding: 1.25rem 1.5rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1.25rem; line-height: 1.6; }
+ code { font-family: 'Courier New', Courier, monospace; }
+ .callout { background: var(--accent-light); border-left: 4px solid var(--accent); border-radius: 0 8px 8px 0; padding: 1rem 1.25rem; margin: 1.5rem 0; font-size: 0.9375rem; }
+ .callout strong { color: var(--accent); display: block; margin-bottom: 0.25rem; font-size: 0.8125rem; letter-spacing: 0.04em; text-transform: uppercase; }
+ .tip-box { background: var(--accent-light); border-left: 4px solid var(--accent-border); border-radius: 0 8px 8px 0; padding: 0.875rem 1.25rem; margin: 1.25rem 0; font-size: 0.9rem; color: var(--muted); }
+ .tip-box strong { color: var(--accent); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; display: block; margin-bottom: 0.2rem; }
+ .whats-inside { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+ .whats-inside h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.75rem; }
+ .whats-inside ul { padding-left: 1.25rem; margin: 0; }
+ .whats-inside li { font-size: 0.9375rem; margin-bottom: 0.375rem; }
+ .chapter-list { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; list-style: none; }
+ .chapter-list li { display: flex; gap: 0.875rem; align-items: baseline; padding: 0.4rem 0; border-bottom: 1px solid var(--accent-border); }
+ .chapter-list li:last-child { border-bottom: none; }
+ .chapter-list .num { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--accent); flex-shrink: 0; min-width: 1.75rem; }
+ .chapter-list .title { font-weight: 700; font-size: 0.9375rem; }
+ .chapter-list .desc { font-size: 0.875rem; color: var(--muted); }
+ .two-col-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+ @media (max-width: 640px) { .two-col-cards { grid-template-columns: 1fr; } }
+ .compare-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.125rem 1.25rem; }
+ .compare-card.accent-border { border-color: var(--accent); border-width: 2px; }
+ .compare-card h4 { font-family: 'Space Grotesk', sans-serif; font-size: 0.9375rem; font-weight: 700; margin-bottom: 0.5rem; }
+ .compare-card p { font-size: 0.875rem; color: var(--muted); margin: 0; }
+ .input-step { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1rem 1.25rem; margin-bottom: 0.875rem; display: flex; gap: 0.875rem; align-items: flex-start; }
+ .input-num { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--accent); font-size: 1.125rem; flex-shrink: 0; line-height: 1.4; }
+ .input-step h4 { font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.25rem; }
+ .input-step p { font-size: 0.875rem; color: var(--muted); margin: 0; }
+ .what-you-get { background: var(--accent-light); border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.125rem 1.5rem; margin: 1.25rem 0; }
+ .what-you-get h4 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 0.625rem; }
+ .what-you-get ul { padding-left: 1.25rem; margin: 0; }
+ .what-you-get li { font-size: 0.9375rem; margin-bottom: 0.35rem; }
+ @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+     .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+    @page { margin: 1.5cm; } @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .chapter-card, .compare-card, .checklist-card, blockquote { break-inside: avoid; page-break-inside: avoid; } .chapter-overview, .compare-grid, .checklist-grid, .email-flow { break-inside: avoid; page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+ <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+ <div class="logo-divider"></div>
+ <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">← All guides</a>
+ </div>
+</header>
+<div class="guide-hero">
+ <div class="hero-meta">
+ <span class="badge badge-cat">Prompts &amp; Skills</span>
+ <span class="badge badge-diff">Beginner</span>
+ </div>
+ <h1>Your Brutally Honest AI Cofounder</h1>
+ <div class="hero-author">
+ <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+ <div><span class="author-name">Max Johnson</span><span class="author-meta">@maxjohnscn</span></div>
+ </div>
+</div>
+<div class="page-wrap">
+ <article class="guide-content">
+    <button class="download-btn" onclick="downloadPDF()">&#8595; Download PDF</button>
+
+ <p class="intro-blurb">Drop Sam Altman's Startup Playbook into Claude and let it pressure-test your idea, so it tells you exactly where you're weak and what to fix first.</p>
+
+ <div class="whats-inside">
+ <h3>What's inside</h3>
+ <ul>
+ <li>What Sam Altman's Startup Playbook is, and why most people waste it</li>
+ <li>The three things you drop into Claude</li>
+ <li>The full cofounder prompt, ready to paste</li>
+ <li>How Claude pressure-tests your idea across five fronts</li>
+ <li>The one Altman rule that kills most startups, and how to dodge it</li>
+ </ul>
+ </div>
+
+ <div class="tip-box"><strong>Note</strong>You only need a free Claude account and the Startup Playbook, which is also free. No code, no API key, no setup. You paste three things into a chat and read what comes back.</div>
+
+ <!-- Chapter overview -->
+ <ul class="chapter-list">
+ <li><span class="num">01</span><div><span class="title">The Opportunity</span> <span class="desc">Why the Playbook is worth more than a single read</span></div></li>
+ <li><span class="num">02</span><div><span class="title">The Three Inputs</span> <span class="desc">The exact things you hand to Claude</span></div></li>
+ <li><span class="num">03</span><div><span class="title">The Cofounder Prompt</span> <span class="desc">Ready to paste straight into Claude</span></div></li>
+ <li><span class="num">04</span><div><span class="title">Run It &amp; Read It</span> <span class="desc">From your idea to brutally honest feedback</span></div></li>
+ </ul>
+
+ <h2 id="chapter-01">Chapter 01: The Opportunity</h2>
+ <p>Sam Altman released a free guide called the Startup Playbook. It's essentially everything they teach founders at Y Combinator, the startup accelerator behind Airbnb, Stripe, and Coinbase, all in one place, for free.</p>
+ <p>Here's the problem. Most people are just going to read it once and forget about it. A great framework you don't apply to your own idea is worth almost nothing. So instead of reading it like an article, you're going to turn it into a cofounder that pressure-tests your idea against every lesson in it.</p>
+
+ <h3>The Rule That Matters Most</h3>
+ <p><strong>"Startups die from suicide, not murder."</strong></p>
+ <p>It's almost never the competition that kills you, it's your own mistakes. The whole point of a brutally honest cofounder is to catch the things that will break before you waste a whole year building it.</p>
+
+ <div class="two-col-cards">
+ <div class="compare-card">
+ <h4>Read &amp; Forget</h4>
+ <p>You skim the playbook, nod along, feel productive, and change nothing about how you're building. The lessons never touch your actual idea.</p>
+ </div>
+ <div class="compare-card accent-border">
+ <h4>Run It Through Claude</h4>
+ <p>You feed the playbook to Claude and let it grade your idea against it, surfacing the weak spots and the one thing to fix first.</p>
+ </div>
+ </div>
+
+ <h2 id="chapter-02">Chapter 02: The Three Inputs</h2>
+ <p>Open Claude and give it three things. That's the whole setup, no tools, no installs. Paste them in this order so Claude has the framework before it judges your idea.</p>
+
+ <div class="input-step">
+ <div class="input-num">01</div>
+ <div>
+ <h4>The Playbook</h4>
+ <p>Open the Startup Playbook, copy it, and paste it into Claude first. This becomes the standard Claude holds your idea against.</p>
+ </div>
+ </div>
+
+ <pre><code>Open: playbook.samaltman.com</code></pre>
+
+ <div class="input-step">
+ <div class="input-num">02</div>
+ <div>
+ <h4>The Prompt</h4>
+ <p>Paste the cofounder prompt from the next chapter. It turns Claude into a blunt cofounder that runs your idea through the playbook across five fronts.</p>
+ </div>
+ </div>
+
+ <div class="input-step">
+ <div class="input-num">03</div>
+ <div>
+ <h4>Your Idea</h4>
+ <p>Describe your business idea or side hustle in a few honest lines, what it is, who it's for, and how it makes money. The more real you are, the sharper the feedback.</p>
+ </div>
+ </div>
+
+ <div class="tip-box"><strong>Tip</strong>Order matters. Playbook first, then the prompt, then your idea. The prompt refers to the playbook as 'pasted above,' so it needs to already be in the chat.</div>
+
+ <h2 id="chapter-03">Chapter 03: The Cofounder Prompt</h2>
+ <p>Open a new Claude chat. Paste the Startup Playbook first, then paste this prompt directly underneath it, then add your idea. Send it and Claude does the rest.</p>
+
+ <pre><code>Act as my cofounder, the kind who tells me the
+truth even when it stings. You've absorbed Sam Altman's
+Startup Playbook (pasted above) and you run everything
+through it. Don't reassure me. Find the cracks before
+they cost me a year.
+
+One idea sits at the centre of how you think: almost no
+startup gets killed by a competitor. They die by their
+own hand, slow, self-inflicted mistakes the founder
+never saw coming. Your real job is to surface the quiet
+ways I'm most likely to kill this myself.
+
+My idea is below. Stress-test it against the playbook
+on five fronts:
+
+PROBLEM &amp; MARKET Am I solving something people
+genuinely feel, or a need I've talked myself into?
+Is the market big or growing fast enough to matter?
+
+PRODUCT LOVE Would people love this enough to
+tell a friend, or just shrug and accept it? Describe
+the version that actually earns word of mouth.
+
+MY UNFAIR EDGE What makes me hard to copy? If a
+sharper team launched the same thing next month,
+what do I have that they don't?
+
+FIRST MOVES Name the single highest-leverage
+thing to do in the next 30 days, and the
+comfortable busywork I'll probably hide in instead.
+
+WHY NOW What recently changed that makes
+this the right moment, not two years ago or two
+years from now?
+
+Then hand it to me straight, in this order:
+
+1. A score out of 10 for each of the five fronts,
+with one sentence of reasoning each.
+
+2. My three biggest vulnerabilities, ranked worst
+first.
+
+3. The most likely way I quietly sabotage this
+myself, be specific, not generic.
+
+4. The one action to take before anything else.
+
+If you need one thing clarified to give a sharper
+read, ask it first, then begin.</code></pre>
+
+ <div class="tip-box"><strong>Tip</strong>Want it even harsher? Add one line at the end: 'Assume I'm overconfident and have skipped the obvious risks.' It pushes Claude past polite feedback.</div>
+
+ <h2 id="chapter-04">Chapter 04: Run It &amp; Read It</h2>
+ <p>Five steps from a cold idea to a brutally honest read. The whole thing takes a few minutes.</p>
+
+ <ol>
+ <li>Open a fresh Claude chat: Start clean so nothing from an old conversation skews the read.</li>
+ <li>Paste all three inputs in order: Playbook, then the cofounder prompt, then your idea. Send it.</li>
+ <li>Answer its one question, then read: Claude may ask a single clarifying question first. Answer it, then let the full response land.</li>
+ </ol>
+
+ <div class="what-you-get">
+ <h4>What You Get Back</h4>
+ <ul>
+ <li>A score out of 10 on each of the five fronts, with one line of reasoning</li>
+ <li>Your three biggest weaknesses, ranked worst first</li>
+ <li>The most likely way you'd quietly kill it yourself, the suicide, not the murder</li>
+ <li>The one thing to do first, before anything else</li>
+ </ul>
+ </div>
+
+ <div class="tip-box"><strong>Tip</strong>If the feedback stings, that's the point. A cofounder who only agrees with you is useless. Take the one first action, then run it again as your idea sharpens.</div>
+
+ <h2 id="closing">Stop Reading. Start Pressure-Testing.</h2>
+ <p>Most people read the playbook and forget it by the weekend. You're going to run your idea through it tonight and find the cracks before they cost you a year. Open Claude, paste the three inputs, and meet your brutally honest cofounder.</p>
+
+ </article>
+ <aside class="toc-sidebar">
+ <div class="toc-box">
+ <h3>Contents</h3>
+ <ol>
+ <li><a href="#chapter-01">Chapter 01: The Opportunity</a></li>
+ <li><a href="#chapter-02">Chapter 02: The Three Inputs</a></li>
+ <li><a href="#chapter-03">Chapter 03: The Cofounder Prompt</a></li>
+ <li><a href="#chapter-04">Chapter 04: Run It &amp; Read It</a></li>
+ </ol>
+ </div>
+ </aside>
+</div>
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+<script>
+function downloadPDF() {
+  window.print();
+}
+</script>
+</body>
+</html>

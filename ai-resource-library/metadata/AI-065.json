@@ -1,0 +1,34 @@
+{
+  "id": "AI-065",
+  "slug": "15-claude-routines-to-automate-your-business",
+  "title": "15 Claude Routines",
+  "category": "Getting Started",
+  "subcategory": "Usage & Optimization",
+  "difficulty": "Intermediate",
+  "description": "The 5 routines from the video fully broken down, plus 10 more worth building right after, content, ads, competitors, error reports, email, briefings and triage. Every prompt, what each routine needs to work, and a setup checklist so nothing breaks on day one.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Getting Started",
+    "Contents",
+    "What You'll Find Inside",
+    "What Claude Routines Actually Are",
+    "How To Set One Up",
+    "The 5 Routines From The Video",
+    "Usage & Optimization"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude",
+    "n8n"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-065_15-claude-routines-to-automate-your-business.html",
+  "summary_file": "summaries/AI-065.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

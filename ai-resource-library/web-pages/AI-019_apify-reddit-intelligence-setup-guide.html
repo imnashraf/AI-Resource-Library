@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Apify Reddit Intelligence Setup Guide</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✦%3C/text%3E%3C/svg%3E">
+ <style>
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+ html { scroll-behavior: smooth; }
+ body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+ .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+ .header.scrolled { border-color: var(--accent-border); }
+ .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+ .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+ .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+ .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+ .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+ a.logo-subtitle:hover { color: var(--accent); }
+ .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+ .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+ .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+ @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+ .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+ .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+ .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+ .badge-cat { background: var(--accent); color: #fff; }
+ .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+ .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+ .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+ .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+ .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+ .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+ .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+ .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+ .toc-box ol { list-style: none; counter-reset: toc; }
+ .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+ .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+ .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+ .toc-box a:hover { color: var(--accent); }
+ .guide-content { padding: 2rem 0 5rem; }
+ .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+ .guide-content h2:first-child { border-top: none; margin-top: 0; }
+ .guide-content p { margin-bottom: 1.125rem; }
+ .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+ .guide-content li { margin-bottom: 0.375rem; }
+ .guide-content strong { font-weight: 600; }
+ .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+ .callout { background: var(--accent-light); border-left: 3px solid var(--accent); padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; font-size: 0.9375rem; margin: 1.25rem 0; }
+ .callout p { margin: 0; }
+ .callout strong { color: var(--accent); }
+ .code-block { background: #000; color: #e2e8f0; font-family: 'Courier New', Courier, monospace; font-size: 0.875rem; line-height: 1.6; padding: 1.25rem 1.5rem; border-radius: 8px; overflow-x: auto; margin: 1.25rem 0; white-space: pre; }
+ .prompt-example { background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 8px; padding: 1.125rem 1.25rem; margin: 1rem 0; font-size: 0.9rem; font-family: 'Courier New', Courier, monospace; line-height: 1.65; white-space: pre-wrap; }
+ .flow-steps { display: flex; gap: 0; margin: 1.5rem 0; flex-wrap: wrap; }
+ .flow-step { flex: 1; min-width: 120px; background: #fff; border: 1px solid var(--accent-border); padding: 0.875rem; position: relative; }
+ .flow-step:not(:last-child)::after { content: "→"; position: absolute; right: -14px; top: 50%; transform: translateY(-50%); color: var(--accent); font-weight: 700; font-size: 1.1rem; z-index: 1; }
+ @media (max-width: 700px) { .flow-steps { flex-direction: column; } .flow-step:not(:last-child)::after { content: "↓"; right: auto; left: 50%; bottom: -14px; top: auto; transform: translateX(-50%); } }
+ .flow-step-num { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 700; font-size: 0.75rem; margin-bottom: 0.375rem; }
+ .flow-step-title { font-weight: 600; font-size: 0.8rem; }
+ @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+     .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+    @page { margin: 1.5cm; } @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .chapter-card, .compare-card, .checklist-card, blockquote { break-inside: avoid; page-break-inside: avoid; } .chapter-overview, .compare-grid, .checklist-grid, .email-flow { break-inside: avoid; page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+ <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+ <div class="logo-divider"></div>
+ <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">← All guides</a>
+ </div>
+</header>
+<div class="guide-hero">
+ <div class="hero-meta">
+ <span class="badge badge-cat">Tools &amp; Integrations</span>
+ <span class="badge badge-diff">Beginner</span>
+ </div>
+ <h1>Apify Reddit Intelligence Setup Guide</h1>
+ <div class="hero-author">
+ <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+ <div><span class="author-name">Max Johnson</span><span class="author-meta">@maxjohnscn</span></div>
+ </div>
+</div>
+<div class="page-wrap">
+ <article class="guide-content">
+    <button class="download-btn" onclick="downloadPDF()">&#8595; Download PDF</button>
+ <p class="intro-blurb">How to pull real-time Reddit data and turn it into content ideas and business opportunities, automatically.</p>
+ <p>By the end of this setup you will have Claude connected to Reddit via Apify. Ask it to extract the top conversations in any niche, and it will pull live data, analyse the frustrations and questions people are actually expressing, and generate a full intelligence report, content ideas, business opportunities, the lot.</p>
+ <p>No manual scrolling. No guessing what your audience wants. Just real-time signal, on demand.</p>
+ <p><strong>What you get:</strong></p>
+ <ul>
+ <li>Live Reddit data pulled automatically via Apify</li>
+ <li>Top questions, frustrations, and trending topics in your niche</li>
+ <li>A formatted intelligence report you can act on immediately</li>
+ <li>Content ideas and business opportunities based on real conversations</li>
+ </ul>
+ <p><strong>What you need:</strong></p>
+ <ul>
+ <li>Claude Pro or Teams account to access the connectors section</li>
+ <li>Apify account, apify.com (free tier works)</li>
+ <li>A niche or topic you want to research</li>
+ </ul>
+
+ <!-- VISUAL BLOCK 1 -->
+ <div class="flow-steps">
+ <div class="flow-step"><div class="flow-step-num">1</div><div class="flow-step-title">Create Apify account</div></div>
+ <div class="flow-step"><div class="flow-step-num">2</div><div class="flow-step-title">Connect Apify to Claude</div></div>
+ <div class="flow-step"><div class="flow-step-num">3</div><div class="flow-step-title">Paste the niche prompt</div></div>
+ <div class="flow-step"><div class="flow-step-num">4</div><div class="flow-step-title">Apify scrapes Reddit live</div></div>
+ <div class="flow-step"><div class="flow-step-num">5</div><div class="flow-step-title">Claude returns intelligence report</div></div>
+ </div>
+
+ <h2 id="step-1-create-your-apify-account">Step 1, Create your Apify account</h2>
+ <p>Go to apify.com and sign up for a free account. You do not need to add any payment details to get started. The free tier includes enough credits to run multiple Reddit scrapes.</p>
+
+ <h2 id="step-2-open-claude-and-go-to-connectors">Step 2, Open Claude and go to Connectors</h2>
+ <p>Open claude.ai and look for the Connectors section. You will find it in the left sidebar or under your account settings depending on your plan. Search for Apify in the connectors list.</p>
+
+ <h2 id="step-3-connect-apify-to-claude">Step 3, Connect Apify to Claude</h2>
+ <p>Click on the Apify connector and follow the authorisation flow. You will be asked to log in to your Apify account and grant Claude permission to use it. Accept and return to Claude.</p>
+ <div class="callout"><p><strong>TIP:</strong> Once connected, Claude can access the full Apify actor library, not just Reddit. You can use this same connector for scraping LinkedIn, Google, Amazon, and more.</p></div>
+
+ <h2 id="step-4-ask-claude-to-extract-reddit-data">Step 4, Ask Claude to extract Reddit data</h2>
+ <p>You are now ready. Open a new chat in Claude and paste in a prompt like the one below. Claude will automatically find the right Apify scraping tool, run it, and pull the data back into your conversation.</p>
+ <p><strong>Example prompt to paste into Claude:</strong></p>
+ <div class="code-block">Use Apify to extract the top conversations from Reddit in the
+[your niche] space. Find the most upvoted posts and comments
+from the last 30 days. Identify the top questions people are
+asking, the biggest frustrations being expressed, and any
+recurring themes. Then create a Reddit Intelligence Report
+with content ideas and business opportunities based on what
+you find.</div>
+ <div class="callout"><p><strong>NOTE:</strong> Replace [your niche] with your actual topic, e.g. email marketing, home renovation, personal finance, dog training. The more specific you are, the more useful the output.</p></div>
+
+ <h2 id="step-5-review-your-intelligence-report">Step 5, Review your intelligence report</h2>
+ <p>Claude will return a structured report covering top questions, trending frustrations, content angles, and potential business opportunities. You can then ask follow-up questions, for example, ask it to expand on any opportunity, or to draft a content brief based on the most common frustration it found.</p>
+
+ <h2 id="what-to-do-with-the-report">What To Do With the Report</h2>
+ <p>The intelligence report is a starting point, not a finished product. Here are the most useful follow-up prompts once Claude returns the data:</p>
+ <ul>
+ <li>"Turn the top 5 frustrations into Instagram video hooks"</li>
+ <li>"Write a content brief for each of the top 3 content ideas"</li>
+ <li>"Which of these business opportunities would be easiest to validate quickly"</li>
+ <li>"Run this same report again but only for posts from the last 7 days"</li>
+ </ul>
+ <div class="callout"><p><strong>PRO TIP:</strong> Save the prompt above inside a Claude Project for your content or business work. That way you can run the report any time without having to rebuild the prompt from scratch.</p></div>
+ </article>
+ <aside class="toc-sidebar">
+ <div class="toc-box">
+ <h3>Contents</h3>
+ <ol>
+ <li><a href="#step-1-create-your-apify-account">Create Your Apify Account</a></li>
+ <li><a href="#step-2-open-claude-and-go-to-connectors">Open Claude, Connectors</a></li>
+ <li><a href="#step-3-connect-apify-to-claude">Connect Apify to Claude</a></li>
+ <li><a href="#step-4-ask-claude-to-extract-reddit-data">Extract Reddit Data</a></li>
+ <li><a href="#step-5-review-your-intelligence-report">Review Your Report</a></li>
+ <li><a href="#what-to-do-with-the-report">What To Do With the Report</a></li>
+ </ol>
+ </div>
+ </aside>
+</div>
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+<script>
+function downloadPDF() {
+  window.print();
+}
+</script>
+</body>
+</html>

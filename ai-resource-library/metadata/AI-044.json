@@ -1,0 +1,31 @@
+{
+  "id": "AI-044",
+  "slug": "how-to-reduce-claude-token-usage",
+  "title": "How to Reduce Claude Token Usage",
+  "category": "Getting Started",
+  "subcategory": "Usage & Optimization",
+  "difficulty": "Beginner",
+  "description": "Ten practical techniques to stop burning through your Claude usage limit without losing output quality. Covers model routing, effort levels, batching context, output caps, and memory files for long-running projects.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Getting Started",
+    "What's inside",
+    "The Prompt",
+    "Template",
+    "Usage & Optimization"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-044_how-to-reduce-claude-token-usage.html",
+  "summary_file": "summaries/AI-044.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

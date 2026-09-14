@@ -1,0 +1,250 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Claude Code + Codex Setup Guide</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✦%3C/text%3E%3C/svg%3E">
+ <style>
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+ html { scroll-behavior: smooth; }
+ body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+ .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+ .header.scrolled { border-color: var(--accent-border); }
+ .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+ .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+ .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+ .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+ .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+ a.logo-subtitle:hover { color: var(--accent); }
+ .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+ .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+ .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+ @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+ .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+ .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+ .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+ .badge-cat { background: var(--accent); color: #fff; }
+ .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+ .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+ .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+ .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+ .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+ .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+ .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+ .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+ .toc-box ol { list-style: none; counter-reset: toc; }
+ .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+ .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+ .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+ .toc-box a:hover { color: var(--accent); }
+ .guide-content { padding: 2rem 0 5rem; }
+ .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+ .guide-content h2:first-child { border-top: none; margin-top: 0; }
+ .guide-content h3 { font-size: 1.125rem; font-weight: 600; margin-top: 1.75rem; margin-bottom: 0.75rem; }
+ .guide-content p { margin-bottom: 1.125rem; }
+ .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+ .guide-content li { margin-bottom: 0.375rem; }
+ .guide-content strong { font-weight: 600; }
+ .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+ .callout { background: var(--accent-light); border-left: 3px solid var(--accent); padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; font-size: 0.9375rem; margin: 1.25rem 0; }
+ .callout p { margin: 0; }
+ .callout strong { color: var(--accent); }
+ .code-block { background: #000; color: #fff; font-family: 'Courier New', Courier, monospace; font-size: 0.875rem; line-height: 1.6; padding: 1.25rem 1.5rem; border-radius: 8px; overflow-x: auto; margin: 1.25rem 0; }
+ .code-block code { background: none; color: inherit; }
+ .two-model-flow { display: flex; flex-direction: column; align-items: center; gap: 1rem; margin: 1.5rem 0; }
+ .tmf-row { display: flex; align-items: center; gap: 1rem; width: 100%; justify-content: center; flex-wrap: wrap; }
+ .tmf-box { background: #fff; border: 2px solid var(--accent); border-radius: 10px; padding: 1rem 1.5rem; text-align: center; min-width: 160px; }
+ .tmf-box .tmf-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1rem; color: var(--accent); }
+ .tmf-box .tmf-sub { font-size: 0.8rem; color: var(--muted); margin-top: 0.25rem; }
+ .tmf-center { background: #F5F1EA; border: 1.5px dashed var(--accent-border); border-radius: 8px; padding: 0.75rem 1.25rem; font-size: 0.875rem; font-weight: 600; text-align: center; }
+ .tmf-arrow { font-size: 1.25rem; color: var(--accent); }
+ .tmf-merged { background: var(--accent-light); border: 1.5px solid var(--accent-border); border-radius: 8px; padding: 0.875rem 1.5rem; font-size: 0.875rem; font-weight: 600; color: var(--accent); text-align: center; width: 100%; max-width: 420px; }
+ @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } .tmf-row { flex-direction: column; } }
+     .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+    @page { margin: 1.5cm; } @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .chapter-card, .compare-card, .checklist-card, blockquote { break-inside: avoid; page-break-inside: avoid; } .chapter-overview, .compare-grid, .checklist-grid, .email-flow { break-inside: avoid; page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+ <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+ <div class="logo-divider"></div>
+ <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">← All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+ <span class="badge badge-cat">Claude Code</span>
+ <span class="badge badge-diff">Intermediate</span>
+ </div>
+ <h1>Claude Code + Codex Setup Guide</h1>
+ <div class="hero-author">
+ <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+ <div>
+ <span class="author-name">Max Johnson</span>
+ <span class="author-meta">@maxjohnscn</span>
+ </div>
+ </div>
+</div>
+
+<div class="page-wrap">
+ <main class="guide-content">
+
+ <p class="intro-blurb">Two AI Models. One Codebase. Nothing Falls Through.</p>
+
+ <p>This guide gets you set up with the skill-codex integration, a free GitHub repo that lets Claude Code delegate tasks directly to OpenAI's Codex CLI. Once it is running, Claude and Codex review the same work from different angles. What one misses, the other catches.</p>
+
+ <p><strong>What you will have when this is done:</strong></p>
+ <ul>
+ <li>Codex CLI installed and working on your machine</li>
+ <li>The skill-codex plugin installed inside Claude Code</li>
+ <li>Your CLAUDE.md configured with a hook that triggers Codex automatically</li>
+ <li>Two AI models auditing your work on every test, simulation, and review</li>
+ </ul>
+
+ <p><strong>Before you start.</strong> You need three things already in place before following these steps:</p>
+ <ul>
+ <li>Claude Code installed and working on your machine</li>
+ <li>An OpenAI account with API access (to use Codex CLI)</li>
+ <li>A GitHub account to download the skill repo</li>
+ </ul>
+
+ <div class="callout"><p><strong>NOTE:</strong> The Codex CLI is a separate tool from ChatGPT. It runs locally and calls the OpenAI API directly. You will need an OpenAI API key, find it at platform.openai.com/api-keys.</p></div>
+
+ <!-- VISUAL BLOCK 1 -->
+ <div class="two-model-flow">
+ <div class="tmf-row">
+ <div class="tmf-box">
+ <div class="tmf-title">Claude Code</div>
+ <div class="tmf-sub">Reasoning, context, intent</div>
+ </div>
+ <div class="tmf-center">Your code / task</div>
+ <div class="tmf-box">
+ <div class="tmf-title">Codex CLI</div>
+ <div class="tmf-sub">Execution paths, edge cases, logic</div>
+ </div>
+ </div>
+ <div class="tmf-arrow">&#8595;</div>
+ <div class="tmf-merged">Combined review, catches what either misses alone</div>
+ </div>
+
+ <h2 id="step-01-install-codex-cli">Step 01, Install the Codex CLI, From OpenAI</h2>
+
+ <p>The Codex CLI is OpenAI's command line tool. It runs locally on your machine and is what Claude Code will call when it delegates a task to Codex. Install it via npm with the command below.</p>
+
+ <div class="code-block"><pre>$ Terminal, install Codex CLI
+
+npm install -g @openai/codex</pre></div>
+
+ <p>Once it is installed, authenticate it with your OpenAI API key:</p>
+
+ <div class="code-block"><pre>$ Terminal, add your OpenAI API key
+
+export OPENAI_API_KEY=your-api-key-here
+# To make this permanent, add the line above to your ~/.zshrc or ~/.bashrc
+# then run: source ~/.zshrc</pre></div>
+
+ <div class="callout"><p><strong>TIP:</strong> To check the install worked, run: <code style="background:#d1faf4;padding:0.1em 0.35em;border-radius:3px;font-size:0.85em;">codex --version</code> in your terminal. If it returns a version number you are good to go.</p></div>
+
+ <h2 id="step-02-download-skill-codex">Step 02, Download the skill-codex Plugin, github.com/klaudworks/skill-codex</h2>
+
+ <p>This is the GitHub repo that bridges Claude Code and Codex. It contains the skill file that tells Claude Code how to call Codex and what to do with the results. Download it and place it inside your project.</p>
+
+ <div class="code-block"><pre>$ Terminal, clone the skill-codex repo
+
+git clone https://github.com/klaudworks/skill-codex.git</pre></div>
+
+ <p>Once cloned, copy the plugin folder into your project:</p>
+
+ <div class="code-block"><pre>$ Terminal, copy the plugin into your project
+
+cp -r skill-codex/plugins/skill-codex \
+./your-project/.claude-plugin/skill-codex</pre></div>
+
+ <div class="callout"><p><strong>NOTE:</strong> Your project folder should now contain a .claude-plugin folder with the skill-codex folder inside it. Claude Code looks for plugins in this location automatically.</p></div>
+
+ <div class="callout"><p><strong>TIP:</strong> The repo has 868 stars and is actively maintained. If you want updates in future, clone it somewhere permanent and symlink the plugin folder into your projects instead of copying it each time.</p></div>
+
+ <h2 id="step-03-add-hook-to-claudemd">Step 03, Add the Hook to Your CLAUDE.md, Tell Claude when to use Codex</h2>
+
+ <p>This is the step that makes the whole thing automatic. You add a hook to your CLAUDE.md file that tells Claude Code to call Codex whenever it is running tests, auditing code, or simulating behaviour. Claude does its work first, then Codex reviews it from a completely different angle.</p>
+
+ <p>Open your CLAUDE.md file (or create one in your project root if it does not exist). Add the following block:</p>
+
+ <div class="code-block"><pre>$ CLAUDE.md, add this hook
+
+## Codex Integration Hook
+# Uses OpenAI Codex CLI to audit, test and simulate.
+# Codex reviews from a different angle, catches what Claude misses.
+when: "running tests OR auditing OR simulating"
+do:
+- run_skill(codex-review, target=current_task)
+- compare_outputs(claude_result, codex_result)
+- flag_discrepancies(threshold=medium)
+- merge_best_solution()</pre></div>
+
+ <div class="callout"><p><strong>TIP:</strong> The hook triggers automatically on any task that involves testing, auditing, or simulation. You do not need to prompt it manually.</p></div>
+
+ <div class="callout"><p><strong>WARNING:</strong> If you do not have a CLAUDE.md file in your project root, create a new file called CLAUDE.md and paste the block above into it. Claude Code reads this file at the start of every session.</p></div>
+
+ <h2 id="step-04-verify">Step 04, Verify It Is Working, Run a test task</h2>
+
+ <p>Open Claude Code with your project folder selected and ask it to run a test or audit a file. You should see Claude call the Codex skill in its process, it will show the Codex review alongside its own output and flag any discrepancies between the two.</p>
+
+ <div class="code-block"><pre>$ Claude Code, paste this to verify the integration
+
+Audit this project for any logic errors or edge cases.
+Use the Codex skill to review from a second perspective.
+Flag anything that differs between your analysis and Codex's.</pre></div>
+
+ <div class="callout"><p><strong>TIP:</strong> If Claude does not call Codex automatically on the first run, check that the .claude-plugin folder is in the right location and that the CLAUDE.md hook block is formatted correctly with no extra spaces.</p></div>
+
+ <h2 id="how-it-works">How It Works, Two Models. One Review.</h2>
+
+ <p>Claude Code and Codex are trained differently. They have different strengths and different blind spots. When Claude finishes a piece of work, the hook fires Codex to review the same output from scratch.</p>
+
+ <p>Claude is strong at reasoning about intent, understanding context across large codebases, and handling ambiguous instructions. Codex is trained heavily on code execution paths, it is particularly good at spotting logical errors, edge cases, and things that pass tests but break in production.</p>
+
+ <p>The result is a combined output that is more reliable than either model working alone. In practice, the number of things that slip through drops noticeably after the first week of running this.</p>
+
+ <div class="callout"><p><strong>TIP:</strong> The most useful trigger is the audit task. Ask Claude to audit a file you are about to ship and the Codex review will consistently surface at least one thing Claude did not flag.</p></div>
+
+ <p>skill-codex repo: github.com/klaudworks/skill-codex, free and open source.</p>
+
+ </main>
+
+ <aside class="toc-sidebar">
+ <div class="toc-box">
+ <h3>Contents</h3>
+ <ol>
+ <li><a href="#step-01-install-codex-cli">Install Codex CLI</a></li>
+ <li><a href="#step-02-download-skill-codex">Download skill-codex Plugin</a></li>
+ <li><a href="#step-03-add-hook-to-claudemd">Add Hook to CLAUDE.md</a></li>
+ <li><a href="#step-04-verify">Verify It Is Working</a></li>
+ <li><a href="#how-it-works">How It Works</a></li>
+ </ol>
+ </div>
+ </aside>
+</div>
+
+
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+<script>
+function downloadPDF() {
+  window.print();
+}
+</script>
+</body>
+</html>

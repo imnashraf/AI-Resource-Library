@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>PostHog + Claude Code Setup Guide</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✦%3C/text%3E%3C/svg%3E">
+ <style>
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+ html { scroll-behavior: smooth; }
+ body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+ .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+ .header.scrolled { border-color: var(--accent-border); }
+ .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+ .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+ .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+ .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+ .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+ a.logo-subtitle:hover { color: var(--accent); }
+ .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+ .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+ .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+ @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+ .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+ .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+ .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+ .badge-cat { background: var(--accent); color: #fff; }
+ .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+ .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+ .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+ .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+ .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+ .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+ .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+ .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+ .toc-box ol { list-style: none; counter-reset: toc; }
+ .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+ .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+ .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+ .toc-box a:hover { color: var(--accent); }
+ .guide-content { padding: 2rem 0 5rem; }
+ .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+ .guide-content h2:first-child { border-top: none; margin-top: 0; }
+ .guide-content p { margin-bottom: 1.125rem; }
+ .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+ .guide-content li { margin-bottom: 0.375rem; }
+ .guide-content strong { font-weight: 600; }
+ .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+ .callout { background: var(--accent-light); border-left: 3px solid var(--accent); padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; font-size: 0.9375rem; margin: 1.25rem 0; }
+ .callout p { margin: 0; }
+ .callout strong { color: var(--accent); }
+ .code-block { background: #000; color: #e2e8f0; font-family: 'Courier New', Courier, monospace; font-size: 0.875rem; line-height: 1.6; padding: 1.25rem 1.5rem; border-radius: 8px; overflow-x: auto; margin: 1.25rem 0; white-space: pre; }
+ .prompt-example { background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 8px; padding: 1.125rem 1.25rem; margin: 1rem 0; font-size: 0.9rem; font-family: 'Courier New', Courier, monospace; line-height: 1.65; white-space: pre-wrap; }
+ .flow-steps { display: flex; gap: 0; margin: 1.5rem 0; flex-wrap: wrap; }
+ .flow-step { flex: 1; min-width: 130px; background: #fff; border: 1px solid var(--accent-border); padding: 0.875rem; position: relative; }
+ .flow-step:not(:last-child)::after { content: "→"; position: absolute; right: -13px; top: 50%; transform: translateY(-50%); color: var(--accent); font-weight: 700; font-size: 1rem; z-index: 1; }
+ @media (max-width: 700px) { .flow-steps { flex-direction: column; } .flow-step:not(:last-child)::after { content: "↓"; right: auto; left: 50%; bottom: -13px; top: auto; transform: translateX(-50%); } }
+ .flow-step-num { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 700; font-size: 0.75rem; margin-bottom: 0.375rem; }
+ .flow-step-title { font-weight: 600; font-size: 0.8rem; }
+ @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+     .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+    @page { margin: 1.5cm; } @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .chapter-card, .compare-card, .checklist-card, blockquote { break-inside: avoid; page-break-inside: avoid; } .chapter-overview, .compare-grid, .checklist-grid, .email-flow { break-inside: avoid; page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+ <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+ <div class="logo-divider"></div>
+ <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">← All guides</a>
+ </div>
+</header>
+<div class="guide-hero">
+ <div class="hero-meta">
+ <span class="badge badge-cat">Tools &amp; Integrations</span>
+ <span class="badge badge-diff">Intermediate</span>
+ </div>
+ <h1>PostHog + Claude Code Setup Guide</h1>
+ <div class="hero-author">
+ <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+ <div><span class="author-name">Max Johnson</span><span class="author-meta">@maxjohnscn</span></div>
+ </div>
+</div>
+<div class="page-wrap">
+ <article class="guide-content">
+    <button class="download-btn" onclick="downloadPDF()">&#8595; Download PDF</button>
+ <p class="intro-blurb">PostHog + Claude Code: Analytics, A/B Testing &amp; Self-Optimising Landing Pages.</p>
+ <p>This guide gets you from a landing page with zero tracking to a fully connected, A/B-testing setup that Claude can read and optimise. Everything here runs on PostHog's free plan. Follow the steps in order, the whole setup takes about 15 minutes.</p>
+ <p><strong>What you will have when this is done:</strong></p>
+ <ul>
+ <li>PostHog fully installed and tracking on your landing page</li>
+ <li>Custom event tracking, button clicks, scroll depth, form submissions</li>
+ <li>Claude reading your live PostHog data to analyse what is working</li>
+ <li>An A/B split test running on your hero section, tracked automatically</li>
+ </ul>
+ <p><strong>PostHog, Free Analytics That Connects to Claude Code.</strong> PostHog is a free analytics platform. Go to posthog.com and create a free account before starting. It tracks everything happening on your site, where people click, where they drop off, how far they scroll. Once connected to Claude Code, Claude can read all of that data and act on it directly.</p>
+ <div class="callout"><p><strong>TIP:</strong> The free plan covers everything in this guide. No paid account needed. PostHog has a genuinely useful free tier.</p></div>
+ <p>You also need a landing page that was built or can be opened inside Claude Code.</p>
+
+ <!-- VISUAL BLOCK 1 -->
+ <div class="flow-steps">
+ <div class="flow-step"><div class="flow-step-num">1</div><div class="flow-step-title">Create PostHog account</div></div>
+ <div class="flow-step"><div class="flow-step-num">2</div><div class="flow-step-title">Install via Claude Code</div></div>
+ <div class="flow-step"><div class="flow-step-num">3</div><div class="flow-step-title">Custom event tracking</div></div>
+ <div class="flow-step"><div class="flow-step-num">4</div><div class="flow-step-title">Claude as analytics advisor</div></div>
+ <div class="flow-step"><div class="flow-step-num">5</div><div class="flow-step-title">A/B split test running</div></div>
+ </div>
+
+ <h2 id="step-01-create-your-posthog-account">Step 01, Create Your PostHog Account, posthog.com</h2>
+ <p>Go to posthog.com and sign up for free. Once you are in, create a new project for your landing page. You will need your Project API Key from the PostHog dashboard, find it under Settings then Project. Keep the tab open.</p>
+ <div class="callout"><p><strong>NOTE:</strong> Your Project API Key starts with phc_ followed by a long string. Claude Code will ask for this when it installs PostHog, paste it in when prompted.</p></div>
+
+ <h2 id="step-02-install-posthog-via-claude-code">Step 02, Install PostHog via Claude Code, Claude handles everything</h2>
+ <p>Open Claude Code and point it at your landing page project folder. Paste the prompt below exactly as written. Claude will research the right installation method for your stack, install PostHog, configure it, and verify events are firing, all on its own.</p>
+ <div class="prompt-example">$ Claude Code, paste this to install PostHog
+
+Research how to install PostHog on this repository
+Install and configure it
+Verify that events are being sent to the PostHog dashboard</div>
+ <div class="callout"><p><strong>TIP:</strong> Claude figures out the right method for your stack automatically, plain HTML, React, Next.js or anything else. You do not need to touch the code yourself.</p></div>
+ <div class="callout"><p><strong>NOTE:</strong> Once the prompt finishes, go to your PostHog dashboard and click around your page in a browser. You should see events appearing in the Live Events view in real time.</p></div>
+
+ <h2 id="step-03-set-up-custom-event-tracking">Step 03, Set Up Custom Event Tracking, Know exactly what people are doing</h2>
+ <p>Basic PostHog gives you page views. Custom events give you the things that actually matter, which buttons people click, how far they scroll before leaving, whether they hit your form.</p>
+ <div class="prompt-example">$ Claude Code, paste this to add custom tracking
+
+Set up posthog custom event tracking on this site.
+Track: button clicks with the button text as a property,
+form submissions with the form scroll depth at 25% 50% 75%
+and 100% and outbound clicks.
+Use descriptive event names.
+Verify events appear in the PostHog dashboard.</div>
+ <div class="callout"><p><strong>TIP:</strong> After this runs, click every button on your page and scroll through it fully. Go to PostHog &gt; Live Events and confirm each action is showing up with the right name and properties.</p></div>
+
+ <h2 id="step-04-connect-claude-to-your-posthog-data">Step 04, Connect Claude to Your PostHog Data, Your analytics advisor</h2>
+ <p>Now you set Claude up as a connected analytics advisor. Instead of reading charts yourself, Claude reads your live PostHog data and tells you exactly what to fix, and writes you the Claude Code prompt to implement each change.</p>
+ <p>Open Claude Code with your landing page folder selected. Paste this as your opening prompt for a new session:</p>
+ <div class="prompt-example">$ Claude Code, paste this to set up the analytics advisor
+
+You are a website analytics advisor connected to PostHog.
+When I ask about my site, pull real data from PostHog. Analyse event
+patterns, conversion rates, and user drop off points. Identify what is
+working, and what is underperforming. When you recommend a change,
+write a specific prompt i can paste into Claude code to implement it.
+Always back recommendations with actual PostHog data, not assumptions.</div>
+ <p>Once this is running you can ask Claude things like:</p>
+ <ul>
+ <li>Where are people dropping off my page?</li>
+ <li>Which CTA button is getting the most clicks?</li>
+ <li>What section has the highest scroll drop-off?</li>
+ <li>What percentage of visitors are reaching my form?</li>
+ <li>What should I change first to improve conversions?</li>
+ </ul>
+ <div class="callout"><p><strong>TIP:</strong> Every recommendation Claude gives will come with the exact Claude Code prompt to implement it. Paste it in, Claude Code makes the change, the data starts updating.</p></div>
+
+ <h2 id="step-05-set-up-an-ab-split-test">Step 05, Set Up an A/B Split Test, Let the data decide</h2>
+ <p>Run two versions of your landing page at the same time and let PostHog tell you which one converts better. Claude Code builds both versions and sets up the split using PostHog feature flags automatically.</p>
+ <div class="prompt-example">$ Claude Code, paste this to run the A/B split test
+
+Set up an A/B split test on the hero section using PostHog feature flags.
+Keep the current version as the control. Create one variant with a
+different headline and CTA button text. Track clicks on the primary CTA
+as conversion goal. Split traffic 50/50.
+Both variants should look identical except for the copy.</div>
+ <div class="callout"><p><strong>TIP:</strong> Once it is running, go to PostHog &gt; Experiments to watch results build. When one variant is clearly winning, tell Claude Code which version won and ask it to make that the default.</p></div>
+ <div class="callout"><p><strong>NOTE:</strong> The split test uses PostHog feature flags, PostHog randomly assigns each visitor to control or variant and tracks which group converts better.</p></div>
+
+ <h2 id="your-landing-page-is-now-learning">Your Landing Page Is Now Learning</h2>
+ <p>With all five steps done, you have a landing page that tracks its own performance, lets Claude analyse the data, and can run split tests on any section. The next step is to use it.</p>
+ <p>Check in with your PostHog analytics advisor every few days and ask it what the data is showing. When it recommends a change, paste the prompt into Claude Code. Let the test run for at least a week before calling a winner.</p>
+ <div class="callout"><p><strong>TIP:</strong> The more traffic your page gets, the faster the data becomes useful. Even with low traffic, scroll depth and click patterns will show you where the page is losing people within the first few days.</p></div>
+ <p>PostHog is free at posthog.com. Everything in this guide works on the free plan with no card required.</p>
+ </article>
+ <aside class="toc-sidebar">
+ <div class="toc-box">
+ <h3>Contents</h3>
+ <ol>
+ <li><a href="#step-01-create-your-posthog-account">Create PostHog Account</a></li>
+ <li><a href="#step-02-install-posthog-via-claude-code">Install via Claude Code</a></li>
+ <li><a href="#step-03-set-up-custom-event-tracking">Custom Event Tracking</a></li>
+ <li><a href="#step-04-connect-claude-to-your-posthog-data">Claude as Analytics Advisor</a></li>
+ <li><a href="#step-05-set-up-an-ab-split-test">A/B Split Test</a></li>
+ <li><a href="#your-landing-page-is-now-learning">Your Page Is Now Learning</a></li>
+ </ol>
+ </div>
+ </aside>
+</div>
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+<script>
+function downloadPDF() {
+  window.print();
+}
+</script>
+</body>
+</html>

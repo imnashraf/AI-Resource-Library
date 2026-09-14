@@ -1,0 +1,28 @@
+{
+  "id": "AI-009",
+  "slug": "7-claude-code-agent-types",
+  "title": "7 Claude Code Agent Types",
+  "category": "Claude Code",
+  "subcategory": "Agent Architecture",
+  "difficulty": "Intermediate",
+  "description": "The seven distinct ways to use Claude Code as an agent, from single-task runners to persistent multi-step workflows. Understand what each type is built for and when to reach for each one.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Claude Code",
+    "Agent Architecture"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-009_7-claude-code-agent-types.html",
+  "summary_file": "summaries/AI-009.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

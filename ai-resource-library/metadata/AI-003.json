@@ -1,0 +1,37 @@
+{
+  "id": "AI-003",
+  "slug": "the-ultimate-claude-toolkit",
+  "title": "The Ultimate Claude Toolkit",
+  "category": "Getting Started",
+  "subcategory": "Account & Setup",
+  "difficulty": "Beginner",
+  "description": "A curated collection of the most useful Claude tools, extensions, and integrations. Everything in one place, from browser extensions to desktop apps to the best community-built skills.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Getting Started",
+    "Which plan do you need",
+    "Account & Setup"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude Opus",
+    "Claude Desktop",
+    "Claude",
+    "ChatGPT",
+    "OpenAI Codex",
+    "PostHog",
+    "Figma",
+    "Wispr Flow",
+    "NotebookLM"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-003_the-ultimate-claude-toolkit.html",
+  "summary_file": "summaries/AI-003.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

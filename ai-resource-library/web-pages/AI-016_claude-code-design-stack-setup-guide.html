@@ -1,0 +1,204 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Claude Code Design Stack Setup Guide</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✦%3C/text%3E%3C/svg%3E">
+ <style>
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+ html { scroll-behavior: smooth; }
+ body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+ .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+ .header.scrolled { border-color: var(--accent-border); }
+ .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+ .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+ .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+ .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+ .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+ a.logo-subtitle:hover { color: var(--accent); }
+ .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+ .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+ .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+ @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+ .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+ .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+ .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+ .badge-cat { background: var(--accent); color: #fff; }
+ .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+ .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+ .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+ .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+ .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+ .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+ .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+ .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+ .toc-box ol { list-style: none; counter-reset: toc; }
+ .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+ .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+ .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+ .toc-box a:hover { color: var(--accent); }
+ .guide-content { padding: 2rem 0 5rem; }
+ .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+ .guide-content h2:first-child { border-top: none; margin-top: 0; }
+ .guide-content h3 { font-size: 1.125rem; font-weight: 600; margin-top: 1.75rem; margin-bottom: 0.75rem; }
+ .guide-content p { margin-bottom: 1.125rem; }
+ .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+ .guide-content li { margin-bottom: 0.375rem; }
+ .guide-content strong { font-weight: 600; }
+ .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+ .callout { background: var(--accent-light); border-left: 3px solid var(--accent); padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; font-size: 0.9375rem; margin: 1.25rem 0; }
+ .callout p { margin: 0; }
+ .callout strong { color: var(--accent); }
+ .code-block { background: #000; color: #e2e8f0; font-family: 'Courier New', Courier, monospace; font-size: 0.875rem; line-height: 1.6; padding: 1.25rem 1.5rem; border-radius: 8px; overflow-x: auto; margin: 1.25rem 0; white-space: pre; }
+ .prompt-example { background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 8px; padding: 1.125rem 1.25rem; margin: 1rem 0; font-size: 0.9rem; font-family: 'Courier New', Courier, monospace; line-height: 1.65; white-space: pre-wrap; }
+
+ .tool-stack { margin: 1.5rem 0; display: flex; flex-direction: column; gap: 0.75rem; }
+ .tool-row { display: flex; align-items: flex-start; gap: 1rem; background: #fff; border: 1px solid var(--accent-border); border-radius: 10px; padding: 1rem 1.25rem; }
+ .tool-num { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 700; font-size: 0.875rem; flex-shrink: 0; }
+ .tool-info { flex: 1; }
+ .tool-name { font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.25rem; }
+ .tool-desc { font-size: 0.875rem; color: var(--muted); }
+
+ @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+     .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+    @page { margin: 1.5cm; } @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .chapter-card, .compare-card, .checklist-card, blockquote { break-inside: avoid; page-break-inside: avoid; } .chapter-overview, .compare-grid, .checklist-grid, .email-flow { break-inside: avoid; page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+
+<header class="header" id="site-header">
+ <div class="header-inner">
+ <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+ <div class="logo-divider"></div>
+ <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">← All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+ <span class="badge badge-cat">Claude Code</span>
+ <span class="badge badge-diff">Beginner</span>
+ </div>
+ <h1>Claude Code Design Stack Setup Guide</h1>
+ <div class="hero-author">
+ <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+ <div>
+ <span class="author-name">Max Johnson</span>
+ <span class="author-meta">@maxjohnscn</span>
+ </div>
+ </div>
+</div>
+
+<div class="page-wrap">
+ <article class="guide-content">
+    <button class="download-btn" onclick="downloadPDF()">&#8595; Download PDF</button>
+
+ <p class="intro-blurb">Three tools. Installed once. Your Claude Code goes from decent to professional-grade designer. Follow this guide in order, the whole thing takes about 15 minutes.</p>
+
+ <p><strong>The Stack:</strong></p>
+ <ul>
+ <li><strong>01 GitHub, UX/UI Design Skill:</strong> Gives Claude a real design system to work from. Actual UI principles, not just aesthetics. Claude reads it automatically in every session.</li>
+ <li><strong>02 MCP, Google Stitch + Nano Banana 2:</strong> Real design pattern references. Claude stops guessing and starts pulling from proven patterns when it builds for you.</li>
+ <li><strong>03 Library, 21st.dev:</strong> Premium 3D and reactive component assets Claude Code taps directly. The difference in output quality is immediate.</li>
+ </ul>
+
+ <p><strong>Before You Start.</strong> Make sure you have Claude Code installed and working on your machine, and Node.js version 18 or higher. Run the commands below to check.</p>
+ <div class="code-block"># Check your versions
+node --version
+npm --version
+claude --version</div>
+ <div class="callout"><p><strong>TIP:</strong> No Claude Code yet? Install it with: <code>npm install -g @anthropic-ai/claude-code</code>, then authenticate with your Anthropic account.</p></div>
+
+ <!-- VISUAL BLOCK 1 -->
+ <div class="tool-stack">
+ <div class="tool-row">
+ <div class="tool-num">01</div>
+ <div class="tool-info">
+ <div class="tool-name">UX/UI Design Skill</div>
+ <div class="tool-desc">Design system, layout principles, component patterns, loaded every session automatically</div>
+ </div>
+ </div>
+ <div class="tool-row">
+ <div class="tool-num">02</div>
+ <div class="tool-info">
+ <div class="tool-name">Google Stitch + Nano Banana 2 MCPs</div>
+ <div class="tool-desc">Real design pattern references, Claude builds from proven layouts not guesses</div>
+ </div>
+ </div>
+ <div class="tool-row">
+ <div class="tool-num">03</div>
+ <div class="tool-info">
+ <div class="tool-name">21st.dev</div>
+ <div class="tool-desc">3D and reactive components, premium assets Claude taps directly</div>
+ </div>
+ </div>
+ </div>
+
+ <h2 id="step-01-install-the-pro-uxui-design-skill">Step 01, Install the Pro UX/UI Design Skill from GitHub, Free</h2>
+ <p>A CLAUDE.md skill file that gets added to your project. Gives Claude Code a proper design system, layout principles, component patterns, spacing rules, baked in from the start.</p>
+ <p>Navigate into your project folder first, then run the command below to download the skill file.</p>
+ <div class="code-block"># Navigate to your project
+cd your-project-folder
+# Download the UX/UI skill into your project root
+curl -O https://raw.githubusercontent.com/[repo-link]/main/CLAUDE.md</div>
+ <div class="callout"><p><strong>NOTE:</strong> Claude Code automatically reads any CLAUDE.md file in your project directory. Once this is in place, the design system loads automatically every time you start Claude Code in this project. No extra steps after install.</p></div>
+
+ <h2 id="step-02-install-google-stitch-mcp-nano-banana-2">Step 02, Install Google Stitch MCP + Nano Banana 2, Free</h2>
+ <p>MCPs give Claude access to external references. These two give it real design patterns to pull from when building. Install both using Claude Code's built-in MCP installer.</p>
+ <div class="code-block"># Install Google Stitch MCP
+claude mcp add google-stitch
+
+# Install Nano Banana 2 MCP
+claude mcp add nano-banana-2</div>
+ <div class="callout"><p><strong>TIP:</strong> Verify both installed correctly by running: <code>claude mcp list</code>, you should see both listed as active.</p></div>
+
+ <h2 id="step-03-connect-the-21stdev-asset-library">Step 03, Connect the 21st.dev Asset Library, Free tier available</h2>
+ <p>21st.dev is a component library Claude Code taps directly, 3D elements, animated components, reactive UI. Create a free account at 21st.dev, grab your API key from your dashboard, then run the install below.</p>
+ <div class="code-block"># Replace YOUR_API_KEY_HERE with your key from 21st.dev
+claude mcp add 21st-dev --api-key YOUR_API_KEY_HERE</div>
+ <div class="callout"><p><strong>WARNING:</strong> Keep your API key private. Do not paste it into shared files or commit it to Git. This command stores it securely in your local Claude Code config.</p></div>
+
+ <h2 id="step-04-test-the-full-stack-verification">Step 04, Test the Full Stack, Verification</h2>
+ <p>Open Claude Code in your project and paste the prompt below. If all three tools are working, Claude will pull from the design skill, reference real patterns via the MCPs, and use a 21st.dev component for the 3D element.</p>
+ <p><strong>Test prompt, paste into Claude Code:</strong></p>
+ <div class="prompt-example">Build me a landing page hero section with a 3D animated gradient background, a bold headline,
+a subheadline, and a CTA button. Use 21st.dev components for the 3D elements. Follow the UX/UI
+design skill guidelines for layout and spacing. Reference best-practice hero patterns from
+Stitch and Nano Banana.</div>
+ <div class="callout"><p><strong>TIP:</strong> Good output: Claude references the design skill without prompting, pulls a real layout pattern, and uses an actual 21st.dev component for the 3D element. If any of those are missing, check which tool didn't install using: <code>claude mcp list</code></p></div>
+ <p>Links to all three tools are in the comments on the original video.</p>
+
+ </article>
+ <aside class="toc-sidebar">
+ <div class="toc-box">
+ <h3>Contents</h3>
+ <ol>
+ <li><a href="#step-01-install-the-pro-uxui-design-skill">Install the UX/UI Design Skill</a></li>
+ <li><a href="#step-02-install-google-stitch-mcp-nano-banana-2">Install Google Stitch + Nano Banana 2</a></li>
+ <li><a href="#step-03-connect-the-21stdev-asset-library">Connect 21st.dev</a></li>
+ <li><a href="#step-04-test-the-full-stack-verification">Test the Full Stack</a></li>
+ </ol>
+ </div>
+ </aside>
+</div>
+
+
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+<script>
+function downloadPDF() {
+  window.print();
+}
+</script>
+</body>
+</html>

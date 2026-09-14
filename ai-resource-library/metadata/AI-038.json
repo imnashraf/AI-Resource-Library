@@ -1,0 +1,35 @@
+{
+  "id": "AI-038",
+  "slug": "5-ai-services-you-can-sell-this-week",
+  "title": "5 AI Services You Can Sell This Week",
+  "category": "Building & Monetising",
+  "subcategory": "Agency & Client Acquisition",
+  "difficulty": "Beginner",
+  "description": "Five AI services you can start selling immediately with no coding required. AI copywriting, content repurposing, chatbot setup, email outbound systems, and vibe-coded web design, with pricing, tools, and first-client steps for each.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Building & Monetising",
+    "Service 01, AI-Powered Copywriting",
+    "How to get started",
+    "Service 02, AI Content Repurposing",
+    "The core tool stack",
+    "Agency & Client Acquisition"
+  ],
+  "ai_tools": [
+    "Claude",
+    "ChatGPT",
+    "GPT-4",
+    "v0",
+    "Apollo"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-038_5-ai-services-you-can-sell-this-week.html",
+  "summary_file": "summaries/AI-038.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "AI-069",
+  "slug": "3-free-ways-to-actually-learn-claude",
+  "title": "3 Free Ways to Actually Learn Claude",
+  "category": "Getting Started",
+  "subcategory": "Education & Courses",
+  "difficulty": "Beginner",
+  "description": "The official course library (Claude Academy), the official Claude Skills repo, and the community-built Awesome Claude Code Subagents collection, fully researched and verified link by link, plus a sensible order to actually use all three together.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Getting Started",
+    "Contents: What You'll Learn",
+    "Why This Is Worth Your Time",
+    "What makes it worth using",
+    "Why this one matters",
+    "Education & Courses"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude Skills",
+    "Claude"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-069_3-free-ways-to-actually-learn-claude.html",
+  "summary_file": "summaries/AI-069.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "AI-056",
+  "slug": "13-free-ai-courses-and-certifications",
+  "title": "13 Free AI Courses & Certifications",
+  "category": "Getting Started",
+  "subcategory": "Education & Courses",
+  "difficulty": "Beginner",
+  "description": "Every one is free, every one has a direct link. A complete path from total beginner to building real AI agents and workflows, with badges and certificates to prove it. Covers Anthropic, OpenAI, Google, IBM, Microsoft, AWS, Harvard, and more.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Getting Started",
+    "Overview",
+    "How to use this guide",
+    "Start Here",
+    "The 3 to run first",
+    "Go Further",
+    "Ten more, all free",
+    "Education & Courses"
+  ],
+  "ai_tools": [
+    "Claude"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-056_13-free-ai-courses-and-certifications.html",
+  "summary_file": "summaries/AI-056.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

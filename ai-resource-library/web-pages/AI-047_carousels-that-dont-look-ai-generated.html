@@ -1,0 +1,478 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Carousels That Don't Look AI-Generated</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+ <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+  .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+  .header.scrolled { border-color: var(--accent-border); }
+  .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+  .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+  .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+  .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+  .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+  a.logo-subtitle:hover { color: var(--accent); }
+  .nav-agent-link { font-size: 0.8125rem; font-weight: 700; color: var(--accent); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--accent); border-radius: 9999px; letter-spacing: 0.04em; text-transform: uppercase; transition: all 0.2s; white-space: nowrap; }
+    .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+  .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+  .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+  @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+  .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+  .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+  .badge-cat { background: var(--accent); color: #fff; }
+  .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+  .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+  .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+  .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+  .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+  .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+  .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+  .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+  .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+  .toc-box ol { list-style: none; counter-reset: toc; }
+  .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+  .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+  .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+  .toc-box a:hover { color: var(--accent); }
+  .guide-content { padding: 2rem 0 5rem; }
+  .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+  .guide-content h2:first-of-type { border-top: none; margin-top: 0; }
+  .guide-content h3 { font-size: 1.0625rem; font-weight: 700; margin-top: 1.75rem; margin-bottom: 0.625rem; }
+  .guide-content p { margin-bottom: 1.125rem; }
+  .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+  .guide-content li { margin-bottom: 0.375rem; }
+  .guide-content strong { font-weight: 600; }
+  .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+  @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+  .callout { border-left: 4px solid var(--accent-border); background: var(--accent-light); padding: 0.875rem 1.125rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0; }
+  .callout-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.35rem; }
+  .callout p { margin-bottom: 0; }
+  pre { background: #1a1a1a; color: #e8e8e8; padding: 1.25rem 1.5rem; border-radius: 8px; font-size: 0.875rem; line-height: 1.65; margin: 1.5rem 0; overflow-x: auto; white-space: pre-wrap; }
+  pre code { font-family: 'Courier New', Courier, monospace; }
+
+  /* VB1: Three-step flow */
+  .three-step-flow { background: linear-gradient(135deg, #fff 0%, var(--accent-light) 100%); border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.75rem 2rem; margin: 1.75rem 0; }
+  .three-step-inner { display: flex; align-items: center; justify-content: center; gap: 0; }
+  .step-item { text-align: center; flex: 1; }
+  .step-label { display: inline-block; font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; background: #fff; border: 1.5px solid var(--accent-border); border-radius: 9999px; padding: 0.35rem 1rem; margin-bottom: 0.35rem; }
+  .step-desc { font-size: 0.8125rem; color: var(--muted); }
+  .step-chevron { font-size: 1.75rem; color: var(--accent-border); padding: 0 0.75rem; flex-shrink: 0; line-height: 1; }
+  @media (max-width: 600px) { .three-step-inner { flex-direction: column; gap: 0.5rem; } .step-chevron { transform: rotate(90deg); } }
+
+  /* VB2: Chapter index */
+  .chapter-index { display: grid; grid-template-columns: 1fr 1fr; gap: 0.875rem; margin: 1.75rem 0; }
+  @media (max-width: 600px) { .chapter-index { grid-template-columns: 1fr; } }
+  .chapter-index-card { background: #fff; border: 1.5px solid var(--accent-border); border-top: 3px solid var(--accent); border-radius: 10px; padding: 1.125rem 1.25rem; }
+  .chapter-index-num { font-family: 'Space Grotesk', sans-serif; font-size: 1.375rem; font-weight: 700; color: var(--accent); margin-bottom: 0.2rem; }
+  .chapter-index-title { font-weight: 700; font-size: 0.9rem; margin-bottom: 0.35rem; }
+  .chapter-index-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+
+  /* VB3: Workflow flow */
+  .workflow-flow { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 0; align-items: center; margin: 1.75rem 0; }
+  @media (max-width: 640px) { .workflow-flow { grid-template-columns: 1fr; gap: 0.5rem; } .workflow-chevron { transform: rotate(90deg); text-align: center; } }
+  .workflow-card { background: linear-gradient(135deg, #fff 0%, var(--accent-light) 100%); border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; text-align: center; }
+  .workflow-num { font-family: 'Space Grotesk', sans-serif; font-size: 1.375rem; font-weight: 700; color: var(--accent); display: block; margin-bottom: 0.25rem; }
+  .workflow-title { font-weight: 700; font-size: 0.9375rem; display: block; margin-bottom: 0.35rem; }
+  .workflow-desc { font-size: 0.8125rem; color: var(--muted); }
+  .workflow-chevron { font-size: 1.75rem; color: var(--accent-border); text-align: center; padding: 0 0.5rem; line-height: 1; }
+
+  /* VB4: Six tells grid */
+  .tells-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.875rem; margin: 1.75rem 0; }
+  @media (max-width: 600px) { .tells-grid { grid-template-columns: 1fr; } }
+  .tell-card { background: linear-gradient(160deg, var(--accent-light) 0%, #fff 60%); border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.125rem 1.25rem; }
+  .tell-num { display: inline-block; font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; font-weight: 700; background: var(--accent); color: #fff; border-radius: 9999px; padding: 0.15rem 0.5rem; margin-bottom: 0.5rem; }
+  .tell-title { font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.4rem; }
+  .tell-body { font-size: 0.8125rem; color: var(--muted); line-height: 1.6; }
+
+  /* VB5: Setup rows */
+  .setup-rows { margin: 1.75rem 0; border: 1.5px solid var(--accent-border); border-radius: 12px; overflow: hidden; background: #fff; }
+  .setup-row { display: flex; gap: 1.5rem; align-items: flex-start; padding: 1.25rem 1.5rem; }
+  .setup-row + .setup-row { border-top: 1px solid var(--accent-border); }
+  .setup-tag { display: inline-block; font-family: 'Space Grotesk', sans-serif; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.05em; background: var(--accent); color: #fff; border-radius: 9999px; padding: 0.25rem 0.75rem; white-space: nowrap; flex-shrink: 0; margin-top: 0.15rem; }
+  .setup-content h4 { font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.35rem; }
+  .setup-content p { font-size: 0.8125rem; color: var(--muted); margin: 0; line-height: 1.6; }
+  @media (max-width: 600px) { .setup-row { flex-direction: column; gap: 0.5rem; } }
+
+  /* VB6: Export cards */
+  .export-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.875rem; margin: 1.75rem 0; }
+  @media (max-width: 640px) { .export-grid { grid-template-columns: 1fr; } }
+  .export-card { background: linear-gradient(135deg, #fff 0%, var(--accent-light) 100%); border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+  .export-num { font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; font-weight: 700; background: var(--accent); color: #fff; border-radius: 9999px; padding: 0.2rem 0.5rem; display: inline-block; margin-bottom: 0.625rem; }
+  .export-title { font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.375rem; }
+  .export-desc { font-size: 0.8125rem; color: var(--muted); line-height: 1.6; }
+
+  /* Prompt label */
+  .prompt-label { font-family: 'Space Grotesk', sans-serif; font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.35rem; margin-top: 1.5rem; }
+
+  /* Refine list */
+  .refine-list { background: var(--accent-light); border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+  .refine-list-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.75rem; }
+  .refine-list ul { list-style: none; padding: 0; margin: 0; }
+  .refine-list li { font-size: 0.875rem; color: var(--text); padding: 0.35rem 0 0.35rem 1.25rem; position: relative; line-height: 1.55; }
+  .refine-list li::before { content: "›"; position: absolute; left: 0; color: var(--accent); font-size: 1rem; line-height: 1.4; }
+
+  /* Download button */
+  .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+  .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+
+  @page { margin: 1.5cm; }
+  @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .tell-card, .export-card, .workflow-card { break-inside: avoid; page-break-inside: avoid; } .tells-grid, .chapter-index, .export-grid, .workflow-flow, .setup-rows { break-inside: avoid; page-break-inside: avoid; } }
+ </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+  <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+  <div class="logo-divider"></div>
+  <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">&#8592; All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+  <span class="badge badge-cat">Tools &amp; Integrations</span>
+  <span class="badge badge-diff">Intermediate</span>
+ </div>
+ <h1>Carousels That Don't Look AI-Generated</h1>
+ <div class="hero-author">
+  <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+  <div>
+   <span class="author-name">Max Johnson</span>
+   <span class="author-meta">AI Agency Founder · @maxjohnscn</span>
+  </div>
+ </div>
+</div>
+
+<div class="page-wrap">
+ <article class="guide-content">
+  <button class="download-btn" onclick="downloadPDF()">&#8595; Download PDF</button>
+
+  <p class="intro-blurb">Give Claude Design a topic and a style, and get a full, designer-grade Instagram carousel in minutes, not a stack of slides that scream "AI made this".</p>
+
+  <div class="three-step-flow">
+   <div class="three-step-inner">
+    <div class="step-item">
+     <div class="step-label">Topic</div>
+     <div class="step-desc">one narrow idea</div>
+    </div>
+    <div class="step-chevron">›</div>
+    <div class="step-item">
+     <div class="step-label">Style</div>
+     <div class="step-desc">one real reference</div>
+    </div>
+    <div class="step-chevron">›</div>
+    <div class="step-item">
+     <div class="step-label">Finished set</div>
+     <div class="step-desc">full carousel, in minutes</div>
+    </div>
+   </div>
+  </div>
+
+  <h3>What's Inside</h3>
+  <ul>
+   <li>What Claude Design actually is, and how it builds full carousels</li>
+   <li>The topic-plus-style workflow that turns one idea into a finished set</li>
+   <li>Why most AI carousels look AI, and the exact tells to kill</li>
+   <li>The full prompt that makes the output look designer-made</li>
+   <li>How to refine slide by slide and export ready to post</li>
+  </ul>
+
+  <div class="chapter-index">
+   <div class="chapter-index-card">
+    <div class="chapter-index-num">01</div>
+    <div class="chapter-index-title">What Claude Design Is</div>
+    <div class="chapter-index-desc">The tool behind the slides, and what "topic + style" really gets you</div>
+   </div>
+   <div class="chapter-index-card">
+    <div class="chapter-index-num">02</div>
+    <div class="chapter-index-title">Why AI Carousels Look AI</div>
+    <div class="chapter-index-desc">The six tells that give it away every time</div>
+   </div>
+   <div class="chapter-index-card">
+    <div class="chapter-index-num">03</div>
+    <div class="chapter-index-title">The Setup: Topic, Style, Brand</div>
+    <div class="chapter-index-desc">The three inputs that decide whether it looks designed</div>
+   </div>
+   <div class="chapter-index-card">
+    <div class="chapter-index-num">04</div>
+    <div class="chapter-index-title">The Full Prompt</div>
+    <div class="chapter-index-desc">The quick version, then the full ready-to-paste block</div>
+   </div>
+   <div class="chapter-index-card">
+    <div class="chapter-index-num">05</div>
+    <div class="chapter-index-title">Refine and Export</div>
+    <div class="chapter-index-desc">Slide-by-slide edits and getting post-ready files</div>
+   </div>
+   <div class="chapter-index-card">
+    <div class="chapter-index-num">06</div>
+    <div class="chapter-index-title">The Honest Limits</div>
+    <div class="chapter-index-desc">What to know before you rely on it</div>
+   </div>
+  </div>
+
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>Claude Design is an Anthropic Labs product in research preview, available on paid Claude plans (Pro, Max, Team, Enterprise). It is a separate canvas tool, not the normal chat box. Everything here works inside it today; expect the interface to keep changing as it leaves preview.</p>
+  </div>
+
+  <h2 id="ch-01">What Claude Design Is</h2>
+
+  <p>Claude Design is Anthropic's canvas-based design tool, launched in April 2026 and powered by the Opus 4.7 vision model. It is not the chat box. It has its own canvas where you describe what you want, Claude builds a first version, and you refine it visually, dragging, restyling and editing single elements without breaking the rest.</p>
+
+  <p>That is the shift the video is talking about. Asking the chat to "write carousel copy" just gives you words you then have to rebuild in Canva. Claude Design produces the actual slides, layout, typography, hierarchy, the lot, as an editable design you can export. One input, a finished set.</p>
+
+  <div class="workflow-flow">
+   <div class="workflow-card">
+    <span class="workflow-num">01</span>
+    <span class="workflow-title">Describe</span>
+    <span class="workflow-desc">Give it a topic, a style and your brand basics</span>
+   </div>
+   <div class="workflow-chevron">›</div>
+   <div class="workflow-card">
+    <span class="workflow-num">02</span>
+    <span class="workflow-title">Claude builds</span>
+    <span class="workflow-desc">All slides laid out on the canvas, in minutes</span>
+   </div>
+   <div class="workflow-chevron">›</div>
+   <div class="workflow-card">
+    <span class="workflow-num">03</span>
+    <span class="workflow-title">Refine and export</span>
+    <span class="workflow-desc">Tweak per slide, then send to Canva, PDF or PNG</span>
+   </div>
+  </div>
+
+  <div class="callout">
+   <div class="callout-label">The honest version of "in minutes"</div>
+   <p>The first draft really does land in a couple of minutes. A carousel you'd actually post takes a refine pass or two on top, call it 10 to 15 minutes for a polished set, not two. Still a fraction of the hours it used to take, which is the whole point.</p>
+  </div>
+
+  <h2 id="ch-02">Why AI Carousels Look AI</h2>
+
+  <p>Before the fix, name the problem. There are six tells that give an AI carousel away, and they all come from the same place: vague prompts. Ask for "clean, modern, professional" and the model pulls toward the median of everything it has seen. The median is the AI look.</p>
+
+  <div class="tells-grid">
+   <div class="tell-card">
+    <div class="tell-num">01</div>
+    <div class="tell-title">The default font</div>
+    <div class="tell-body">Inter, Roboto, system sans. Anthropic's own design guidelines literally tell Claude to avoid these, they're the typographic fingerprint of AI output.</div>
+   </div>
+   <div class="tell-card">
+    <div class="tell-num">02</div>
+    <div class="tell-title">Four cards in a grid</div>
+    <div class="tell-body">Stacked, evenly-sized boxes with no focal point. The layout every AI tool reaches for when you don't tell it otherwise.</div>
+   </div>
+   <div class="tell-card">
+    <div class="tell-num">03</div>
+    <div class="tell-title">The purple-to-cyan gradient</div>
+    <div class="tell-body">The universal "AI made this" background. If your slides fade from violet to teal, people clock it instantly.</div>
+   </div>
+   <div class="tell-card">
+    <div class="tell-num">04</div>
+    <div class="tell-title">Perfect symmetry</div>
+    <div class="tell-body">Everything centred, evenly spaced, no tension. Real design has a hierarchy and a focal point, AI defaults to bland balance.</div>
+   </div>
+   <div class="tell-card">
+    <div class="tell-num">05</div>
+    <div class="tell-title">No narrative</div>
+    <div class="tell-body">A topic chopped into slides instead of a story. Good carousels pull you through: hook, then tension, then payoff.</div>
+   </div>
+   <div class="tell-card">
+    <div class="tell-num">06</div>
+    <div class="tell-title">Generic everything</div>
+    <div class="tell-body">Stock icons, median spacing, nothing you remember. Designed by committee to be vaguely nice, so it gets scrolled past.</div>
+   </div>
+  </div>
+
+  <div class="callout">
+   <div class="callout-label">The one fix behind all six</div>
+   <p>Stop describing, start referencing. Swap "modern and clean" for a real aesthetic, exact fonts and exact colours. Specific inputs can't collapse to the median, that's the entire trick to the next three chapters.</p>
+  </div>
+
+  <h2 id="ch-03">The Setup: Topic, Style, Brand</h2>
+
+  <p>Three inputs decide whether your carousel looks designed or generated. Get these right and the prompt in the next chapter does the rest.</p>
+
+  <div class="setup-rows">
+   <div class="setup-row">
+    <div class="setup-tag">TOPIC</div>
+    <div class="setup-content">
+     <h4>Narrow and outcome-led</h4>
+     <p>One audience, one promise. "5 ChatGPT prompts that save estate agents an hour a day" beats "AI tips". The tighter the audience, the sharper every slide gets.</p>
+    </div>
+   </div>
+   <div class="setup-row">
+    <div class="setup-tag">STYLE</div>
+    <div class="setup-content">
+     <h4>Reference, don't describe</h4>
+     <p>Name a real aesthetic: an editorial print magazine, Swiss typographic, a brand you admire. Pick a distinctive type pairing (a characterful display face plus a clean body face) and hand over an exact palette of 2 to 3 hex codes. Ban Inter, Roboto, Arial and any purple gradient outright.</p>
+    </div>
+   </div>
+   <div class="setup-row">
+    <div class="setup-tag">BRAND</div>
+    <div class="setup-content">
+     <h4>Make the set feel like one designer made it</h4>
+     <p>Your handle small in the same corner on every slide. Same margins, same type scale, same accent right across the set. If you already have a design system, Claude Design can read it and build to it.</p>
+    </div>
+   </div>
+  </div>
+
+  <div class="callout">
+   <div class="callout-label">The structure, every time</div>
+   <p>Slide 1 is a hook (under 8 words). Every middle slide carries one idea: a short headline and a line or two, never a wall of text. The last slide is the call to action. Hook, one idea per slide, CTA.</p>
+  </div>
+
+  <h2 id="ch-04">The Full Prompt</h2>
+
+  <p>Start with the quick version, this is the "topic and a style" the video describes, with just enough guard-rails to dodge the AI look. Paste it straight into Claude Design and swap the brackets.</p>
+
+  <div class="prompt-label">THE QUICK PROMPT</div>
+  <pre><code>Build me a 7-slide Instagram carousel about [topic] for [audience].
+Style: [reference, e.g. bold editorial print, dark mode, one big
+idea per slide]. Format 4:5, 1080 x 1350px.
+Slide 1 is a hook under 8 words. Last slide is a CTA to [action].
+Don't use Inter or Roboto. No gradient backgrounds. One focal
+point per slide with generous negative space.</code></pre>
+
+  <p>It works because every line is doing a job: a narrow topic, a referenced style, an exact format, a hook-and-CTA structure, and three explicit bans that kill the most common tells. When you want full control, exact fonts, exact palette, a locked system across the set, use the full prompt below.</p>
+
+  <div class="callout">
+   <div class="callout-label">Tip</div>
+   <p>Drag in a screenshot of a carousel you love before you send. Claude Design reads images, so a reference beats any description, it'll match the structure and feel instead of guessing.</p>
+  </div>
+
+  <h3>The Full Carousel Prompt</h3>
+
+  <div class="prompt-label">PASTE AND SWAP THE BRACKETS</div>
+  <pre><code>I want a [number]-slide Instagram carousel.
+
+TOPIC: [topic], for [specific audience] who want to [outcome].
+
+FORMAT
+- 4:5 portrait, 1080 x 1350px per slide, [number] slides total.
+- Slide 1 is the hook. The last slide is the CTA.
+
+STRUCTURE (one idea per slide)
+- Slide 1 - Hook: a bold claim, a sharp number or an open loop.
+  Under 8 words on the slide.
+- Middle slides - one single idea each: a short headline plus one
+  or two supporting lines. Never more than that.
+- Final slide - CTA: tell them exactly what to do ([your CTA]).
+
+DESIGN (this is the part that matters)
+- Style reference: design it like [a real reference, e.g. an
+  editorial print magazine, Swiss typographic, a premium fintech
+  brand]. Do NOT default to generic SaaS.
+- Type: do NOT use Inter, Roboto, Arial or Space Grotesk. Pair one
+  characterful display face for headlines with one clean body face.
+- Palette: use exactly these colours, [2-3 hex codes]. No purple-
+  to-cyan gradients.
+- One visual anchor per slide. Big type, generous negative space.
+  Not four cards in a grid.
+- Vary where the headline sits across slides so the set feels
+  designed, not templated, but keep one consistent system:
+  same margins, same type scale, same accent on every slide.
+- Put [@yourhandle] small in the same corner of every slide.
+
+Build all [number] slides on the canvas, then I'll refine.</code></pre>
+
+  <div class="callout">
+   <div class="callout-label">Why it beats the AI look</div>
+   <p>Every tell from Chapter 02 has a matching instruction here: a referenced style, banned fonts, an exact palette, one anchor per slide, and a locked system across the set. You're not asking for "good design", you're removing the room it has to be generic.</p>
+  </div>
+
+  <h2 id="ch-05">Refine and Export</h2>
+
+  <p>The first draft is a starting point, not the post. Two or three plain-English tweaks take it from "AI built this" to "a designer built this". Talk to it like an art director:</p>
+
+  <div class="refine-list">
+   <div class="refine-list-label">Refine Prompts</div>
+   <ul>
+    <li>"Make slide 3 the boldest in the set, bump the headline, cut the body to one line."</li>
+    <li>"Swap the accent to #35C4A2 across every slide."</li>
+    <li>"Slide 1 hook is weak. Give me five sharper options, then apply your favourite."</li>
+    <li>"Tighten the spacing on slides 4 to 6 so they match slide 2."</li>
+   </ul>
+  </div>
+
+  <div class="export-grid">
+   <div class="export-card">
+    <div class="export-num">01</div>
+    <div class="export-title">Refine per slide</div>
+    <div class="export-desc">Claude Design edits one element without touching the rest, work slide by slide.</div>
+   </div>
+   <div class="export-card">
+    <div class="export-num">02</div>
+    <div class="export-title">Check the font</div>
+    <div class="export-desc">Confirm your chosen typeface actually rendered. If it didn't load, it silently falls back to a system font, the number one way branded output degrades.</div>
+   </div>
+   <div class="export-card">
+    <div class="export-num">03</div>
+    <div class="export-title">Export post-ready</div>
+    <div class="export-desc">Send to Canva (fully editable), or export PDF, PPTX or PNG. For Instagram: 4:5, 1080 x 1350px.</div>
+   </div>
+  </div>
+
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>Instagram allows up to 20 slides per carousel, but 6 to 10 is the sweet spot, long enough to deliver, short enough to finish. Set the count in your prompt; don't pad to fill space.</p>
+  </div>
+
+  <h2 id="ch-06">The Honest Limits</h2>
+
+  <p>It's a genuinely good tool, but it isn't magic. Here's what to know before you rely on it, so you're not surprised halfway through a content sprint.</p>
+
+  <p><strong>It's a research preview.</strong> Output quality varies and the tool is still changing. Treat first drafts as drafts, and check it before you publish.</p>
+
+  <p><strong>Paid plans only.</strong> Claude Design needs Pro, Max, Team or Enterprise. There's no free-tier access, so factor that in before you build a workflow around it.</p>
+
+  <p><strong>It burns usage fast.</strong> Design draws from the same usage pool as chat, Code and Cowork, and heavy sessions eat into limits quickly. Batch a week of carousels in one sitting rather than dipping in all day.</p>
+
+  <p><strong>Fonts can silently fall back.</strong> It writes the CSS for your font but uses a system font if that font didn't load. Always eyeball the type after it generates.</p>
+
+  <p><strong>It's a front-end, not a finisher.</strong> It's built for exploration and first drafts. The Canva and PDF handoffs exist for a reason, do final polish there.</p>
+
+  <p><strong>Don't mass-produce slop.</strong> The whole promise is that it stops looking AI, and that only holds while you keep feeding it specific, referenced inputs. Lazy prompts just give you the median look, at scale.</p>
+
+  <h2>Give it a topic. Give it a style.</h2>
+
+  <p>Run the prompt, refine it twice, and you've got a week of content in the time it used to take to make one slide. The tool does the layout. You bring the taste: a narrow topic, a real reference, and the discipline to keep your inputs specific.</p>
+
+ </article>
+
+ <aside class="toc-sidebar">
+  <div class="toc-box">
+   <h3>Chapters</h3>
+   <ol>
+    <li><a href="#ch-01">What Claude Design Is</a></li>
+    <li><a href="#ch-02">Why AI Carousels Look AI</a></li>
+    <li><a href="#ch-03">The Setup: Topic, Style, Brand</a></li>
+    <li><a href="#ch-04">The Full Prompt</a></li>
+    <li><a href="#ch-05">Refine and Export</a></li>
+    <li><a href="#ch-06">The Honest Limits</a></li>
+   </ol>
+  </div>
+ </aside>
+</div>
+
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+<script>
+function downloadPDF() {
+  window.print();
+}
+</script>
+</body>
+</html>

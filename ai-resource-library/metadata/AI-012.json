@@ -1,0 +1,32 @@
+{
+  "id": "AI-012",
+  "slug": "run-claude-code-free-with-ollama",
+  "title": "Run Claude Code Free With Ollama",
+  "category": "Claude Code",
+  "subcategory": "Model & Tool Interop",
+  "difficulty": "Intermediate",
+  "description": "Run local open-source models through Claude Code using Ollama, no API costs, fully offline. Covers installation, model selection, and the practical limits of local models versus Claude's hosted API.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Claude Code",
+    "Without Ollama",
+    "With Ollama",
+    "Chapter 02, Step 1, Install Ollama",
+    "Model & Tool Interop"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude",
+    "Ollama"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-012_run-claude-code-free-with-ollama.html",
+  "summary_file": "summaries/AI-012.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

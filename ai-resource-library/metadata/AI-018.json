@@ -1,0 +1,29 @@
+{
+  "id": "AI-018",
+  "slug": "notebooklm-claude-code-setup-guide",
+  "title": "NotebookLM + Claude Code Setup Guide",
+  "category": "Tools & Integrations",
+  "subcategory": "Third-Party Connectors",
+  "difficulty": "Intermediate",
+  "description": "Use NotebookLM for deep document research and Claude Code for execution, a two-tool research-to-action pipeline. Setup guide and the workflow that makes them work well together.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Tools & Integrations",
+    "Third-Party Connectors"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude",
+    "NotebookLM"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-018_notebooklm-claude-code-setup-guide.html",
+  "summary_file": "summaries/AI-018.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

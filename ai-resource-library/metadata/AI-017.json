@@ -1,0 +1,28 @@
+{
+  "id": "AI-017",
+  "slug": "figma-claude-setup-guide",
+  "title": "Figma + Claude Setup Guide",
+  "category": "Tools & Integrations",
+  "subcategory": "Creative & Design",
+  "difficulty": "Beginner",
+  "description": "Connect Figma to Claude via MCP and work with your design files in conversation. Covers the Figma MCP server setup, authentication, and the most useful prompts for design workflows.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Tools & Integrations",
+    "Creative & Design"
+  ],
+  "ai_tools": [
+    "Claude",
+    "Figma"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-017_figma-claude-setup-guide.html",
+  "summary_file": "summaries/AI-017.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

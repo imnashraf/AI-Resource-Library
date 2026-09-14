@@ -1,0 +1,299 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Claude, Wispr Flow and Cookiy AI Setup Guide</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✦%3C/text%3E%3C/svg%3E">
+ <style>
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+ html { scroll-behavior: smooth; }
+ body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+ .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+ .header.scrolled { border-color: var(--accent-border); }
+ .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+ .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+ .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+ .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+ .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+ a.logo-subtitle:hover { color: var(--accent); }
+ .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+ .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+ .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+ @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+ .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+ .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+ .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+ .badge-cat { background: var(--accent); color: #fff; }
+ .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+ .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+ .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+ .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+ .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+ .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+ .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+ .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+ .toc-box ol { list-style: none; counter-reset: toc; }
+ .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+ .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+ .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+ .toc-box a:hover { color: var(--accent); }
+ .guide-content { padding: 2rem 0 5rem; }
+ .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+ .guide-content h2:first-child { border-top: none; margin-top: 0; }
+ .guide-content h3 { font-size: 1.125rem; font-weight: 600; margin-top: 1.75rem; margin-bottom: 0.75rem; }
+ .guide-content p { margin-bottom: 1.125rem; }
+ .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+ .guide-content li { margin-bottom: 0.375rem; }
+ .guide-content strong { font-weight: 600; }
+ .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+ .callout { background: var(--accent-light); border-left: 3px solid var(--accent); padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; font-size: 0.9375rem; margin: 1.25rem 0; }
+ .callout p { margin: 0; }
+ .callout strong { color: var(--accent); }
+ .code-block { background: #000; color: #fff; font-family: 'Courier New', Courier, monospace; font-size: 0.875rem; line-height: 1.6; padding: 1.25rem 1.5rem; border-radius: 8px; overflow-x: auto; margin: 1.25rem 0; }
+ .code-block code { background: none; color: inherit; }
+ .prompt-example { background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 8px; padding: 1.125rem 1.25rem; margin: 1rem 0; font-size: 0.9rem; font-family: 'Courier New', Courier, monospace; line-height: 1.65; white-space: pre-wrap; }
+ .vb-cards { display: flex; gap: 1rem; flex-wrap: wrap; margin: 1.5rem 0; }
+ .vb-card { flex: 1; min-width: 200px; background: #fff; border: 1.5px solid #E5E7EB; border-radius: 10px; padding: 1.125rem 1rem; }
+ .vb-card .vb-num { font-size: 0.75rem; font-weight: 700; color: var(--accent); letter-spacing: 0.04em; margin-bottom: 0.3rem; }
+ .vb-card .vb-title { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.35rem; }
+ .vb-card .vb-desc { font-size: 0.825rem; color: var(--muted); line-height: 1.5; }
+ .flow-steps { display: flex; align-items: stretch; gap: 0; flex-wrap: wrap; margin: 1.5rem 0; }
+ .flow-step { flex: 1; min-width: 140px; background: #fff; border: 1.5px solid #E5E7EB; border-radius: 8px; padding: 1rem; text-align: center; position: relative; }
+ .flow-step .fs-num { display: inline-block; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 0.8rem; font-weight: 700; line-height: 28px; margin-bottom: 0.5rem; }
+ .flow-step .fs-title { font-size: 0.875rem; font-weight: 600; margin-bottom: 0.25rem; }
+ .flow-step .fs-desc { font-size: 0.775rem; color: var(--muted); }
+ @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } .vb-cards { flex-direction: column; } .flow-steps { flex-direction: column; } }
+     .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+    @page { margin: 1.5cm; } @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .chapter-card, .compare-card, .checklist-card, blockquote { break-inside: avoid; page-break-inside: avoid; } .chapter-overview, .compare-grid, .checklist-grid, .email-flow { break-inside: avoid; page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+ <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+ <div class="logo-divider"></div>
+ <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">← All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+ <span class="badge badge-cat">Getting Started</span>
+ <span class="badge badge-diff">Intermediate</span>
+ </div>
+ <h1>Claude, Wispr Flow and Cookiy AI Setup Guide</h1>
+ <div class="hero-author">
+ <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+ <div>
+ <span class="author-name">Max Johnson</span>
+ <span class="author-meta">AI Agency Founder &middot; @maxjohnscn</span>
+ </div>
+ </div>
+</div>
+
+<div class="page-wrap">
+ <main class="guide-content">
+ <p class="intro-blurb">Three tools. One workflow. How to set them up individually and use them together to think faster, move faster and get more done.</p>
+
+ <p><strong>What's inside:</strong></p>
+ <ul>
+ <li>How to set up Claude properly from day one</li>
+ <li>Wispr Flow, dictate into any app, 4x faster than typing</li>
+ <li>Cookiy AI, run real user research with a single prompt</li>
+ <li>The combined workflow that connects all three</li>
+ <li>Ready-to-use setup steps for every tool</li>
+ </ul>
+
+ <div class="callout"><p><strong>Note:</strong> This guide assumes you have accounts for each tool. Links are provided at each section. Claude and Wispr Flow both offer free tiers, start there before upgrading.</p></div>
+
+ <!-- VISUAL BLOCK 1 -->
+ <div class="vb-cards">
+ <div class="vb-card">
+ <div class="vb-num" style="color: var(--accent); font-size: 0.8rem; font-weight: 700; margin-bottom: 0.25rem;">TOOL</div>
+ <div class="vb-title" style="color: var(--accent);">Claude</div>
+ <div style="font-size: 0.75rem; font-weight: 600; color: var(--muted); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.04em;">Think and build</div>
+ <div class="vb-desc">The AI layer. Projects, memory, skills, and connectors mean Claude already knows your context before you type a word.</div>
+ </div>
+ <div class="vb-card">
+ <div class="vb-num" style="color: var(--accent); font-size: 0.8rem; font-weight: 700; margin-bottom: 0.25rem;">TOOL</div>
+ <div class="vb-title" style="color: var(--accent);">Wispr Flow</div>
+ <div style="font-size: 0.75rem; font-weight: 600; color: var(--muted); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.04em;">Speak instead of type</div>
+ <div class="vb-desc">Voice dictation into any text field. 150+ wpm speaking vs 40 60 wpm typing. Every tool in your stack gets richer prompts.</div>
+ </div>
+ <div class="vb-card">
+ <div class="vb-num" style="color: var(--accent); font-size: 0.8rem; font-weight: 700; margin-bottom: 0.25rem;">TOOL</div>
+ <div class="vb-title" style="color: var(--accent);">Cookiy AI</div>
+ <div style="font-size: 0.75rem; font-weight: 600; color: var(--muted); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.04em;">Validate with real people</div>
+ <div class="vb-desc">Autonomous user research. Recruits participants, runs interviews, delivers insights. In hours, not weeks.</div>
+ </div>
+ </div>
+
+ <h2 id="chapter-01-claude">Chapter 01, Claude</h2>
+
+ <p>Claude is made by Anthropic. Out of the box it answers questions. With the right setup it handles real tasks: writing, research, analysis, email, and automation. The difference is entirely in how you configure it. Here is the minimum setup that actually matters.</p>
+
+ <p><strong>Create your account.</strong> Go to claude.ai and sign up. The free plan works for this guide. The Pro plan ($20/month) unlocks Projects, more messages, and priority access to the latest models. Start free, upgrade when you hit the daily limit.</p>
+
+ <p><strong>Set up a Project.</strong> A Project is a persistent workspace. Every conversation inside it loads the same context automatically, who you are, what you do, how you want things done. Without a Project, every chat starts from zero.</p>
+
+ <ol>
+ <li>Go to claude.ai and click Projects in the sidebar.</li>
+ <li>Click Create Project and give it a clear name. Example: Content Writing or Business Operations. Write your Project Instructions. This is the brief Claude gets every time you open a conversation. Tell it who you are, what you do, and how to behave.</li>
+ <li>Upload knowledge files. Drag in up to 200 files, brand guides, templates, SOPs, strategy docs. Claude reads them automatically when relevant.</li>
+ </ol>
+
+ <p><strong>Example Instructions:</strong></p>
+ <div class="code-block"><pre>You are helping [your name] with [your work]. Tone: direct, no jargon.
+Always use short sentences. Never use em dashes.
+When writing scripts use the format: Hook &gt; Content &gt; CTA.</pre></div>
+
+ <p><strong>Enable Memory.</strong> Claude's memory system learns your preferences across every conversation. Your name, your role, tools you use, formatting preferences. It applies that knowledge automatically in future chats.</p>
+
+ <ol>
+ <li>Go to Settings &gt; Memory in claude.ai. Make sure 'Learn from conversations' is enabled.</li>
+ <li>Actively teach Claude about you. Say 'remember that I run a [type] business' or 'remember I prefer British English'. Claude stores it immediately.</li>
+ <li>Set User Preferences. Go to Settings &gt; User Preferences. Write a short paragraph about your tone, formatting preferences, and expertise level.</li>
+ </ol>
+
+ <p><strong>Connect your apps.</strong> Claude connects to Gmail, Google Calendar, Google Drive, Notion, Slack, Figma, and more via Settings &gt; Connected Apps. Once connected, ask Claude to check your calendar, summarise your inbox, or search your files. It handles the coordination.</p>
+
+ <div class="callout"><p><strong>PRO TIP:</strong> The single most effective thing you can do is paste in examples of writing you like and say 'match this tone and style'. It outperforms any amount of instruction.</p></div>
+
+ <h2 id="chapter-02-wispr-flow">Chapter 02, Wispr Flow</h2>
+
+ <p>Hold a key. Speak. Release. Text appears wherever your cursor is.</p>
+
+ <p>Wispr Flow is a system-wide voice dictation tool. It works in any app, Claude, Gmail, Notion, Slack, VS Code, anything with a text field. You speak, it transcribes, and the text lands exactly where you were typing. No app switching. No copy-paste. Just voice, directly into your workflow.</p>
+
+ <p>Most people speak at 150+ words per minute. Most people type at 40 60. That gap is the reason this changes how you work.</p>
+
+ <h3>Installation</h3>
+
+ <ol>
+ <li>Download from wisprflow.ai. Mac users: make sure you download the correct version for your chip, Intel or Apple Silicon. They are listed separately on the site.</li>
+ <li>Install and launch the app. On Mac, drag to Applications and open. On Windows, run the installer and launch from the Start menu.</li>
+ <li>Grant Microphone access. Required. This lets Flow hear your voice. If you miss the prompt, enable it in System Settings &gt; Privacy &amp; Security &gt; Microphone.</li>
+ <li>Grant Accessibility access. Required. This lets Flow insert text directly into any app. Without it, Flow cannot paste your dictation. Enable in System Settings &gt; Privacy &amp; Security &gt; Accessibility.</li>
+ <li>Sign in or create an account. Sign in with Google, Apple, or email. Follow the on-screen setup steps.</li>
+ </ol>
+
+ <p><strong>Configure your hotkey.</strong> The hotkey is how you activate dictation. The default is the right Option (Alt) key, hold to speak, release to stop. You can also set it to Caps Lock for toggle mode (press once to start, press again to stop). Change your hotkey in Settings &gt; Hotkey.</p>
+
+ <div class="callout"><p><strong>RECOMMENDATION:</strong> Right Option key for quick inputs. Caps Lock for longer dictation sessions where you want hands-free mode.</p></div>
+
+ <p><strong>Optional: Voice Calibration.</strong> Go to Settings &gt; Voice Calibration. It takes about 3 minutes, you read a short passage aloud while Flow analyses your vocal patterns. Not required, but noticeably improves accuracy if you have a strong regional accent or distinctive speaking style.</p>
+
+ <p><strong>Plans:</strong> Free plan: daily dictation limit, core transcription. Pro plan ($15/month or $12/month annual): unlimited dictation, Command Mode, Custom Dictionary, cross-device sync, priority support. Start on Free, upgrade when you hit the daily limit or need Command Mode.</p>
+
+ <h3>Key features to know</h3>
+
+ <p><strong>Command Mode</strong>, Highlight any text in any app, activate Flow, and say 'make this more concise' or 'turn this into a bulleted list'. Flow rewrites the selected text. Available on Pro.</p>
+
+ <p><strong>Voice Shortcuts</strong>, Set up a cue phrase that inserts a full block of text. Say 'calendar link' and Flow pastes your Calendly URL. Say 'my intro' and it pastes your standard opening paragraph.</p>
+
+ <p><strong>Custom Dictionary</strong>, Add names, jargon, product names, and technical terms so Flow always gets them right. Syncs across all your devices. Available on Pro.</p>
+
+ <p><strong>Tone Adaptation</strong>, Flow adjusts formality based on where you are writing. More formal in documents, more casual in messages.</p>
+
+ <p><strong>Whisper Mode</strong>, Dictate quietly in shared or public spaces. Flow picks up your voice even at low volume.</p>
+
+ <h2 id="chapter-03-cookiy-ai">Chapter 03, Cookiy AI</h2>
+
+ <p>Ask a question. Get answers from real people. In hours, not weeks.</p>
+
+ <p>Cookiy AI is an agentic user research platform. You describe what you want to learn, Cookiy generates the discussion guide, recruits participants from a panel of 170M+ people, runs the interviews autonomously, and delivers synthesised insights, all within 24 hours.</p>
+
+ <p>Traditional user research takes 8 12 weeks and significant budget. Cookiy compresses that into hours. The AI moderator adapts its questions in real time, following up on hesitations, digging into interesting answers, detecting emotional signals. You get depth at scale.</p>
+
+ <h3>Setting up via the platform</h3>
+
+ <ol>
+ <li>Go to cookiy.ai. You can start your first study directly on the platform. A free tier is available with 50 interviews, no credit card required.</li>
+ <li>Describe your research goal. Tell Cookiy what you want to learn. Answer a few clarifying questions. Cookiy generates a complete, expert-level discussion guide automatically. This takes about 5 minutes.</li>
+ <li>Define your audience. Set the criteria for who you want to talk to, role, demographics, industry, behaviours. Cookiy handles recruitment and screening across multiple panel providers.</li>
+ <li>Review and launch. Review the discussion guide, make any adjustments, and launch. Interviews run autonomously, 24/7. Each interview is 10 20 minutes.</li>
+ <li>Receive your insights. Cookiy synthesises findings into a structured report with themes, quotes, sentiment data, and video clips. Most studies deliver results in under 24 hours.</li>
+ </ol>
+
+ <h3>Setting up the Claude Skill integration</h3>
+
+ <ol>
+ <li>Go to github.com/cookiy-ai/user-research-skill. Download the skill folder from Cookiy's GitHub repository.</li>
+ <li>Upload to Claude. Go to Settings &gt; Capabilities &gt; Skills in claude.ai. Click Upload Skill and select the downloaded folder.</li>
+ <li>Toggle it on. Enable the Cookiy Skill. Claude will now activate it automatically when you ask research-related questions.</li>
+ <li>Run research from inside Claude. Type or dictate your research question directly in Claude: 'Do users want this feature?' or 'What stops my audience from buying?' Cookiy handles the rest from inside the conversation.</li>
+ </ol>
+
+ <div class="callout"><p><strong>WHAT YOU GET:</strong> Insight reports with themes and quotes. Video clips of key moments. Sentiment heatmaps. Shareable slides. All generated automatically, no manual tagging or note-taking required.</p></div>
+
+ <p><strong>What Cookiy is best for:</strong> Cookiy is strongest for exploratory research, concept testing, pricing validation, message testing, and user journey mapping. If you need to understand why something is or isn't working, and you need real human input rather than AI guesses, this is the tool. It works best when you need qualitative depth across 20 100+ interviews.</p>
+
+ <h2 id="chapter-04-the-combined-workflow">Chapter 04, The Combined Workflow</h2>
+
+ <p>How all three connect, and what you can do with them together.</p>
+
+ <p>Each tool is useful on its own. Together they create something more significant: a workflow where you think out loud, Claude structures your thinking, and Cookiy validates it with real people, all without leaving your chair, and with almost no typing.</p>
+
+ <h3>Why they work together</h3>
+
+ <p><strong>Wispr Flow removes the friction between your thoughts and Claude.</strong> Typing limits how much context you provide. When you can speak naturally, you give Claude richer, more detailed input, and the output quality improves accordingly.</p>
+
+ <p><strong>Claude structures and analyses.</strong> It takes your raw voice input, helps you develop ideas, and, with the Cookiy Skill active, converts your research questions into structured study briefs.</p>
+
+ <p><strong>Cookiy closes the loop with real humans.</strong> AI can search what people have published. Cookiy captures what they actually think, their hesitations, preferences, and real-time intent. It's the only part of this stack that gives you primary human data.</p>
+
+ <h3>A practical workflow, step by step</h3>
+
+ <ol>
+ <li><strong>Speak your idea into Claude.</strong> Hold your Wispr Flow hotkey and describe what you're working on or what you want to understand. Speak naturally, include context, background, and your actual question. Release the hotkey. Your words land in Claude.</li>
+ <li><strong>Claude develops it with you.</strong> Have a conversation. Refine the idea. If you have the Cookiy Skill installed, ask Claude to help frame it as a research question or validate a specific assumption.</li>
+ <li><strong>Cookiy runs the research.</strong> Cookiy recruits participants, runs the interviews, and synthesises the findings. You can watch interviews live or review the report when it arrives, usually the same day.</li>
+ <li><strong>Act on the findings.</strong> Use Wispr Flow to dictate your response, a revised strategy, a follow-up study brief, or a summary for your team. Claude helps structure it. The whole loop, voice to insight to action.</li>
+ </ol>
+
+ <h3>Workflow examples</h3>
+
+ <p><strong>Content creator</strong>, Speak a rough video concept into Claude with Wispr &gt; ask Cookiy to test the hook with 20 real viewers from your target audience &gt; review the findings in Claude &gt; dictate your revised script.</p>
+
+ <p><strong>Agency or consultant</strong>, Speak a client brief into Claude &gt; use Cookiy to validate the proposed positioning with real target customers &gt; synthesise the findings into a strategy recommendation, all dictated via Wispr.</p>
+
+ <p><strong>Product or business owner</strong>, Dictate a feature idea into Claude &gt; Cookiy interviews 30 users to validate demand and surface concerns &gt; review in Claude &gt; speak your next iteration or decision.</p>
+
+ <p><strong>Solopreneur</strong>, Use Wispr to brain-dump a pricing question into Claude &gt; Cookiy tests it with potential buyers &gt; findings come back into Claude &gt; speak a decision memo and move on.</p>
+
+ <div class="callout"><p><strong>THE CORE SHIFT:</strong> The keyboard is no longer the bottleneck. You think at speaking speed. Claude processes at machine speed. Cookiy validates at research speed. Each tool handles the part it is best at.</p></div>
+ </main>
+
+ <aside class="toc-sidebar">
+ <div class="toc-box">
+ <h3>Contents</h3>
+ <ol>
+ <li><a href="#chapter-01-claude">Chapter 01 Claude</a></li>
+ <li><a href="#chapter-02-wispr-flow">Chapter 02 Wispr Flow</a></li>
+ <li><a href="#chapter-03-cookiy-ai">Chapter 03 Cookiy AI</a></li>
+ <li><a href="#chapter-04-the-combined-workflow">Chapter 04 Combined Workflow</a></li>
+ </ol>
+ </div>
+ </aside>
+</div>
+
+
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+<script>
+function downloadPDF() {
+  window.print();
+}
+</script>
+</body>
+</html>

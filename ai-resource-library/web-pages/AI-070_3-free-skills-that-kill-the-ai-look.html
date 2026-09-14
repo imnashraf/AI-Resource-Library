@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>3 Free Skills That Kill The AI Look</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+ <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+  .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+  .header.scrolled { border-color: var(--accent-border); }
+  .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+  .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+  .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+  .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+  .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+  a.logo-subtitle:hover { color: var(--accent); }
+  .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+  .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+  .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+  @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+  .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+  .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+  .badge-cat { background: var(--accent); color: #fff; }
+  .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+  .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+  .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+  .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+  .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+  .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+  .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+  .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+  .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+  .toc-box ol { list-style: none; counter-reset: toc; }
+  .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+  .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+  .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+  .toc-box a:hover { color: var(--accent); }
+  .guide-content { padding: 2rem 0 5rem; }
+  .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+  .guide-content h2:first-of-type { border-top: none; margin-top: 0; }
+  .guide-content h3 { font-size: 1.0625rem; font-weight: 700; margin-top: 1.75rem; margin-bottom: 0.625rem; }
+  .guide-content p { margin-bottom: 1.125rem; }
+  .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+  .guide-content li { margin-bottom: 0.5rem; }
+  .guide-content strong { font-weight: 600; }
+  .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+  @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .back-btn { margin-left: 0; flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+  .callout { border-left: 4px solid var(--accent-border); background: var(--accent-light); padding: 0.875rem 1.125rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0; }
+  .callout-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.35rem; }
+  .callout p { margin-bottom: 0; }
+  .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+  .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+  @page { margin: 1.5cm; }
+  @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; } p { orphans: 3; widows: 3; } pre, .callout { break-inside: avoid; } }
+
+  .guide-content pre { background: #0a0a0a; color: #f8f8f8; border-radius: 10px; padding: 1.25rem 1.5rem; overflow-x: auto; font-size: 0.8125rem; line-height: 1.6; margin: 0.5rem 0 1.25rem; border: 1px solid #1f1f1f; white-space: pre-wrap; }
+  .guide-content pre code { background: none; border: none; padding: 0; color: inherit; font-size: inherit; }
+  .guide-content code { font-family: 'Courier New', Courier, monospace; }
+  .guide-content p code, .guide-content li code { background: var(--accent-light); color: var(--accent); padding: 0.1em 0.4em; border-radius: 4px; font-size: 0.875em; border: 1px solid var(--accent-border); }
+  .build-meta { display: flex; flex-direction: column; gap: 0.3rem; margin: 0.5rem 0 1.125rem; }
+  .build-meta p { margin: 0; font-size: 0.9375rem; }
+  .stat-line { font-size: 0.875rem; font-weight: 600; color: var(--accent); margin: -0.5rem 0 1.125rem; }
+
+  /* VB1: pill tags */
+  .tag-row { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 1.5rem 0; }
+  .tag-pill { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); border-radius: 9999px; padding: 0.3rem 0.875rem; font-size: 0.8125rem; font-weight: 700; }
+  /* VB2: fix breakdown rows */
+  .fix-row-list { display: flex; flex-direction: column; gap: 0.75rem; margin: 1.75rem 0; }
+  .fix-row { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1rem 1.25rem; display: flex; gap: 1.25rem; align-items: baseline; flex-wrap: wrap; }
+  .fix-label { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--accent); font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.04em; flex-shrink: 0; width: 6.5rem; }
+  .fix-desc { font-size: 0.875rem; margin: 0; flex: 1; min-width: 200px; }
+  /* VB3: 5-step process list */
+  .process-steps { display: flex; flex-direction: column; gap: 0.875rem; margin: 1.75rem 0; }
+  .process-step { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1rem 1.25rem; display: flex; gap: 1rem; align-items: flex-start; }
+  .process-num { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--accent); font-size: 1.125rem; flex-shrink: 0; width: 1.75rem; }
+  .process-body { flex: 1; }
+  .process-title { font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.2rem; }
+  .process-desc { font-size: 0.8125rem; color: var(--muted); margin: 0; }
+ </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+  <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+  <div class="logo-divider"></div>
+  <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">&#8592; All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+  <span class="badge badge-cat">Prompts &amp; Skills</span>
+  <span class="badge badge-diff">Intermediate</span>
+ </div>
+ <h1>3 Free Skills That Kill The AI Look</h1>
+ <p class="intro-blurb">The exact setup for three free Claude Code skills that stop your builds looking like every other vibe-coded site. Real easing, a real design system, and real taste, not another default.</p>
+ <ul>
+  <li>Why every AI-built site looks basically the same</li>
+  <li>Skill 1: Emil Kowalski's skill for proper motion and easing</li>
+  <li>Skill 2: Impeccable, the built-in design system and the polish command</li>
+  <li>Skill 3: Taste, the anti-slop skill with tens of thousands of GitHub stars</li>
+  <li>The exact install command for each one</li>
+ </ul>
+ <div class="hero-author">
+  <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+  <div><span class="author-name">Max Johnson</span><span class="author-meta">@maxjohnscn</span></div>
+ </div>
+</div>
+
+<div class="page-wrap">
+ <main class="guide-content">
+
+  <button class="download-btn" onclick="window.print()">&#8595; Download PDF</button>
+
+  <div class="tag-row">
+   <span class="tag-pill">01 Emil Kowalski</span>
+   <span class="tag-pill">02 Impeccable</span>
+   <span class="tag-pill">03 Taste</span>
+  </div>
+
+  <h2 id="contents">Contents: What You'll Set Up</h2>
+  <ul>
+   <li><strong>The Problem:</strong> Why every AI-built site looks the same in two seconds</li>
+   <li><strong>Skill One:</strong> Emil Kowalski's skill for proper motion and easing</li>
+   <li><strong>Skill Two:</strong> Impeccable, the design system and the polish command</li>
+   <li><strong>Skill Three:</strong> Taste, the anti-slop skill built on real design reasoning</li>
+   <li><strong>Install All Three:</strong> The exact commands, step by step</li>
+  </ul>
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>All three tools in this guide are Claude Code skills. They install through a terminal and run inside Claude Code (or Claude Desktop's Code tab, or Cowork), not through the Skills uploader inside the claude.ai web chat. You'll need Claude Code installed and a project open in a terminal before you start. Each install takes a couple of minutes.</p>
+  </div>
+
+  <h3>Why these three</h3>
+  <p>Each one fixes a different part of the same problem. Emil Kowalski's skill fixes motion. Impeccable fixes structure and gives you a repeatable design system. Taste fixes the reasoning behind the choices Claude makes when nobody's told it what to do. Run all three together and each covers a gap the others don't.</p>
+
+  <h2 id="chapter-01">Chapter 01: Why Every AI Site Looks The Same</h2>
+  <p>You can spot an AI-built website in about two seconds. Generic gradient, Inter font, zero motion. It happens because every model defaults to the same safe patterns, so almost every vibe-coded site ends up looking basically the same.</p>
+  <p>None of the three tools in this guide generate a design from nothing. They sit on top of Claude Code and steer it away from its defaults, toward proper motion, a real design system, and design decisions it can actually explain instead of copying blindly.</p>
+  <h3>The three tells</h3>
+  <ul>
+   <li><strong>Generic gradient:</strong> Purple-to-blue, every time, whether or not it fits the brand.</li>
+   <li><strong>Inter, everywhere:</strong> Headings, body, buttons, all the same safe system font.</li>
+   <li><strong>Zero motion:</strong> Nothing moves, or it's slapped on with no thought to easing.</li>
+  </ul>
+  <div class="callout">
+   <div class="callout-label">Why this happens</div>
+   <p>Every model was trained on the same handful of SaaS templates. Left to its own defaults, an AI coding agent reaches for the same shortcuts every time. These three skills each override a different part of that default: motion, structure, and the reasoning behind design choices.</p>
+  </div>
+
+  <h3>What each skill fixes</h3>
+  <div class="fix-row-list">
+   <div class="fix-row"><span class="fix-label">Motion</span><p class="fix-desc">Emil Kowalski's skill: correct easing, timing, and restraint</p></div>
+   <div class="fix-row"><span class="fix-label">Structure</span><p class="fix-desc">Impeccable: a shared design system and a slop detector</p></div>
+   <div class="fix-row"><span class="fix-label">Judgement</span><p class="fix-desc">Taste: the reasoning behind a design choice, not just the value</p></div>
+  </div>
+
+  <h2 id="chapter-02">Chapter 02 &#183; Skill One: Emil Kowalski's Motion Skill</h2>
+  <p>Emil Kowalski is a design engineer at Linear, previously at Vercel, and the creator of Sonner and Vaul, two widely used React components. He also runs animations.dev, a course on UI animation. This skill encodes his approach to motion into Claude Code.</p>
+  <p>When you vibe-code a UI, it tends to come out static, or with motion bolted on with the wrong easing curve. This skill teaches Claude to use proper easing and timing instead, so animation feels intentional rather than decorative.</p>
+  <div class="build-meta">
+   <p><strong>Built by:</strong> Emil Kowalski (Linear, ex-Vercel)</p>
+   <p><strong>Repo:</strong> github.com/emilkowalski/skills</p>
+   <p><strong>Main skill:</strong> emil-design-eng</p>
+   <p><strong>Triggers on:</strong> Reviewing UI code, building a component, adding animation</p>
+  </div>
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>This command installs a small bundle, not just one file: the main design/animation skill plus a few companions (an animation reviewer, an animation vocabulary lookup, and an Expo/React Native variant). That's expected, they all live under the same repo. You don't need to install them separately.</p>
+  </div>
+  <h3>When it kicks in</h3>
+  <p>You don't call this skill by name. Just ask Claude normally:</p>
+  <ul>
+   <li>"Build me a modal that fades in when it opens"</li>
+   <li>"Review the animations in this component"</li>
+   <li>"This hover effect feels off, fix it"</li>
+  </ul>
+  <h3>Install command</h3>
+  <pre><code>npx skills@latest add emilkowalski/skills</code></pre>
+
+  <h2 id="chapter-03">Chapter 03 &#183; Skill Two: Impeccable</h2>
+  <p>Impeccable was built by Paul Bakaus and started as an extension of Anthropic's own frontend-design skill. It adds a shared design vocabulary between you and Claude, 23 commands covering typography, colour, spacing, and layout, plus dozens of deterministic checks that catch the obvious AI tells automatically.</p>
+  <p>The command most worth knowing is <code>/impeccable polish</code>. Run it right before you push, and it does a final pass across the UI: alignment, spacing, and detail cleanup, checked against the design system it already knows.</p>
+  <div class="build-meta">
+   <p><strong>Built by:</strong> Paul Bakaus</p>
+   <p><strong>Repo:</strong> github.com/pbakaus/impeccable</p>
+   <p><strong>Commands:</strong> 23, all run through <code>/impeccable</code></p>
+   <p><strong>First run:</strong> <code>/impeccable init</code> &#183; then <code>/impeccable polish</code> before shipping</p>
+  </div>
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>The command is <code>/impeccable polish</code>, not a bare <code>/polish</code>. If you use it often, run <code>/impeccable pin polish</code> once and it creates a standalone <code>/polish</code> shortcut for that project.</p>
+  </div>
+  <h3>A few more commands worth knowing</h3>
+  <ul>
+   <li><code>/impeccable audit</code>: accessibility, performance, responsive checks</li>
+   <li><code>/impeccable critique</code>: a UX review of hierarchy and clarity</li>
+   <li><code>/impeccable distill</code>: strips a UI back to its essence</li>
+  </ul>
+  <h3>Install command</h3>
+  <pre><code>npx impeccable install</code></pre>
+
+  <h2 id="chapter-04">Chapter 04 &#183; Skill Three: Taste</h2>
+  <p>Taste Skill is one of the fastest-growing repos in this space. Instead of just handing Claude a colour code, it teaches the reasoning behind the choice: why this spacing value, why this palette, why this layout, so Claude can make the right call on a page it's never seen before, not just copy a pattern.</p>
+  <p class="stat-line">70k+ stars &#183; MIT licensed &#183; Works with Claude Code, Cursor, Codex</p>
+  <div class="build-meta">
+   <p><strong>Built by:</strong> Leonxlnx</p>
+   <p><strong>Repo:</strong> github.com/leonxlnx/taste-skill</p>
+   <p><strong>Default skill:</strong> design-taste-frontend</p>
+   <p><strong>Dials:</strong> Layout variance, motion intensity, visual density</p>
+  </div>
+  <div class="callout">
+   <div class="callout-label">Correction</div>
+   <p>At close to 60,000 stars this was already one of the biggest repos of its kind. It has since passed 70,000 and is still climbing, so treat any star count, including this one, as a floor rather than a fixed number by the time you read this.</p>
+  </div>
+  <h3>A single skill, multiple variants</h3>
+  <p>The repo bundles more than one flavour under the same install. The default, design-taste-frontend, covers most projects. There's also a stricter GPT/Codex variant, a redesign-focused variant for existing codebases, and a few fixed visual directions (minimalist, brutalist, high-end) you can install by name instead.</p>
+  <h3>Install command</h3>
+  <pre><code>npx skills add https://github.com/Leonxlnx/taste-skill</code></pre>
+
+  <h2 id="chapter-05">Chapter 05: Install All Three</h2>
+  <p>All three take minutes to set up. Run the commands, restart, then just talk to Claude as normal.</p>
+
+  <div class="process-steps">
+   <div class="process-step"><div class="process-num">1</div><div class="process-body"><div class="process-title">Open a terminal in your project</div><p class="process-desc">Claude Code needs to run from your project folder, not a random directory.</p></div></div>
+   <div class="process-step"><div class="process-num">2</div><div class="process-body"><div class="process-title">Run the three install commands</div><p class="process-desc">One at a time, in any order. Each one adds its skill files under .claude/skills/ for that project.</p></div></div>
+   <div class="process-step"><div class="process-num">3</div><div class="process-body"><div class="process-title">Restart or reload Claude Code</div><p class="process-desc">Skills are picked up on the next session, not mid-conversation.</p></div></div>
+   <div class="process-step"><div class="process-num">4</div><div class="process-body"><div class="process-title">Run /impeccable init once</div><p class="process-desc">This is the only one of the three that needs a manual first run. Emil's skill and Taste trigger automatically when you ask for UI work.</p></div></div>
+   <div class="process-step"><div class="process-num">5</div><div class="process-body"><div class="process-title">Build something, then run /impeccable polish</div><p class="process-desc">Compare the before and after. That's the whole point of this setup.</p></div></div>
+  </div>
+
+  <div class="callout"><p><strong>Tip:</strong> All three run inside the same project without conflicting. If you only have time for one today, install Impeccable first, it's the only one with a manual init step, and it gives you the most immediate before/after comparison.</p></div>
+
+  <p><strong>Run all three</strong></p>
+  <pre><code>npx skills@latest add emilkowalski/skills
+npx impeccable install
+npx skills add https://github.com/Leonxlnx/taste-skill</code></pre>
+
+  <h2 id="closing">Closing: Give Claude Actual Taste.</h2>
+  <p>This isn't really about fixing templates any more. It's about giving Claude actual taste instead of a default. Install the three, run a real build through them, and compare it against what Claude would have shipped on its own.</p>
+  <p><strong>Your Three Moves</strong></p>
+  <ul>
+   <li>Run the three install commands from Chapter 05 in your project terminal</li>
+   <li>Run <code>/impeccable init</code> once, then build something real</li>
+   <li>Run <code>/impeccable polish</code> before you ship it, and compare the before and after</li>
+  </ul>
+  <p><strong>Skills</strong></p>
+  <ul>
+   <li>Skill 1: github.com/emilkowalski/skills</li>
+   <li>Skill 2: github.com/pbakaus/impeccable</li>
+   <li>Skill 3: github.com/leonxlnx/taste-skill</li>
+  </ul>
+
+ </main>
+
+ <aside class="toc-sidebar">
+  <div class="toc-box">
+   <h3>In this guide</h3>
+   <ol>
+    <li><a href="#contents">Contents</a></li>
+    <li><a href="#chapter-01">Why It Looks The Same</a></li>
+    <li><a href="#chapter-02">Emil Kowalski</a></li>
+    <li><a href="#chapter-03">Impeccable</a></li>
+    <li><a href="#chapter-04">Taste</a></li>
+    <li><a href="#chapter-05">Install All Three</a></li>
+    <li><a href="#closing">Give Claude Taste</a></li>
+   </ol>
+  </div>
+ </aside>
+</div>
+
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+</body>
+</html>

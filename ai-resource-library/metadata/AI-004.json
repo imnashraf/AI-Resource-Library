@@ -1,0 +1,33 @@
+{
+  "id": "AI-004",
+  "slug": "claude-dos-and-don-ts-guide",
+  "title": "The Full Claude Dos and Don'ts",
+  "category": "Getting Started",
+  "subcategory": "Core Fundamentals",
+  "difficulty": "Beginner to Advanced",
+  "description": "The habits that make Claude output genuinely useful versus the common mistakes that produce generic, mediocre results. A practical reference you'll return to as your usage grows.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Getting Started",
+    "Chapter 01, Context",
+    "Chapter 02, Instructions",
+    "Chapter 03, Memory",
+    "Chapter 04, Skills",
+    "Chapter 05, Connectors",
+    "Core Fundamentals"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-004_claude-dos-and-don-ts-guide.html",
+  "summary_file": "summaries/AI-004.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

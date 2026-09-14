@@ -1,0 +1,911 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>The 3 Business Processes You Can Automate This Week</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✦%3C/text%3E%3C/svg%3E">
+ <style>
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ :root {
+ --accent: #1A7A6A;
+ --accent-indigo: #6366F1;
+ --accent-light: #E8F5F3;
+ --accent-border: #9FD5CE;
+ --text: #000000;
+ --muted: #6B7280;
+ --bg: #FFFFFF;
+ --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+ --card-gradient: linear-gradient(160deg, #E8F5F3 0%, #FFFFFF 100%);
+ --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+ --shadow-hover: 0 8px 24px rgba(26,122,106,0.12), 0 2px 8px rgba(0,0,0,0.08);
+ --shadow-hard: 4px 4px 0px #000000;
+ --radius: 12px;
+ --header-height: 64px;
+ }
+ html { scroll-behavior: smooth; }
+ body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+
+ .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+ .header.scrolled { border-color: var(--accent-border); }
+ .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+ .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+ .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+ .logo-mark { font-size: 1.1rem; color: var(--accent); margin-right: 0.25rem; line-height: 1; }
+ .logo-name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.9375rem; color: var(--text); letter-spacing: -0.02em; }
+ .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+ .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+ a.logo-subtitle:hover { color: var(--accent); }
+ .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+ .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+
+ .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+ @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+
+ .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+ .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+ .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+ .badge-cat { background: var(--accent); color: #fff; }
+ .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+ .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+ .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+ .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+ .author-name { display: block; font-weight: 600; font-size: 0.875rem; color: var(--text); }
+ .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+
+ .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+ .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+ .toc-box ol { list-style: none; counter-reset: toc; }
+ .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+ .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+ .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+ .toc-box a:hover { color: var(--accent); }
+
+ .guide-content { padding: 2rem 0 5rem; }
+ .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+ .guide-content h2:first-child { border-top: none; margin-top: 0; }
+ .guide-content h3 { font-size: 1.125rem; font-weight: 600; margin-top: 1.75rem; margin-bottom: 0.75rem; }
+ .guide-content p { margin-bottom: 1.125rem; }
+ .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+ .guide-content li { margin-bottom: 0.375rem; }
+ .guide-content strong { font-weight: 600; }
+
+ .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+
+ .callout { background: var(--accent-light); border-left: 3px solid var(--accent); padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; font-size: 0.9375rem; margin: 1.25rem 0; }
+ .callout p { margin: 0 0 0.5rem; }
+ .callout p:last-child { margin-bottom: 0; }
+ .callout strong { color: var(--accent); }
+
+ .code-block { background: #000; color: #fff; font-family: 'Courier New', Courier, monospace; font-size: 0.875rem; line-height: 1.6; padding: 1.25rem 1.5rem; border-radius: 8px; overflow-x: auto; margin: 1.25rem 0; white-space: pre; }
+
+ .step-label { display: inline-block; background: var(--accent); color: #fff; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.2rem 0.625rem; border-radius: 4px; margin-bottom: 0.5rem; }
+
+ .automation-meta { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; padding: 0.875rem 1.125rem; background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 8px; font-size: 0.875rem; margin-bottom: 1.5rem; }
+ .automation-meta span { color: var(--muted); }
+ .automation-meta strong { color: var(--text); }
+
+ .client-example { background: #FAFAFA; border: 1px solid #E5E7EB; border-radius: 10px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+ .client-example-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); margin-bottom: 0.625rem; }
+
+ .numbers-block { background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 8px; padding: 1.125rem 1.25rem; margin: 1rem 0; font-family: 'Courier New', Courier, monospace; font-size: 0.875rem; line-height: 1.75; white-space: pre-wrap; }
+
+ .cta-mid { border-left: 3px solid var(--accent-indigo); background: #EEF2FF; padding: 1.25rem 1.5rem; border-radius: 0 10px 10px 0; margin: 2.5rem 0; }
+ .cta-mid p { margin-bottom: 0.875rem; font-size: 0.9375rem; }
+ .cta-mid p:last-child { margin-bottom: 0; }
+ .cta-btn-outline { display: inline-block; padding: 0.5625rem 1.25rem; background: var(--accent-indigo); color: #fff; font-family: 'Montserrat', sans-serif; font-size: 0.875rem; font-weight: 600; border-radius: 8px; text-decoration: none; transition: opacity 0.15s; }
+ .cta-btn-outline:hover { opacity: 0.88; }
+
+ .cta-bottom { background: var(--accent-indigo); color: #fff; padding: 2.5rem 2rem; border-radius: 12px; text-align: center; margin-top: 3rem; }
+ .cta-bottom p { font-size: 1.0625rem; margin-bottom: 1.25rem; opacity: 0.9; }
+ .cta-btn-white { display: inline-block; padding: 0.625rem 1.5rem; background: #fff; color: var(--accent-indigo); font-family: 'Montserrat', sans-serif; font-size: 0.875rem; font-weight: 700; border-radius: 8px; text-decoration: none; transition: opacity 0.15s; }
+ .cta-btn-white:hover { opacity: 0.9; }
+
+ /* VB1: 3-card summary */
+ .automation-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.125rem; margin: 2rem 0; }
+ @media (max-width: 700px) { .automation-cards { grid-template-columns: 1fr; } }
+ .auto-card { background: linear-gradient(160deg, #E8F5F3 0%, #FFFFFF 100%); border: 1px solid var(--accent-border); border-radius: 12px; padding: 1.375rem; }
+ .auto-card-num { font-size: 1.75rem; font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: 0.5rem; }
+ .auto-card-title { font-weight: 700; font-size: 1rem; margin-bottom: 0.5rem; }
+ .auto-card-desc { font-size: 0.8125rem; color: var(--muted); line-height: 1.6; margin-bottom: 0.875rem; }
+ .auto-card-stat { font-size: 0.875rem; font-weight: 700; color: var(--accent-indigo); margin-bottom: 0.5rem; }
+ .auto-card-tool { display: inline-block; padding: 0.15rem 0.5rem; background: #F3F4F6; color: var(--muted); font-size: 0.6875rem; font-weight: 600; border-radius: 4px; }
+ .auto-cards-total { background: var(--accent-indigo); color: #fff; border-radius: 10px; padding: 0.875rem 1.25rem; text-align: center; font-weight: 700; font-size: 0.9375rem; margin-top: 0.75rem; }
+
+ /* VB2: Subagent flow */
+ .subagent-flow { margin: 2rem 0; padding: 2rem 1.5rem; background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 12px; }
+ .flow-steps { display: flex; align-items: stretch; gap: 0; flex-wrap: wrap; }
+ .flow-step { flex: 1; min-width: 160px; background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.125rem; position: relative; }
+ .flow-arrow { display: flex; align-items: center; padding: 0 0.75rem; color: var(--accent); font-size: 1.25rem; flex-shrink: 0; }
+ @media (max-width: 600px) { .flow-steps { flex-direction: column; } .flow-arrow { transform: rotate(90deg); padding: 0.5rem 0; align-self: center; } }
+ .flow-num { width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-bottom: 0.625rem; }
+ .flow-title { font-weight: 700; font-size: 0.875rem; margin-bottom: 0.375rem; }
+ .flow-desc { font-size: 0.8125rem; color: var(--muted); line-height: 1.55; }
+ .flow-note { margin-top: 1rem; font-size: 0.8125rem; color: var(--muted); text-align: center; }
+
+ /* VB3: Time savings stacked bars */
+ .time-savings { margin: 2rem 0; padding: 1.75rem; background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 12px; }
+ .time-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.875rem; }
+ .time-label { font-size: 0.875rem; font-weight: 500; width: 160px; flex-shrink: 0; }
+ .time-bar-wrap { flex: 1; height: 28px; background: var(--accent-border); border-radius: 6px; overflow: hidden; }
+ .time-bar { height: 100%; background: var(--accent); border-radius: 6px; display: flex; align-items: center; justify-content: flex-end; padding-right: 0.5rem; }
+ .time-val { font-size: 0.75rem; font-weight: 700; color: #fff; white-space: nowrap; }
+ .time-divider { height: 1px; background: var(--accent-border); margin: 1rem 0; }
+ .time-total { display: flex; align-items: center; justify-content: space-between; }
+ .time-total-label { font-weight: 600; font-size: 0.9375rem; }
+ .time-total-val { font-size: 1.5rem; font-weight: 700; color: var(--accent-indigo); }
+
+ .section-divider { border: none; border-top: 2px solid #F3F4F6; margin: 2.5rem 0; }
+
+
+ @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+
+
+ /* ─── FOOTER ─── */
+
+     .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+    @page { margin: 1.5cm; } @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .chapter-card, .compare-card, .checklist-card, blockquote { break-inside: avoid; page-break-inside: avoid; } .chapter-overview, .compare-grid, .checklist-grid, .email-flow { break-inside: avoid; page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+
+
+<header class="header" id="site-header">
+ <div class="header-inner">
+ <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+ <div class="logo-divider"></div>
+ <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">← All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+ <span class="badge badge-cat">Building &amp; Monetising</span>
+ <span class="badge badge-diff">Beginner</span>
+ </div>
+ <h1>The 3 Business Processes You Can Automate This Week</h1>
+ <div class="hero-author">
+ <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+ <div>
+ <span class="author-name">Max Johnson</span>
+ <span class="author-meta">@maxjohnscn</span>
+ </div>
+ </div>
+</div>
+
+
+<div class="page-wrap">
+
+ <article class="guide-content">
+    <button class="download-btn" onclick="downloadPDF()">&#8595; Download PDF</button>
+
+ <p class="intro-blurb">Lead follow-up. Meeting summaries. Weekly reporting. Three builds. Full walkthroughs. Around 11 to 15 hours back every week.</p>
+
+ <h2 id="intro">Intro</h2>
+
+ <p>Six months ago, if you wanted to automate any of this you'd be wiring up n8n, buying Zapier credits, writing Python scripts, and hoping nothing broke when an API changed.</p>
+ <p>Not any more.</p>
+ <p>Claude now runs scheduled tasks natively. It connects to Gmail, Calendar, Drive, Notion, Slack, and dozens of other tools through connectors. Claude Code runs its own subagents, skills, and MCP servers. Most of the automation you used to pay for, you can now build in an afternoon inside Claude itself.</p>
+ <p>This document walks you through three automations you can have running by the end of the week.</p>
+
+ <!-- VISUAL BLOCK 1:3-Card Summary -->
+ <div class="automation-cards">
+ <div class="auto-card">
+ <div class="auto-card-num">1</div>
+ <div class="auto-card-title">Lead Follow-Up</div>
+ <div class="auto-card-desc">Claude checks Gmail hourly, drafts replies, saves to drafts. You review and send.</div>
+ <div class="auto-card-stat">5, 7 hrs/wk saved</div>
+ <span class="auto-card-tool">Claude Code</span>
+ </div>
+ <div class="auto-card">
+ <div class="auto-card-num">2</div>
+ <div class="auto-card-title">Meeting Summaries</div>
+ <div class="auto-card-desc">Transcript in. Structured recap, action items, and follow-up email out. Two minutes per meeting.</div>
+ <div class="auto-card-stat">4, 5 hrs/wk saved</div>
+ <span class="auto-card-tool">Claude.ai</span>
+ </div>
+ <div class="auto-card">
+ <div class="auto-card-num">3</div>
+ <div class="auto-card-title">Weekly Reporting</div>
+ <div class="auto-card-desc">Pulls data every Monday morning, writes the report, drafts the client email. You review and send.</div>
+ <div class="auto-card-stat">2.5, 3 hrs/wk saved</div>
+ <span class="auto-card-tool">Claude Code</span>
+ </div>
+ </div>
+ <div class="auto-cards-total">Total: 11, 15 hours back per week</div>
+
+ <p style="margin-top:1.5rem;"><strong>Total estimated time back, per week: 11, 15 hours</strong></p>
+ <p>Once all three are tuned and running. Week one will be less. Week three, more.</p>
+
+ <h3>Who this is for</h3>
+ <p>AI Inner Circle members who already have Claude Code installed and have built at least one automation before. You don't need to be a developer. You do need to be comfortable in a terminal and willing to edit a config file.</p>
+
+ <div class="callout"><p><strong>Heads up on costs:</strong> A couple of these automations, when you run them at volume, will push past what Claude Pro gives you. Where that's the case I'll flag it and tell you what plan you need. If you're just testing them on low volume, Pro is fine.</p></div>
+
+ <h2 id="setup">Before You Start: One-Time Setup</h2>
+
+ <p>You need four things in place before you build any of these. Do this once, you're covered for all three automations.</p>
+
+ <p><strong>01: Claude Pro, minimum</strong></p>
+ <p>If you're on the free tier, upgrade to Pro. £15 a month. Go to claude.ai, click your profile, click Settings, click Plan, upgrade.</p>
+ <p>For automations 1 and 3, once you're running them regularly, you may hit usage limits on Pro. When that happens, Max is the upgrade (£75 or £150 depending on the tier).</p>
+
+ <p><strong>02: Claude Desktop</strong></p>
+ <p>Download from claude.ai/download. Mac, Windows, or Linux. You need this for scheduled tasks, because the UI for them lives in Desktop, not the web app.</p>
+ <p>Install it, sign in with your Pro account, and leave it running in the background. Scheduled tasks actually run on Anthropic's cloud infrastructure so you don't need your laptop open for them to fire. You just need Desktop installed for the setup.</p>
+
+ <p><strong>03: Claude Code</strong></p>
+ <p>If you haven't installed Claude Code, run this in your terminal:</p>
+ <div class="code-block">npm install -g @anthropic-ai/claude-code</div>
+ <p>Then type <code style="background:#F3F4F6;padding:0.1em 0.4em;border-radius:4px;font-family:monospace;">claude</code> to launch it, and sign in with the same account.</p>
+
+ <p><strong>04: The Google Workspace Connector</strong></p>
+ <p>All three automations use Gmail, Calendar, or Drive. Set this up once and you're covered for all three.</p>
+ <p>In Claude (web or Desktop):</p>
+ <ol>
+ <li>Click Customize in the left sidebar.</li>
+ <li>Click Connectors (or "Connect your apps").</li>
+ <li>Find Google Workspace in the directory.</li>
+ <li>Click Connect.</li>
+ <li>A Google OAuth window opens. Choose the account you want to connect.</li>
+ <li>Tick the permissions. Claude asks for read access to Gmail, Calendar, and Drive. It can draft emails but it cannot send them on your behalf. This is deliberate: you approve every send.</li>
+ <li>Click Allow.</li>
+ </ol>
+ <p>You should now see Gmail, Google Calendar, and Google Drive listed under your active connectors.</p>
+ <p><strong>Test it.</strong> Open a new chat in Claude and ask, "What's on my calendar tomorrow?" If it pulls your schedule, you're good.</p>
+
+ <div class="callout"><p><strong>One thing to know:</strong> Claude only uses connectors when you ask it to. It's not watching your inbox in the background. For the scheduled tasks you'll build next, we tell Claude explicitly when to check.</p></div>
+
+ <p>That's all the setup. Now the builds.</p>
+
+ <h2 id="auto1">Automation 01: Lead Follow-Up</h2>
+
+ <p>A scheduled Claude Code task that checks Gmail for new leads every hour during working hours, drafts a personalised reply in your voice, and saves it to your Gmail drafts. You review and hit send.</p>
+
+ <div class="automation-meta">
+ <span><strong>Tool:</strong> Claude Code</span>
+ <span>·</span>
+ <span><strong>Plan:</strong> Pro / Max</span>
+ <span>·</span>
+ <span><strong>Time saved:</strong> 5, 7 hrs/wk</span>
+ </div>
+
+ <h3>The problem</h3>
+ <p>You know follow-up speed is the biggest lever in conversion. You also know you're not doing it fast enough.</p>
+ <p>Leads come in through your contact form, sit in your inbox, and by the time you get round to replying they've already spoken to someone else. Or you're drafting replies at 10pm when you should be done for the day.</p>
+
+ <h3>What we're building</h3>
+ <p>A scheduled Claude Code task that runs every hour during working hours. It checks Gmail for new lead enquiries, drafts a personalised reply based on what the lead said and what you offer, and saves the reply as a Gmail draft.</p>
+ <p>You open Gmail, scan the drafts, hit send. 30 seconds per lead.</p>
+
+ <h3>Which Claude and why</h3>
+ <p>Claude Code, running as a scheduled task. Pro works for low volume (under 10 leads a day). If you're getting 20+ leads a day and running this hourly, you'll want Max, because each run uses tokens to read emails and draft replies. At volume it adds up.</p>
+
+ <h3>What you need</h3>
+ <ul>
+ <li>Claude Code (you installed this in the setup).</li>
+ <li>Claude Desktop (for the scheduled task UI).</li>
+ <li>Google Workspace connector (Gmail access).</li>
+ <li>A clear idea of how a lead email looks in your inbox. Sender, subject line, or a label you can filter on.</li>
+ </ul>
+
+ <div class="callout">
+ <p><strong>Why this one first:</strong> Lead follow-up has the highest direct revenue impact. Every minute saved here is a minute you get to spend on actual sales work.</p>
+ <p><strong>Realistic expectation:</strong> Week one, most drafts need a quick edit. Week two, you'll send most of them as-is. Week three, you'll wonder how you did this manually.</p>
+ </div>
+
+ <h3>Build Steps: Gmail Version</h3>
+
+ <p><span class="step-label">Step 01</span></p>
+ <p><strong>Create a Gmail label and filter</strong></p>
+ <p>Open Gmail. Settings > See all settings > Labels > Create new label. Call it <code style="background:#F3F4F6;padding:0.1em 0.4em;border-radius:4px;font-family:monospace;">Leads</code>. Click Create.</p>
+ <p>Now set up a filter. Settings > Filters and Blocked Addresses > Create a new filter.</p>
+ <p>In the From or Subject field, enter whatever pattern matches your lead enquiries. Examples:</p>
+ <ul>
+ <li>If your form sends from a specific address: <code style="background:#F3F4F6;padding:0.1em 0.4em;border-radius:4px;font-family:monospace;">From: noreply@yourform.com</code></li>
+ <li>If your form uses a specific subject: <code style="background:#F3F4F6;padding:0.1em 0.4em;border-radius:4px;font-family:monospace;">Subject: New enquiry from website</code></li>
+ </ul>
+ <p>Click Create filter, tick Apply the label: Leads, tick Also apply filter to matching conversations, click Create filter.</p>
+ <p>Test it by submitting your own form. The email should land in the inbox with the Leads label applied.</p>
+
+ <p><span class="step-label">Step 02</span></p>
+ <p><strong>Create the skill folder</strong></p>
+ <p>In your terminal, create a folder for the scheduled task:</p>
+ <div class="code-block">mkdir -p ~/.claude/scheduled-tasks/lead-follow-up
+cd ~/.claude/scheduled-tasks/lead-follow-up</div>
+ <p>That folder is where Claude Code looks for the skill file that defines what the task does.</p>
+
+ <p><span class="step-label">Step 03</span></p>
+ <p><strong>Create the SKILL.md file</strong></p>
+ <p>Inside that folder, create a file called <code style="background:#F3F4F6;padding:0.1em 0.4em;border-radius:4px;font-family:monospace;">SKILL.md</code> with this content:</p>
+ <div class="code-block">---
+name: lead-follow-up
+description: Check Gmail for new lead enquiries, draft
+personalised follow-up emails, and save them as
+Gmail drafts.
+---
+
+# Lead Follow-Up
+
+You are a follow-up specialist for [YOUR BUSINESS NAME].
+Your job is to draft warm, specific, non-generic replies
+to new lead enquiries.
+
+## What to do on every run
+1. Using the Gmail connector, search for emails with the
+label "Leads" received in the last hour that do not
+already have the label "Replied".
+2. For each lead email:
+ a. Read the lead's message. Identify what they're
+ asking for, what problem they're trying to solve,
+ and any context clues about their business.
+ b. Draft a reply using the style and structure below.
+ c. Save the reply as a Gmail draft attached to the
+ original thread.
+ d. Apply the label "Draft Ready" to the email.
+3. Output a single-line summary at the end: how many
+leads processed, how many drafts created.
+
+## Style rules for every reply
+- Short sentences. No long paragraphs.
+- British English. Direct tone. No fluff.
+- Address their specific question first. Don't open
+with a generic thank you.
+- Reference one specific detail from their message so
+it doesn't read like a template.
+- End with a clear next step (a calendar link, a
+question, a specific offer).
+- Sign off with my name: [YOUR NAME]
+- Never use em dashes. Never use "I hope this email
+finds you well". Never use "leverage", "unlock",
+"delve", "seamless", "elevate", or "streamline".
+
+## Reply structure
+Line 1: Acknowledge what they asked for, specifically.
+Line 2-3: One or two sentences of useful context or a
+direct answer to their question.
+Line 4: Clear next step.
+Line 5: Sign off.
+
+## Example of a good reply
+Hi Sarah,
+Saw your note about the checkout drop-off on your
+Shopify store. That's usually down to one of three
+things, and without seeing your setup I'd bet on the
+second one (mobile payment friction).
+Happy to take a look properly. If you want, grab a
+slot here: [CALENDAR LINK]
+[YOUR NAME]
+
+## About the business (context for every reply)
+[PASTE A 3-4 SENTENCE DESCRIPTION OF YOUR BUSINESS,
+WHO YOU HELP, AND WHAT YOU OFFER. INCLUDE YOUR
+CALENDAR LINK AND PRICING IF RELEVANT.]</div>
+
+ <div class="callout"><p><strong>Important:</strong> Replace every bracketed placeholder with your actual details before you run this. The quality of your drafts is a direct reflection of how specific this file is. Vague input, vague output.</p></div>
+
+ <p><span class="step-label">Step 04</span></p>
+ <p><strong>Schedule the task</strong></p>
+ <p>Open Claude Desktop. On the left sidebar, click Schedule. Click + New task.</p>
+ <p>Fill in:</p>
+ <ul>
+ <li><strong>Task name:</strong> lead-follow-up</li>
+ <li><strong>Prompt:</strong> Run the lead-follow-up skill.</li>
+ <li><strong>Schedule:</strong> Custom. Every hour between 8am and 7pm on weekdays.</li>
+ <li><strong>Model:</strong> Sonnet is fine for this. Only go to Opus if the replies aren't landing in your voice after a week of tuning.</li>
+ <li><strong>Permission mode:</strong> Set to "Accept edits" so Claude can save drafts without asking you to approve each one.</li>
+ </ul>
+ <p>Click Save.</p>
+
+ <p><span class="step-label">Step 05</span></p>
+ <p><strong>Test run</strong></p>
+ <p>Hit Run now on the task. Submit a test lead through your own form. Wait a minute. Check Gmail Drafts.</p>
+ <p>You should see a draft reply attached to the lead email, with the Draft Ready label applied.</p>
+ <p>If the draft looks off, edit the SKILL.md file. The most common issues:</p>
+ <ul>
+ <li><strong>Too formal.</strong> Add more casualness rules. Specify "contractions are fine". Add banned phrases.</li>
+ <li><strong>Too generic.</strong> Add a stricter rule about referencing a specific detail from their message in the first line.</li>
+ <li><strong>Wrong tone.</strong> Paste 2-3 of your own actual lead replies into the SKILL.md as examples, and tell Claude to match that style.</li>
+ </ul>
+
+ <p><span class="step-label">Step 06</span></p>
+ <p><strong>Tune it for a week</strong></p>
+ <p>First week, read every draft before you send. Make small edits. Each time you edit, ask yourself why. Feed those reasons back into the SKILL.md as rules.</p>
+ <p>By week two, you should be sending 80% of drafts with no changes.</p>
+ <p>By week three, the maintenance is basically zero. You're just reviewing and sending.</p>
+
+ <div class="client-example">
+ <div class="client-example-label">Client Example</div>
+ <p>A UK supplement brand was getting around 40 lead enquiries a week through their contact form. Founder was drafting replies herself, most evenings between 8 and 10pm. Took her 6 to 8 hours a week.</p>
+ <p>We set up this exact automation. First week she edited most of the drafts. Second week, she was editing 1 in 5. By week three, she was reviewing and sending the full batch in 15 minutes over her morning coffee.</p>
+ <p style="margin-bottom:0;">Three months later she'd moved to Max plan because her lead volume doubled. Follow-up speed does that.</p>
+ </div>
+
+ <h3>Variant A: Leads come through a Google Sheet</h3>
+ <p>Typeform, Tally, Jotform. Any form that can push responses to Google Sheets. Same skill, different trigger source. Change step 2 and 3 in the SKILL.md:</p>
+ <div class="code-block">1. Using the Google Drive connector, open the Google
+Sheet at [LINK TO YOUR LEADS SHEET].
+2. Check the "Processed" column. For every row where
+Processed is blank:
+ a. Read the lead's answers from the form fields.
+ b. Draft a reply email.
+ c. Use the Gmail connector to create a new draft
+ email addressed to the email in the "Email" column.
+ d. Mark the row's Processed column as "Yes" with
+ today's date.</div>
+ <p>The rest stays the same. You'll need to make sure your Typeform or Tally sends responses to a Google Sheet. Both have native integrations, takes 2 minutes.</p>
+
+ <h3>Variant B: Leads come through a CRM</h3>
+ <p>HubSpot has an MCP server ready to go. For HubSpot, add the MCP server to Claude Code:</p>
+ <div class="code-block">claude mcp add --transport http hubspot \
+"https://mcp.hubspot.com/mcp" \
+--headers "Authorization: Bearer YOUR_HUBSPOT_TOKEN"</div>
+ <p>You'll need a HubSpot private app token. In HubSpot, Settings > Integrations > Private Apps > Create a private app, give it Contacts and CRM scopes, copy the token.</p>
+ <p>Then change the skill's step 1 to:</p>
+ <div class="code-block">1. Using the HubSpot MCP, fetch all contacts created
+in the last hour with lifecycle stage "lead" and
+no activity logged.</div>
+ <p>Everything else stays the same.</p>
+
+ <h3>The Numbers</h3>
+ <div class="numbers-block">// Before
+40 leads × 8 min each = 320 min
+Roughly 5h 20m per week
+
+// After
+40 leads × 20 sec review = 13 min
+Roughly 13m per week
+
+// Net time back
+~5 hours a week</div>
+ <p>If you're doing 60 leads a week, the saving is closer to 7-8 hours. Count your leads per week, estimate your average minutes per reply, plug them in.</p>
+
+ <h3>The Gotcha</h3>
+ <p>First week the drafts will sound slightly off. Too polite. Too template-y. Missing context only you'd know.</p>
+ <p>This is normal. Don't give up. Edit the drafts, note what you changed, feed those notes back into the SKILL.md as explicit rules. Add 2-3 of your own best-performing replies as examples at the bottom of the file so Claude has something concrete to match.</p>
+ <p>By week two it'll sound like you wrote it. By week three you'll wonder how you ever did this manually.</p>
+ <p><strong>Setup time vs. ongoing time saved: 45 min → 5+ hrs/wk.</strong> That's a 6x return on your setup time in week one alone.</p>
+
+ <h2 id="auto2">Automation 02: Meeting Summaries</h2>
+
+ <p>Drop a meeting transcript in. Get back a structured recap, action items for every attendee, a draft follow-up email, and (optionally) a logged entry in your Notion or Google Docs.</p>
+
+ <div class="automation-meta">
+ <span><strong>Tool:</strong> Claude.ai</span>
+ <span>·</span>
+ <span><strong>Plan:</strong> Pro</span>
+ <span>·</span>
+ <span><strong>Time saved:</strong> 4, 5 hrs/wk</span>
+ </div>
+
+ <h3>The problem</h3>
+ <p>You finish a call. You know you should send a recap within the hour. You know you should add the action items to your task manager. Seven times out of ten you don't, because it takes 20 minutes and you've got another call in 5.</p>
+
+ <h3>What we're building</h3>
+ <p>A Claude.ai workflow using a saved Project. Not Claude Code: overkill for this. You drop a transcript in, Claude produces a structured summary, action items per person, a draft follow-up email, and (optionally) logs key decisions to a Google Doc or Notion page.</p>
+
+ <h3>Which Claude and why</h3>
+ <p>Claude.ai on Pro. No Claude Code needed. The Project feature holds your recap template and tone rules, so every meeting gets summarised the same way.</p>
+
+ <h3>What you need</h3>
+ <ul>
+ <li>Claude Pro with the Projects feature.</li>
+ <li>A way to get transcripts. Fathom (free tier works), Fireflies, Zoom AI Companion, or Google Meet's native transcripts.</li>
+ <li>Gmail connector, for the follow-up draft.</li>
+ <li>Optional: Notion or Google Docs connector for logging.</li>
+ </ul>
+
+ <div class="callout"><p><strong>Manual vs. connected:</strong> Two versions here. The manual version has you copy-paste a transcript into a Project chat. Quick to set up, works today. The connected version uses the Fathom MCP so the transcripts flow in automatically. More powerful, takes an extra 10 minutes to set up. Start manual, upgrade when ready.</p></div>
+
+ <h3>Build Steps: Manual Version First</h3>
+
+ <p><span class="step-label">Step 01</span></p>
+ <p><strong>Create the Claude Project</strong></p>
+ <p>Open claude.ai. Click Projects in the left sidebar. Click + New project.</p>
+ <ul>
+ <li><strong>Project name:</strong> Meeting Summaries</li>
+ <li><strong>Description:</strong> Turn meeting transcripts into structured recaps, action items, and follow-up drafts.</li>
+ </ul>
+
+ <p><span class="step-label">Step 02</span></p>
+ <p><strong>Add the project instructions</strong></p>
+ <p>Inside the project, click Set custom instructions. Paste this in:</p>
+ <div class="code-block">You are a meeting summariser for [YOUR BUSINESS NAME].
+Every time the user drops a transcript in, you produce
+the output below in this exact structure.
+
+## Output structure
+
+### 1. One-line summary
+A single sentence capturing what the meeting was about
+and the main outcome.
+
+### 2. Key decisions
+Bullet list of decisions made. Each decision should
+include who made it and any timeline attached.
+
+### 3. Action items
+Grouped by person. Format:
+- **[Name]**: [specific action], due [date or timeframe]
+
+### 4. Open questions
+Anything raised in the meeting that wasn't resolved
+and needs follow-up.
+
+### 5. Follow-up email draft
+A short follow-up email to the other attendees. British
+English. Conversational. Include the decisions and
+their action items specifically. End with "Let me know
+if I've missed anything."
+
+## Style rules
+- Short sentences.
+- No fluff. No "it was a productive discussion" type phrasing.
+- Specific over vague. Names, dates, numbers.
+- If something in the transcript is unclear, flag it
+under "Open questions" rather than guessing.
+- Never use em dashes. Never use "leverage", "unlock",
+"delve", "seamless", "elevate", or "streamline".
+
+## About me
+[PASTE 3-4 SENTENCES ABOUT YOUR ROLE, YOUR BUSINESS,
+AND THE TYPE OF MEETINGS YOU USUALLY TAKE. e.g. "I run
+an AI consultancy. Most meetings are client discovery
+calls or project status calls. Action items usually
+fall on me or my co-founder."]</div>
+ <p>Click Save.</p>
+
+ <p><span class="step-label">Step 03</span></p>
+ <p><strong>Use it after every call</strong></p>
+ <p>The workflow after every call:</p>
+ <ol>
+ <li>Open your meeting tool (Fathom, Fireflies, Meet, Zoom). Download or copy the transcript.</li>
+ <li>Go to your Meeting Summaries project in Claude.ai. Start a new chat.</li>
+ <li>Paste the transcript. Type: <code style="background:#F3F4F6;padding:0.1em 0.4em;border-radius:4px;font-family:monospace;">Summary please.</code></li>
+ <li>Claude returns the structured recap.</li>
+ <li>Review the draft follow-up email at the bottom. Tweak if needed.</li>
+ <li>Ask Claude: <code style="background:#F3F4F6;padding:0.1em 0.4em;border-radius:4px;font-family:monospace;">Send the follow-up email as a Gmail draft to [attendee emails].</code></li>
+ <li>Go to Gmail, open the draft, review, send.</li>
+ </ol>
+ <p><strong>Total time per meeting: around 2 minutes.</strong></p>
+
+ <h3>Upgrade: Fathom MCP (Connected Version)</h3>
+ <p>Once the manual version is working, you can skip the copy-paste step entirely by connecting Fathom directly to Claude.</p>
+
+ <p><span class="step-label">Step 01</span></p>
+ <p><strong>Enable the Fathom connector</strong></p>
+ <p>In Claude, go to Settings > Connectors > Browse Connectors. Find Fathom. Click Connect. Authorise with OAuth. Fathom has a free tier, so you don't need to pay anything to get this running.</p>
+
+ <p><span class="step-label">Step 02</span></p>
+ <p><strong>Change the trigger prompt</strong></p>
+ <p>Now, instead of pasting a transcript, in your Meeting Summaries project you just type:</p>
+ <div class="code-block">Get the transcript of my most recent Fathom meeting
+and summarise it using the project instructions.</div>
+ <p>Claude pulls the transcript from Fathom, applies your template, returns the summary and draft email. No copy-paste.</p>
+
+ <div class="callout"><p><strong>Other transcript tools:</strong> Fireflies has a Claude connector. Zoom has a Zoom connector that exposes AI Companion summaries directly. Google Meet transcripts can be read via the Google Drive connector. The pattern is the same for all of them, just swap "Fathom" for whichever tool you use.</p></div>
+
+ <div class="client-example">
+ <div class="client-example-label">Client Example</div>
+ <p>A Manchester-based B2B consultant doing 12-15 client calls a week. Before: 25 minutes of admin per call writing the recap, pulling out action items, and updating the CRM.</p>
+ <p>After this build: 2 minutes. Paste the transcript (or let Fathom push it in), review the output, hit send on the draft email.</p>
+ <p style="margin-bottom:0;">He ran the manual version for two weeks, then upgraded to Fathom MCP. Now the transcripts flow in automatically. His clients noticed the recaps were landing within 10 minutes of the call ending.</p>
+ </div>
+
+ <h3>The Numbers</h3>
+ <div class="numbers-block">// Before
+14 calls × 25 min recap = 350 min
+Roughly 5h 50m per week
+
+// After
+14 calls × 2 min review = 28 min
+Roughly 28m per week
+
+// Net time back
+~5 hours a week</div>
+ <p>If you're doing 6-8 calls a week, this still saves you 2-3 hours. Scales linearly.</p>
+
+ <h3>The Gotcha</h3>
+ <p><strong>Garbage transcripts = garbage summaries.</strong> The output is only as good as the transcript. If you're using Google Meet's free auto-captions it'll miss technical terms, names, and product jargon.</p>
+ <p>If accuracy matters (client names, quoted numbers, specific terminology), use Fathom or Fireflies. Free tiers exist for both. The transcription quality is noticeably better and it's worth the 5 minutes to sign up.</p>
+
+ <h2 id="auto3">Automation 03: Weekly Reporting</h2>
+
+ <p>Every Monday morning at 7am, Claude Code pulls data from your sources, writes the weekly report using your template, saves it to Google Drive, and drafts the client email. You review, personalise, send.</p>
+
+ <div class="automation-meta">
+ <span><strong>Tool:</strong> Claude Code</span>
+ <span>·</span>
+ <span><strong>Plan:</strong> Max recommended</span>
+ <span>·</span>
+ <span><strong>Time saved:</strong> 2.5, 3 hrs/wk</span>
+ </div>
+
+ <h3>The problem</h3>
+ <p>Every Friday (or Monday if you're behind) you're manually pulling numbers from 3-5 sources, copy-pasting them into a doc, writing the commentary, and sending it out. Takes 2-4 hours depending on how many clients or internal teams you report to.</p>
+ <p>It's the kind of work you dread and put off. Which makes it even worse.</p>
+
+ <h3>What we're building</h3>
+ <p>A Claude Code scheduled task that runs every Monday at 7am. It pulls data from multiple sources (Google Sheets for metrics, Gmail for relevant client emails from the past week, Google Calendar for meeting history), generates a formatted report using a template you define, and saves it to Google Drive plus drafts a send-to-client email.</p>
+
+ <h3>Which Claude and why</h3>
+ <p>Claude Code, absolutely. This is the automation where subagents shine. You want one subagent pulling data, one writing the narrative, one formatting the output. Keeps the main context clean.</p>
+ <p>Max plan recommended if you're running this across more than 3 clients, because data-pulling eats tokens.</p>
+
+ <h3>What you need</h3>
+ <ul>
+ <li>Claude Code Desktop (for scheduled tasks).</li>
+ <li>Google Workspace connectors (Sheets, Drive, Gmail, Calendar).</li>
+ <li>Optional but powerful: Stripe MCP, GA4 MCP, or PostHog MCP if those metrics matter to your report.</li>
+ </ul>
+
+ <!-- VISUAL BLOCK 2:Subagent Flow -->
+ <div class="subagent-flow">
+ <div class="flow-steps">
+ <div class="flow-step">
+ <div class="flow-num">1</div>
+ <div class="flow-title">Data Gatherer</div>
+ <div class="flow-desc">Pulls from Google Sheets, Gmail, Calendar. Returns structured data.</div>
+ </div>
+ <div class="flow-arrow">→</div>
+ <div class="flow-step">
+ <div class="flow-num">2</div>
+ <div class="flow-title">Report Writer</div>
+ <div class="flow-desc">Takes the data. Writes commentary using your template and voice rules.</div>
+ </div>
+ <div class="flow-arrow">→</div>
+ <div class="flow-step">
+ <div class="flow-num">3</div>
+ <div class="flow-title">Formatter</div>
+ <div class="flow-desc">Saves Google Doc to Drive. Drafts the client email in Gmail.</div>
+ </div>
+ </div>
+ <p class="flow-note">Each subagent has its own clean context window. Cleaner, faster, fewer tokens.</p>
+ </div>
+
+ <h3>Build Steps</h3>
+
+ <p><span class="step-label">Step 01</span></p>
+ <p><strong>Create the project folder structure</strong></p>
+ <div class="code-block">mkdir -p ~/claude-projects/weekly-reports/.claude/skills/weekly-report
+mkdir -p ~/claude-projects/weekly-reports/.claude/agents
+mkdir -p ~/claude-projects/weekly-reports/outputs
+cd ~/claude-projects/weekly-reports</div>
+
+ <p><span class="step-label">Step 02</span></p>
+ <p><strong>Create the CLAUDE.md project memory</strong></p>
+ <p>In the project root, create <code style="background:#F3F4F6;padding:0.1em 0.4em;border-radius:4px;font-family:monospace;">CLAUDE.md</code>:</p>
+ <div class="code-block"># Weekly Reports
+This project generates weekly client reports every
+Monday morning.
+
+## Report template
+Every report follows this structure:
+1. Executive summary (2-3 lines)
+2. Top 3 wins of the week
+3. Key metrics (table format)
+4. Issues or blockers
+5. What's planned for next week
+
+## Data sources
+- Google Sheet (metrics): https://docs.google.com/spreadsheets/d/[YOUR-ID]
+- Google Drive folder (for saving outputs): /Clients/[Client Name]/Weekly Reports/
+- Gmail: search for emails tagged [Client Name] in the last 7 days
+
+## Output location
+Save every completed report as a Google Doc to the
+client's folder, named:
+"[Client Name] Weekly Report - YYYY-MM-DD.gdoc"
+
+## Voice rules
+- British English. Direct.
+- Numbers matter more than adjectives.
+- No em dashes. No "leverage", "unlock", "delve", "seamless", "elevate", "streamline".
+- If a metric is flat or down, say so plainly and explain why in one sentence.</div>
+ <p>This file is Claude Code's project memory. Every session automatically loads it.</p>
+
+ <p><span class="step-label">Step 03</span></p>
+ <p><strong>Create the subagents</strong></p>
+ <p>Three subagents. Each one lives in <code style="background:#F3F4F6;padding:0.1em 0.4em;border-radius:4px;font-family:monospace;">.claude/agents/</code> as a markdown file.</p>
+
+ <p><strong>Subagent 1: data-gatherer.md:</strong></p>
+ <div class="code-block">---
+name: data-gatherer
+description: Pulls metrics from Google Sheets, client
+emails from Gmail, and meetings from Calendar for
+the past 7 days. Returns a structured data summary.
+tools: Read, Grep, Glob
+---
+
+You are a data gathering specialist. Pull last week's data
+from the sources defined in CLAUDE.md and return a clean,
+structured summary.
+
+On every run:
+1. Open the Google Sheet of metrics. Read the rows dated in the last 7 days.
+2. Search Gmail for emails tagged with the client's name in the last 7 days. Note key topics and any concerns raised.
+3. Check Google Calendar for client meetings in the last 7 days. Note the dates and topics.
+
+Return the output as clean markdown under these headings: Metrics, Email topics, Meetings.
+
+Do not write narrative or commentary. Just the data.</div>
+
+ <p><strong>Subagent 2: report-writer.md:</strong></p>
+ <div class="code-block">---
+name: report-writer
+description: Takes structured data from data-gatherer
+and writes the weekly report commentary using the
+template in CLAUDE.md.
+tools: Read
+---
+
+You are a report writer. You receive structured data
+and output a fully written weekly report following
+the template in CLAUDE.md.
+
+Write in the voice rules in CLAUDE.md. Be specific.
+No fluff. If the data shows something down, say it's
+down and explain why in one sentence.</div>
+
+ <p><strong>Subagent 3: formatter.md:</strong></p>
+ <div class="code-block">---
+name: formatter
+description: Takes the written report and saves it to
+Google Drive as a Google Doc, then drafts the send
+email in Gmail.
+tools: Read, Write, Edit
+---
+
+You save the finished report to the client's Google
+Drive folder in the path specified in CLAUDE.md.
+Then draft a Gmail email to the client with the
+report summary inline and a link to the full Google
+Doc. Save as draft, do not send.</div>
+
+ <p><span class="step-label">Step 04</span></p>
+ <p><strong>Create the master skill</strong></p>
+ <p>In <code style="background:#F3F4F6;padding:0.1em 0.4em;border-radius:4px;font-family:monospace;">.claude/skills/weekly-report/SKILL.md</code>:</p>
+ <div class="code-block">---
+name: weekly-report
+description: Orchestrates the three subagents to
+generate the weekly client report end-to-end.
+---
+
+# Weekly Report
+
+Run this every Monday morning to generate last week's
+client report.
+
+Steps:
+1. Invoke the data-gatherer subagent. Wait for output.
+2. Pass the output to the report-writer subagent. Wait for the finished report.
+3. Pass the finished report to the formatter subagent to save and draft the client email.
+4. Output a one-line confirmation: report generated, draft email created, link to the Google Doc.</div>
+
+ <p><span class="step-label">Step 05</span></p>
+ <p><strong>Schedule the task</strong></p>
+ <p>Open Claude Desktop. Schedule > + New task.</p>
+ <ul>
+ <li><strong>Task name:</strong> weekly-report</li>
+ <li><strong>Prompt:</strong> Run the weekly-report skill.</li>
+ <li><strong>Schedule:</strong> Every Monday at 7:00 AM.</li>
+ <li><strong>Working folder:</strong> ~/claude-projects/weekly-reports</li>
+ <li><strong>Model:</strong> Sonnet for the data-gatherer and formatter. Opus for the report-writer (better prose). You can set per-subagent models inside each agent file by adding <code style="background:#F3F4F6;padding:0.1em 0.4em;border-radius:4px;font-family:monospace;">model: sonnet</code> or <code style="background:#F3F4F6;padding:0.1em 0.4em;border-radius:4px;font-family:monospace;">model: opus</code> in the frontmatter.</li>
+ </ul>
+
+ <p><span class="step-label">Step 06</span></p>
+ <p><strong>Test run + tune</strong></p>
+ <p>Hit Run now. Takes a few minutes because the subagents fire in sequence.</p>
+ <p>Check Google Drive for the new document. Check Gmail Drafts for the email.</p>
+ <p>Week one, the report will need editing. Your job is to refine the CLAUDE.md voice rules and the report template until the output matches what you'd write. Two weeks of tuning and you're done.</p>
+
+ <h3>Swapping in other data sources</h3>
+ <p>If your metrics live in Stripe, GA4, or Shopify instead of Google Sheets, replace the Google Sheet step in the data-gatherer subagent with a call to the relevant MCP server. Stripe MCP, GA4 MCP, and Shopify MCP are all publicly available. Setup is the same pattern as the HubSpot MCP in Automation 1.</p>
+
+ <div class="client-example">
+ <div class="client-example-label">Client Example</div>
+ <p>A small agency owner delivering monthly reports to 6 DTC clients. Before: 3-hour Sunday night session every week stitching together reports, pulling numbers, writing commentary.</p>
+ <p>After this build: 20 minutes on Monday reviewing and customising what Claude's already generated. The drafts are sitting in Gmail by the time she opens her laptop.</p>
+ <p style="margin-bottom:0;">She kept the pattern but duplicated the project folder per client so each one had its own template and data sources. One scheduled task per client. Runs all six in sequence every Monday at 7am.</p>
+ </div>
+
+ <h3>The Numbers</h3>
+ <div class="numbers-block">// Before
+6 clients × 30 min each = 180 min
+Roughly 3h per week
+
+// After
+6 clients × 3 min review = 18 min
+Roughly 18m per week
+
+// Net time back
+~2.7 hours a week</div>
+
+ <h3>The Gotcha</h3>
+ <p><strong>Don't try to automate all your clients at once.</strong></p>
+ <p>Build this for one client first. Run it for 2 weeks. Get the voice right, get the template right, fix the edge cases. Then replicate for the next client. Then the next.</p>
+ <p>Trying to automate all 6 at once in week one is how people give up on this stuff. You'll find 10 little things wrong across 6 reports and be drowning in edits instead of saving time.</p>
+ <p>One client at a time. Every automation compounds.</p>
+
+ <h2 id="compound">The Compound Effect</h2>
+
+ <p>Three automations. Each one by itself is a nice time saver. Stacked, they turn into something real.</p>
+
+ <!-- VISUAL BLOCK 3:Stacked Time Savings -->
+ <div class="time-savings">
+ <div class="time-row">
+ <div class="time-label">Lead Follow-Up</div>
+ <div class="time-bar-wrap">
+ <div class="time-bar" style="width:70%;"><span class="time-val">~5 hrs/wk</span></div>
+ </div>
+ </div>
+ <div class="time-row">
+ <div class="time-label">Meeting Summaries</div>
+ <div class="time-bar-wrap">
+ <div class="time-bar" style="width:66%;"><span class="time-val">~5 hrs/wk</span></div>
+ </div>
+ </div>
+ <div class="time-row" style="margin-bottom:0;">
+ <div class="time-label">Weekly Reporting</div>
+ <div class="time-bar-wrap">
+ <div class="time-bar" style="width:40%;"><span class="time-val">~3 hrs/wk</span></div>
+ </div>
+ </div>
+ <div class="time-divider"></div>
+ <div class="time-total">
+ <div class="time-total-label">Total time back per week</div>
+ <div class="time-total-val">11, 15 hours</div>
+ </div>
+ </div>
+
+ <p><strong>Total time back, per week: 11, 15 hours</strong></p>
+ <p>That's roughly two working days a week. Every week.</p>
+ <p>Over a year, that's 570 to 780 hours. 71 to 97 working days. Three to four months of working time.</p>
+ <p>Put that somewhere that matters. Sales calls. Product work. Time with your kids. Whatever you've been putting off because you didn't have time.</p>
+
+ <h3>The honest bit</h3>
+ <p>Setup for all three will take you 4 to 6 hours the first weekend. Maybe more if you're new to MCP and subagents. These don't run themselves in week 1. They run themselves by week 3.</p>
+ <p>If you're willing to sit with the slightly-broken versions for a fortnight while you tune them, the payoff is massive. If you want perfect automation on day one, this isn't it.</p>
+ <p>Nothing good in AI automation works perfectly on day one. Build it, break it, fix it, tune it. That's the game.</p>
+ <p>Last thing. If you build one of these and it doesn't work, don't scrap the whole thing. Go back to the SKILL.md or the CLAUDE.md file and add more specificity. The model isn't broken. The instructions are vague.</p>
+ <p><strong>Specific in, specific out. Every time.</strong></p>
+
+ </article>
+
+ <aside class="toc-sidebar">
+ <div class="toc-box">
+ <h3>Contents</h3>
+ <ol>
+ <li><a href="#intro">Intro</a></li>
+ <li><a href="#setup">One-Time Setup</a></li>
+ <li><a href="#auto1">Automation 01: Lead Follow-Up</a></li>
+ <li><a href="#auto2">Automation 02: Meeting Summaries</a></li>
+ <li><a href="#auto3">Automation 03: Weekly Reporting</a></li>
+ <li><a href="#compound">The Compound Effect</a></li>
+ </ol>
+ </div>
+ </aside>
+
+</div>
+
+
+<script>
+ const header = document.getElementById('site-header');
+ window.addEventListener('scroll', () => {
+ header.classList.toggle('scrolled', window.scrollY > 8);
+ }, { passive: true });
+</script>
+
+<script>
+function downloadPDF() {
+  window.print();
+}
+</script>
+</body>
+</html>

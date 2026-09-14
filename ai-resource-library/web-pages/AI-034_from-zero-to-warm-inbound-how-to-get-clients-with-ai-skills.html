@@ -1,0 +1,494 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>From Zero to Warm Inbound</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✦%3C/text%3E%3C/svg%3E">
+ <style>
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ :root {
+ --accent: #1A7A6A;
+ --accent-indigo: #6366F1;
+ --accent-light: #E8F5F3;
+ --accent-border: #9FD5CE;
+ --text: #000000;
+ --muted: #6B7280;
+ --bg: #FFFFFF;
+ --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+ --card-gradient: linear-gradient(160deg, #E8F5F3 0%, #FFFFFF 100%);
+ --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+ --shadow-hover: 0 8px 24px rgba(26,122,106,0.12), 0 2px 8px rgba(0,0,0,0.08);
+ --shadow-hard: 4px 4px 0px #000000;
+ --radius: 12px;
+ --header-height: 64px;
+ }
+ html { scroll-behavior: smooth; }
+ body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+
+ .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+ .header.scrolled { border-color: var(--accent-border); }
+ .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+ .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+ .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+ .logo-mark { font-size: 1.1rem; color: var(--accent); margin-right: 0.25rem; line-height: 1; }
+ .logo-name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.9375rem; color: var(--text); letter-spacing: -0.02em; }
+ .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+ .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+ a.logo-subtitle:hover { color: var(--accent); }
+ .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+ .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+
+ .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+ @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+
+ .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+ .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+ .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+ .badge-cat { background: var(--accent); color: #fff; }
+ .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+ .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+ .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+ .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+ .author-name { display: block; font-weight: 600; font-size: 0.875rem; color: var(--text); }
+ .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+
+ .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+ .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+ .toc-box ol { list-style: none; counter-reset: toc; }
+ .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+ .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+ .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+ .toc-box a:hover { color: var(--accent); }
+
+ .guide-content { padding: 2rem 0 5rem; }
+ .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+ .guide-content h2:first-child { border-top: none; margin-top: 0; }
+ .guide-content h3 { font-size: 1.125rem; font-weight: 600; margin-top: 1.75rem; margin-bottom: 0.75rem; }
+ .guide-content p { margin-bottom: 1.125rem; }
+ .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+ .guide-content li { margin-bottom: 0.375rem; }
+ .guide-content strong { font-weight: 600; }
+
+ .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 1.5rem; line-height: 1.7; }
+ .intro-list { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+ .intro-list ul { padding-left: 1.25rem; margin: 0; }
+ .intro-list li { font-size: 0.9375rem; margin-bottom: 0.375rem; }
+
+ .callout { background: var(--accent-light); border-left: 3px solid var(--accent); padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; font-size: 0.9375rem; margin: 1.25rem 0; }
+ .callout p { margin: 0; }
+ .callout strong { color: var(--accent); }
+
+ .script-block { background: #F9FAFB; border: 1px solid #E5E7EB; border-left: 3px solid var(--accent-indigo); border-radius: 0 8px 8px 0; padding: 1.25rem 1.5rem; margin: 1.25rem 0; font-size: 0.9rem; line-height: 1.7; }
+ .script-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent-indigo); margin-bottom: 0.625rem; }
+
+ .cta-mid { border-left: 3px solid var(--accent-indigo); background: #EEF2FF; padding: 1.25rem 1.5rem; border-radius: 0 10px 10px 0; margin: 2.5rem 0; }
+ .cta-mid p { margin-bottom: 0.875rem; font-size: 0.9375rem; }
+ .cta-mid p:last-child { margin-bottom: 0; }
+ .cta-btn-outline { display: inline-block; padding: 0.5625rem 1.25rem; background: var(--accent-indigo); color: #fff; font-family: 'Montserrat', sans-serif; font-size: 0.875rem; font-weight: 600; border-radius: 8px; text-decoration: none; transition: opacity 0.15s; }
+ .cta-btn-outline:hover { opacity: 0.88; }
+
+ .cta-bottom { background: var(--accent-indigo); color: #fff; padding: 2.5rem 2rem; border-radius: 12px; text-align: center; margin-top: 3rem; }
+ .cta-bottom p { font-size: 1.0625rem; margin-bottom: 1.25rem; opacity: 0.9; }
+ .cta-btn-white { display: inline-block; padding: 0.625rem 1.5rem; background: #fff; color: var(--accent-indigo); font-family: 'Montserrat', sans-serif; font-size: 0.875rem; font-weight: 700; border-radius: 8px; text-decoration: none; transition: opacity 0.15s; }
+ .cta-btn-white:hover { opacity: 0.9; }
+
+ /* VB1: Free work cards */
+ .free-work-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.125rem; margin: 2rem 0; }
+ @media (max-width: 700px) { .free-work-cards { grid-template-columns: 1fr; } }
+ .fw-card { background: linear-gradient(160deg, #E8F5F3 0%, #FFFFFF 100%); border: 1px solid var(--accent-border); border-top: 3px solid var(--accent-indigo); border-radius: 0 0 12px 12px; padding: 1.375rem; }
+ .fw-card-title { font-weight: 700; font-size: 1rem; margin-bottom: 0.625rem; color: var(--accent-indigo); }
+ .fw-card-body { font-size: 0.875rem; color: var(--muted); line-height: 1.65; }
+
+ /* VB2: Pricing ladder */
+ .pricing-ladder { display: flex; gap: 0; margin: 2rem 0; align-items: stretch; }
+ @media (max-width: 700px) { .pricing-ladder { flex-direction: column; } }
+ .price-stage { flex: 1; background: linear-gradient(160deg, #E8F5F3 0%, #FFFFFF 100%); border: 1px solid var(--accent-border); border-radius: 0; padding: 1.25rem; position: relative; }
+ .price-stage:first-child { border-radius: 10px 0 0 10px; }
+ .price-stage:last-child { border-radius: 0 10px 10px 0; }
+ .price-stage + .price-stage { border-left: none; }
+ @media (max-width: 700px) { .price-stage { border-radius: 0 !important; border-left: 1px solid var(--accent-border) !important; border-top: none; } .price-stage:first-child { border-radius: 10px 10px 0 0 !important; border-top: 1px solid var(--accent-border) !important; } .price-stage:last-child { border-radius: 0 0 10px 10px !important; } }
+ .price-stage-label { font-size: 1.5rem; font-weight: 700; color: var(--accent-indigo); margin-bottom: 0.25rem; }
+ .price-stage-sub { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 0.75rem; }
+ .price-stage-desc { font-size: 0.8125rem; color: var(--muted); line-height: 1.6; }
+ .price-arrow { display: flex; align-items: center; padding: 0 0.25rem; color: var(--accent); font-size: 1.125rem; flex-shrink: 0; }
+ @media (max-width: 700px) { .price-arrow { display: none; } }
+
+ /* VB3: Vertical timeline */
+ .roadmap { margin: 2rem 0; }
+ .roadmap-phase { display: flex; gap: 1.25rem; margin-bottom: 0; position: relative; }
+ .roadmap-phase:not(:last-child)::before { content: ''; position: absolute; left: 18px; top: 40px; width: 2px; height: calc(100% - 8px); background: var(--accent-border); }
+ .phase-dot { width: 36px; height: 36px; border-radius: 50%; background: var(--accent-indigo); color: #fff; font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative; z-index: 1; margin-top: 4px; }
+ .phase-body { padding-bottom: 2rem; flex: 1; }
+ .phase-time { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent-indigo); margin-bottom: 0.375rem; }
+ .phase-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
+
+ .content-schedule { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem 1.5rem; margin: 1.25rem 0; }
+ .content-day { display: flex; gap: 1rem; padding: 0.5rem 0; border-bottom: 1px solid var(--accent-border); font-size: 0.9rem; }
+ .content-day:last-child { border-bottom: none; }
+ .day-name { font-weight: 600; width: 90px; flex-shrink: 0; color: var(--text); }
+ .day-type { color: var(--accent-indigo); font-weight: 600; width: 130px; flex-shrink: 0; }
+ .day-desc { color: var(--muted); }
+ @media (max-width: 500px) { .content-day { flex-wrap: wrap; gap: 0.25rem; } .day-name { width: 100%; } .day-type { width: auto; } }
+
+
+ @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+
+
+ /* ─── FOOTER ─── */
+
+     .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+    @page { margin: 1.5cm; } @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .chapter-card, .compare-card, .checklist-card, blockquote { break-inside: avoid; page-break-inside: avoid; } .chapter-overview, .compare-grid, .checklist-grid, .email-flow { break-inside: avoid; page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+
+
+<header class="header" id="site-header">
+ <div class="header-inner">
+ <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+ <div class="logo-divider"></div>
+ <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">← All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+ <span class="badge badge-cat">Building &amp; Monetising</span>
+ <span class="badge badge-diff">Beginner</span>
+ </div>
+ <h1>From Zero to Warm Inbound: How to Get Clients With AI Skills</h1>
+ <div class="hero-author">
+ <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+ <div>
+ <span class="author-name">Max Johnson</span>
+ <span class="author-meta">@maxjohnscn</span>
+ </div>
+ </div>
+</div>
+
+
+<div class="page-wrap">
+
+ <article class="guide-content">
+    <button class="download-btn" onclick="downloadPDF()">&#8595; Download PDF</button>
+
+ <p class="intro-blurb">Free work. Outreach. Social media. The exact path from your first unpaid project to a point where clients are coming to you, with no cold outreach required.</p>
+
+ <div class="intro-list">
+ <ul>
+ <li>Why working for free first is the highest-leverage move you can make</li>
+ <li>Referral deals and the finders fee strategy that multiplies early clients</li>
+ <li>Outreach scripts with testimonial proof built in, ready to send</li>
+ <li>How to raise your prices as your experience compounds</li>
+ <li>Why social media is the most important thing you will do</li>
+ <li>The weekly content plan and how audience turns into income</li>
+ </ul>
+ </div>
+
+ <h2 id="ch1">Chapter 01: Work for Free First</h2>
+
+ <p>This is the part most people want to skip. Don't. Free work does three things that no amount of studying or preparation can replicate.</p>
+
+ <!-- VISUAL BLOCK 1:Free Work Cards -->
+ <div class="free-work-cards">
+ <div class="fw-card">
+ <div class="fw-card-title">It makes you better</div>
+ <div class="fw-card-body">Reading about AI tools and deploying them for a real business are completely different experiences. The first time you build something live, you hit problems you never anticipated. That knowledge is worth more than the fee you're not charging.</div>
+ </div>
+ <div class="fw-card">
+ <div class="fw-card-title">It gives you testimonials</div>
+ <div class="fw-card-body">A real business owner saying in their own words what you did and what it changed is the single most powerful sales asset you will own at this stage. Not a portfolio piece you wrote yourself. Real words from a real person.</div>
+ </div>
+ <div class="fw-card">
+ <div class="fw-card-title">It gives you content</div>
+ <div class="fw-card-body">Every free project is a before-and-after story. That story becomes outreach copy, social content, and proof material for the next twelve months. One project can generate six months of content.</div>
+ </div>
+ </div>
+
+ <h3>How to Choose Who to Work For</h3>
+
+ <p>Pick businesses in the niche you want to own. The testimonial is most powerful when it comes from exactly the type of business your next prospect runs. A dentist reading a testimonial from another dentist responds completely differently than a dentist reading a testimonial from a random brand.</p>
+
+ <p><strong>Look for:</strong></p>
+ <ul>
+ <li>Businesses with an obvious, painful problem your system solves. The more clearly they feel the pain before you start, the more enthusiastically they describe the fix afterwards.</li>
+ <li>Active businesses with real customers and a real online presence.</li>
+ </ul>
+
+ <p><strong>Avoid:</strong></p>
+ <ul>
+ <li>Businesses too chaotic to implement what you create.</li>
+ <li>People who are vague about their problems. Anyone who isn't in the niche you want to build in. Free work outside your target niche is free work that generates the wrong testimonials.</li>
+ </ul>
+
+ <h3>How to Ask for the Testimonial</h3>
+
+ <p>When the project is done and the results are visible, ask directly: "This went really well. Would you be happy to record a quick 60-second video or write a short paragraph about what we built and what it changed? It would mean a lot at this stage."</p>
+
+ <p>Ask them to be specific. Not "Max was great" but "We were missing 30% of our calls. Max built a system that now captures every enquiry automatically and we've already booked four jobs from it we would have lost." Specific outcomes. Real numbers wherever possible. Their words, not yours.</p>
+
+ <h2 id="ch2">Chapter 02: The Referral Deal: Your First Multiplier</h2>
+
+ <p>Once a free project is complete and the client is happy, you have an asset most people never use properly. That client knows other business owners. They go to networking events, trade groups, and WhatsApp chats full of exactly the kind of people you want to reach. Most of them will refer you for free if you just ask. But offer them something for it and the conversion rate doubles.</p>
+
+ <h3>The Finders Fee Offer</h3>
+
+ <p>After completing a free or discounted project, say this: "I'm building up my client base at the moment. If you know anyone who runs a similar business and could use something like what we built, I'll give you 10% of whatever they pay me as a thank you."</p>
+
+ <p>That's it. No complexity. If you charge your next client £500, the referrer gets £50. If you charge £1,000, they get £100. It costs you nothing until it works, and it turns every satisfied client into an active salesperson.</p>
+
+ <p><strong>Why this works so well early on:</strong> At this stage you have no reputation in the market. But your first clients do. Their recommendation carries weight in their network that no amount of cold outreach from you can replicate. You're borrowing their trust and paying a fair commission for it.</p>
+
+ <p><strong>How to structure the ask:</strong> Be specific about the type of person you want. "Do you know any other roofers, plumbers, or trades businesses?" is more useful than "anyone you know." The more specific your ask, the more useful their mental search becomes.</p>
+
+ <h2 id="ch3">Chapter 03: Raising Your Prices as You Grow</h2>
+
+ <p>Your price at month one should not be your price at month six. As your experience compounds and your proof builds, raising your rates is not just justified. It's necessary.</p>
+
+ <!-- VISUAL BLOCK 2:Pricing Ladder -->
+ <div class="pricing-ladder">
+ <div class="price-stage">
+ <div class="price-stage-label">Free</div>
+ <div class="price-stage-sub">Projects 1 to 3</div>
+ <div class="price-stage-desc">You are buying experience and testimonials with your time. This is an investment, not charity. Pick the right clients.</div>
+ </div>
+ <div class="price-arrow">→</div>
+ <div class="price-stage">
+ <div class="price-stage-label">£250</div>
+ <div class="price-stage-sub">Projects 4 to 6</div>
+ <div class="price-stage-desc">You have proof. You have confidence. Low enough for a fast yes, high enough to feel like a professional transaction.</div>
+ </div>
+ <div class="price-arrow">→</div>
+ <div class="price-stage">
+ <div class="price-stage-label">£500+</div>
+ <div class="price-stage-sub">Projects 7 to 10</div>
+ <div class="price-stage-desc">Multiple testimonials in a specific niche. Your outreach is sharper, your delivery faster. The price reflects real value delivered.</div>
+ </div>
+ <div class="price-arrow">→</div>
+ <div class="price-stage">
+ <div class="price-stage-label">£1k £3k</div>
+ <div class="price-stage-sub">Month 6 onwards</div>
+ <div class="price-stage-desc">A track record. Proven results. You know your niche and your system. The price becomes easy to justify because the ROI is clear.</div>
+ </div>
+ </div>
+
+ <h2 id="ch4">Chapter 04: Outreach: Volume, Proof and Scripts</h2>
+
+ <p>Before you have an audience, outreach is your only lever. And the only way outreach works is volume. Even great outreach converts at 3% to 10%. You need to send 20 to 30 targeted messages every single day across all platforms. Not some days. Every day.</p>
+
+ <h3>Where to Find Prospects</h3>
+ <ul>
+ <li>LinkedIn keyword search</li>
+ <li>Apollo.io email lists</li>
+ <li>Facebook Groups in your niche</li>
+ <li>Instagram and TikTok hashtags</li>
+ <li>Google Maps by business type</li>
+ <li>Claude to write personalised openers</li>
+ </ul>
+
+ <h3>Three Scripts Ready to Send</h3>
+
+ <div class="script-block">
+ <div class="script-label">Script 01: Cold Email with Testimonial Proof</div>
+ <p><strong>Subject:</strong> [First name], leads you're probably missing right now</p>
+ <br>
+ <p>Hi [First name], most [business type] owners I speak to are losing leads every week because nobody's available to respond after hours or when the team is out on a job.</p>
+ <br>
+ <p>I recently built an automated lead capture system for a [similar business type]. Within the first month they recovered 11 leads they would have previously missed, around £4,000 in booked jobs from a system that cost £500.</p>
+ <br>
+ <p>Worth a 15-minute call to see if something similar makes sense for [business name]?</p>
+ </div>
+
+ <div class="script-block">
+ <div class="script-label">Script 02: LinkedIn DM</div>
+ <p>Hey [First name], came across [business name], looks like you're doing great work in [location/niche].</p>
+ <br>
+ <p>Quick question: do you have anything in place to follow up with leads automatically, or is that still manual right now?</p>
+ <br>
+ <p>Reason I ask: I help [business type] owners automate that. Just did it for [similar business] and they went from missing 30% of their enquiries to capturing almost all of them. Happy to show you exactly how it works if relevant.</p>
+ </div>
+
+ <div class="script-block">
+ <div class="script-label">Script 03: Instagram and TikTok DM</div>
+ <p>Hey [name], love what you're building with [business]. Quick one: I noticed you're [specific observation from their content]. I specialise in automating exactly that for [business type]. Recently helped [similar business] cut their response time to under 60 seconds automatically.</p>
+ <br>
+ <p>Would it be useful if I sent over a quick breakdown of what that looks like?</p>
+ </div>
+
+ <h2 id="ch5">Chapter 05: Social Media Is the Most Important Thing You Will Do</h2>
+
+ <p>Everything else in this guide is about finding clients. Social media is about clients finding you. That is a fundamentally different dynamic and it is worth a thousand times more per hour invested than cold outreach.</p>
+
+ <p>When a business owner discovers you through content, watches your video, reads your post, follows you for a few weeks, they arrive at a conversation already trusting you. They've seen your thinking. They've self-selected as someone interested in what you offer. That conversation converts at a dramatically higher rate than any cold message you will ever send. And a video you post today can still be finding you clients in two years. Cold outreach gets one shot. Content compounds forever.</p>
+
+ <p><strong>TikTok and Instagram Reels</strong>: Short-form video reaches people who have never heard of you because the algorithm distributes it to non-followers. This is your engine of discovery. Start here on day one.</p>
+
+ <p><strong>LinkedIn</strong>: Builds professional credibility and reaches the exact business owners and decision-makers you want. Organic reach for genuine useful content is still strong. Post here consistently alongside short-form video.</p>
+
+ <p><strong>YouTube Long-Form</strong>: The long-term play. Tutorials and walkthroughs rank in search and compound for years. Harder to grow quickly but the most valuable platform to build long-term. Add this once you have a rhythm.</p>
+
+ <h3>The Repurposing Strategy for Getting Early Attention</h3>
+
+ <p>The hardest part is the start, when numbers are low. Find the 10 best-performing videos in your niche from the last three months. Study the hook in the first two seconds, the format, the length, the emotion triggered. Then make your version: your voice, your examples, your style, their proven structure. You are not copying. You are understanding what the audience responds to and giving them more of it. You are not starting from scratch. You are standing on the shoulders of what has already been shown to work.</p>
+
+ <h3>Consistency is Your Primary Edge</h3>
+
+ <p>The algorithm rewards consistent creators and punishes inconsistent ones. More content means more chances for one video to perform. The first three months feel like nothing is happening. Months four to six start moving. By month nine to twelve the compounding becomes visible. The people who quit at month two never see it. Keep going.</p>
+
+ <h2 id="ch6">Chapter 06: The Weekly Content Plan</h2>
+
+ <p>Consistency matters more than perfection. Show up every week without fail. Here is the 2-2-1 weekly structure that builds an audience, demonstrates credibility, and generates leads simultaneously.</p>
+
+ <div class="content-schedule">
+ <div class="content-day">
+ <div class="day-name">Monday</div>
+ <div class="day-type">Viral Style</div>
+ <div class="day-desc">Repurpose a proven format from your niche. Same structure, your script, your voice.</div>
+ </div>
+ <div class="content-day">
+ <div class="day-name">Tuesday</div>
+ <div class="day-type">Testimonial</div>
+ <div class="day-desc">Walk through a client result. Before, what you built, what changed. Specific numbers.</div>
+ </div>
+ <div class="content-day">
+ <div class="day-name">Wednesday</div>
+ <div class="day-type">Educational</div>
+ <div class="day-desc">Teach something genuinely useful. A tutorial, tool breakdown, or concept explained simply.</div>
+ </div>
+ <div class="content-day">
+ <div class="day-name">Thursday</div>
+ <div class="day-type">Viral Style</div>
+ <div class="day-desc">Second repurposed format. Different hook style to test what resonates with your audience.</div>
+ </div>
+ <div class="content-day">
+ <div class="day-name">Friday</div>
+ <div class="day-type">Testimonial</div>
+ <div class="day-desc">Second proof piece. A different niche, a different result, a different format.</div>
+ </div>
+ </div>
+
+ <h3>How to Find Viral Video Ideas to Repurpose</h3>
+
+ <p><strong>1: Search your niche keywords on TikTok and Instagram.</strong> Sort by most viewed. Look for videos with 100k or more views in the last 90 days. These have already been proven to work with your target audience.</p>
+
+ <p><strong>2: Study the structure, not just the topic.</strong> What is the hook in the first two seconds? What emotion does it trigger: curiosity, surprise, relatability? How long is it? What format: tutorial, reaction, before and after, talking head?</p>
+
+ <p><strong>3: Write your own script using the same frame.</strong> Use Claude to help. Give it the original video topic and ask it to write your version with your examples, your voice, and your client results woven in. The structure is borrowed. Everything else is yours.</p>
+
+ <div class="callout"><p><strong>Value first. Always.</strong> Every piece of content should answer the question: what does the viewer get from watching this? Value leads to trust. Trust leads to followers. Followers lead to clients, brand deals, and digital product sales. The entire monetisation chain starts with content that is genuinely useful or genuinely interesting. Never post just to post.</p></div>
+
+ <h2 id="ch7">Chapter 07: What an Audience Unlocks</h2>
+
+ <p>An audience does not just bring warm client work. It opens doors that simply do not exist without one.</p>
+
+ <p><strong>Warm Inbound Client Work</strong>: The primary goal. Business owners who have watched your content reach out already knowing what you do, already trusting you, already sold on the idea. You stop chasing and start choosing. Every conversation starts ten steps ahead of where cold outreach begins.</p>
+
+ <p><strong>Brand Deals and Sponsorships</strong>: As your audience grows in a specific niche, the companies that sell tools and services to that niche want to reach your audience. This becomes a revenue stream completely separate from client work. You create the content you'd create anyway, and companies pay to be part of it.</p>
+
+ <p><strong>Digital Products</strong>: A guide, a course, a template pack, a prompt library. When you have an audience that trusts you, you can sell them something once and get paid repeatedly. One digital product at £97, sold to 200 people a month, is £19,400 with no client work involved. This is the highest-leverage income available to a one-person operation.</p>
+
+ <p><strong>Paid Advertising</strong>: Once you know what content resonates with your audience organically, you can run paid ads using the same content to a cold audience and acquire clients or customers at scale. An audience gives you the data to know what works before you spend money amplifying it. This is not a day-one strategy. It is where the model goes when you're ready to invest in acceleration.</p>
+
+ <h2 id="ch8">Chapter 08: The 12-Month Roadmap</h2>
+
+ <p>This is what the path looks like when you run all three engines together. They overlap from the start. Do not wait to finish one before beginning the next.</p>
+
+ <!-- VISUAL BLOCK 3:Vertical Timeline -->
+ <div class="roadmap">
+ <div class="roadmap-phase">
+ <div class="phase-dot">1</div>
+ <div class="phase-body">
+ <div class="phase-time">Months 1 to 2</div>
+ <div class="phase-desc">3 to 5 free projects. Collect testimonials. Start social media immediately. Do not wait until free work is done. Offer referral deals to every completed client. Begin outreach with your first testimonials as proof.</div>
+ </div>
+ </div>
+ <div class="roadmap-phase">
+ <div class="phase-dot">2</div>
+ <div class="phase-body">
+ <div class="phase-time">Months 2 to 4</div>
+ <div class="phase-desc">Start charging. £250 to £500 per project. Send 20 to 30 outreach messages every day. Post content every week without exception. Your first paid clients come from outreach. Referrals start coming in from early clients.</div>
+ </div>
+ </div>
+ <div class="roadmap-phase">
+ <div class="phase-dot">3</div>
+ <div class="phase-body">
+ <div class="phase-time">Months 4 to 6</div>
+ <div class="phase-desc">Social starts to build. Some videos perform well. Your outreach converts better because prospects have already seen your content. Some inbound begins. Raise prices to £500 or above.</div>
+ </div>
+ </div>
+ <div class="roadmap-phase">
+ <div class="phase-dot">4</div>
+ <div class="phase-body">
+ <div class="phase-time">Months 6 to 9</div>
+ <div class="phase-desc">The ratio shifts. More inbound, less outreach needed. Testimonials are strong. Niche is clear. You can start to be selective about projects. Raise prices again. Explore your first digital product.</div>
+ </div>
+ </div>
+ <div class="roadmap-phase">
+ <div class="phase-dot">5</div>
+ <div class="phase-body">
+ <div class="phase-time">Months 9 to 12</div>
+ <div class="phase-desc">Warm inbound is your primary source. Social media is the engine. Outreach is optional. Digital products or brand deals begin to generate income. The flywheel is running on its own.</div>
+ </div>
+ </div>
+ </div>
+
+ <h3>The Three Things That Determine Everything</h3>
+
+ <p><strong>01: Consistency.</strong> Not brilliance. Not a viral video. Consistent free work, outreach every day, content every week. The people who win are almost never the most talented. They are the most consistent.</p>
+
+ <p><strong>02: Specificity.</strong> A generic AI freelancer gets generic results. A specialist who helps dental practices get more Google reviews, with five case studies from dental practices, is a completely different business.</p>
+
+ <p><strong>03: Starting Now.</strong> The best time to post your first video was six months ago. Every week spent preparing instead of doing is a week the compounding does not start. The bar for good enough is lower than you think.</p>
+
+ <h2>The Flywheel Is Waiting. Start Spinning It.</h2>
+
+ <p>Free work, outreach, and social media. Three engines that reinforce each other. Start all three at once and the compounding begins. Wait for one before starting the next and you lose months of momentum that you cannot get back.</p>
+
+ <ul>
+ <li><strong>3 to 5 Free Projects</strong>: The minimum before outreach becomes easy. Do this in months one and two.</li>
+ <li><strong>20 to 30 Messages Per Day</strong>: The outreach volume that makes the maths work in your favour. Every single day.</li>
+ <li><strong>5 per week Pieces of Content</strong>: The consistency that makes the algorithm work for you and the audience compound.</li>
+ </ul>
+
+ </article>
+
+ <aside class="toc-sidebar">
+ <div class="toc-box">
+ <h3>Contents</h3>
+ <ol>
+ <li><a href="#ch1">Work for Free First</a></li>
+ <li><a href="#ch2">The Referral Deal</a></li>
+ <li><a href="#ch3">Raising Your Prices</a></li>
+ <li><a href="#ch4">Outreach: Scripts &amp; Volume</a></li>
+ <li><a href="#ch5">Social Media</a></li>
+ <li><a href="#ch6">The Weekly Content Plan</a></li>
+ <li><a href="#ch7">What an Audience Unlocks</a></li>
+ <li><a href="#ch8">The 12-Month Roadmap</a></li>
+ </ol>
+ </div>
+ </aside>
+
+</div>
+
+
+<script>
+ const header = document.getElementById('site-header');
+ window.addEventListener('scroll', () => {
+ header.classList.toggle('scrolled', window.scrollY > 8);
+ }, { passive: true });
+</script>
+
+<script>
+function downloadPDF() {
+  window.print();
+}
+</script>
+</body>
+</html>

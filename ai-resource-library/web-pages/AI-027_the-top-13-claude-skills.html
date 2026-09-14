@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>The Top 13 Claude Skills</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✦%3C/text%3E%3C/svg%3E">
+ <style>
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+ html { scroll-behavior: smooth; }
+ body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+ .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+ .header.scrolled { border-color: var(--accent-border); }
+ .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+ .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+ .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+ .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+ .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+ a.logo-subtitle:hover { color: var(--accent); }
+ .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+ .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+ .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+ @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+ .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+ .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+ .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+ .badge-cat { background: var(--accent); color: #fff; }
+ .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+ .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+ .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+ .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+ .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+ .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+ .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+ .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+ .toc-box ol { list-style: none; counter-reset: toc; }
+ .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+ .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+ .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+ .toc-box a:hover { color: var(--accent); }
+ .guide-content { padding: 2rem 0 5rem; }
+ .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+ .guide-content h2:first-child { border-top: none; margin-top: 0; }
+ .guide-content h3 { font-size: 1.0625rem; font-weight: 700; margin-top: 1.75rem; margin-bottom: 0.625rem; }
+ .guide-content p { margin-bottom: 1.125rem; }
+ .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+ .guide-content li { margin-bottom: 0.375rem; }
+ .guide-content strong { font-weight: 600; }
+ .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+ .callout { background: var(--accent-light); border-left: 3px solid var(--accent); padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; font-size: 0.9375rem; margin: 1.25rem 0; }
+ .callout p { margin: 0; }
+ .callout strong { color: var(--accent); }
+ .code-block { background: #000; color: #e2e8f0; font-family: 'Courier New', Courier, monospace; font-size: 0.875rem; line-height: 1.6; padding: 1.25rem 1.5rem; border-radius: 8px; overflow-x: auto; margin: 1.25rem 0; white-space: pre-wrap; }
+ .ranked-list { display: flex; flex-direction: column; gap: 0.5rem; margin: 1.5rem 0; }
+ .rank-item { display: flex; align-items: flex-start; gap: 0.875rem; background: #fff; border: 1px solid var(--accent-border); border-radius: 8px; padding: 0.75rem 1rem; }
+ .rank-num { font-weight: 700; color: var(--accent); font-size: 0.9375rem; min-width: 2rem; flex-shrink: 0; line-height: 1.5; }
+ .rank-body { flex: 1; }
+ .rank-name { font-weight: 600; font-size: 0.9375rem; }
+ .rank-stars { font-size: 0.8rem; color: var(--muted); margin-top: 0.125rem; }
+ .rank-desc { font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+ @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+     .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+    @page { margin: 1.5cm; } @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .chapter-card, .compare-card, .checklist-card, blockquote { break-inside: avoid; page-break-inside: avoid; } .chapter-overview, .compare-grid, .checklist-grid, .email-flow { break-inside: avoid; page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+ <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+ <div class="logo-divider"></div>
+ <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">← All guides</a>
+ </div>
+</header>
+<div class="guide-hero">
+ <div class="hero-meta">
+ <span class="badge badge-cat">Prompts &amp; Skills</span>
+ <span class="badge badge-diff">Beginner</span>
+ </div>
+ <h1>The Top 13 Claude Skills</h1>
+ <div class="hero-author">
+ <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+ <div><span class="author-name">Max Johnson</span><span class="author-meta">@maxjohnscn</span></div>
+ </div>
+</div>
+<div class="page-wrap">
+ <article class="guide-content">
+    <button class="download-btn" onclick="downloadPDF()">&#8595; Download PDF</button>
+ <p class="intro-blurb">What they do, why they matter, and how to install every one.</p>
+ <p>There are over 60,000 Claude skills available. This guide covers the 13 that are actually worth installing, ranked, explained, and with step-by-step setup instructions for each one.</p>
+
+ <!-- VISUAL BLOCK 1 -->
+ <div class="ranked-list">
+ <div class="rank-item"><span class="rank-num">01</span><div class="rank-body"><div class="rank-name">marketingskills</div><div class="rank-stars">17.1k ★</div><div class="rank-desc">Full marketing toolkit</div></div></div>
+ <div class="rank-item"><span class="rank-num">02</span><div class="rank-body"><div class="rank-name">UI-UX-Pro-Max</div><div class="rank-stars">53.3k ★</div><div class="rank-desc">Real design intelligence</div></div></div>
+ <div class="rank-item"><span class="rank-num">03</span><div class="rank-body"><div class="rank-name">superpowers</div><div class="rank-stars">120k ★</div><div class="rank-desc">Complete dev methodology</div></div></div>
+ <div class="rank-item"><span class="rank-num">04</span><div class="rank-body"><div class="rank-name">remotion</div><div class="rank-stars">41k ★</div><div class="rank-desc">AI video generation</div></div></div>
+ <div class="rank-item"><span class="rank-num">05</span><div class="rank-body"><div class="rank-name">Agent Skills (Context Engineering)</div><div class="rank-stars">14.4k ★</div><div class="rank-desc">Token reduction</div></div></div>
+ <div class="rank-item"><span class="rank-num">06</span><div class="rank-body"><div class="rank-name">find-skills</div><div class="rank-stars">418k installs</div><div class="rank-desc">Skill discovery engine</div></div></div>
+ <div class="rank-item"><span class="rank-num">07</span><div class="rank-body"><div class="rank-name">web-design-guidelines</div><div class="rank-stars">137k installs</div><div class="rank-desc">Design quality checker</div></div></div>
+ <div class="rank-item"><span class="rank-num">08</span><div class="rank-body"><div class="rank-name">xlsx</div><div class="rank-stars">Official Anthropic</div><div class="rank-desc">Spreadsheets in plain English</div></div></div>
+ <div class="rank-item"><span class="rank-num">09</span><div class="rank-body"><div class="rank-name">PDF skill</div><div class="rank-stars">Official Anthropic</div><div class="rank-desc">Fill, extract, merge PDFs</div></div></div>
+ <div class="rank-item"><span class="rank-num">10</span><div class="rank-body"><div class="rank-name">PowerPoint skill</div><div class="rank-stars">Official Anthropic</div><div class="rank-desc">Deck generation</div></div></div>
+ <div class="rank-item"><span class="rank-num">11</span><div class="rank-body"><div class="rank-name">Word skill</div><div class="rank-stars">Official Anthropic</div><div class="rank-desc">Document editing</div></div></div>
+ <div class="rank-item"><span class="rank-num">12</span><div class="rank-body"><div class="rank-name">software-architecture</div><div class="rank-stars">Community</div><div class="rank-desc">Clean Architecture</div></div></div>
+ <div class="rank-item"><span class="rank-num">13</span><div class="rank-body"><div class="rank-name">mcp-builder</div><div class="rank-stars">Community</div><div class="rank-desc">Build MCP servers</div></div></div>
+ </div>
+
+ <h2 id="skill-01">Skill 01, marketingskills</h2>
+ <p><strong>★ 17.1k GitHub stars</strong>, A full marketing toolkit in one install</p>
+ <p>Built by Corey Haines, this repo drops 20+ marketing skills into Claude Code in one command. Covers SEO audits, copywriting, email sequences, CRO, analytics, and growth engineering.</p>
+ <p><strong>What you get:</strong> SEO, full site audits and on-page optimisation. Copywriting, landing pages, ads, hooks using direct response frameworks. Email sequences, nurture flows, welcome series, re-engagement. CRO and growth engineering, conversion rate optimisation and A/B strategy. Customer research, analytics, and social media skills included.</p>
+ <div class="callout"><p><strong>TIP:</strong> Start with the SEO audit skill, type "run a full SEO audit on this page" and Claude will apply the full methodology without any additional prompting.</p></div>
+ <div class="code-block">npx skills add coreyhaines31/marketingskills</div>
+ <p>github.com/coreyhaines31/marketingskills</p>
+
+ <h2 id="skill-02">Skill 02, UI-UX-Pro-Max</h2>
+ <p><strong>★ 53.3k GitHub stars</strong>, Design thinking, not just layout generation</p>
+ <p>Gives Claude genuine design intelligence, not just the ability to generate layouts, but to understand visual hierarchy, colour psychology, and the reasoning behind UI decisions before writing a single line of code.</p>
+ <p><strong>What you get:</strong> Understands visual hierarchy and colour psychology before building. Applies design tokens, type scale, and spacing systems automatically. Escapes the generic AI aesthetic, output looks designed, not generated. Works across React, HTML, mobile UI, and landing pages.</p>
+ <div class="callout"><p><strong>TIP:</strong> When asking Claude to build a UI, describe the product context as well as the component, "build a pricing card for a B2B SaaS product targeting SMEs" gets significantly better output than "build a pricing card".</p></div>
+ <div class="code-block">npx skills add nextlevelbuilder/ui-ux-pro-max-skill@ui-ux-pro-max</div>
+
+ <h2 id="skill-03">Skill 03, superpowers</h2>
+ <p><strong>★ 120k GitHub stars</strong>, A complete software development methodology for Claude</p>
+ <p>An agentic skills framework and software development methodology with 120k GitHub stars. A complete structured approach to how Claude builds software, from planning through to testing and debugging.</p>
+ <p><strong>What you get:</strong> Test-driven development built in, write tests first, Claude builds to pass them. Structured debugging methodology, traces, isolates, and fixes systematically. Plan to execute timeline, scopes any build into milestones before starting. Works across Claude Code, Cursor, Codex CLI, and more.</p>
+ <div class="callout"><p><strong>TIP:</strong> Try asking Claude to "plan and build" something rather than just "build" it. With superpowers installed, it will produce a full plan with milestones before writing a single line of code.</p></div>
+ <div class="code-block">npx skills add obra/superpowers</div>
+
+ <h2 id="skill-04">Skill 04, remotion</h2>
+ <p><strong>★ 41k GitHub stars</strong>, AI video generation inside Claude Code</p>
+ <p>Remotion lets you build videos programmatically using React. This skill brings that capability directly into Claude Code, describe your video, Claude writes the React component, and Remotion renders it frame by frame.</p>
+ <p><strong>What you get:</strong> Describe a video in plain English, Claude writes the full Remotion component. Every frame is programmable, animations, transitions, data-driven graphics. Exports to MP4, GIF, or image sequences. Full React ecosystem available.</p>
+ <div class="callout"><p><strong>HEADS UP:</strong> Requires Node 18+ and a Remotion project already scaffolded before installing the skill.</p></div>
+ <div class="code-block">npx skills add JonnyBurger/remotion</div>
+
+ <h2 id="skill-05">Skill 05, Agent Skills for Context Engineering</h2>
+ <p><strong>★ 14.4k GitHub stars</strong>, Reduce your token usage without losing quality</p>
+ <p>A comprehensive collection of 13 skills built for context engineering, multi-agent architectures, and production agent systems. The headline feature: significant token reduction through KV caching, same output quality, lower cost.</p>
+ <div class="callout"><p><strong>TIP:</strong> The impact is biggest in long Claude Code sessions and multi-step agent workflows.</p></div>
+ <div class="code-block">npx skills add muratcankoylan/Agent-Skills-for-Context-Engineering</div>
+
+ <h2 id="skill-06">Skill 06, find-skills</h2>
+ <p><strong>★ 418k installs</strong>, The meta-skill that finds all other skills</p>
+ <p>The most-installed Claude skill in the ecosystem. It turns Claude into a skills discovery engine, describe what you want to do, and it searches the skills marketplace and recommends the best options to install.</p>
+ <div class="callout"><p><strong>TIP:</strong> Install this one first before anything else. It makes finding every other skill on this list, and the 59,000+ not on it, significantly easier.</p></div>
+ <div class="code-block">npx skills add vercel-labs/find-skills</div>
+
+ <h2 id="skill-07">Skill 07, web-design-guidelines</h2>
+ <p><strong>★ 137k installs</strong>, An always-on design quality checker</p>
+ <p>Acts as a permanent design system quality checker, reviewing every UI Claude generates against design best practices and system rules so nothing inconsistent gets through.</p>
+ <div class="callout"><p><strong>NOTE:</strong> Pair this with UI-UX-Pro-Max (skill 02) for a complete design stack, Pro-Max handles the creative direction, web-design-guidelines handles the consistency enforcement.</p></div>
+ <div class="code-block">npx skills add vercel-labs/agent-skills@web-design-guidelines</div>
+
+ <h2 id="skill-08">Skill 08, xlsx</h2>
+ <p><strong>★ Official Anthropic</strong>, Read, create and edit spreadsheets in plain English</p>
+ <p>An official Anthropic skill that gives Claude full spreadsheet capability, create new .xlsx files from scratch, read and extract data from existing ones, apply formulas, format cells, and build charts. All in plain English.</p>
+ <div class="callout"><p><strong>TIP:</strong> Works best when you describe the business purpose, not just the structure. "Build me a sales tracking sheet with monthly targets and variance columns" gets better output than "make a spreadsheet with three columns".</p></div>
+ <div class="code-block">npx skills add anthropics/skills@xlsx</div>
+
+ <h2 id="skill-09">Skill 09, PDF skill</h2>
+ <p><strong>★ Official Anthropic</strong>, Fill, extract, merge and create PDFs directly</p>
+ <p>Official Anthropic PDF skill. Gives Claude comprehensive PDF capability, fill multiple forms automatically, extract text and tables, merge and split documents, create new PDFs from scratch, and handle form fields.</p>
+ <div class="callout"><p><strong>TIP:</strong> For bulk form filling, give Claude a CSV or JSON file with your data alongside the PDF forms. It will map the fields automatically and fill all forms in one pass.</p></div>
+ <div class="code-block">npx skills add anthropics/skills@pdf</div>
+
+ <h2 id="skill-10">Skill 10, PowerPoint skill</h2>
+ <p><strong>★ Official Anthropic</strong>, Generate and edit presentations in plain English</p>
+ <p>Official Anthropic PowerPoint skill. Lets Claude generate complete slide decks from a brief, edit existing presentations by description, restyle layouts, add or remove slides, and restructure content.</p>
+ <div class="callout"><p><strong>NOTE:</strong> For editing existing presentations, place the .pptx file in your project directory before asking Claude to make changes.</p></div>
+ <div class="code-block">npx skills add anthropics/skills@pptx</div>
+
+ <h2 id="skill-11">Skill 11, Word Document skill</h2>
+ <p><strong>★ Official Anthropic</strong>, Create and edit Word documents in plain English</p>
+ <p>Official Anthropic Word document skill. Claude can create formatted documents from scratch, edit and restructure existing .docx files, apply styles, headings, tables, and tracked changes, all from a plain English description.</p>
+ <div class="callout"><p><strong>TIP:</strong> This skill handles tracked changes properly, if you ask Claude to "edit this contract to extend the payment terms to 60 days", it will make the change using Word's tracked changes format so you can review and accept.</p></div>
+ <div class="code-block">npx skills add anthropics/skills@docx</div>
+
+ <h2 id="skill-12">Skill 12, software-architecture</h2>
+ <p><strong>★ Community</strong>, Clean Architecture and SOLID principles built in</p>
+ <p>Implements established software design patterns, Clean Architecture, SOLID principles, and comprehensive best practices, directly into how Claude structures and builds code.</p>
+ <div class="callout"><p><strong>TIP:</strong> Pair this with the superpowers skill (skill 03) for a full engineering methodology stack, superpowers handles the TDD workflow, software-architecture handles the structural patterns.</p></div>
+ <div class="code-block">npx skills add ComposioHQ/awesome-claude-skills@software-architecture</div>
+
+ <h2 id="skill-13">Skill 13, mcp-builder</h2>
+ <p><strong>★ Community</strong>, Build MCP servers from inside Claude</p>
+ <p>Guides Claude through creating high-quality MCP (Model Context Protocol) servers for integrating external APIs and services. If you want Claude to connect to any tool or service, this skill builds the bridge.</p>
+ <div class="callout"><p><strong>HEADS UP:</strong> MCP servers require a host environment to run, Claude Code, Claude Desktop, or a custom deployment. Review the Anthropic MCP documentation at docs.anthropic.com before deploying any MCP server in production.</p></div>
+ <div class="code-block">npx skills add anthropics/skills@mcp-builder</div>
+ <p>Comment REPO on the video and I'll send you this guide directly.</p>
+ </article>
+ <aside class="toc-sidebar">
+ <div class="toc-box">
+ <h3>Skills</h3>
+ <ol>
+ <li><a href="#skill-01">marketingskills</a></li>
+ <li><a href="#skill-02">UI-UX-Pro-Max</a></li>
+ <li><a href="#skill-03">superpowers</a></li>
+ <li><a href="#skill-04">remotion</a></li>
+ <li><a href="#skill-05">Agent Skills</a></li>
+ <li><a href="#skill-06">find-skills</a></li>
+ <li><a href="#skill-07">web-design-guidelines</a></li>
+ <li><a href="#skill-08">xlsx</a></li>
+ <li><a href="#skill-09">PDF skill</a></li>
+ <li><a href="#skill-10">PowerPoint skill</a></li>
+ <li><a href="#skill-11">Word Document skill</a></li>
+ <li><a href="#skill-12">software-architecture</a></li>
+ <li><a href="#skill-13">mcp-builder</a></li>
+ </ol>
+ </div>
+ </aside>
+</div>
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+<script>
+function downloadPDF() {
+  window.print();
+}
+</script>
+</body>
+</html>

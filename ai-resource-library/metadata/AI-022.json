@@ -1,0 +1,31 @@
+{
+  "id": "AI-022",
+  "slug": "remotion-claude-code-video-editor-setup-guide",
+  "title": "Remotion + Claude Code Video Editor Setup Guide",
+  "category": "Tools & Integrations",
+  "subcategory": "Creative & Design",
+  "difficulty": "Beginner",
+  "description": "Build and edit programmatic video with Remotion, directed by Claude Code. Claude writes the React components, manages the timeline, and renders outputs, a full AI video editor in code.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Tools & Integrations",
+    "Setup, Three Steps to Get Running",
+    "Creative & Design"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude Desktop",
+    "Claude",
+    "Remotion"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-022_remotion-claude-code-video-editor-setup-guide.html",
+  "summary_file": "summaries/AI-022.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

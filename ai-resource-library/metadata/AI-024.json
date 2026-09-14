@@ -1,0 +1,29 @@
+{
+  "id": "AI-024",
+  "slug": "clawdbot-openclaw-getting-started-guide",
+  "title": "Clawdbot (Openclaw) Getting Started Guide",
+  "category": "Tools & Integrations",
+  "subcategory": "Voice & Browser Automations",
+  "difficulty": "Intermediate",
+  "description": "Get started with ClawdBot and OpenClaw, two community tools that extend what Claude can do. Installation, configuration, and the first workflows to run once everything is connected.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Tools & Integrations",
+    "Part I, Installation & Setup",
+    "Part II, Security & Hardening",
+    "Voice & Browser Automations"
+  ],
+  "ai_tools": [
+    "Claude"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-024_clawdbot-openclaw-getting-started-guide.html",
+  "summary_file": "summaries/AI-024.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

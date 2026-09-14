@@ -1,0 +1,350 @@
+I want you to build a systematic personal AI Resource Library from the website:
+
+https://aiwithmax.com/
+
+IMPORTANT:
+This is for my PERSONAL REFERENCE LIBRARY. Do not bypass paywalls, authentication, robots.txt restrictions, download restrictions, DRM, anti-bot mechanisms, or other technical protections. Do not scrape or reproduce copyrighted content in a way that violates the website's terms or copyright. Only collect material that is publicly accessible and legally downloadable/reusable.
+
+MY OBJECTIVE
+
+I want a complete, organized offline reference system containing the AI resources available from this website, so I can quickly find a topic later and read the appropriate resource.
+
+Do NOT simply dump web pages into one giant PDF.
+
+Instead, create a professional knowledge-library structure.
+
+STEP 1 — ANALYSE THE WEBSITE
+
+Visit:
+
+https://aiwithmax.com/
+
+Identify:
+
+* Every publicly visible resource/guide
+* Resource title
+* Category
+* Difficulty level
+* Description
+* URL
+* Author/site name where available
+* Date/update information where publicly available
+* Any downloadable PDF/document associated with the resource
+* Any external resources linked from the guide
+* Relevant AI tools/products mentioned
+* Topics/keywords
+
+The website currently appears to organize resources into categories including:
+
+* Getting Started
+* Claude Code
+* Tools & Integrations
+* Prompts & Skills
+* Building & Monetising
+
+Do not assume these are the only categories. Discover the current site structure.
+
+STEP 2 — CREATE A MASTER INVENTORY
+
+Create:
+
+/ai-resource-library/
+
+Inside it create:
+
+/inventory/
+/documents/
+/web-pages/
+/summaries/
+/metadata/
+/pdf/
+/logs/
+
+Create a master CSV and JSON inventory.
+
+The inventory should contain:
+
+ID
+Title
+Category
+Subcategory
+Difficulty
+Description
+Source URL
+Download URL if available
+Content Type
+Author
+Date
+Topics
+AI Tools
+Status
+Local File
+Copyright/Reuse Status
+Notes
+
+Give every resource a unique ID such as:
+
+AI-001
+AI-002
+AI-003
+
+Do not create duplicate entries.
+
+STEP 3 — DOWNLOAD LEGALLY AVAILABLE DOCUMENTS
+
+For each resource:
+
+1. Check whether a PDF or other downloadable document is publicly provided.
+2. If downloading is clearly permitted, download it.
+3. Store it using a clean filename:
+
+AI-001_Title.pdf
+
+4. If there is no downloadable document, save the publicly accessible webpage/archive information instead.
+5. If the page cannot legally be downloaded or reused, DO NOT bypass the restriction.
+6. Record:
+
+DOWNLOADABLE
+WEB_ONLY
+RESTRICTED
+ERROR
+NOT_AVAILABLE
+
+in the inventory.
+
+Keep a source URL for every item.
+
+STEP 4 — CREATE ORIGINAL SUMMARIES
+
+For each resource that you can lawfully access, create a concise ORIGINAL summary.
+
+Do not reproduce the article word-for-word.
+
+Each summary should contain:
+
+* What this resource teaches
+* Why it matters
+* Who should read it
+* Difficulty
+* Key concepts
+* Tools mentioned
+* Practical use cases
+* Prerequisites
+* Recommended next resources
+
+Save each summary as:
+
+/summaries/AI-001.md
+
+etc.
+
+STEP 5 — CREATE A MASTER INDEX
+
+Create:
+
+MASTER_INDEX.md
+
+Organize it like:
+
+AI RESOURCE LIBRARY
+
+1. Getting Started
+2. Claude Code
+3. Tools & Integrations
+4. Prompts & Skills
+5. Building & Monetising
+6. AI Automation
+7. AI Agents
+8. AI Business
+9. AI Coding
+10. AI Marketing
+11. AI Productivity
+12. Other categories discovered
+
+Under each category list:
+
+ID
+Title
+Difficulty
+Short description
+Local document
+Original source URL
+
+STEP 6 — CREATE A READING ROADMAP
+
+Create:
+
+LEARNING_ROADMAP.md
+
+Build learning paths for:
+
+PATH A — Complete Beginner
+PATH B — AI Power User
+PATH C — Claude Code
+PATH D — AI Automation
+PATH E — AI Agency
+PATH F — AI Startup Builder
+PATH G — AI Developer
+PATH H — AI Business/Monetisation
+
+For each path explain:
+
+START HERE
+↓
+NEXT
+↓
+INTERMEDIATE
+↓
+ADVANCED
+↓
+PROJECT
+
+Do not randomly order the resources. Use logical prerequisites.
+
+STEP 7 — CREATE THE MASTER PDF
+
+Create a professional PDF called:
+
+AI_RESOURCE_LIBRARY_MASTER.pdf
+
+The PDF should NOT blindly reproduce copyrighted articles.
+
+Instead, make it a professional navigation/reference book containing:
+
+Cover
+Table of Contents
+How to Use This Library
+Learning Roadmaps
+Category Index
+Complete Resource Index
+Resource descriptions
+Original summaries where permitted
+Source URLs
+Download/local-file references
+Difficulty
+Topics
+Recommended reading order
+
+For each resource use a standard format:
+
+RESOURCE ID
+TITLE
+
+Category:
+Difficulty:
+
+WHAT YOU WILL LEARN
+
+WHY IT MATTERS
+
+KEY TOPICS
+
+TOOLS MENTIONED
+
+RECOMMENDED FOR
+
+PREREQUISITES
+
+MY NOTES
+
+ORIGINAL SOURCE:
+[URL]
+
+LOCAL FILE:
+[filename if available]
+
+If a resource cannot legally be included in the PDF, include its title, description, source URL, and a note:
+
+"Available online at the original source. Full content is not reproduced here."
+
+STEP 8 — CREATE A SEARCHABLE LOCAL LIBRARY
+
+Create:
+
+library.html
+
+This should provide:
+
+Search
+Category filter
+Difficulty filter
+Tool filter
+Topic filter
+Resource ID search
+
+Each resource should show:
+
+Title
+Description
+Category
+Difficulty
+Source URL
+Local document
+Summary
+Related resources
+
+STEP 9 — QUALITY CONTROL
+
+Before finishing:
+
+* Check for duplicates
+* Check broken URLs
+* Check missing metadata
+* Check missing categories
+* Check files that failed to download
+* Check filenames
+* Check PDF generation
+* Check table of contents
+* Check that every resource has a source URL
+* Check that no copyrighted material has been reproduced beyond what is legally permitted
+
+Create:
+
+FINAL_REPORT.md
+
+Include:
+
+Total resources discovered:
+Total downloadable:
+Total web-only:
+Total restricted:
+Total successfully processed:
+Total failed:
+Duplicates removed:
+Broken URLs:
+Categories:
+Most common topics:
+Recommended learning path:
+
+STEP 10 — DO NOT ASK ME TO MANUALLY DO REPETITIVE WORK
+
+Automate everything that can safely be automated.
+
+If something requires my decision, stop and clearly tell me:
+
+1. What you found
+2. Why a decision is required
+3. What options I have
+4. Your recommended option
+
+Do not silently make assumptions about copyright, access permissions, or redistribution rights.
+
+FINAL DELIVERABLES
+
+I expect:
+
+/ai-resource-library/
+/inventory/
+/documents/
+/web-pages/
+/summaries/
+/metadata/
+/pdf/
+/logs/
+MASTER_INDEX.md
+LEARNING_ROADMAP.md
+FINAL_REPORT.md
+library.html
+AI_RESOURCE_LIBRARY_MASTER.pdf
+
+At the end, give me a concise report showing exactly what was created and where each file is located.

@@ -1,0 +1,33 @@
+{
+  "id": "AI-045",
+  "slug": "build-digital-product-claude-canva",
+  "title": "Build a Digital Product With Claude + Canva",
+  "category": "Building & Monetising",
+  "subcategory": "Startup & Products",
+  "difficulty": "Beginner",
+  "description": "The exact process for turning one prompt into a finished, sellable digital product using Claude and Canva. Covers the prompt structure, formatting for Canva, template workflow, the native Canva connector, and a reusable formula for any product type.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Building & Monetising",
+    "The Opportunity",
+    "Step 1 - Write The Prompt",
+    "Step 2 - Structure It For Canva",
+    "Step 3 - Build It In Canva",
+    "Option A: Drop it into a template",
+    "Startup & Products"
+  ],
+  "ai_tools": [
+    "Claude",
+    "Canva"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-045_build-digital-product-claude-canva.html",
+  "summary_file": "summaries/AI-045.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

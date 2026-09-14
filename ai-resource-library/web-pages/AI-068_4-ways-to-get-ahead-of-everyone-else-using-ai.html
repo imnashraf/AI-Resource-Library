@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>4 Ways To Get Ahead Of Everyone Else Using AI</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+ <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+  .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+  .header.scrolled { border-color: var(--accent-border); }
+  .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+  .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+  .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+  .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+  .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+  a.logo-subtitle:hover { color: var(--accent); }
+  .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+  .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+  .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+  @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+  .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+  .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+  .badge-cat { background: var(--accent); color: #fff; }
+  .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+  .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+  .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+  .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+  .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+  .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+  .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+  .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+  .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+  .toc-box ol { list-style: none; counter-reset: toc; }
+  .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+  .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+  .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+  .toc-box a:hover { color: var(--accent); }
+  .guide-content { padding: 2rem 0 5rem; }
+  .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+  .guide-content h2:first-of-type { border-top: none; margin-top: 0; }
+  .guide-content h3 { font-size: 1.0625rem; font-weight: 700; margin-top: 1.75rem; margin-bottom: 0.625rem; }
+  .guide-content p { margin-bottom: 1.125rem; }
+  .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+  .guide-content li { margin-bottom: 0.5rem; }
+  .guide-content strong { font-weight: 600; }
+  .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+  @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .back-btn { margin-left: 0; flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+  .callout { border-left: 4px solid var(--accent-border); background: var(--accent-light); padding: 0.875rem 1.125rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0; }
+  .callout-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.35rem; }
+  .callout p { margin-bottom: 0; }
+  .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+  .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+  @page { margin: 1.5cm; }
+  @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .setup-grid { break-inside: avoid; } }
+
+  /* Prompt code blocks */
+  .guide-content pre { background: #0a0a0a; color: #f8f8f8; border-radius: 10px; padding: 1.25rem 1.5rem; overflow-x: auto; font-size: 0.8125rem; line-height: 1.6; margin: 0.5rem 0 1.25rem; border: 1px solid #1f1f1f; white-space: pre-wrap; }
+  .guide-content pre code { background: none; border: none; padding: 0; color: inherit; font-size: inherit; }
+  .guide-content code { font-family: 'Courier New', Courier, monospace; }
+  .prompt-label { font-size: 0.8125rem; font-weight: 700; color: var(--accent); margin: 0.5rem 0 0.25rem; }
+
+  /* VB1: 4-row system overview */
+  .sysrow-list { display: flex; flex-direction: column; gap: 0.875rem; margin: 1.75rem 0; }
+  .sysrow-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.125rem 1.375rem; display: flex; gap: 1.125rem; align-items: flex-start; }
+  .sysrow-num { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--accent); font-size: 1.5rem; flex-shrink: 0; width: 2.5rem; }
+  .sysrow-body { flex: 1; }
+  .sysrow-title { font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.3rem; }
+  .sysrow-desc { font-size: 0.8375rem; color: var(--muted); margin: 0; }
+
+  /* Setup platform cards (Claude vs ChatGPT) */
+  .setup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.25rem 0; }
+  @media (max-width: 700px) { .setup-grid { grid-template-columns: 1fr; } }
+  .setup-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.125rem 1.25rem; }
+  .setup-card-platform { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.9375rem; color: var(--accent); margin-bottom: 0.5rem; }
+  .setup-card p { font-size: 0.8375rem; color: var(--muted); margin-bottom: 0.4rem; }
+  .setup-card p:last-child { margin-bottom: 0; }
+  .setup-card strong { color: var(--text); }
+ </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+  <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+  <div class="logo-divider"></div>
+  <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">&#8592; All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+  <span class="badge badge-cat">Getting Started</span>
+  <span class="badge badge-diff">Intermediate</span>
+ </div>
+ <h1>4 Ways To Get Ahead Of Everyone Else Using AI</h1>
+ <p class="intro-blurb">The four systems worth building before everyone else catches on: a second brain, one real workflow, a specialised AI teammate, and one automation that runs itself.</p>
+ <ul>
+  <li>Build an AI second brain that never needs re-briefing</li>
+  <li>Chain research, writing and notes into one workflow</li>
+  <li>Turn a Project into a specialised AI teammate</li>
+  <li>Put one task on a schedule and stop opening the app for it</li>
+  <li>The exact instructions and prompts for Claude and ChatGPT</li>
+ </ul>
+ <div class="hero-author">
+  <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+  <div><span class="author-name">Max Johnson</span><span class="author-meta">@maxjohnscn</span></div>
+ </div>
+</div>
+
+<div class="page-wrap">
+ <main class="guide-content">
+
+  <button class="download-btn" onclick="window.print()">&#8595; Download PDF</button>
+
+  <h2 id="contents">Contents: The Four Systems</h2>
+  <p>Each one stacks on the last. A second brain makes the workflow better. The workflow makes the teammate more useful. The teammate makes the automation worth trusting. Build them in this order.</p>
+
+  <div class="sysrow-list">
+   <div class="sysrow-card"><div class="sysrow-num">01</div><div class="sysrow-body"><div class="sysrow-title">Build An AI Second Brain</div><p class="sysrow-desc">Tell it everything about you, your business and exactly how you like to work, so it never has to ask you for context again.</p></div></div>
+   <div class="sysrow-card"><div class="sysrow-num">02</div><div class="sysrow-body"><div class="sysrow-title">Build One AI Workflow</div><p class="sysrow-desc">Don't automate one small task. Automate the entire process, start to finish, in a single run.</p></div></div>
+   <div class="sysrow-card"><div class="sysrow-num">03</div><div class="sysrow-body"><div class="sysrow-title">Build An AI Cofounder Or Teammate</div><p class="sysrow-desc">Stop going back and forth over chat. Let it do real work. Give it one specific job and let it become insanely good at it.</p></div></div>
+   <div class="sysrow-card"><div class="sysrow-num">04</div><div class="sysrow-body"><div class="sysrow-title">Build One Automation</div><p class="sysrow-desc">Choose a task you want handled every single week, without ever having to open Claude or ChatGPT.</p></div></div>
+  </div>
+
+  <div class="callout">
+   <div class="callout-label">Before you start</div>
+   <p>Every setup in this guide is written for both Claude and ChatGPT. Projects, custom instructions and memory are available on free accounts in a limited form; a full knowledge base and scheduled automations need a paid plan on either platform. Setup details were checked against Anthropic and OpenAI documentation in August 2026.</p>
+  </div>
+
+  <h2 id="way-01">Way 01 &#183; Claude &amp; ChatGPT: Build An AI Second Brain</h2>
+  <p>Tell it everything about you, your business and exactly how you like to work, so it never has to ask you for context again.</p>
+  <p>Most people start every chat from zero, re-explaining who they are, what their business does and how they like things done. A second brain removes that entirely. Every conversation starts already briefed.</p>
+  <h3>What this looks like</h3>
+  <ul>
+   <li><strong>Instructions:</strong> What it should always know about you and how you work, written once.</li>
+   <li><strong>Knowledge:</strong> The actual documents: your offer, your numbers, your past writing, your rules.</li>
+   <li><strong>Memory:</strong> What it keeps learning automatically as you use it, without you curating it.</li>
+  </ul>
+  <ul>
+   <li>Your business stage, goals and current numbers</li>
+   <li>Your own voice: past scripts, posts, emails you'd stand behind</li>
+   <li>Standing rules: how you like feedback, formatting, what never to do</li>
+  </ul>
+
+  <h3>Way 01 Setup: Build An AI Second Brain</h3>
+  <div class="setup-grid">
+   <div class="setup-card">
+    <div class="setup-card-platform">Claude</div>
+    <p><strong>Setup:</strong> New Project &#8594; Set project instructions &#8594; add to Knowledge</p>
+    <p><strong>Setup detail:</strong> Custom instructions, project knowledge</p>
+    <p><strong>Needs:</strong> Any plan for basics, paid plan for a full knowledge base</p>
+   </div>
+   <div class="setup-card">
+    <div class="setup-card-platform">ChatGPT</div>
+    <p><strong>Setup:</strong> Settings &#8594; Personalization &#8594; Custom instructions, plus a Project</p>
+    <p><strong>Setup detail:</strong> Custom instructions (global) and project instructions</p>
+    <p><strong>Needs:</strong> Any plan, more room on paid plans</p>
+   </div>
+  </div>
+
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>Turn memory on properly, it's not automatic. In Claude, go to Settings &gt; Memory and switch on both Search and reference chats and Generate memory from chat history; it's rolling out plan by plan so it may not have reached your account yet. In ChatGPT, go to Settings &gt; Personalization &gt; Memory and enable Saved memories and Reference chat history separately.</p>
+  </div>
+
+  <p class="prompt-label">Paste this in (Claude)</p>
+  <pre><code>You are working inside my second brain. Use everything below
+as context for every conversation in this project.
+
+WHO I AM
+[Name, role, background in two or three lines]
+
+MY BUSINESS
+[What it does, what stage it's at, current goals, current
+numbers if relevant]
+
+HOW I LIKE TO WORK
+[Tone, level of detail, what to push back on versus accept,
+anything you should never do]
+
+Never ask me to re-explain any of this. If a document I've
+added contradicts what's here, flag it and ask which is
+current rather than guessing.</code></pre>
+  <p class="prompt-label">Paste this in (ChatGPT)</p>
+  <pre><code>Here is what I want you to know about me in every
+conversation:
+
+WHO I AM: [name, role, background]
+MY BUSINESS: [what it does, stage, goals, numbers if relevant]
+HOW I WORK: [tone, detail level, what to challenge, what to avoid]
+
+Apply this by default. Don't make me repeat it. If something I
+upload later contradicts this, ask me which is current.</code></pre>
+
+  <h2 id="way-02">Way 02 &#183; Claude &amp; ChatGPT: Build One AI Workflow</h2>
+  <p>Don't automate one small task. Automate the entire process, start to finish, in a single run.</p>
+  <p>Most people use Claude or ChatGPT one message at a time: ask a question, get an answer, ask the next one. A workflow strings the whole process together so one prompt produces the finished thing, not just a piece of it.</p>
+  <h3>What this looks like</h3>
+  <ul>
+   <li><strong>Map the stages:</strong> Write down the steps you'd actually do yourself, in order.</li>
+   <li><strong>Chain them together:</strong> Each stage's output becomes the next stage's input, in one prompt.</li>
+   <li><strong>Run it inside your second brain:</strong> So it already knows your voice, your business, your rules.</li>
+  </ul>
+  <ul>
+   <li>Research trending topics, write the script in your voice, output filming and editing notes</li>
+   <li>Pull last week's numbers, write the summary, draft the message to your team</li>
+   <li>Read a transcript, extract the decisions, draft the follow up emails</li>
+  </ul>
+
+  <h3>Way 02 Setup: Build One AI Workflow</h3>
+  <div class="setup-grid">
+   <div class="setup-card">
+    <div class="setup-card-platform">Claude</div>
+    <p><strong>Setup:</strong> Run inside your second brain project, or save as a Scheduled task</p>
+    <p><strong>Setup detail:</strong> Web search on for research stages</p>
+    <p><strong>Needs:</strong> Web search enabled</p>
+   </div>
+   <div class="setup-card">
+    <div class="setup-card-platform">ChatGPT</div>
+    <p><strong>Setup:</strong> Run inside your project, or save as a Scheduled task</p>
+    <p><strong>Setup detail:</strong> Web browsing on</p>
+    <p><strong>Needs:</strong> Browsing enabled</p>
+   </div>
+  </div>
+
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>Real time trend research is only ever a starting point, not a fact check. Treat Stage 1 as a shortlist to sense check yourself, not a guarantee that a topic is actually trending right now.</p>
+  </div>
+
+  <p class="prompt-label">Paste this in (Claude)</p>
+  <pre><code>Run this as one workflow, in order. Do not stop or
+summarise between stages, do all three in the same response.
+
+STAGE 1: RESEARCH
+Search for what's trending in [your niche] right now. Give me
+the five most relevant topics, with one line on why each one
+is moving.
+
+STAGE 2: SCRIPT
+Pick the strongest topic from Stage 1. Write it as a script in
+my voice, [length], with a hook in the first line, using the
+tone and rules from my project instructions.
+
+STAGE 3: PRODUCTION NOTES
+For the script above, give me filming notes (shots, pacing, on
+screen text) and editing notes (cuts, sound, captions).</code></pre>
+  <p class="prompt-label">Paste this in (ChatGPT)</p>
+  <pre><code>Do this as one workflow. Complete all three stages in
+the same response, don't stop in between.
+
+1. Search for what's trending in [your niche] right now. Give
+me the five most relevant topics and why each is moving.
+2. Pick the strongest one and write it as a script in my voice,
+[length], hook in the first line.
+3. Give me filming notes and editing notes for that script.</code></pre>
+
+  <h2 id="way-03">Way 03 &#183; Claude &amp; ChatGPT: Build An AI Cofounder Or Teammate</h2>
+  <p>Stop going back and forth over chat. Let it do real work. Give it one specific job and let it become insanely good at it.</p>
+  <p>A general assistant that helps with everything ends up mediocre at all of it. A teammate with one job, fed everything that job needs, starts producing finished work instead of draft after draft you have to fix.</p>
+  <h3>What this looks like</h3>
+  <ul>
+   <li><strong>Give it one job, not ten:</strong> A narrow, specific role beats a general assistant every time.</li>
+   <li><strong>Feed it only what that job needs:</strong> A focused knowledge base, not your entire business.</li>
+   <li><strong>Hand it a brief, not a conversation:</strong> Ask for the finished thing, then review it. Don't co-write it line by line.</li>
+  </ul>
+  <ul>
+   <li>A content lead that only writes scripts in your voice</li>
+   <li>An ops lead that only handles weekly reporting</li>
+   <li>A research analyst that only tracks your competitors</li>
+  </ul>
+
+  <h3>Way 03 Setup: Build An AI Cofounder Or Teammate</h3>
+  <div class="setup-grid">
+   <div class="setup-card">
+    <div class="setup-card-platform">Claude</div>
+    <p><strong>Setup:</strong> A separate Project for each role, not one shared project</p>
+    <p><strong>Setup detail:</strong> Project instructions define the job and the authority to finish it</p>
+    <p><strong>Needs:</strong> Paid plan for a real knowledge base per role</p>
+   </div>
+   <div class="setup-card">
+    <div class="setup-card-platform">ChatGPT</div>
+    <p><strong>Setup:</strong> A separate Project for each role</p>
+    <p><strong>Setup detail:</strong> Project-only memory so roles don't bleed into each other</p>
+    <p><strong>Needs:</strong> Any plan, project-only memory on paid plans</p>
+   </div>
+  </div>
+
+  <div class="callout">
+   <div class="callout-label">Honest limit</div>
+   <p>This still isn't a person. It can produce the finished draft, the plan, the report, but it can't act outside the chat, send the email or post the content, unless you separately connect a tool that lets it. Treat it as a teammate who finishes the work, and you're still the one who ships it.</p>
+  </div>
+
+  <p class="prompt-label">Paste this in (Claude)</p>
+  <pre><code>Your one job in this project is [specific function, e.g.
+writing my weekly newsletter].
+
+You are not here to brainstorm or hand me options. Research,
+draft and finish the work end to end, using everything in this
+project's knowledge. Give me a finished piece, formatted and
+ready to use, not a plan for one.
+
+Only ask me a question if something in the brief is genuinely
+missing. Never ask just to check in on style or tone, that's
+already defined in this project.</code></pre>
+  <p class="prompt-label">Paste this in (ChatGPT)</p>
+  <pre><code>Your only job in this project is [specific function].
+
+Don't give me options or ask what I'd prefer, that's defined
+here already. Research it, draft it and finish it, using only
+what's in this project. Hand me the finished output, ready to
+use.
+
+Ask only if something you genuinely need is missing from this
+project's files.</code></pre>
+
+  <h2 id="way-04">Way 04 &#183; Claude &amp; ChatGPT: Build One Automation</h2>
+  <p>Choose a task you want handled every single week, without ever having to open Claude or ChatGPT.</p>
+  <p>Everything above still needs you to open the app. An automation doesn't. You pick one recurring task, put it on a schedule, and it's simply done by the time you'd have gotten to it.</p>
+  <h3>What this looks like</h3>
+  <ul>
+   <li><strong>Pick one task:</strong> The one that costs you the most time on the same day every week.</li>
+   <li><strong>Save it as a prompt:</strong> Everything it needs to do the job, written once.</li>
+   <li><strong>Put it on a schedule:</strong> Same prompt, run automatically, no need to open anything.</li>
+  </ul>
+  <ul>
+   <li>A morning briefing: what's on today, what needs a reply, what's due</li>
+   <li>A weekly expenditure report: what came in, what went out, what's left</li>
+   <li>A competitor check: what changed, what they're doing differently, what to react to</li>
+  </ul>
+
+  <h3>Way 04 Setup: Build One Automation</h3>
+  <div class="setup-grid">
+   <div class="setup-card">
+    <div class="setup-card-platform">Claude</div>
+    <p><strong>Setup:</strong> Scheduled &#8594; New task &#8594; Setup manually</p>
+    <p><strong>Setup detail:</strong> Weekly, choose the day and time</p>
+    <p><strong>Needs:</strong> Cowork, available on Pro, Max, Team and Enterprise</p>
+   </div>
+   <div class="setup-card">
+    <div class="setup-card-platform">ChatGPT</div>
+    <p><strong>Setup:</strong> Scheduled &#8594; New task</p>
+    <p><strong>Setup detail:</strong> Weekly, choose the day and time</p>
+    <p><strong>Needs:</strong> Plus, Business, Pro or Enterprise</p>
+   </div>
+  </div>
+
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>Neither platform fires on an event, both run on a timer. Weekly is the right cadence for reporting tasks like this one; save the daily cadence for things you genuinely need every morning, like a briefing, so you're not tuning it out by Wednesday.</p>
+  </div>
+
+  <p class="prompt-label">Paste this in (Claude)</p>
+  <pre><code>Research my top three competitors: [name them]. Check
+their pricing page, anything they've published in the last
+seven days, and any product or feature announcements.
+
+Tell me: what changed since last week, anywhere they're pricing
+or positioning differently, and one thing genuinely worth
+reacting to. If nothing meaningful changed, say so plainly
+rather than padding it out.
+
+Keep it to one page.</code></pre>
+  <p class="prompt-label">Paste this in (ChatGPT)</p>
+  <pre><code>Every week, check my top three competitors: [name them].
+Look at their pricing page, anything published in the last
+seven days, and any product announcements.
+
+Tell me what changed since last week, any pricing or
+positioning shift, and one thing worth reacting to. If nothing
+meaningful changed, say that directly rather than inventing a
+takeaway. One page, no padding.</code></pre>
+
+  <h2 id="closing">Closing: Four Systems. Build Them In Order.</h2>
+  <p>None of this needs code, an API key or a developer. It needs one project, written properly, and the discipline to keep feeding it. Everyone has access to the same tools right now. Almost nobody sets them up like this.</p>
+  <ul>
+   <li><strong>Start with the second brain:</strong> One project, your instructions, your knowledge. Everything else gets better once this exists.</li>
+   <li><strong>Then build one workflow:</strong> Not ten. One real process, chained end to end, that you actually run every week.</li>
+   <li><strong>Then specialise one teammate:</strong> Give it one job and let it get good at exactly that, nothing else.</li>
+   <li><strong>Then automate one task:</strong> Whichever one costs you the most time on the same day, every week.</li>
+  </ul>
+
+ </main>
+
+ <aside class="toc-sidebar">
+  <div class="toc-box">
+   <h3>In this guide</h3>
+   <ol>
+    <li><a href="#contents">Contents</a></li>
+    <li><a href="#way-01">Second Brain</a></li>
+    <li><a href="#way-02">One AI Workflow</a></li>
+    <li><a href="#way-03">Cofounder / Teammate</a></li>
+    <li><a href="#way-04">One Automation</a></li>
+    <li><a href="#closing">Build Them In Order</a></li>
+   </ol>
+  </div>
+ </aside>
+</div>
+
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+</body>
+</html>

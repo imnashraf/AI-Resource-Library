@@ -1,0 +1,31 @@
+{
+  "id": "AI-019",
+  "slug": "apify-reddit-intelligence-setup-guide",
+  "title": "Apify Reddit Intelligence Setup Guide",
+  "category": "Tools & Integrations",
+  "subcategory": "Data & Lead Generation",
+  "difficulty": "Beginner",
+  "description": "Scrape Reddit at scale with Apify and pipe the data into Claude for market research, trend spotting, and audience intelligence. Full setup with the prompts that extract usable insight from raw posts.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Tools & Integrations",
+    "Step 1, Create your Apify account",
+    "Step 3, Connect Apify to Claude",
+    "What To Do With the Report",
+    "Data & Lead Generation"
+  ],
+  "ai_tools": [
+    "Claude",
+    "Apify"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-019_apify-reddit-intelligence-setup-guide.html",
+  "summary_file": "summaries/AI-019.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

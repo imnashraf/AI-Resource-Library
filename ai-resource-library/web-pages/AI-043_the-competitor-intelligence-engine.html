@@ -1,0 +1,387 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>The Competitor Intelligence Engine</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+ <style>
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+ html { scroll-behavior: smooth; }
+ body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+ .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+ .header.scrolled { border-color: var(--accent-border); }
+ .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+ .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+ .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+ .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+ .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+ a.logo-subtitle:hover { color: var(--accent); }
+ .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+ .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+ .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+ @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+ .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+ .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+ .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+ .badge-cat { background: var(--accent); color: #fff; }
+ .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+ .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+ .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+ .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+ .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+ .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+ .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+ .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+ .toc-box ol { list-style: none; counter-reset: toc; }
+ .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+ .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+ .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+ .toc-box a:hover { color: var(--accent); }
+ .guide-content { padding: 2rem 0 5rem; }
+ .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+ .guide-content h2:first-child { border-top: none; margin-top: 0; }
+ .guide-content h3 { font-size: 1.0625rem; font-weight: 700; margin-top: 1.75rem; margin-bottom: 0.625rem; }
+ .guide-content p { margin-bottom: 1.125rem; }
+ .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+ .guide-content li { margin-bottom: 0.375rem; }
+ .guide-content strong { font-weight: 600; }
+ .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+ pre { background: #1a1a1a; color: #e8e8e8; font-family: 'Courier New', Courier, monospace; font-size: 0.875rem; padding: 1.25rem 1.5rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1.25rem; line-height: 1.6; }
+ code { font-family: 'Courier New', Courier, monospace; }
+ .callout { background: var(--accent-light); border-left: 4px solid var(--accent); border-radius: 0 8px 8px 0; padding: 1rem 1.25rem; margin: 1.5rem 0; font-size: 0.9375rem; }
+ .callout strong { color: var(--accent); display: block; margin-bottom: 0.25rem; font-size: 0.8125rem; letter-spacing: 0.04em; text-transform: uppercase; }
+ .tip-box { background: var(--accent-light); border-left: 4px solid var(--accent-border); border-radius: 0 8px 8px 0; padding: 0.875rem 1.25rem; margin: 1.25rem 0; font-size: 0.9rem; color: var(--muted); }
+ .tip-box strong { color: var(--accent); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; display: block; margin-bottom: 0.2rem; }
+ .whats-inside { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+ .whats-inside h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.75rem; }
+ .whats-inside ul { padding-left: 1.25rem; margin: 0; }
+ .whats-inside li { font-size: 0.9375rem; margin-bottom: 0.375rem; }
+ .chapter-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin: 1.5rem 0; background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .chapter-item { display: flex; align-items: baseline; gap: 0.625rem; font-size: 0.875rem; padding: 0.35rem 0; }
+ .chapter-num { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--accent); font-size: 0.9375rem; flex-shrink: 0; }
+ @media (max-width: 640px) { .chapter-grid { grid-template-columns: 1fr; } }
+ .two-col-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+ @media (max-width: 640px) { .two-col-cards { grid-template-columns: 1fr; } }
+ .compare-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.125rem 1.25rem; }
+ .compare-card.accent-border { border-color: var(--accent); border-width: 2px; }
+ .compare-card h4 { font-family: 'Space Grotesk', sans-serif; font-size: 0.9375rem; font-weight: 700; margin-bottom: 0.5rem; }
+ .compare-card p { font-size: 0.875rem; color: var(--muted); margin: 0; }
+ .pipeline { margin: 1.5rem 0; }
+ .pipeline-step { display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 0.5rem; }
+ .pipeline-layer { background: var(--accent); color: #fff; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; padding: 0.2rem 0.5rem; border-radius: 4px; flex-shrink: 0; margin-top: 0.15rem; white-space: nowrap; }
+ .pipeline-content { font-size: 0.9rem; }
+ .pipeline-arrow { color: var(--accent-border); font-size: 1.25rem; padding-left: 4.5rem; display: block; margin-bottom: 0.25rem; line-height: 1; }
+ .stack-table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.875rem; }
+ .stack-table td { padding: 0.5rem 0.875rem; border-bottom: 1px solid var(--accent-border); vertical-align: top; }
+ .stack-table td:first-child { font-weight: 700; width: 30%; white-space: nowrap; }
+ .stack-table tr:last-child td { border-bottom: none; }
+ .build-steps { counter-reset: build; list-style: none; padding: 0; margin: 1rem 0 1.25rem; }
+ .build-steps li { counter-increment: build; display: flex; gap: 0.875rem; margin-bottom: 1rem; }
+ .build-steps li::before { content: counter(build); background: var(--accent); color: #fff; font-weight: 700; font-size: 0.8125rem; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.1rem; }
+ .build-steps li div { font-size: 0.9375rem; line-height: 1.65; }
+ .build-steps li strong { display: block; font-weight: 700; margin-bottom: 0.15rem; }
+ .deliverable-table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.875rem; }
+ .deliverable-table th { background: var(--accent); color: #fff; text-align: left; padding: 0.5rem 0.875rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; }
+ .deliverable-table td { padding: 0.5rem 0.875rem; border-bottom: 1px solid var(--accent-border); vertical-align: top; }
+ .deliverable-table tr:last-child td { border-bottom: none; }
+ .deliverable-table tr:nth-child(even) td { background: var(--accent-light); }
+ .pricing-row { display: flex; gap: 1rem; flex-wrap: wrap; margin: 1.25rem 0; }
+ .price-badge { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 0.875rem 1.25rem; flex: 1; min-width: 160px; }
+ .price-badge strong { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin-bottom: 0.25rem; }
+ .price-badge span { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1rem; color: var(--accent); }
+ @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+     .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+    @page { margin: 1.5cm; } @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .chapter-card, .compare-card, .checklist-card, blockquote { break-inside: avoid; page-break-inside: avoid; } .chapter-overview, .compare-grid, .checklist-grid, .email-flow { break-inside: avoid; page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+ <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+ <div class="logo-divider"></div>
+ <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">← All guides</a>
+ </div>
+</header>
+<div class="guide-hero">
+ <div class="hero-meta">
+ <span class="badge badge-cat">Building &amp; Monetising</span>
+ <span class="badge badge-diff">Advanced</span>
+ </div>
+ <h1>The Competitor Intelligence Engine</h1>
+ <div class="hero-author">
+ <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+ <div><span class="author-name">Max Johnson</span><span class="author-meta">@maxjohnscn</span></div>
+ </div>
+</div>
+<div class="page-wrap">
+ <article class="guide-content">
+    <button class="download-btn" onclick="downloadPDF()">&#8595; Download PDF</button>
+
+ <p class="intro-blurb">The first service we sold a paying client, built and broken down end to end. A system that scrapes competitor content on a schedule, analyses it at scale, finds the gaps, and ships content drafts in the client's voice. Built with Claude Code, n8n and the Claude API.</p>
+
+ <div class="whats-inside">
+ <h3>What's inside</h3>
+ <ul>
+ <li>The service we sold, an automated system, not a prompt pack or a report</li>
+ <li>The full architecture: scrape, store, analyse, detect gaps, generate, deliver</li>
+ <li>The exact stack, Apify, Supabase, the Claude API, n8n and Claude Code, and what each does</li>
+ <li>The schema, the analysis JSON, the scoring, and the n8n workflow node by node</li>
+ <li>How we built it fast with Claude Code, deployed it, and priced it as a managed service</li>
+ </ul>
+ </div>
+
+ <!-- Chapter overview -->
+ <div class="chapter-grid">
+ <div class="chapter-item"><span class="chapter-num">01</span>The Service We Sold</div>
+ <div class="chapter-item"><span class="chapter-num">02</span>The Architecture</div>
+ <div class="chapter-item"><span class="chapter-num">03</span>Layer 1: Ingestion</div>
+ <div class="chapter-item"><span class="chapter-num">04</span>Layer 2: Analysis</div>
+ <div class="chapter-item"><span class="chapter-num">05</span>Layer 3: Gap Detection</div>
+ <div class="chapter-item"><span class="chapter-num">06</span>Layer 4: Content Generation</div>
+ <div class="chapter-item"><span class="chapter-num">07</span>Layer 5: Orchestration &amp; Delivery</div>
+ <div class="chapter-item"><span class="chapter-num">08</span>Building It With Claude Code</div>
+ <div class="chapter-item"><span class="chapter-num">09</span>Package, Price &amp; Deploy</div>
+ </div>
+
+ <h2 id="chapter-01">Chapter 01: The Service We Sold</h2>
+ <p>The first thing we sold a paying client was not a document and not a set of prompts. It was a system that runs on its own. Every week it pulls down what the client's competitors are posting, works out what is winning and why, finds the openings nobody is covering, and hands back a brief plus a batch of content drafts written in the client's voice. They open one page and it is all there.</p>
+ <p>That distinction is the whole reason it sells. A prompt pack is something the client could half-build themselves on a free afternoon. Infrastructure that scrapes, stores, analyses and produces on a schedule is not. It takes a real stack, real wiring, and someone who can build it. That is what they are paying for, and it is why this is a service rather than a tip.</p>
+
+ <div class="two-col-cards">
+ <div class="compare-card">
+ <h4>BEFORE: Manual &amp; guesswork</h4>
+ <p>Scrolling competitors by hand, screenshotting posts, guessing what to make, with no record of what actually performs.</p>
+ </div>
+ <div class="compare-card accent-border">
+ <h4>AFTER: A running engine</h4>
+ <p>Competitor data captured automatically, scored, and turned into a weekly brief and ready-to-shoot drafts. Hands off.</p>
+ </div>
+ </div>
+
+ <div class="callout"><strong>Why This Is the Right First Service</strong>The proof is undeniable, you are showing the client their own market, measured. It produces an asset that keeps running, which makes the monthly retainer obvious. And once you run the system that feeds their content, you are the natural choice to build everything after it.</div>
+
+ <p>The rest of this guide is the build, layer by layer, with the stack, the schema, the prompts and the workflow. Then how to construct it fast with Claude Code, and how to price it.</p>
+
+ <h2 id="chapter-02">Chapter 02: The Architecture</h2>
+ <p>Six layers, one direction of flow. Each layer does one job and hands clean data to the next. Build them in order, every layer is testable on its own before you connect it.</p>
+
+ <div class="pipeline">
+ <div class="pipeline-step"><span class="pipeline-layer">Layer 1</span><span class="pipeline-content"><strong>Ingestion</strong> Scrape competitor posts &amp; comments on a schedule (Apify)</span></div>
+ <span class="pipeline-arrow">↓</span>
+ <div class="pipeline-step"><span class="pipeline-layer">Layer 2</span><span class="pipeline-content"><strong>Store</strong> Normalise to one schema, dedupe, persist (Supabase)</span></div>
+ <span class="pipeline-arrow">↓</span>
+ <div class="pipeline-step"><span class="pipeline-layer">Layer 3</span><span class="pipeline-content"><strong>Analyse</strong> Classify &amp; score every post into structured JSON (Claude API)</span></div>
+ <span class="pipeline-arrow">↓</span>
+ <div class="pipeline-step"><span class="pipeline-layer">Layer 4</span><span class="pipeline-content"><strong>Detect gaps</strong> Aggregate the week, surface the whitespace (Claude API)</span></div>
+ <span class="pipeline-arrow">↓</span>
+ <div class="pipeline-step"><span class="pipeline-layer">Layer 5</span><span class="pipeline-content"><strong>Generate</strong> Draft content in the client's voice from the gaps (Claude API)</span></div>
+ <span class="pipeline-arrow">↓</span>
+ <div class="pipeline-step"><span class="pipeline-layer">Layer 6</span><span class="pipeline-content"><strong>Deliver</strong> Brief + drafts to the client, on a schedule (n8n, Notion)</span></div>
+ </div>
+
+ <h3>The Stack</h3>
+ <table class="stack-table">
+ <tr><td>Apify</td><td>Pre-built scrapers ("actors") for Instagram, TikTok and YouTube. Returns posts, metrics and comments</td></tr>
+ <tr><td>Supabase</td><td>Postgres database that holds normalised posts, the analysis, and the generated drafts</td></tr>
+ <tr><td>Claude API</td><td>The intelligence layer, classifies posts, finds gaps, writes content in the client's voice</td></tr>
+ <tr><td>n8n</td><td>Orchestration. The schedule, and the wiring that moves data through every layer</td></tr>
+ <tr><td>Claude Code</td><td>How you build the whole thing, schema, ingestion logic, analysis modules, dashboard</td></tr>
+ </table>
+
+ <h2 id="chapter-03">Chapter 03: Layer 1 - Ingestion</h2>
+ <p>You do not build scrapers from scratch. Apify has maintained "actors" for every platform that already handle proxies and blocking. You point them at competitor handles and they return structured post data. The two you will use most:</p>
+ <ul>
+ <li><strong>IG apify/instagram-scraper:</strong> posts, captions, likes, comments, media URLs (~$1.50 / 1K results)</li>
+ <li><strong>TT clockworks/tiktok-scraper:</strong> videos, views, likes, shares, comments (~$1.70 / 1K results)</li>
+ </ul>
+ <p>Run them from n8n with the Apify node set to "Run Actor", with "Wait for finish" on so results flow to the next node. Fire one actor run per platform in parallel, never chain platforms inside one run, or one failure takes down the rest.</p>
+ <p>Normalise at ingest, not at query time: Every actor returns different field names. Map them to one shared schema the moment data lands, keep the raw payload too, and dedupe on platform + post id.</p>
+
+ <h3>Supabase: Posts Table</h3>
+ <pre><code>posts (
+  post_id text primary key,
+  platform text,         -- instagram | tiktok
+  author_handle text,
+  posted_at timestamptz,
+  text text,             -- caption / script
+  metrics jsonb,         -- {likes,comments,shares,views}
+  raw jsonb,             -- full actor output, kept
+  analysis jsonb         -- filled by Layer 2
+)
+-- dedupe: unique (platform, post_id)</code></pre>
+
+ <div class="callout"><strong>Note</strong>Scrape public data only, keep request volumes sane, and prefer official platform APIs where they exist. Set the cadence to what the client needs, weekly is plenty for content intelligence and keeps cost and risk low.</div>
+
+ <h2 id="chapter-04">Chapter 04: Layer 2 - Analysis</h2>
+ <p>Raw posts are noise until they are labelled. This layer sends every new post to the Claude API and forces a structured verdict back, the same fields on every row, so the data is queryable. Use tool use to lock the output to a JSON schema rather than parsing free text.</p>
+
+ <h3>Per-Post Analysis: Structured Output</h3>
+ <pre><code>POST api.anthropic.com/v1/messages
+model: claude-sonnet-4-6
+system: "Competitor content analyst. Score one post."
+(cache_control: ephemeral - caches the rubric)
+
+// returned JSON, stored to posts.analysis
+{
+  "hook_type": "contrarian | listicle | story | ...",
+  "format": "reel | carousel | static",
+  "topic": "...",
+  "pillar": "tutorial | concept | social_proof | founder",
+  "engagement_score": 0-100,
+  "why_it_worked": "one sentence"
+}</code></pre>
+
+ <h3>The Model Strategy That Keeps Cost Down</h3>
+ <ul>
+ <li><strong>Claude Haiku:</strong> a cheap first pass that filters junk and obvious low performers</li>
+ <li><strong>Claude Sonnet:</strong> the per-post analysis above, run over everything that clears the filter</li>
+ <li><strong>Batch API:</strong> send the week's posts async for a 50% discount; cache the rubric to save more</li>
+ </ul>
+
+ <div class="tip-box"><strong>Tip</strong>Score engagement relative to each account's own baseline, not in raw likes. A post that beats its own author's median is the real signal, a 50k account and a 5k one are not comparable head to head.</div>
+
+ <h2 id="chapter-05">Chapter 05: Layer 3 - Gap Detection</h2>
+ <p>Now every post is labelled and scored, the system can reason across the whole set instead of one post at a time. A weekly job aggregates the analysed rows and asks the harder question: what is winning, and what is nobody covering?</p>
+ <p>The whitespace is where comment demand is high but coverage is low, the questions the audience keeps asking that no competitor has turned into a proper post. That is the client's opening, and it is computed, not guessed.</p>
+
+ <h3>Weekly Intelligence Brief: Output</h3>
+ <pre><code>{
+  "top_patterns": [ {hook, format, pillar, avg_score} ],
+  "rising": [ "topics accelerating week-on-week" ],
+  "fading": [ "topics losing engagement" ],
+  "gaps": [
+    { "topic": "...",
+      "demand": "high comment volume, few posts",
+      "angle_for_client": "the post to make" }
+  ],
+  "recommended_mix": { "tutorial": "40%", "concept": "30%",
+    "social_proof": "15%", "founder": "15%" }
+}</code></pre>
+
+ <p>Claude (use the deeper model here, since it is one call a week) reads the aggregated data and returns this brief. It becomes the first thing the client sees, and the input to Layer 4.</p>
+
+ <h2 id="chapter-06">Chapter 06: Layer 4 - Content Generation</h2>
+ <p>The last intelligence layer turns the gaps into drafts, in the client's voice, not generic AI voice. The trick is a voice profile built once from the client's best existing posts, then pinned as a cached system prompt on every generation call so it never drifts and never re-costs.</p>
+
+ <h3>Generation Call</h3>
+ <pre><code>system: /voice/profile.md  // cached
+sentence length, tone, words used,
+words never used, how they open + close
+
+user: "Write 3 drafts for this gap from the brief:
+[gap.topic] + [gap.angle_for_client].
+Use the winning hook pattern [pattern].
+Reel script format. Mapped to pillar: [pillar]."
+
+// stored to a drafts table, status = pending_review</code></pre>
+
+ <h3>What Comes Out</h3>
+ <ol>
+ <li>A batch of scripts and hooks mapped to the week's gaps and the recommended pillar mix</li>
+ <li>Each tied back to the competitor post it learned from, so the client sees the reasoning</li>
+ <li>All marked pending review, the client approves, edits, or rejects before anything is theirs</li>
+ </ol>
+
+ <div class="tip-box"><strong>Tip</strong>Borrow the structure of winning competitor posts, never the words. The engine fills a proven shape with the client's angle and language, that is the line between learning from a market and copying it.</div>
+
+ <h2 id="chapter-07">Chapter 07: Layer 5 - Orchestration &amp; Delivery</h2>
+ <p>n8n is the conductor. One scheduled workflow runs the whole pipeline end to end, with no one touching it. The node sequence:</p>
+ <ol>
+ <li>Schedule Trigger: weekly, Monday 06:00</li>
+ <li>Supabase: fetch the competitor handle list</li>
+ <li>Apify Run Actor x2: Instagram + TikTok, in parallel, wait for finish</li>
+ <li>Code node: normalise to the shared schema, dedupe</li>
+ <li>Supabase: upsert the new posts</li>
+ <li>Claude (Batch): analyse every new post, write the result back</li>
+ <li>Code node: aggregate the week, score the gaps</li>
+ <li>Claude: write the intelligence brief, then the content drafts</li>
+ <li>Notion + Slack: deliver the brief and drafts to the client</li>
+ </ol>
+
+ <p><strong>The Client-Facing Layer:</strong> For a premium tier, have Claude Code build a small Next.js dashboard on top of Supabase: the competitor feed, the weekly brief, and a one-click approve / reject on every draft. It turns a delivery into a product the client logs into.</p>
+
+ <h2 id="chapter-08">Chapter 08: Building It With Claude Code</h2>
+ <p>Claude Code is the operator's tool, a terminal agent that writes, runs and tests the system against real data. It is the difference between this being a month of engineering and a few focused days. The build sequence:</p>
+
+ <ol class="build-steps">
+ <li><div><strong>Scaffold the repo</strong>A TypeScript project with the Anthropic SDK, a Supabase client and an Apify client. Claude Code lays out the structure and the env config.</div></li>
+ <li><div><strong>Connect the MCP servers</strong>Add the Supabase and Apify MCP connectors so Claude Code can create tables and test scrape runs itself, without you leaving the terminal.</div></li>
+ <li><div><strong>Build ingestion &amp; analysis</strong>Claude writes the schema migration, the normalise / dedupe logic, the analysis calls with the JSON schema, and the gap scoring, then runs it on real rows.</div></li>
+ <li><div><strong>Build the dashboard, then deploy</strong>Optional Next.js dashboard on Supabase, then Claude wires it to a host (Railway or a VPS) and you point n8n's schedule at it.</div></li>
+ </ol>
+
+ <h3>CLAUDE.md: The Brief Claude Code Follows</h3>
+ <pre><code># Stack
+TypeScript - Supabase (Postgres) - Anthropic SDK - Apify
+
+# Rules
+- Normalise every actor output at ingest (see posts schema)
+- Dedupe on (platform, post_id)
+- Draft content ONLY from /voice/profile.md, never AI voice
+- Never hardcode keys, use .env</code></pre>
+
+ <h2 id="chapter-09">Chapter 09: Package, Price &amp; Deploy</h2>
+ <p>It is a managed system, so it is priced like one, a build fee to stand it up, then a retainer to run it. Keep the scope concrete.</p>
+
+ <h3>What the Client Gets</h3>
+ <table class="deliverable-table">
+ <thead>
+ <tr><th>Deliverable</th><th>Description</th></tr>
+ </thead>
+ <tbody>
+ <tr><td>The system</td><td>A running engine that scrapes, analyses and drafts every week, hands off</td></tr>
+ <tr><td>The brief</td><td>A weekly intelligence report on what is winning in their niche and where the gaps are</td></tr>
+ <tr><td>The drafts</td><td>Ready-to-shoot content in their voice, mapped to the gaps and the pillar mix</td></tr>
+ <tr><td>The dashboard</td><td>One place to browse the competitor feed and approve drafts</td></tr>
+ </tbody>
+ </table>
+
+ <h3>Pricing Guidance</h3>
+ <div class="pricing-row">
+ <div class="price-badge"><strong>Build / Setup</strong><span>£1,500 - £4,000</span></div>
+ <div class="price-badge"><strong>Monthly Retainer</strong><span>£750 - £2,500/mo</span></div>
+ </div>
+ <p>One-off: build the stack, deploy it, connect the client's accounts, hand it over. Monthly: hosting, scrape and API costs, the weekly brief, the content drafts, and tuning.</p>
+
+ <div class="tip-box"><strong>Tip</strong>Price the first client low to land the case study, then raise it. Pass tool costs (Apify, n8n, Claude usage) through transparently or bundle them, either way they are a small fraction of the retainer.</div>
+
+ <h2 id="closing">Stop Watching Competitors. Start Out-Building Them.</h2>
+ <p>Pick a niche. Wire the six layers and let Claude Code do the heavy build. Within a week you have a system that watches the market for the client and turns it into content, the kind of thing they cannot make themselves, and will pay every month to keep running.</p>
+
+ </article>
+ <aside class="toc-sidebar">
+ <div class="toc-box">
+ <h3>Contents</h3>
+ <ol>
+ <li><a href="#chapter-01">The Service We Sold</a></li>
+ <li><a href="#chapter-02">The Architecture</a></li>
+ <li><a href="#chapter-03">Layer 1: Ingestion</a></li>
+ <li><a href="#chapter-04">Layer 2: Analysis</a></li>
+ <li><a href="#chapter-05">Layer 3: Gap Detection</a></li>
+ <li><a href="#chapter-06">Layer 4: Content Generation</a></li>
+ <li><a href="#chapter-07">Layer 5: Orchestration &amp; Delivery</a></li>
+ <li><a href="#chapter-08">Building It With Claude Code</a></li>
+ <li><a href="#chapter-09">Package, Price &amp; Deploy</a></li>
+ </ol>
+ </div>
+ </aside>
+</div>
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+<script>
+function downloadPDF() {
+  window.print();
+}
+</script>
+</body>
+</html>

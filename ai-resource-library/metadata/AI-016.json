@@ -1,0 +1,28 @@
+{
+  "id": "AI-016",
+  "slug": "claude-code-design-stack-setup-guide",
+  "title": "Claude Code Design Stack Setup Guide",
+  "category": "Claude Code",
+  "subcategory": "Environment Setup",
+  "difficulty": "Beginner",
+  "description": "The design stack that works with Claude Code, frontend skills, component libraries, and the configuration that makes Claude produce production-quality UI from natural language descriptions.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Claude Code",
+    "Environment Setup"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-016_claude-code-design-stack-setup-guide.html",
+  "summary_file": "summaries/AI-016.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

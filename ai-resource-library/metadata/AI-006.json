@@ -1,0 +1,37 @@
+{
+  "id": "AI-006",
+  "slug": "claude-wispr-flow-and-cookiy-ai-setup-guide",
+  "title": "Claude, Wispr Flow and Cookiy AI Setup Guide",
+  "category": "Getting Started",
+  "subcategory": "Account & Setup",
+  "difficulty": "Intermediate",
+  "description": "Set up voice-to-AI and browser automation together. Wispr Flow turns your voice into Claude prompts. Cookiy AI handles repetitive browser tasks. This guide wires them both up in under an hour.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Getting Started",
+    "Chapter 01, Claude",
+    "Chapter 02, Wispr Flow",
+    "Installation",
+    "Key features to know",
+    "Chapter 03, Cookiy AI",
+    "Setting up via the platform",
+    "Account & Setup"
+  ],
+  "ai_tools": [
+    "Claude",
+    "Cursor",
+    "Figma",
+    "Wispr Flow",
+    "Cookiy AI"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-006_claude-wispr-flow-and-cookiy-ai-setup-guide.html",
+  "summary_file": "summaries/AI-006.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

@@ -1,0 +1,702 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>The Master Level Claude Guide</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✦%3C/text%3E%3C/svg%3E">
+ <style>
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ :root {
+ --accent: #1A7A6A;
+ --accent-indigo: #6366F1;
+ --accent-light: #E8F5F3;
+ --accent-border: #9FD5CE;
+ --text: #000000;
+ --muted: #6B7280;
+ --bg: #FFFFFF;
+ --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+ --card-gradient: linear-gradient(160deg, #E8F5F3 0%, #FFFFFF 100%);
+ --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+ --shadow-hover: 0 8px 24px rgba(26,122,106,0.12), 0 2px 8px rgba(0,0,0,0.08);
+ --shadow-hard: 4px 4px 0px #000000;
+ --radius: 12px;
+ --header-height: 64px;
+ }
+ html { scroll-behavior: smooth; }
+ body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+
+ .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+ .header.scrolled { border-color: var(--accent-border); }
+ .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+ .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+ .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+ .logo-mark { font-size: 1.1rem; color: var(--accent); margin-right: 0.25rem; line-height: 1; }
+ .logo-name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.9375rem; color: var(--text); letter-spacing: -0.02em; }
+ .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+ .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+ a.logo-subtitle:hover { color: var(--accent); }
+ .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+ .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+
+ .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+ @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+
+ .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+ .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+ .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+ .badge-cat { background: var(--accent); color: #fff; }
+ .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+ .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+ .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+ .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+ .author-name { display: block; font-weight: 600; font-size: 0.875rem; color: var(--text); }
+ .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+
+ .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+ .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+ .toc-box ol { list-style: none; counter-reset: toc; }
+ .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+ .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+ .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+ .toc-box a:hover { color: var(--accent); }
+
+ .guide-content { padding: 2rem 0 5rem; }
+ .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+ .guide-content h2:first-child { border-top: none; margin-top: 0; }
+ .guide-content h3 { font-size: 1.125rem; font-weight: 600; margin-top: 1.75rem; margin-bottom: 0.75rem; }
+ .guide-content p { margin-bottom: 1.125rem; }
+ .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+ .guide-content li { margin-bottom: 0.375rem; }
+ .guide-content strong { font-weight: 600; }
+
+ .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+
+ .callout { background: var(--accent-light); border-left: 3px solid var(--accent); padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; font-size: 0.9375rem; margin: 1.25rem 0; }
+ .callout p { margin: 0; }
+ .callout strong { color: var(--accent); }
+
+ .code-block { background: #000; color: #fff; font-family: 'Courier New', Courier, monospace; font-size: 0.875rem; line-height: 1.6; padding: 1.25rem 1.5rem; border-radius: 8px; overflow-x: auto; margin: 1.25rem 0; }
+ .code-block code { background: none; color: inherit; }
+
+ .prompt-example { background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 8px; padding: 1.125rem 1.25rem; margin: 1rem 0; font-size: 0.9rem; font-family: 'Courier New', Courier, monospace; line-height: 1.65; white-space: pre-wrap; }
+
+ .cta-mid { border-left: 3px solid var(--accent-indigo); background: #EEF2FF; padding: 1.25rem 1.5rem; border-radius: 0 10px 10px 0; margin: 2.5rem 0; }
+ .cta-mid p { margin-bottom: 0.875rem; font-size: 0.9375rem; }
+ .cta-mid p:last-child { margin-bottom: 0; }
+ .cta-btn-outline { display: inline-block; padding: 0.5625rem 1.25rem; background: var(--accent-indigo); color: #fff; font-family: 'Montserrat', sans-serif; font-size: 0.875rem; font-weight: 600; border-radius: 8px; text-decoration: none; transition: opacity 0.15s; }
+ .cta-btn-outline:hover { opacity: 0.88; }
+
+ .cta-bottom { background: var(--accent-indigo); color: #fff; padding: 2.5rem 2rem; border-radius: 12px; text-align: center; margin-top: 3rem; }
+ .cta-bottom p { font-size: 1.0625rem; margin-bottom: 1.25rem; opacity: 0.9; }
+ .cta-btn-white { display: inline-block; padding: 0.625rem 1.5rem; background: #fff; color: var(--accent-indigo); font-family: 'Montserrat', sans-serif; font-size: 0.875rem; font-weight: 700; border-radius: 8px; text-decoration: none; transition: opacity 0.15s; }
+ .cta-btn-white:hover { opacity: 0.9; }
+
+ /* VB1: Pricing table */
+ .pricing-table-wrap { overflow-x: auto; margin: 2rem 0; border-radius: 12px; border: 1px solid var(--accent-border); box-shadow: var(--shadow-sm); }
+ .pricing-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; min-width: 600px; }
+ .pricing-table th { padding: 1rem 1.125rem; text-align: center; font-weight: 700; font-size: 0.8125rem; border-bottom: 2px solid var(--accent-border); background: var(--accent-light); vertical-align: top; }
+ .pricing-table th.col-pro { background: var(--accent); color: #fff; }
+ .pricing-table th.col-pro .rec-badge { display: block; font-size: 0.625rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; background: rgba(255,255,255,0.2); border-radius: 9999px; padding: 0.15rem 0.5rem; margin-top: 0.3rem; }
+ .pricing-table td { padding: 0.75rem 1.125rem; text-align: center; border-bottom: 1px solid #F3F4F6; font-size: 0.8125rem; line-height: 1.5; vertical-align: top; }
+ .pricing-table tr:last-child td { border-bottom: none; }
+ .pricing-table td.col-pro { background: #F5F7FF; font-weight: 500; }
+ .pricing-table td.row-label { text-align: left; font-weight: 600; font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; background: var(--accent-light); }
+ .pricing-table .yes { color: #16A34A; font-weight: 600; }
+ .pricing-table .no { color: var(--muted); }
+
+ /* VB2: Revenue ladder */
+ .revenue-ladder { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin: 2rem 0; }
+ @media (max-width: 640px) { .revenue-ladder { grid-template-columns: 1fr; } }
+ .rev-card { background: linear-gradient(160deg, #E8F5F3 0%, #FFFFFF 100%); border: 1px solid var(--accent-border); border-radius: 12px; padding: 1.5rem; }
+ .rev-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--accent); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
+ .rev-title { font-weight: 700; font-size: 1rem; margin-bottom: 0.5rem; }
+ .rev-body { font-size: 0.875rem; color: var(--muted); line-height: 1.6; margin-bottom: 0.875rem; }
+ .rev-stat { font-size: 0.875rem; font-weight: 700; color: var(--accent-indigo); }
+
+
+ @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+
+
+ /* ─── FOOTER ─── */
+
+     .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+    @page { margin: 1.5cm; } @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .chapter-card, .compare-card, .checklist-card, blockquote { break-inside: avoid; page-break-inside: avoid; } .chapter-overview, .compare-grid, .checklist-grid, .email-flow { break-inside: avoid; page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+
+
+<header class="header" id="site-header">
+ <div class="header-inner">
+ <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+ <div class="logo-divider"></div>
+ <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">← All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+ <span class="badge badge-cat">Getting Started</span>
+ <span class="badge badge-diff">Beginner to Advanced</span>
+ </div>
+ <h1>The Master Level Claude Guide</h1>
+ <div class="hero-author">
+ <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+ <div>
+ <span class="author-name">Max Johnson</span>
+ <span class="author-meta">@maxjohnscn</span>
+ </div>
+ </div>
+</div>
+
+
+<div class="page-wrap">
+
+ <article class="guide-content">
+    <button class="download-btn" onclick="downloadPDF()">&#8595; Download PDF</button>
+
+ <p class="intro-blurb">From complete beginner to advanced user. Everything you need to get the most out of Claude. This guide takes you from setting up Claude for the first time, through practical everyday uses, into advanced workflows and finally into ways you can use it to grow or monetise your business. Every example is real. Every workflow has been tested.</p>
+
+ <h2 id="ch1">01: Getting Started</h2>
+
+ <p>Claude is an AI built by Anthropic. You talk to it in plain English and it responds. That sounds simple but what it can actually do goes far beyond what most people expect. Before you can do any of that, you need to pick the right plan and get set up properly.</p>
+
+ <h3>The Plans</h3>
+
+ <!-- VISUAL BLOCK 1:Pricing Table -->
+ <div class="pricing-table-wrap">
+ <table class="pricing-table">
+ <thead>
+ <tr>
+ <th class="row-label" style="text-align:left;">Plan</th>
+ <th>Free</th>
+ <th class="col-pro">Pro<span class="rec-badge">Recommended</span></th>
+ <th>Max</th>
+ <th>Team</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td class="row-label">Price</td>
+ <td>$0/mo</td>
+ <td class="col-pro"><strong>$20/mo</strong></td>
+ <td>$100 $200/mo</td>
+ <td>$25/seat/mo</td>
+ </tr>
+ <tr>
+ <td class="row-label">Best for</td>
+ <td>Trying it out or occasional use</td>
+ <td class="col-pro">Daily use, content creation, business tasks</td>
+ <td>Developers and power users running Claude all day</td>
+ <td>Businesses deploying Claude across a team</td>
+ </tr>
+ <tr>
+ <td class="row-label">Usage</td>
+ <td>Limited messages, 5-hour resets</td>
+ <td class="col-pro">5× more than Free</td>
+ <td>5× or 20× more than Pro</td>
+ <td>5× Pro per seat</td>
+ </tr>
+ <tr>
+ <td class="row-label">Models</td>
+ <td>Sonnet and Haiku</td>
+ <td class="col-pro">All models including Opus</td>
+ <td>All models, full priority</td>
+ <td>All models</td>
+ </tr>
+ <tr>
+ <td class="row-label">Claude Code</td>
+ <td class="no">No</td>
+ <td class="col-pro yes">Yes (terminal)</td>
+ <td class="yes">Yes (extended sessions)</td>
+ <td class="yes">Yes (premium seats)</td>
+ </tr>
+ <tr>
+ <td class="row-label">Projects</td>
+ <td class="no">No</td>
+ <td class="col-pro yes">Yes</td>
+ <td class="yes">Yes</td>
+ <td class="yes">Yes, shared across team</td>
+ </tr>
+ </tbody>
+ </table>
+ </div>
+
+ <div class="callout"><p><strong>Tip:</strong> Start with Pro at $20 per month. It covers everything in this guide and gives you access to all the models. Upgrade to Max only when you are hitting limits regularly.</p></div>
+
+ <h3>Setting Up</h3>
+ <ol>
+ <li>Go to claude.ai and create an account with your email address.</li>
+ <li>Choose your plan. Pro is the recommended starting point.</li>
+ <li>Once logged in, you are in the main chat interface. This is where you will spend most of your time.</li>
+ <li>Set up a Project before you start. Projects let you give Claude standing instructions that apply to every conversation. Think of it as the brief you give a new employee before they start work.</li>
+ </ol>
+
+ <h3>Setting up your first Project</h3>
+
+ <p>Click Projects in the left sidebar, then New Project. Give it a name and add a Project Instruction. This is what Claude reads before every conversation inside that project.</p>
+
+ <p><strong>Example from Max:</strong> Max uses a Project for all his content work. His instruction tells Claude his name, what Briix does, his audience, his content format, his tone, and his CTA format. Every script starts with that context already loaded.</p>
+
+ <h2 id="ch2">02: The Basics</h2>
+
+ <p>Before diving into advanced workflows, you need to understand how to actually talk to Claude well. The quality of what you get back is almost entirely determined by the quality of what you put in.</p>
+
+ <h3>How to Prompt Properly</h3>
+
+ <p>Most people write to Claude the same way they would type a Google search. Short. Vague. No context. The output reflects that.</p>
+
+ <p>Claude works much better when you treat it like a briefing to a very capable person who knows nothing about your situation. Give it context, give it the format you want, and tell it what success looks like.</p>
+
+ <p><strong>The four parts of a good prompt:</strong></p>
+ <ul>
+ <li><strong>Role:</strong> who Claude should be in this response</li>
+ <li><strong>Context:</strong> what is happening and why</li>
+ <li><strong>Task:</strong> what you actually want it to do</li>
+ <li><strong>Format:</strong> how you want the output structured</li>
+ </ul>
+
+ <p><strong>Weak prompt:</strong></p>
+ <div class="prompt-example">Write me a cold email.</div>
+ <p>No context. No audience. No tone. Claude will produce something generic.</p>
+
+ <p><strong>Strong prompt:</strong></p>
+ <div class="prompt-example">You are a direct response copywriter. I run an AI automation agency
+called Briix targeting small business owners in the UK. Write me a cold
+email to a restaurant owner who has not adopted any AI tools yet. The
+email should be 150 words max, conversational tone, one clear CTA to book
+a 20-minute call. No jargon.</div>
+ <p>Specific role, specific target, specific constraints, specific outcome. Claude produces something you can actually send.</p>
+
+ <h3>Uploading Files and Documents</h3>
+
+ <p>Claude can read and work with files you upload. This changes how you interact with it for any document-heavy task.</p>
+ <ul>
+ <li><strong>PDFs:</strong> reports, contracts, research papers, books</li>
+ <li><strong>Word documents:</strong> briefs, proposals, scripts</li>
+ <li><strong>Spreadsheets:</strong> data, lists, client records</li>
+ <li><strong>Images:</strong> screenshots, designs, photos</li>
+ <li><strong>Code files:</strong> debugging, refactoring, understanding existing code</li>
+ </ul>
+
+ <p><strong>Example from Max:</strong> Upload a 60-page client report and ask Claude to summarise the three most important findings and suggest next steps in bullet points. Takes 30 seconds instead of an hour.</p>
+
+ <h3>Using Web Search</h3>
+
+ <p>Claude has access to web search on Pro and above. This means it can pull current information rather than relying only on its training data.</p>
+ <ul>
+ <li>Current news and events</li>
+ <li>Real-time pricing and market data</li>
+ <li>Recent product launches and updates</li>
+ <li>Any topic where the information changes frequently</li>
+ </ul>
+
+ <div class="prompt-example">Search the web for the latest Claude model updates in 2026 and summarise
+what has changed in the last 3 months.</div>
+ <p>Claude searches, reads the results, and gives you a concise answer rather than a list of links.</p>
+
+ <h2 id="ch3">03: Everyday Uses</h2>
+
+ <p>These are the tasks that save hours every week once you build them into your workflow.</p>
+
+ <h3>Writing and Content</h3>
+
+ <p>Claude is one of the best writing tools available. Not because it writes for you, but because it makes your writing faster and sharper when used correctly.</p>
+
+ <p><strong>Email sequences</strong></p>
+ <div class="prompt-example">Write me a 5-email welcome sequence for new subscribers to my email list.
+My audience is small business owners interested in AI and automation.
+Tone is conversational and direct. British English. Each email should be
+under 200 words. Include a clear one-line subject for each.</div>
+ <p>Specific audience, specific tone, specific format constraints. Output is usable immediately.</p>
+
+ <p><strong>Landing pages and copy</strong></p>
+ <div class="prompt-example">Write landing page copy for a service that helps UK restaurant owners
+automate their booking and customer follow-up using AI. Audience:
+restaurant owners aged 35 to 55 who are not tech-savvy. Tone: clear and
+benefit-focused. Structure: headline, subheadline, 3 benefit sections,
+social proof placeholder, CTA.</div>
+ <p>The structure instruction means Claude produces something with real shape, not just a block of text.</p>
+
+ <p><strong>SEO content</strong></p>
+ <div class="prompt-example">Write a 600-word blog post targeting the keyword "AI tools for small
+businesses UK". Write for a business owner who is curious but not
+technical. Include the keyword naturally 3 to 4 times. No jargon.
+Conversational tone. End with a CTA to book a free consultation.</div>
+ <p>Telling Claude the keyword count and tone prevents the robotic over-optimised output that most AI content produces.</p>
+
+ <h3>Research and Analysis</h3>
+
+ <p>Claude with web search turned on is one of the fastest research tools available.</p>
+
+ <p><strong>Competitor analysis</strong></p>
+ <div class="prompt-example">Search the web and find the top 5 AI automation agencies in the UK. For
+each one, tell me: what they offer, who their target market is, what
+their pricing looks like if visible, and one thing they do well. Present
+it as a comparison table.</div>
+ <p>Claude searches, reads the sites, and structures the output into something you can actually use.</p>
+
+ <p><strong>Summarising long documents</strong></p>
+ <div class="prompt-example">I am uploading a 40-page market research report. Read it and tell me: the
+three most important findings, any risks or opportunities mentioned, and
+the single most actionable recommendation for a small AI agency. Keep it
+to one page.</div>
+ <p>The constraint "keep it to one page" stops Claude from producing an equally long summary.</p>
+
+ <h3>Documents and Files</h3>
+
+ <p><strong>Example from Max:</strong> Claude can fill multiple PDF forms at the same time using the official PDF skill. Max demonstrated this by having Claude fill a set of application forms automatically from a single data source. What would take an hour of manual copy-paste took minutes.</p>
+
+ <p>With the official Anthropic file skills installed, Claude can:</p>
+ <ul>
+ <li>Create Word documents from scratch in your branding</li>
+ <li>Edit existing documents by description without opening them</li>
+ <li>Fill multiple PDF forms from a single data source</li>
+ <li>Generate full PowerPoint decks from a brief</li>
+ <li>Read, restructure, and summarise any document you upload</li>
+ </ul>
+
+ <h2 id="ch4">04: Projects and Memory</h2>
+
+ <p>This is where Claude becomes genuinely powerful for ongoing work. Projects let you give Claude persistent context so it does not start from zero every time you open a new conversation.</p>
+
+ <h3>What Projects Actually Do</h3>
+
+ <p>A Project is a folder that holds:</p>
+ <ul>
+ <li>A custom instruction that Claude reads before every conversation</li>
+ <li>Files and documents you upload as reference material</li>
+ <li>A shared conversation history within the project</li>
+ </ul>
+
+ <p>The instruction is the most important part. Think of it as the brief that never expires. Claude reads it at the start of every session inside that project.</p>
+
+ <p><strong>Example Project instructions:</strong></p>
+
+ <div class="code-block"><code>Client project: "You are working with Briix, an AI automation agency based
+in Manchester. Our client is a UK restaurant chain with 8 locations. Their
+goal is to reduce admin time by 50% using AI. When helping with this
+project, always consider the client's limited tech literacy and their
+budget constraints. Always suggest practical, low-risk implementations first."</code></div>
+
+ <div class="code-block"><code>Content project: "You are helping Max Johnson create TikTok scripts. Max
+is a British founder building an AI agency. His tone is direct and
+understated. No hype. No exclamation marks. Every sentence must be
+load-bearing. The CTA format is always: Comment [WORD] and I'll send you
+[specific thing]."</code></div>
+
+ <h3>The Branding Skill</h3>
+
+ <p><strong>Example from Max:</strong> Max showed how to upload his brand assets to a Project and then ask Claude to create a skill that applies that branding to every document it produces. Once built and saved to the skills folder, every document Claude creates from that point forward comes out in the right branding automatically.</p>
+
+ <p>To replicate this:</p>
+ <ol>
+ <li>Create a Project and upload your brand guidelines, logo files, and a colour palette document.</li>
+ <li>Add an instruction that tells Claude to always apply these assets to any document it creates.</li>
+ <li>Ask Claude to build a skill from this that you can reuse across all your Claude Code projects.</li>
+ <li>Add the skill to your skills folder. From that point, every document is on-brand.</li>
+ </ol>
+
+ <h2 id="ch5">05: Skills and Tools</h2>
+
+ <p>Claude Skills are modular add-ons that give Claude specific expertise or capabilities it does not have by default. There are over 60,000 available.</p>
+
+ <h3>What Skills Actually Are</h3>
+
+ <p>A skill is a SKILL.md file that gives Claude a structured methodology for a specific type of task. When you install a skill, you are giving Claude a playbook it can call on whenever it detects a relevant task. Skills install with a single command and activate automatically.</p>
+
+ <div class="callout"><p><strong>Note:</strong> Skills require Claude Code to install. Once Claude Code is running, installing any skill takes under 30 seconds.</p></div>
+
+ <h3>The Essential Skills</h3>
+
+ <p><strong>1. marketingskills by Corey Haines</strong>:20+ marketing skills in one install. SEO, copywriting, email sequences, CRO, competitor analysis, and growth engineering.</p>
+ <div class="code-block"><code>npx skills add coreyhaines31/marketingskills</code></div>
+ <p><strong>Example from Max:</strong> After installing this, Max asked Claude to write a full email sequence and build a functioning landing page for Briix. Both came back polished and ready to use.</p>
+
+ <p><strong>2. UI-UX-Pro-Max</strong>: Gives Claude real design intelligence. Understands visual hierarchy, colour psychology, and design systems. Stops Claude producing the generic AI-generated look.</p>
+ <div class="code-block"><code>npx skills add nextlevelbuilder/ui-ux-pro-max-skill@ui-ux-pro-max</code></div>
+
+ <p><strong>3. superpowers (120k GitHub stars)</strong>: A complete software development methodology. TDD built in, structured debugging, plan-before-build workflow.</p>
+ <div class="code-block"><code>npx skills add obra/superpowers</code></div>
+
+ <p><strong>4. Official Anthropic File Skills</strong>: Three official skills from Anthropic that let Claude create and edit your actual files directly.</p>
+ <div class="code-block"><code>npx skills add anthropics/skills@pdf
+npx skills add anthropics/skills@pptx
+npx skills add anthropics/skills@docx</code></div>
+
+ <p><strong>5. find-skills (418k installs)</strong>: The meta-skill. Describe what you want to do and Claude searches the skills marketplace and recommends the best options to install. Install this first.</p>
+ <div class="code-block"><code>npx skills add vercel-labs/find-skills</code></div>
+
+ <h2 id="ch6">06: Claude Code</h2>
+
+ <p>Claude Code is a terminal-based agent that can write code, run it, read your file system, manage projects, and work autonomously on complex multi-step tasks. It is the most powerful way to use Claude.</p>
+
+ <h3>What Claude Code Can Do</h3>
+ <ul>
+ <li>Write, test, debug, and run code across your entire project</li>
+ <li>Read and edit any file on your system</li>
+ <li>Run terminal commands</li>
+ <li>Build full applications from a brief</li>
+ <li>Work autonomously on tasks while you do something else</li>
+ <li>Connect to external tools via MCP servers</li>
+ </ul>
+
+ <div class="callout"><p><strong>Note:</strong> Claude Code requires Node.js version 18 or above. Run "node --version" in your terminal to check.</p></div>
+
+ <h3>Setting Up Claude Code</h3>
+ <ol>
+ <li>Open your terminal.</li>
+ <li>Install Claude Code globally.</li>
+ </ol>
+ <div class="code-block"><code>npm install -g @anthropic-ai/claude-code</code></div>
+ <ol start="3">
+ <li>Navigate to a project folder and run Claude Code.</li>
+ </ol>
+ <div class="code-block"><code>cd your-project
+claude</code></div>
+ <ol start="4">
+ <li>Claude Code will ask you to log in with your Claude account. Do that and you are ready.</li>
+ </ol>
+
+ <h3>The 10x Faster Workflow</h3>
+
+ <p><strong>Example from Max:</strong> Max covered three things that make Claude Code dramatically faster. Remote control via /rc lets you continue building from your phone. Hooks replace the CLAUDE.md suggestion system with deterministic rules that always run. App previews let Claude look at what it has built and fix its own errors visually rather than reading logs.</p>
+
+ <p><strong>Remote control</strong>: Type this in your Claude CLI to get a secure URL you can open on your phone and keep building from anywhere.</p>
+ <div class="code-block"><code>/rc</code></div>
+
+ <p><strong>Hooks</strong>: Hooks are deterministic rules that run automatically after every code change. Unlike CLAUDE.md which Claude can ignore, hooks always fire.</p>
+ <div class="prompt-example">Set up a hook that automatically runs my test suite and a code quality
+check after every file change.</div>
+ <p>Once set, you never have to ask for tests again. They run every time.</p>
+
+ <h3>Connecting Claude Code to External Tools</h3>
+
+ <p>MCP (Model Context Protocol) servers are how Claude Code connects to external services. Once connected, Claude can take actions in those tools directly.</p>
+
+ <p><strong>Connecting Figma:</strong></p>
+ <div class="code-block"><code>claude mcp add figma -- npx @figma/mcp</code></div>
+
+ <p>Other useful MCP connections:</p>
+ <ul>
+ <li><strong>PostHog:</strong> analytics and A/B testing directly from Claude Code</li>
+ <li><strong>NotebookLM:</strong> connect Google's research tool to Claude Code</li>
+ <li><strong>Ruflo:</strong> 60-agent multi-agent swarm with self-learning memory</li>
+ </ul>
+
+ <h2 id="ch7">07: Advanced Workflows</h2>
+
+ <p>These are the workflows that separate people who use Claude from people who use it well.</p>
+
+ <h3>Multi-Agent Workflows with Ruflo</h3>
+
+ <p><strong>Example from Max:</strong> Ruflo turns Claude Code into a 60-agent team. One agent plans. One writes code. One runs tests. One audits security. All running in parallel, all sharing memory, all getting smarter after every run. Up to 75% off your API costs through intelligent model routing.</p>
+
+ <p>To install Ruflo:</p>
+ <div class="code-block"><code>npx ruflo@latest init --wizard
+claude mcp add ruflo -- npx -y ruflo@latest mcp start
+npx ruflo doctor --fix
+npx ruflo daemon start</code></div>
+
+ <h3>Research Agent System with NotebookLM</h3>
+
+ <p><strong>Example from Max:</strong> Connect Claude Code to NotebookLM and create three research agents. One trained on a role model in your field. One trained on yourself. One trained on your business and competitors. Run one prompt across all three every week and Claude surfaces the gaps between where you are and where you should be.</p>
+
+ <p>This workflow works because it creates structured intelligence about your situation rather than generic research. The agents have specific context. The outputs are specific to you.</p>
+
+ <h3>Automated Document Processing</h3>
+
+ <p><strong>Example from Max:</strong> Max used CoWork to automatically organise expense receipts from a folder and generate a formatted Excel report. What used to be a manual process took minutes.</p>
+
+ <p>Pattern to replicate with any document type:</p>
+ <ol>
+ <li>Put your documents in a folder.</li>
+ <li>Give Claude Code a clear brief: what the documents are, what data to extract, what format the output should be in.</li>
+ <li>Let it run. Review the output.</li>
+ </ol>
+
+ <h3>Design Stack for Web Apps</h3>
+
+ <p><strong>Example from Max:</strong> Three things combined change the quality of web app design dramatically. The UI-UX-Pro-Max skill gives Claude design principles. Google Stitch and Nano Banana 2 MCPs give it real design patterns to reference. The 21st.dev asset library gives it 3D and reactive components to pull from.</p>
+
+ <p>Install the full design stack:</p>
+ <div class="code-block"><code>npx skills add nextlevelbuilder/ui-ux-pro-max-skill@ui-ux-pro-max
+claude mcp add stitch -- npx @google/stitch-mcp
+claude mcp add nano-banana -- npx nano-banana-2-mcp</code></div>
+
+ <h2 id="ch8">08: Growing Your Business With Claude</h2>
+
+ <p>Claude is not just a productivity tool. Used properly, it directly generates revenue and reduces costs.</p>
+
+ <h3>Replace Agencies and Freelancers</h3>
+
+ <p>The marketing skills repo alone covers everything a marketing agency does. With it installed, Claude can produce:</p>
+ <ul>
+ <li>Full ad creative sets</li>
+ <li>Complete email sequences</li>
+ <li>Landing page copy</li>
+ <li>Content strategies</li>
+ <li>SEO audits and optimised content</li>
+ <li>Competitor analysis reports</li>
+ </ul>
+
+ <p><strong>Example from Max:</strong> Max described this as having a full marketing team inside Claude. At $20 per month for Pro, that is the cost of roughly one hour of agency time per month.</p>
+
+ <h3>Build Products Without a Development Team</h3>
+
+ <p>Claude Code with the right skill stack can build functioning web applications, internal tools, dashboards, and automation systems.</p>
+
+ <p>What this means in practice:</p>
+ <ul>
+ <li>Give Claude Code a proper brief before starting, not just a one-line request</li>
+ <li>Break big builds into scoped phases</li>
+ <li>Use the superpowers skill to enforce TDD and planning</li>
+ <li>Review outputs at each milestone before moving to the next</li>
+ </ul>
+
+ <div class="callout"><p><strong>Tip:</strong> The superpowers skill forces Claude to produce a plan before writing a line of code. This one change prevents the biggest cause of AI-built products failing: scope drift.</p></div>
+
+ <h3>Offer Claude-Powered Services</h3>
+
+ <p><strong>Content production</strong>: With the marketing skills installed, you can produce content 5 to 10 times faster than a traditional copywriter. Price per piece, not per hour, and use Claude to produce the volume.</p>
+
+ <p><strong>Document automation</strong>: Businesses that deal with high volumes of forms, reports, or documents pay for automation. The official PDF, PPTX, and DOCX skills let you offer document processing services with Claude doing the heavy lifting.</p>
+
+ <p><strong>Research and analysis</strong>: Combine Claude with web search and the NotebookLM system and you can produce detailed competitor analysis, market research, and strategic reports faster than any traditional research process.</p>
+
+ <h3>Automate Your Own Operations</h3>
+
+ <p><strong>Client onboarding:</strong></p>
+ <div class="prompt-example">I am onboarding a new client called [Company]. They run a [type of
+business] with [number of employees]. Their main problem is [problem].
+Create: a welcome email, a project brief template pre-filled with their
+details, a list of questions I should ask in the kickoff call, and an
+initial action plan for the first 30 days.</div>
+ <p>One prompt. Four outputs. Claude handles the admin while you focus on the relationship.</p>
+
+ <p><strong>Proposal generation:</strong></p>
+ <div class="prompt-example">Write a service proposal for [client name]. They need [service]. Our fee
+is [amount]. The proposal should cover: our approach, timeline,
+deliverables, and why we are the right choice. Format it professionally
+and keep it under 2 pages. Use our tone: direct, confident, no corporate
+language.</div>
+ <p>With your brand skill installed, this comes out in your branding automatically.</p>
+
+ <p><strong>Weekly reporting</strong>: If you send regular reports to clients, Claude can take raw data and turn it into a formatted report in minutes. Upload the data, give Claude the template, and it does the rest.</p>
+
+ <!-- VISUAL BLOCK 2:Revenue Ladder -->
+ <div class="revenue-ladder">
+ <div class="rev-card">
+ <div class="rev-icon">
+ <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 4l6 6 6-6M4 10l6 6 6-6" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+ </div>
+ <div class="rev-title">Replace Agencies</div>
+ <div class="rev-body">Marketing skills, document creation, research. Full agency output at $20/month.</div>
+ <div class="rev-stat">Save £1,000s/mo</div>
+ </div>
+ <div class="rev-card">
+ <div class="rev-icon">
+ <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 8h6M7 12h4" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/><rect x="3" y="3" width="14" height="14" rx="2" stroke="#fff" stroke-width="1.5"/></svg>
+ </div>
+ <div class="rev-title">Build Products</div>
+ <div class="rev-body">Web apps, internal tools, dashboards. Claude Code with the right skill stack builds things that work.</div>
+ <div class="rev-stat">No dev team needed</div>
+ </div>
+ <div class="rev-card">
+ <div class="rev-icon">
+ <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 14l4-4 3 3 5-7" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+ </div>
+ <div class="rev-title">Sell Services</div>
+ <div class="rev-body">Content production, document automation, research reports. Claude does the work, you charge for the output.</div>
+ <div class="rev-stat">5 10× faster delivery</div>
+ </div>
+ </div>
+
+ <h2 id="ch9">09: Prompt Reference Library</h2>
+
+ <p>Ready-to-use prompts for the most common tasks. Copy, adapt, and use them.</p>
+
+ <h3>Writing</h3>
+
+ <p><strong>Repurpose content:</strong></p>
+ <div class="prompt-example">Take this [blog post / transcript / document] and repurpose it into: 5
+LinkedIn post ideas, 3 TikTok hook concepts, and one email newsletter
+section. Keep the core ideas but adapt the format and length for each
+platform.</div>
+
+ <p><strong>Improve existing writing:</strong></p>
+ <div class="prompt-example">Rewrite the following text to be shorter and more direct. Remove any
+filler sentences. Every sentence should carry new information. Keep the
+same meaning but tighten the language. [paste text]</div>
+
+ <h3>Business</h3>
+
+ <p><strong>SWOT analysis:</strong></p>
+ <div class="prompt-example">Run a SWOT analysis on my business. Here is the context: [describe your
+business, market, and current situation]. Be specific and honest. Do not
+give me generic observations. Focus on things that are actionable.</div>
+
+ <p><strong>Pricing strategy:</strong></p>
+ <div class="prompt-example">I run [describe business]. My current pricing is [describe]. My main
+competitors charge [describe competitor pricing]. Suggest a pricing
+structure that better reflects the value I deliver and is competitive in
+my market. Justify each recommendation.</div>
+
+ <h3>Research</h3>
+
+ <p><strong>Market research:</strong></p>
+ <div class="prompt-example">Search the web and research the [industry] market in the UK in 2026. Give
+me: market size, main players, key trends, and one underserved
+opportunity you can identify. Present it clearly with sources.</div>
+
+ <p><strong>Person research:</strong></p>
+ <div class="prompt-example">Research [person name] and tell me: their professional background, what
+they are currently working on, their public views on [relevant topic],
+and three things I could reference in a message to them to show I have
+done my homework.</div>
+
+ 
+
+ </article>
+
+ <aside class="toc-sidebar">
+ <div class="toc-box">
+ <h3>Contents</h3>
+ <ol>
+ <li><a href="#ch1">Getting Started</a></li>
+ <li><a href="#ch2">The Basics</a></li>
+ <li><a href="#ch3">Everyday Uses</a></li>
+ <li><a href="#ch4">Projects and Memory</a></li>
+ <li><a href="#ch5">Skills and Tools</a></li>
+ <li><a href="#ch6">Claude Code</a></li>
+ <li><a href="#ch7">Advanced Workflows</a></li>
+ <li><a href="#ch8">Growing Your Business</a></li>
+ <li><a href="#ch9">Prompt Reference Library</a></li>
+ </ol>
+ </div>
+ </aside>
+
+</div>
+
+
+<script>
+ const header = document.getElementById('site-header');
+ window.addEventListener('scroll', () => {
+ header.classList.toggle('scrolled', window.scrollY > 8);
+ }, { passive: true });
+</script>
+
+<script>
+function downloadPDF() {
+  window.print();
+}
+</script>
+</body>
+</html>

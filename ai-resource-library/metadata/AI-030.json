@@ -1,0 +1,29 @@
+{
+  "id": "AI-030",
+  "slug": "marketing-skills-complete-setup-guide",
+  "title": "Marketing Skills Complete Setup Guide for Claude Code",
+  "category": "Prompts & Skills",
+  "subcategory": "Marketing & Sales",
+  "difficulty": "Beginner",
+  "description": "Install and configure the complete Briix marketing skills stack, copywriting, social media, email, and ad creative skills wired together into a single marketing workflow inside Claude.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Prompts & Skills",
+    "What Else It Can Do",
+    "Marketing & Sales"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-030_marketing-skills-complete-setup-guide.html",
+  "summary_file": "summaries/AI-030.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

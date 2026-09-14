@@ -1,0 +1,30 @@
+{
+  "id": "AI-011",
+  "slug": "claude-code-codex-setup-guide",
+  "title": "Claude Code + Codex Setup Guide",
+  "category": "Claude Code",
+  "subcategory": "Environment Setup",
+  "difficulty": "Intermediate",
+  "description": "How to connect Claude Code to OpenAI Codex and run both models in the same agentic workflow. Setup, configuration, and the use cases where having both models available pays off.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Claude Code",
+    "Environment Setup"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude",
+    "ChatGPT",
+    "OpenAI Codex"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-011_claude-code-codex-setup-guide.html",
+  "summary_file": "summaries/AI-011.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

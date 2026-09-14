@@ -1,0 +1,31 @@
+{
+  "id": "AI-051",
+  "slug": "run-meta-ads-team-inside-claude",
+  "title": "Run Your Meta Ads Team Inside Claude",
+  "category": "Tools & Integrations",
+  "subcategory": "Third-Party Connectors",
+  "difficulty": "Advanced",
+  "description": "Build a full Meta Ads operation inside Claude using two MCP layers: the public Ad Library for competitor intel and your own account data for live campaign management. Five skills covering spying, bulk creative, scoring, extraction, and account review.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Tools & Integrations",
+    "The Setup",
+    "Connect Meta",
+    "How to set it up",
+    "Third-Party Connectors"
+  ],
+  "ai_tools": [
+    "Claude Skills",
+    "Claude"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-051_run-meta-ads-team-inside-claude.html",
+  "summary_file": "summaries/AI-051.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

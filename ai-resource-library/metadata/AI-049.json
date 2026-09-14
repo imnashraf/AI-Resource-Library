@@ -1,0 +1,34 @@
+{
+  "id": "AI-049",
+  "slug": "grillme-setup-guide",
+  "title": "The GrillMe Setup Guide",
+  "category": "Claude Code",
+  "subcategory": "Environment Setup",
+  "difficulty": "Intermediate",
+  "description": "The Claude Code skill that refuses to write a single line until it's grilled you first. How to install Matt Pocock's GrillMe skill, run a full interview session, and get code that actually matches what was in your head.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Claude Code",
+    "What's Inside",
+    "The Problem With Vague Prompts",
+    "How GrillMe Works",
+    "The Three Rules That Make It Work",
+    "Installing GrillMe in Claude Code",
+    "Running Your First Session",
+    "Environment Setup"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-049_grillme-setup-guide.html",
+  "summary_file": "summaries/AI-049.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

@@ -1,0 +1,234 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>NotebookLM + Claude Code Setup Guide</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✦%3C/text%3E%3C/svg%3E">
+ <style>
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+ html { scroll-behavior: smooth; }
+ body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+ .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+ .header.scrolled { border-color: var(--accent-border); }
+ .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+ .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+ .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+ .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+ .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+ a.logo-subtitle:hover { color: var(--accent); }
+ .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+ .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+ .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+ @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+ .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+ .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+ .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+ .badge-cat { background: var(--accent); color: #fff; }
+ .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+ .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+ .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+ .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+ .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+ .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+ .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+ .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+ .toc-box ol { list-style: none; counter-reset: toc; }
+ .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+ .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+ .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+ .toc-box a:hover { color: var(--accent); }
+ .guide-content { padding: 2rem 0 5rem; }
+ .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+ .guide-content h2:first-child { border-top: none; margin-top: 0; }
+ .guide-content h3 { font-size: 1.125rem; font-weight: 600; margin-top: 1.75rem; margin-bottom: 0.75rem; }
+ .guide-content p { margin-bottom: 1.125rem; }
+ .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+ .guide-content li { margin-bottom: 0.375rem; }
+ .guide-content strong { font-weight: 600; }
+ .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+ .callout { background: var(--accent-light); border-left: 3px solid var(--accent); padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; font-size: 0.9375rem; margin: 1.25rem 0; }
+ .callout p { margin: 0; }
+ .callout strong { color: var(--accent); }
+ .code-block { background: #000; color: #e2e8f0; font-family: 'Courier New', Courier, monospace; font-size: 0.875rem; line-height: 1.6; padding: 1.25rem 1.5rem; border-radius: 8px; overflow-x: auto; margin: 1.25rem 0; white-space: pre; }
+ .prompt-example { background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 8px; padding: 1.125rem 1.25rem; margin: 1rem 0; font-size: 0.9rem; font-family: 'Courier New', Courier, monospace; line-height: 1.65; white-space: pre-wrap; }
+
+ .agent-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0; }
+ @media (max-width: 700px) { .agent-cards { grid-template-columns: 1fr; } }
+ .agent-card { background: #fff; border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.125rem; }
+ .agent-card-num { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 700; font-size: 0.8rem; margin-bottom: 0.625rem; }
+ .agent-card-title { font-weight: 700; font-size: 0.9rem; margin-bottom: 0.375rem; }
+ .agent-card-desc { font-size: 0.8125rem; color: var(--muted); }
+ .weekly-arrow { text-align: center; padding: 0.75rem; font-size: 1.5rem; color: var(--accent); }
+ .weekly-box { background: var(--accent); color: #fff; border-radius: 10px; padding: 1rem 1.25rem; text-align: center; }
+ .weekly-box strong { display: block; font-size: 1rem; margin-bottom: 0.25rem; }
+ .weekly-box span { font-size: 0.8125rem; opacity: 0.9; }
+
+ @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+     .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+    @page { margin: 1.5cm; } @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .chapter-card, .compare-card, .checklist-card, blockquote { break-inside: avoid; page-break-inside: avoid; } .chapter-overview, .compare-grid, .checklist-grid, .email-flow { break-inside: avoid; page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+
+<header class="header" id="site-header">
+ <div class="header-inner">
+ <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+ <div class="logo-divider"></div>
+ <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">← All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+ <span class="badge badge-cat">Tools &amp; Integrations</span>
+ <span class="badge badge-diff">Intermediate</span>
+ </div>
+ <h1>NotebookLM + Claude Code Setup Guide</h1>
+ <div class="hero-author">
+ <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+ <div>
+ <span class="author-name">Max Johnson</span>
+ <span class="author-meta">@maxjohnscn</span>
+ </div>
+ </div>
+</div>
+
+<div class="page-wrap">
+ <article class="guide-content">
+    <button class="download-btn" onclick="downloadPDF()">&#8595; Download PDF</button>
+
+ <p class="intro-blurb">NotebookLM + Claude Code. Three Research Agents. One Weekly Prompt. Nobody Else Is Doing This.</p>
+
+ <p>NotebookLM is one of the most underrated tools out there. Most people use it on its own. This guide shows you how to connect it directly to Claude Code using notebooklm-py, an unofficial Python API with 6.1k stars on GitHub. Once it is set up, you build three research agents and run a single weekly prompt that most people would not even think to try.</p>
+ <p><strong>What you will have when this is done:</strong></p>
+ <ul>
+ <li>notebooklm-py installed and connected to your Google account</li>
+ <li>The NotebookLM skill installed inside Claude Code</li>
+ <li>Three dedicated research agents, role model, yourself, your business</li>
+ <li>A weekly prompt that queries all three and surfaces what you are missing</li>
+ </ul>
+ <p><strong>Before you start.</strong> You need a few things in place before following these steps:</p>
+ <ul>
+ <li>Claude Code installed and working on your machine</li>
+ <li>A Google account with access to NotebookLM (notebooklm.google.com)</li>
+ <li>Python 3.10 or later installed on your machine</li>
+ <li>pip installed (comes with Python by default)</li>
+ </ul>
+ <div class="callout"><p><strong>NOTE:</strong> notebooklm-py is an unofficial API, it works by automating your Google session rather than using an official API key. You will need to authenticate with your Google account during setup.</p></div>
+
+ <!-- VISUAL BLOCK 1 -->
+ <div class="agent-cards">
+ <div class="agent-card">
+ <div class="agent-card-num">01</div>
+ <div class="agent-card-title">Agent 01, Role Model</div>
+ <div class="agent-card-desc">Interviews, books, essays, transcripts. What would they do differently?</div>
+ </div>
+ <div class="agent-card">
+ <div class="agent-card-num">02</div>
+ <div class="agent-card-title">Agent 02, Yourself</div>
+ <div class="agent-card-desc">Your writing, decisions, strategy docs. Where are you drifting from your own thinking?</div>
+ </div>
+ <div class="agent-card">
+ <div class="agent-card-num">03</div>
+ <div class="agent-card-title">Agent 03, Business</div>
+ <div class="agent-card-desc">Competitor sites, market data, customer research. What are you underestimating?</div>
+ </div>
+ </div>
+ <div class="weekly-arrow">↓</div>
+ <div class="weekly-box">
+ <strong>Weekly Prompt</strong>
+ <span>One prompt queries all three simultaneously. Surfaces your top 3 priorities for the week.</span>
+ </div>
+
+ <h2 id="step-01-install-notebooklm-py">Step 01, Install notebooklm-py, github.com/teng-lin/notebooklm-py</h2>
+ <p>This is the repo that makes everything possible. It gives Claude Code full programmatic access to NotebookLM, including features the web UI does not expose. 6.1k stars, actively maintained, MIT licensed.</p>
+ <div class="code-block">$ Terminal, install notebooklm-py
+
+pip install notebooklm</div>
+ <p>Then authenticate with your Google account:</p>
+ <div class="code-block">$ Terminal, authenticate with Google
+
+notebooklm auth login
+# A browser window will open.
+# Sign in with your Google account and approve access.
+# Your session token is saved locally, you only do this once.</div>
+ <div class="callout"><p><strong>TIP:</strong> If you already use NotebookLM with a Google Workspace account, sign in with that same account. Your existing notebooks will be accessible immediately after authentication.</p></div>
+
+ <h2 id="step-02-install-the-skill-into-claude-code">Step 02, Install the Skill into Claude Code, From the notebooklm-py repo</h2>
+ <p>The repo includes a Claude Code skill that lets Claude call NotebookLM directly from the terminal. You do not need to leave Claude Code to query your notebooks, Claude handles it all.</p>
+ <div class="code-block">$ Terminal, clone the repo and copy the skill
+
+git clone https://github.com/teng-lin/notebooklm-py.git
+# Copy the skill into your project's .claude-plugin folder
+cp -r notebooklm-py/skills/notebooklm \
+./your-project/.claude-plugin/notebooklm</div>
+ <div class="callout"><p><strong>TIP:</strong> If your project does not have a .claude-plugin folder yet, create one in the project root first: <code>mkdir .claude-plugin</code></p></div>
+
+ <h2 id="step-03-create-your-three-research-agents">Step 03, Create Your Three Research Agents in NotebookLM, The setup most people skip</h2>
+ <p>Go to notebooklm.google.com and create three separate notebooks. Each one becomes a dedicated research agent with a specific focus. The more you put in, the more useful the output.</p>
+ <p><strong>Agent 01, Role Model.</strong> Create a notebook and upload everything you can find on the person whose thinking you want to understand. Interviews, books, essays, transcripts, podcast episodes. The more depth the better. Name the notebook: Role Model, [their name].</p>
+ <p><strong>Agent 02, Yourself.</strong> Create a second notebook and upload your own writing. Strategy documents, past decisions, notes, voice memos you have transcribed, anything that captures how you think. Name it: Research Agent, Myself.</p>
+ <p><strong>Agent 03, Your Business.</strong> Create a third notebook and upload everything about your market. Competitor websites, customer research, industry reports, your own product documentation. Name it: Research Agent, [your business name].</p>
+ <div class="callout"><p><strong>TIP:</strong> NotebookLM accepts PDFs, Google Docs, text files, and website URLs. For the role model agent, pasting article URLs is the fastest way to get a lot of content in quickly.</p></div>
+ <div class="callout"><p><strong>NOTE:</strong> You do not need to have everything uploaded on day one. Start with what you have and add to each notebook over time. The agents get more useful the more context they have.</p></div>
+
+ <h2 id="step-04-run-the-weekly-prompt-in-claude-code">Step 04, Run the Weekly Prompt in Claude Code, The prompt that does the work</h2>
+ <p>Once your three agents are set up, open Claude Code and run this prompt. Do it every week. It queries all three notebooks simultaneously and surfaces the gaps between where you are and where you could be.</p>
+ <div class="prompt-example">$ Claude Code, paste this every week
+
+Query all three NotebookLM research agents simultaneously.
+Agent 01 (Role Model): Where would this person do things differently
+to what I am currently doing? What decisions or approaches of theirs
+am I not applying right now?
+Agent 02 (Myself): Where is my current thinking or behaviour drifting
+from my own stated strategy and values? What patterns am I repeating
+that I have flagged as problems before?
+Agent 03 (Business): What are my competitors doing right now that I
+have not spotted or acted on yet? What does the market data suggest
+I am underestimating?
+Synthesise the findings across all three. Surface the top three things
+I should be paying attention to this week.</div>
+ <div class="callout"><p><strong>TIP:</strong> Run this on the same day every week. Monday morning works well, it gives you a clear set of priorities before the week starts rather than reacting to whatever comes in.</p></div>
+ <div class="callout"><p><strong>WARNING:</strong> The quality of the output depends entirely on the quality of what is inside your notebooks. If Agent 02 only has two documents in it, the self-analysis will be shallow. Keep adding to the agents regularly.</p></div>
+
+ <h2 id="why-it-works">Why It Works, Three Perspectives. One Blind Spot Removed.</h2>
+ <p>Most people operate inside one frame of reference, their own. The role model agent forces a second perspective from someone who has already solved problems you are currently facing. The self agent catches you when you drift from your own thinking. The business agent keeps your strategic view honest against what is actually happening in the market.</p>
+ <p>Running all three together weekly means you are consistently looking at the same situation from three different angles. The gaps it surfaces are the things that would otherwise take months to notice on your own.</p>
+ <div class="callout"><p><strong>TIP:</strong> The most valuable output is usually from Agent 02. Most founders already know what their role model would do. Catching the gap between your own stated strategy and your actual behaviour is harder to see without a system like this.</p></div>
+ <p>notebooklm-py repo: github.com/teng-lin/notebooklm-py, free, open source, MIT licensed. 6.1k stars. NotebookLM is free at notebooklm.google.com.</p>
+
+ </article>
+ <aside class="toc-sidebar">
+ <div class="toc-box">
+ <h3>Contents</h3>
+ <ol>
+ <li><a href="#step-01-install-notebooklm-py">Install notebooklm-py</a></li>
+ <li><a href="#step-02-install-the-skill-into-claude-code">Install the Skill into Claude Code</a></li>
+ <li><a href="#step-03-create-your-three-research-agents">Create Your Three Research Agents</a></li>
+ <li><a href="#step-04-run-the-weekly-prompt-in-claude-code">Run the Weekly Prompt</a></li>
+ <li><a href="#why-it-works">Why It Works</a></li>
+ </ol>
+ </div>
+ </aside>
+</div>
+
+
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+<script>
+function downloadPDF() {
+  window.print();
+}
+</script>
+</body>
+</html>

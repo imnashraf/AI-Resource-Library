@@ -1,0 +1,35 @@
+{
+  "id": "AI-040",
+  "slug": "the-7-boring-automations",
+  "title": "The 7 Boring Automations",
+  "category": "Building & Monetising",
+  "subcategory": "Business Automation",
+  "difficulty": "Intermediate",
+  "description": "Seven high-value automations that real businesses pay for every month. Covers home services, law firms, accounting, dental practices, recruitment, insurance, and property management, with full build steps, tool stacks, pricing, and sales pitches for each.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Building & Monetising",
+    "What's inside",
+    "Why Boring Wins",
+    "Boring = recurring pain",
+    "Boring = recurring revenue",
+    "Boring = easy to prove",
+    "Boring = same shape every time",
+    "Business Automation"
+  ],
+  "ai_tools": [
+    "Claude",
+    "GPT-4",
+    "n8n"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-040_the-7-boring-automations.html",
+  "summary_file": "summaries/AI-040.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

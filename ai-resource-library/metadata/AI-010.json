@@ -1,0 +1,32 @@
+{
+  "id": "AI-010",
+  "slug": "claude-code-commands-guide",
+  "title": "Claude Code Commands Guide",
+  "category": "Claude Code",
+  "subcategory": "CLI Commands",
+  "difficulty": "Beginner",
+  "description": "Every slash command, keyboard shortcut, and CLI flag explained. A reference guide for Claude Code users who want to move faster and use the tool the way it was designed to be used.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Claude Code",
+    "Command 01, /ultra plan",
+    "Command 02, /power up",
+    "Command 03, /insights",
+    "Now Go Try Them.",
+    "CLI Commands"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-010_claude-code-commands-guide.html",
+  "summary_file": "summaries/AI-010.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

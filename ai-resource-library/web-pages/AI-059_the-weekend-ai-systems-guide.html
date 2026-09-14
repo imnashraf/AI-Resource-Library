@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>The Weekend AI Systems Guide</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+ <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+  .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+  .header.scrolled { border-color: var(--accent-border); }
+  .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+  .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+  .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+  .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+  .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+  a.logo-subtitle:hover { color: var(--accent); }
+  .nav-agent-link { font-size: 0.8125rem; font-weight: 700; color: var(--accent); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--accent); border-radius: 9999px; letter-spacing: 0.04em; text-transform: uppercase; transition: all 0.2s; white-space: nowrap; }
+  .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+  .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+  .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+  @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+  .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+  .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+  .badge-cat { background: var(--accent); color: #fff; }
+  .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+  .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+  .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+  .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+  .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+  .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+  .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+  .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+  .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+  .toc-box ol { list-style: none; counter-reset: toc; }
+  .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+  .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+  .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+  .toc-box a:hover { color: var(--accent); }
+  .guide-content { padding: 2rem 0 5rem; }
+  .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+  .guide-content h2:first-of-type { border-top: none; margin-top: 0; }
+  .guide-content h3 { font-size: 1.0625rem; font-weight: 700; margin-top: 1.75rem; margin-bottom: 0.625rem; }
+  .guide-content p { margin-bottom: 1.125rem; }
+  .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+  .guide-content li { margin-bottom: 0.375rem; }
+  .guide-content strong { font-weight: 600; }
+  .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+  @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+  .callout { border-left: 4px solid var(--accent-border); background: var(--accent-light); padding: 0.875rem 1.125rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0; }
+  .callout-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.35rem; }
+  .callout p { margin-bottom: 0; }
+  .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+  .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+  @page { margin: 1.5cm; }
+  @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider, .nav-agent-link { display: none !important; } .page-wrap { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; } p { orphans: 3; widows: 3; } pre { break-inside: avoid; } }
+
+  /* Code blocks (setup prompts) */
+  .guide-content pre { background: #0a0a0a; color: #f8f8f8; border-radius: 10px; padding: 1rem 1.25rem; overflow-x: auto; font-size: 0.8125rem; line-height: 1.6; margin: 0.75rem 0 1rem; border: 1px solid #1f1f1f; white-space: pre-wrap; }
+  .guide-content pre code { background: none; border: none; padding: 0; color: inherit; font-size: inherit; }
+  .guide-content code { font-family: 'Courier New', Courier, monospace; }
+  .guide-content li code, .guide-content p code { background: var(--accent-light); color: var(--accent); padding: 0.1em 0.4em; border-radius: 4px; font-size: 0.875em; border: 1px solid var(--accent-border); }
+  .build-time { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.8125rem; font-weight: 600; color: var(--accent); background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 9999px; padding: 0.25rem 0.875rem; margin-bottom: 1.125rem; }
+
+  /* VISUAL BLOCKS */
+  /* VB1: 8-system overview grid */
+  .sysgrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.75rem 0; }
+  @media (max-width: 700px) { .sysgrid { grid-template-columns: 1fr; } }
+  .sysgrid-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.125rem 1.25rem; }
+  .sysgrid-head { display: flex; align-items: baseline; gap: 0.625rem; margin-bottom: 0.4rem; }
+  .sysgrid-num { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--accent); font-size: 1rem; flex-shrink: 0; }
+  .sysgrid-name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.9375rem; }
+  .sysgrid-desc { font-size: 0.8125rem; color: var(--muted); margin-bottom: 0.75rem; }
+  .sysgrid-time { font-size: 0.6875rem; font-weight: 600; color: var(--accent); background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 9999px; padding: 0.15rem 0.625rem; }
+  .closing-line { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.25rem; text-align: center; margin: 2.5rem 0 0; }
+  .contents-list { display: flex; flex-direction: column; gap: 1rem; margin: 1.25rem 0 1.75rem; }
+  .contents-item-title { font-weight: 700; margin-bottom: 0.2rem; }
+  .contents-item-desc { font-size: 0.9375rem; color: var(--muted); margin: 0; }
+ </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+  <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+  <div class="logo-divider"></div>
+  <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">&#8592; All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+  <span class="badge badge-cat">Getting Started</span>
+  <span class="badge badge-diff">Beginner</span>
+ </div>
+ <h1>The Weekend AI Systems Guide</h1>
+ <p class="intro-blurb">Eight systems. None of them need code. Pick the one that solves something you're already doing manually and build that one first.</p>
+ <ul>
+  <li>Proposal Generator</li>
+  <li>Competitor Watch</li>
+  <li>Sales Call Debrief</li>
+  <li>SOP Builder</li>
+  <li>Contract Reviewer</li>
+  <li>Hiring Filter</li>
+  <li>Website Copy Auditor</li>
+  <li>Personal Learning Coach</li>
+ </ul>
+ <div class="hero-author">
+  <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+  <div><span class="author-name">Max Johnson</span><span class="author-meta">@maxjohnscn</span></div>
+ </div>
+</div>
+
+<div class="page-wrap">
+ <main class="guide-content">
+
+  <button class="download-btn" onclick="window.print()">&#8595; Download PDF</button>
+
+  <h2 id="contents">Contents</h2>
+  <div class="contents-list">
+   <div>
+    <p class="contents-item-title">00 Before You Start</p>
+    <p class="contents-item-desc">A few things get reused across all eight, so here's how to set them up once.</p>
+   </div>
+   <div>
+    <p class="contents-item-title">01 Proposal Generator</p>
+    <p class="contents-item-desc">You give it the call notes and it writes the whole proposal, pricing, scope and all, ready to send in the next ten minutes.</p>
+   </div>
+   <div>
+    <p class="contents-item-title">02 Competitor Watch</p>
+    <p class="contents-item-desc">It checks your top competitors every morning, their posts, their pricing, their new launches, and hands you the one thing that actually matters.</p>
+   </div>
+   <div>
+    <p class="contents-item-title">03 Sales Call Debrief</p>
+    <p class="contents-item-desc">Drop in the call notes or transcript and it pulls out what the prospect actually cares about, the objections, and the exact next step to take.</p>
+   </div>
+   <div>
+    <p class="contents-item-title">04 SOP Builder</p>
+    <p class="contents-item-desc">You talk through how you do something once and it turns that into a proper written process, ready to hand to anyone on the team.</p>
+   </div>
+   <div>
+    <p class="contents-item-title">05 Contract Reviewer</p>
+    <p class="contents-item-desc">Every contract goes through it before you sign anything, the risky clauses, the missing bits, the stuff your lawyer would flag.</p>
+   </div>
+   <div>
+    <p class="contents-item-title">06 Hiring Filter</p>
+    <p class="contents-item-desc">Every application lands in one place and it ranks them against what you're actually looking for, not just keywords on a page.</p>
+   </div>
+   <div>
+    <p class="contents-item-title">07 Website Copy Auditor</p>
+    <p class="contents-item-desc">Point it at your site and it tells you exactly where people are dropping off, in plain language, not sat in an analytics dashboard.</p>
+   </div>
+   <div>
+    <p class="contents-item-title">08 Personal Learning Coach</p>
+    <p class="contents-item-desc">Tell it what you're trying to learn and it builds you a real path, then quizzes you on it until it actually sticks.</p>
+   </div>
+  </div>
+
+  <h2 id="before-you-start">Before You Start</h2>
+  <p>A few things get reused across all eight, so here's how to set them up once.</p>
+
+  <p><strong>01 Projects</strong></p>
+  <p>This is a dedicated workspace inside Claude. It remembers custom instructions and any files you upload, so you're not re-explaining yourself every time. Click "Projects" in the sidebar, then "New project." Give it a name, add your instructions, upload files if the system needs them.</p>
+
+  <p><strong>02 Web Search</strong></p>
+  <p>Built in, no setup. Just make sure it's toggled on.</p>
+
+  <p><strong>03 File Uploads</strong></p>
+  <p>Click the plus icon in the chat box. Claude reads PDFs, docs, spreadsheets and CSVs directly, no converting anything first.</p>
+
+  <p><strong>04 Google Drive Connector</strong></p>
+  <p>Optional, but worth turning on if your templates and reference docs already live in Drive. Click the plus icon and toggle it on. Saves you re-uploading the same file every time.</p>
+
+  <p>Right, onto the eight.</p>
+
+  <div class="sysgrid">
+   <div class="sysgrid-card">
+    <div class="sysgrid-head"><span class="sysgrid-num">01</span><span class="sysgrid-name">Proposal Generator</span></div>
+    <p class="sysgrid-desc">You give it the call notes and it writes the whole proposal, pricing, scope and all, ready to send in the next ten minutes.</p>
+    <span class="sysgrid-time">~20 min</span>
+   </div>
+   <div class="sysgrid-card">
+    <div class="sysgrid-head"><span class="sysgrid-num">02</span><span class="sysgrid-name">Competitor Watch</span></div>
+    <p class="sysgrid-desc">It checks your top competitors every morning, their posts, their pricing, their new launches, and hands you the one thing that actually matters.</p>
+    <span class="sysgrid-time">~15 min</span>
+   </div>
+   <div class="sysgrid-card">
+    <div class="sysgrid-head"><span class="sysgrid-num">03</span><span class="sysgrid-name">Sales Call Debrief</span></div>
+    <p class="sysgrid-desc">Drop in the call notes or transcript and it pulls out what the prospect actually cares about, the objections, and the exact next step to take.</p>
+    <span class="sysgrid-time">~15 min</span>
+   </div>
+   <div class="sysgrid-card">
+    <div class="sysgrid-head"><span class="sysgrid-num">04</span><span class="sysgrid-name">SOP Builder</span></div>
+    <p class="sysgrid-desc">You talk through how you do something once and it turns that into a proper written process, ready to hand to anyone on the team.</p>
+    <span class="sysgrid-time">~20 min</span>
+   </div>
+   <div class="sysgrid-card">
+    <div class="sysgrid-head"><span class="sysgrid-num">05</span><span class="sysgrid-name">Contract Reviewer</span></div>
+    <p class="sysgrid-desc">Every contract goes through it before you sign anything, the risky clauses, the missing bits, the stuff your lawyer would flag.</p>
+    <span class="sysgrid-time">~20 min</span>
+   </div>
+   <div class="sysgrid-card">
+    <div class="sysgrid-head"><span class="sysgrid-num">06</span><span class="sysgrid-name">Hiring Filter</span></div>
+    <p class="sysgrid-desc">Every application lands in one place and it ranks them against what you're actually looking for, not just keywords on a page.</p>
+    <span class="sysgrid-time">~20 min</span>
+   </div>
+   <div class="sysgrid-card">
+    <div class="sysgrid-head"><span class="sysgrid-num">07</span><span class="sysgrid-name">Website Copy Auditor</span></div>
+    <p class="sysgrid-desc">Point it at your site and it tells you exactly where people are dropping off, in plain language, not sat in an analytics dashboard.</p>
+    <span class="sysgrid-time">~20 min</span>
+   </div>
+   <div class="sysgrid-card">
+    <div class="sysgrid-head"><span class="sysgrid-num">08</span><span class="sysgrid-name">Personal Learning Coach</span></div>
+    <p class="sysgrid-desc">Tell it what you're trying to learn and it builds you a real path, then quizzes you on it until it actually sticks.</p>
+    <span class="sysgrid-time">~15 min</span>
+   </div>
+  </div>
+
+  <h2 id="proposal-generator">System 01 of 08: Proposal Generator</h2>
+  <p>You give it the call notes and it writes the whole proposal, pricing, scope and all, ready to send in the next ten minutes.</p>
+  <p class="build-time">Build time: About 20 minutes</p>
+  <div class="callout">
+   <div class="callout-label">Worth knowing</div>
+   <p>The output is only as sharp as the notes going in. Rough bullet points work fine, you don't need full sentences.</p>
+  </div>
+  <h3>Setup</h3>
+  <ol>
+   <li>Create a Project called "Proposals."</li>
+   <li>Upload your proposal template and your rate card.</li>
+   <li>In the Project instructions, set the format: "When I give you call notes, write a full proposal using my template and rate card. Match the scope to what was actually discussed, don't pad it out."</li>
+   <li>After each call, drop in your notes and ask for the proposal.</li>
+  </ol>
+
+  <h2 id="competitor-watch">System 02 of 08: Competitor Watch</h2>
+  <p>It checks your top competitors every morning, their posts, their pricing, their new launches, and hands you the one thing that actually matters.</p>
+  <p class="build-time">Build time: About 15 minutes</p>
+  <div class="callout">
+   <div class="callout-label">Worth knowing</div>
+   <p>This isn't a live alert system, you still have to open the chat and ask. It's replacing the manual scroll through their pages, not automating it away entirely.</p>
+  </div>
+  <h3>Setup</h3>
+  <ol>
+   <li>Create a Project called "Competitor Watch."</li>
+   <li>Turn on web search.</li>
+   <li>List who to track in the Project instructions: "Track [competitor names]. When I ask for an update, search for anything new from them in the last week, pricing changes, new posts, launches, and give me the single most important thing, not a list."</li>
+   <li>Run it whenever you want a check, it doesn't run on its own in the background.</li>
+  </ol>
+
+  <h2 id="sales-call-debrief">System 03 of 08: Sales Call Debrief</h2>
+  <p>Drop in the call notes or transcript and it pulls out what the prospect actually cares about, the objections, and the exact next step to take.</p>
+  <p class="build-time">Build time: About 15 minutes</p>
+  <div class="callout">
+   <div class="callout-label">Worth knowing</div>
+   <p>If your call tool doesn't auto-transcribe, your own rough notes work almost as well, the debrief quality comes from what's in the notes, not the polish of the transcript.</p>
+  </div>
+  <h3>Setup</h3>
+  <ol>
+   <li>Create a Project called "Call Debrief."</li>
+   <li>Most call tools, Zoom, Fathom, Fireflies, already spit out a text transcript after the call. That's what you're pasting in, Claude doesn't transcribe audio itself.</li>
+   <li>Save the debrief format: "When I paste a call transcript, give me: what they actually care about, the objections they raised, and the one next step to take."</li>
+   <li>Paste the transcript in straight after the call, while it's still fresh.</li>
+  </ol>
+
+  <h2 id="sop-builder">System 04 of 08: SOP Builder</h2>
+  <p>You talk through how you do something once and it turns that into a proper written process, ready to hand to anyone on the team.</p>
+  <p class="build-time">Build time: About 20 minutes</p>
+  <div class="callout">
+   <div class="callout-label">Worth knowing</div>
+   <p>Talk through it exactly as you'd explain it to a new hire standing next to you, including the bits that feel obvious. Those are usually the bits that get missed.</p>
+  </div>
+  <h3>Setup</h3>
+  <ol>
+   <li>Create a Project called "SOP Builder."</li>
+   <li>Upload one example of a process doc you like the format of, if you've got one. If not, skip this.</li>
+   <li>Set the instructions: "When I talk through a process, turn it into a numbered SOP. Number every step, flag anything that needs a screenshot, keep the language plain enough that someone new could follow it."</li>
+   <li>Talk through the process in a message, typed or dictated with your phone's voice-to-text, then ask for the SOP.</li>
+  </ol>
+
+  <h2 id="contract-reviewer">System 05 of 08: Contract Reviewer</h2>
+  <p>Every contract goes through it before you sign anything, the risky clauses, the missing bits, the stuff your lawyer would flag.</p>
+  <p class="build-time">Build time: About 20 minutes</p>
+  <div class="callout">
+   <div class="callout-label">Worth knowing</div>
+   <p>This catches what's different from your normal terms, it's not a substitute for an actual lawyer on anything high stakes. Treat it as the first pass, not the last one.</p>
+  </div>
+  <h3>Setup</h3>
+  <ol>
+   <li>Create a Project called "Contract Review."</li>
+   <li>Upload your standard terms or a contract you're happy with as the reference point.</li>
+   <li>Set the instructions: "When I upload a contract, compare it against my standard terms. Flag anything unusually risky, anything missing that's normally in mine, and summarise it in plain English."</li>
+   <li>Upload any new contract before signing and ask for the review.</li>
+  </ol>
+
+  <h2 id="hiring-filter">System 06 of 08: Hiring Filter</h2>
+  <p>Every application lands in one place and it ranks them against what you're actually looking for, not just keywords on a page.</p>
+  <p class="build-time">Build time: About 20 minutes</p>
+  <div class="callout">
+   <div class="callout-label">Worth knowing</div>
+   <p>Be specific in the role brief about what actually matters versus what's nice to have. A vague brief gets you a vague ranking.</p>
+  </div>
+  <h3>Setup</h3>
+  <ol>
+   <li>Create a Project called "Hiring."</li>
+   <li>Upload your role brief and a scoring template, what actually matters for this role, weighted.</li>
+   <li>Set the instructions: "When I upload a CV or application, score it against my role brief and template. Give me a score and the one line reason why."</li>
+   <li>Upload applications as they come in, or in a batch at the end of the week.</li>
+  </ol>
+
+  <h2 id="website-copy-auditor">System 07 of 08: Website Copy Auditor</h2>
+  <p>Point it at your site and it tells you exactly where people are dropping off, in plain language, not sat in an analytics dashboard.</p>
+  <p class="build-time">Build time: About 20 minutes</p>
+  <div class="callout">
+   <div class="callout-label">Worth knowing</div>
+   <p>It's reading the page and reasoning about the copy, it isn't pulling live analytics data itself. The more specific your analytics summary, the sharper the read.</p>
+  </div>
+  <h3>Setup</h3>
+  <ol>
+   <li>Create a Project called "Copy Audit."</li>
+   <li>Turn on web search so it can actually pull your live pages.</li>
+   <li>Upload a summary of your analytics, whatever you're already tracking in, drop off points, bounce rate, whatever you've got.</li>
+   <li>Ask: "Look at [your site URL] and my analytics summary. Tell me where the copy is likely losing people and what to change first."</li>
+  </ol>
+
+  <h2 id="personal-learning-coach">System 08 of 08: Personal Learning Coach</h2>
+  <p>Tell it what you're trying to learn and it builds you a real path, then quizzes you on it until it actually sticks.</p>
+  <p class="build-time">Build time: About 15 minutes</p>
+  <div class="callout">
+   <div class="callout-label">Worth knowing</div>
+   <p>It only tracks progress within that one Project, so don't start a fresh chat each time, you'll lose the thread of where you were.</p>
+  </div>
+  <h3>Setup</h3>
+  <ol>
+   <li>Create a Project called "Learning Coach."</li>
+   <li>Set the instructions: "When I tell you what I'm trying to learn, build me a structured path with milestones. Quiz me on what I've covered when I ask, and don't move me forward until I actually get it."</li>
+   <li>Tell it what you're learning and your rough timeframe.</li>
+   <li>Come back to the same Project each session so it remembers where you're up to.</li>
+  </ol>
+
+  <h2 id="eight-systems-one-weekend">Eight systems. One weekend.</h2>
+  <p>Pick the one that's already costing you the most time each week. Build it first. The rest can wait.</p>
+
+ </main>
+
+ <aside class="toc-sidebar">
+  <div class="toc-box">
+   <h3>In this guide</h3>
+   <ol>
+    <li><a href="#contents">Contents</a></li>
+    <li><a href="#before-you-start">Before You Start</a></li>
+    <li><a href="#proposal-generator">Proposal Generator</a></li>
+    <li><a href="#competitor-watch">Competitor Watch</a></li>
+    <li><a href="#sales-call-debrief">Sales Call Debrief</a></li>
+    <li><a href="#sop-builder">SOP Builder</a></li>
+    <li><a href="#contract-reviewer">Contract Reviewer</a></li>
+    <li><a href="#hiring-filter">Hiring Filter</a></li>
+    <li><a href="#website-copy-auditor">Website Copy Auditor</a></li>
+    <li><a href="#personal-learning-coach">Personal Learning Coach</a></li>
+    <li><a href="#eight-systems-one-weekend">Eight Systems, One Weekend</a></li>
+   </ol>
+  </div>
+ </aside>
+</div>
+
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+</body>
+</html>

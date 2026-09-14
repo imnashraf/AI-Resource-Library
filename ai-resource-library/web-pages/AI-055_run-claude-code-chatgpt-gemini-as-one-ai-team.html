@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Run Claude Code, ChatGPT &amp; Gemini As One AI Team</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+ <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+  .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+  .header.scrolled { border-color: var(--accent-border); }
+  .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+  .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+  .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+  .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+  .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+  a.logo-subtitle:hover { color: var(--accent); }
+  .nav-agent-link { font-size: 0.8125rem; font-weight: 700; color: var(--accent); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--accent); border-radius: 9999px; letter-spacing: 0.04em; text-transform: uppercase; transition: all 0.2s; white-space: nowrap; }
+  .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+  .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+  .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+  @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+  .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+  .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+  .badge-cat { background: var(--accent); color: #fff; }
+  .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+  .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+  .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+  .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+  .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+  .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+  .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+  .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+  .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+  .toc-box ol { list-style: none; counter-reset: toc; }
+  .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+  .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+  .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+  .toc-box a:hover { color: var(--accent); }
+  .guide-content { padding: 2rem 0 5rem; }
+  .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+  .guide-content h2:first-of-type { border-top: none; margin-top: 0; }
+  .guide-content h3 { font-size: 1.0625rem; font-weight: 700; margin-top: 1.75rem; margin-bottom: 0.625rem; }
+  .guide-content p { margin-bottom: 1.125rem; }
+  .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+  .guide-content li { margin-bottom: 0.375rem; }
+  .guide-content strong { font-weight: 600; }
+  .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+  @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+  .callout { border-left: 4px solid var(--accent-border); background: var(--accent-light); padding: 0.875rem 1.125rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0; }
+  .callout-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.35rem; }
+  .callout p { margin-bottom: 0; }
+  pre { background: #1a1a1a; color: #e8e8e8; padding: 1.25rem 1.5rem; border-radius: 8px; font-size: 0.875rem; line-height: 1.65; margin: 1.5rem 0; overflow-x: auto; white-space: pre; }
+  pre code { font-family: 'Courier New', Courier, monospace; }
+  .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+  .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+  @page { margin: 1.5cm; }
+  @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider, .nav-agent-link { display: none !important; } .page-wrap { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; } p { orphans: 3; widows: 3; } }
+
+  /* VISUAL BLOCKS */
+  .chapter-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1.75rem 0; }
+  @media (max-width: 600px) { .chapter-grid { grid-template-columns: 1fr; } }
+  .chapter-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.125rem 1.25rem; }
+  .chapter-num { font-family: 'Space Grotesk', sans-serif; font-size: 1.75rem; font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: 0.375rem; }
+  .chapter-title { font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.25rem; }
+  .chapter-desc { font-size: 0.8125rem; color: var(--muted); line-height: 1.55; margin: 0; }
+
+  .three-col-cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.875rem; margin: 1.75rem 0; }
+  @media (max-width: 700px) { .three-col-cards { grid-template-columns: 1fr; } }
+  .team-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+  .team-card-name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1rem; color: var(--accent); margin-bottom: 0.25rem; }
+  .team-card-role { display: inline-block; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); border-radius: 9999px; padding: 0.1rem 0.5rem; margin-bottom: 0.75rem; }
+  .team-card-body { font-size: 0.8125rem; color: var(--muted); line-height: 1.6; margin: 0; }
+
+  .checklist { background: linear-gradient(135deg, #fff 0%, var(--accent-light) 100%); border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.25rem 1.5rem; margin: 1.75rem 0; }
+  .checklist-item { display: flex; gap: 1rem; align-items: flex-start; padding: 0.75rem 0; border-bottom: 1px solid var(--accent-border); }
+  .checklist-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .check-badge { width: 1.75rem; height: 1.75rem; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #fff; font-size: 0.8rem; font-weight: 700; }
+  .checklist-body { flex: 1; }
+  .checklist-title { font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.15rem; }
+  .checklist-desc { font-size: 0.8125rem; color: var(--muted); margin: 0; line-height: 1.55; }
+
+  .step-stack { background: linear-gradient(135deg, #fff 0%, var(--accent-light) 100%); border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.5rem; margin: 1.75rem 0; display: flex; flex-direction: column; gap: 0.875rem; }
+  .step-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.125rem 1.25rem; display: flex; gap: 1rem; align-items: flex-start; }
+  .step-num { font-family: 'Space Grotesk', sans-serif; font-size: 0.8125rem; font-weight: 700; background: var(--accent); color: #fff; border-radius: 50%; width: 2rem; height: 2rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step-body { flex: 1; }
+  .step-title { font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.25rem; }
+  .step-desc { font-size: 0.8125rem; color: var(--muted); margin: 0; line-height: 1.6; }
+
+  .ref-strip { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.875rem; margin: 1.75rem 0; }
+  @media (max-width: 700px) { .ref-strip { grid-template-columns: 1fr; } }
+  .ref-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.125rem 1.25rem; }
+  .ref-name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1rem; color: var(--accent); margin-bottom: 0.2rem; }
+  .ref-role { font-size: 0.8125rem; color: var(--muted); margin-bottom: 0.5rem; }
+  .ref-url { font-family: 'Courier New', monospace; font-size: 0.75rem; color: var(--muted); word-break: break-all; }
+ </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+  <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+  <div class="logo-divider"></div>
+  <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">&#8592; All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+  <span class="badge badge-cat">Tools &amp; Integrations</span>
+  <span class="badge badge-diff">Advanced</span>
+ </div>
+ <h1>Run Claude Code, ChatGPT &amp; Gemini As One AI Team</h1>
+ <div class="hero-author">
+  <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+  <div>
+   <span class="author-name">Max Johnson</span>
+   <span class="author-meta">@maxjohnscn</span>
+  </div>
+ </div>
+</div>
+
+<div class="page-wrap">
+ <main class="guide-content">
+
+  <button class="download-btn" onclick="window.print()">&#8595; Download PDF</button>
+
+  <p class="intro-blurb">Three leading AI tools, running from your terminal, coordinated through a single free MCP server. Each model handles the work it does best. You stay in one session.</p>
+
+  <p><strong>What's inside:</strong></p>
+  <ul>
+   <li>Why using a single AI model creates blind spots you can't see</li>
+   <li>The distinct strengths of Claude Code, Codex CLI, and Gemini CLI</li>
+   <li>Everything you need before you begin, and how to install each CLI</li>
+   <li>How to sign in to all three using the subscriptions you already pay for</li>
+   <li>Installing the PAL MCP server that connects them into one workflow</li>
+   <li>How to verify the handoff between models is actually happening</li>
+   <li>The exact prompts that trigger multi-model workflows</li>
+   <li>Permissions, rate limits, and cost considerations to know before you start</li>
+  </ul>
+
+  <div class="chapter-grid">
+   <div class="chapter-card">
+    <div class="chapter-num">01</div>
+    <div class="chapter-title">Why One Model Isn't Enough</div>
+    <p class="chapter-desc">The blind spot problem with relying on a single AI</p>
+   </div>
+   <div class="chapter-card">
+    <div class="chapter-num">02</div>
+    <div class="chapter-title">Meet Your AI Team</div>
+    <p class="chapter-desc">Claude, Codex and Gemini, and what each is actually best at</p>
+   </div>
+   <div class="chapter-card">
+    <div class="chapter-num">03</div>
+    <div class="chapter-title">What You Need &amp; Installing The CLIs</div>
+    <p class="chapter-desc">Before you start, plus getting all three tools on your machine</p>
+   </div>
+   <div class="chapter-card">
+    <div class="chapter-num">04</div>
+    <div class="chapter-title">Sign In With Your Existing Subscriptions</div>
+    <p class="chapter-desc">No API keys, just the accounts you already pay for</p>
+   </div>
+   <div class="chapter-card">
+    <div class="chapter-num">05</div>
+    <div class="chapter-title">Install The PAL MCP Server</div>
+    <p class="chapter-desc">The free connector that links the three CLIs together</p>
+   </div>
+   <div class="chapter-card">
+    <div class="chapter-num">06</div>
+    <div class="chapter-title">Verify It's Working</div>
+    <p class="chapter-desc">Confirm the handoff between models is actually happening</p>
+   </div>
+   <div class="chapter-card">
+    <div class="chapter-num">07</div>
+    <div class="chapter-title">Prompts To Run Your AI Team</div>
+    <p class="chapter-desc">The exact phrasing that triggers multi-model workflows</p>
+   </div>
+   <div class="chapter-card">
+    <div class="chapter-num">08</div>
+    <div class="chapter-title">Permissions, Limits &amp; Costs</div>
+    <p class="chapter-desc">What to know before you let three AIs touch your code</p>
+   </div>
+  </div>
+
+  <!-- CHAPTER 1 -->
+  <h2 id="ch1">Chapter 1: Why One Model Isn't Enough</h2>
+
+  <div class="callout">
+   <div class="callout-label">The Core Idea</div>
+   <p>Every AI model has a perspective shaped by its training. That perspective has gaps. The gaps you can't see are the dangerous ones.</p>
+  </div>
+
+  <p>Most people who use AI for coding settle into a pattern quickly: open Claude Code, describe the problem, work through it together. It feels thorough. The model reasons carefully, asks clarifying questions, and produces polished output. What could be missing?</p>
+
+  <p>Quite a lot, it turns out. Not because any single model is bad, but because every model is trained differently. Claude is exceptional at reasoning about intent and holding complex context. But the patterns it leans on, the error classes it's most sensitive to, the edge cases it tends to anticipate, all reflect its training data and reward signals. OpenAI's coding models reflect a different set. Google's models reflect another.</p>
+
+  <p>When you work with only one model, you don't just get one perspective on your code. You also get one set of blind spots. And because the model is fluent and confident, those blind spots are invisible. You have no signal that something was missed.</p>
+
+  <h3>The echo chamber problem</h3>
+
+  <p>This is subtler than it sounds. The risk isn't that a single model gives you wrong answers. It's that it gives you <strong>consistently wrong answers in the same direction</strong>. A model that misses a class of race condition will miss it every time you ask about threading. A model that tends to underestimate memory pressure will do so reliably. You can iterate for hours within that blind spot and never escape it, because your feedback loop is entirely contained within the model's own frame.</p>
+
+  <p>A second model with a different training lineage breaks that loop. It may disagree with the first on exactly the thing the first was confident about. That disagreement is a signal. It tells you there's something worth looking at more carefully.</p>
+
+  <h3>The context window problem</h3>
+
+  <p>There's a second failure mode that compounds the first. Most coding models have context windows that cap out well below the size of a real production codebase. Ask Claude Code to reason about a 300,000-token monorepo, and it will work within what it can hold, making educated inferences about the rest. That's often enough. Sometimes it isn't.</p>
+
+  <p>Gemini's context window is built at a different scale: around 1 million tokens. For the tasks where full-codebase visibility genuinely matters, that difference is decisive. Rather than swapping tools every time you hit a size constraint, you can route those specific tasks to Gemini from within the same session.</p>
+
+  <h3>What you get from three models working together</h3>
+
+  <p>The setup in this guide doesn't replace your judgment. It amplifies it. Claude Code drives the session and handles the bulk of the building work. Codex CLI acts as a reviewer with a different perspective on logic and execution paths. Gemini CLI handles the tasks that need a wider view, whether that's a very large codebase, a long document, or a task that needs multiple passes across a lot of material at once.</p>
+
+  <p>You don't have to manually shuttle files between three terminal windows. The PAL MCP server, covered in Chapter 5, handles the coordination. You stay in Claude Code and describe the work. The routing happens underneath.</p>
+
+  <!-- CHAPTER 2 -->
+  <h2 id="ch2">Chapter 2: Meet Your AI Team</h2>
+
+  <div class="callout">
+   <div class="callout-label">Why This Matters</div>
+   <p>Knowing what each model is genuinely best at determines when you route work to it. Using the wrong model for a task doesn't just waste time. It means you're trusting a weaker signal on something that matters.</p>
+  </div>
+
+  <p>Before you start routing tasks across three models, it helps to understand what each one is actually built for. The descriptions below are not marketing copy. They're the operational picture of each tool that shapes how you'll use it day to day.</p>
+
+  <div class="three-col-cards">
+   <div class="team-card">
+    <div class="team-card-name">Claude Code</div>
+    <div class="team-card-role">The Builder</div>
+    <p class="team-card-body">Strongest at reasoning about intent, holding context across large codebases, and making coherent changes across many files at once. The natural choice to drive the overall session.</p>
+   </div>
+   <div class="team-card">
+    <div class="team-card-name">Codex CLI</div>
+    <div class="team-card-role">The Reviewer</div>
+    <p class="team-card-body">Runs on OpenAI's coding models, trained heavily on real execution paths. Particularly sharp at spotting logical errors and edge cases that pass tests but break in production.</p>
+   </div>
+   <div class="team-card">
+    <div class="team-card-name">Gemini CLI</div>
+    <div class="team-card-role">The Analyst</div>
+    <p class="team-card-body">Built on Gemini's huge context window, around 1 million tokens. The one you hand a massive monorepo, a long video, or a 200-page PDF that the others can't hold in one pass.</p>
+   </div>
+  </div>
+
+  <h3>Claude Code in practice</h3>
+
+  <p>Claude Code is where you'll spend most of your time. It understands natural-language instructions well enough that you can describe what you want at a high level, and it will make coherent decisions about implementation without you specifying every detail. It holds context across a session reliably, so earlier decisions inform later ones. It's also the model that has the deepest integration with your local file system through its MCP tooling.</p>
+
+  <p>For the workflows in this guide, Claude Code acts as the coordinator. It decides when to call Codex or Gemini and passes them the right context for each task.</p>
+
+  <h3>Codex CLI in practice</h3>
+
+  <p>Codex CLI is OpenAI's command-line coding tool. It runs locally, connects to your terminal, and can execute code as well as reason about it. The model it runs on has been trained with heavy emphasis on real-world code execution: the kinds of patterns that appear not just in open-source repositories, but in the paths code actually takes at runtime.</p>
+
+  <p>Where Codex earns its place in this setup is in post-build review. After Claude Code has made a set of changes, routing those changes through Codex gives you a second opinion from a model that approaches the code from a different angle. It catches different things. That's the value.</p>
+
+  <h3>Gemini CLI in practice</h3>
+
+  <p>Gemini CLI is Google's command-line tool for Gemini models. Unlike the other two, its primary advantage is not a different reasoning style. It is scale. A 1 million token context window means you can hand it an entire large codebase, a long transcript, or a dense PDF and ask questions that require synthesizing information across all of it simultaneously.</p>
+
+  <p>For individual developers working on real projects, this is useful in a specific but important set of situations: analyzing a very large codebase you've just inherited, reviewing a long set of dependency changes, or cross-referencing a large document against your current implementation.</p>
+
+  <!-- CHAPTER 3 -->
+  <h2 id="ch3">Chapter 3: What You Need &amp; Installing The CLIs</h2>
+
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>Check every prerequisite before you start. Installing the PAL MCP server in Chapter 5 will fail silently if Node.js, Git, or Python are missing or on the wrong version.</p>
+  </div>
+
+  <p>This chapter covers two things: confirming you have the right starting point, and getting all three CLI tools installed on your machine. The checklist below is the full set of prerequisites. Each item has a reason attached.</p>
+
+  <div class="checklist">
+   <div class="checklist-item">
+    <div class="check-badge">&#10003;</div>
+    <div class="checklist-body">
+     <div class="checklist-title">Claude Code installed and working</div>
+     <p class="checklist-desc">On a Pro, Max, or Team plan</p>
+    </div>
+   </div>
+   <div class="checklist-item">
+    <div class="check-badge">&#10003;</div>
+    <div class="checklist-body">
+     <div class="checklist-title">A ChatGPT plan that includes Codex</div>
+     <p class="checklist-desc">Plus, Pro, Business, Edu, or Enterprise. Codex CLI is included, no separate purchase</p>
+    </div>
+   </div>
+   <div class="checklist-item">
+    <div class="check-badge">&#10003;</div>
+    <div class="checklist-body">
+     <div class="checklist-title">A Google account</div>
+     <p class="checklist-desc">Free. This is all Gemini CLI needs to get started</p>
+    </div>
+   </div>
+   <div class="checklist-item">
+    <div class="check-badge">&#10003;</div>
+    <div class="checklist-body">
+     <div class="checklist-title">Node.js 20 or higher, and Git</div>
+     <p class="checklist-desc">Required to install the Codex and Gemini CLIs</p>
+    </div>
+   </div>
+   <div class="checklist-item">
+    <div class="check-badge">&#10003;</div>
+    <div class="checklist-body">
+     <div class="checklist-title">Python 3.10+ and uv installed</div>
+     <p class="checklist-desc">Required to run the PAL MCP server that connects everything</p>
+    </div>
+   </div>
+  </div>
+
+  <h3>Installing Codex CLI</h3>
+
+  <p>Codex CLI is installed via npm. It requires Node.js 20 or higher. Run this in your terminal:</p>
+
+<pre><code>npm install -g @openai/codex</code></pre>
+
+  <p>After it finishes, verify the install with:</p>
+
+<pre><code>codex --version</code></pre>
+
+  <p>You should see a version number. If you see a "command not found" error, check that your npm global bin directory is on your PATH.</p>
+
+  <h3>Installing Gemini CLI</h3>
+
+  <p>Gemini CLI is also distributed via npm. Install it with:</p>
+
+<pre><code>npm install -g @google/gemini-cli</code></pre>
+
+  <p>Then verify:</p>
+
+<pre><code>gemini --version</code></pre>
+
+  <p>Again, a version number means it installed correctly. If you're on a machine with multiple Node.js versions managed by nvm or similar, make sure you're running Node.js 20+ before installing.</p>
+
+  <h3>Verifying Node.js and Git</h3>
+
+  <p>If you're not sure which version of Node.js you have, check it:</p>
+
+<pre><code>node --version
+git --version</code></pre>
+
+  <p>Both commands should return version numbers. If Node.js is below 20, upgrade it before continuing. The most reliable way to manage Node.js versions is with nvm on macOS and Linux, or nvm-windows on Windows.</p>
+
+  <h3>Installing uv for Python</h3>
+
+  <p>uv is a fast Python package manager used by the PAL MCP server. Install it with:</p>
+
+<pre><code># macOS and Linux
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Windows (PowerShell)
+powershell -c "irm https://astral.sh/uv/install.ps1 | iex"</code></pre>
+
+  <p>Restart your terminal after installation, then verify:</p>
+
+<pre><code>uv --version
+python --version</code></pre>
+
+  <p>Python should report 3.10 or higher. If it reports a lower version, you'll need to install a newer Python before proceeding to Chapter 5.</p>
+
+  <!-- CHAPTER 4 -->
+  <h2 id="ch4">Chapter 4: Sign In With Your Existing Subscriptions</h2>
+
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>None of these tools require an API key if you're using a qualifying subscription. API key authentication is available as an alternative, but this guide covers the subscription path because it's simpler and included in what you already pay for.</p>
+  </div>
+
+  <p>Each of the three CLIs authenticates separately. The steps below take around two minutes in total. Do them in order, making sure each one succeeds before moving on.</p>
+
+  <div class="step-stack">
+   <div class="step-card">
+    <div class="step-num">01</div>
+    <div class="step-body">
+     <div class="step-title">Sign in to Codex CLI with ChatGPT</div>
+     <p class="step-desc">Run <code>codex</code> in your terminal and choose <strong>Sign in with ChatGPT</strong> when prompted. This opens a browser window: log in with the ChatGPT account that holds your Plus, Pro, Business, Edu, or Enterprise plan. Codex usage then runs against your plan's included usage, not pay-as-you-go API credits.</p>
+    </div>
+   </div>
+   <div class="step-card">
+    <div class="step-num">02</div>
+    <div class="step-body">
+     <div class="step-title">Sign in to Gemini CLI with Google</div>
+     <p class="step-desc">Run <code>gemini</code> in your terminal. On first run you'll be asked how to authenticate: choose <strong>Login with Google</strong> and sign in with your personal Google account. This unlocks Gemini's free tier, which is generous enough for most individual workflows.</p>
+    </div>
+   </div>
+   <div class="step-card">
+    <div class="step-num">03</div>
+    <div class="step-body">
+     <div class="step-title">Claude Code is already signed in</div>
+     <p class="step-desc">If you're already using Claude Code day to day, there's nothing extra to do here. It authenticates the same way it always has.</p>
+    </div>
+   </div>
+  </div>
+
+  <div class="callout">
+   <div class="callout-label">If You'd Rather Use API Keys</div>
+   <p>Both Codex CLI and Gemini CLI support API key authentication as an alternative. Set <code>OPENAI_API_KEY</code> in your environment for Codex, and <code>GEMINI_API_KEY</code> for Gemini. When these variables are present, the CLIs use them instead of the browser-based login flow. If you go this route, API usage is billed at standard rates against your OpenAI or Google Cloud account, not your subscription plan.</p>
+  </div>
+
+  <h3>Confirming each login worked</h3>
+
+  <p>Before continuing, run a quick test prompt in each CLI to confirm authentication is working. Open a new terminal tab for each:</p>
+
+<pre><code># Test Codex CLI
+codex "What is 2 + 2?"
+
+# Test Gemini CLI
+gemini "What is 2 + 2?"</code></pre>
+
+  <p>Both should respond with something sensible. If either returns an authentication error, go back through the sign-in steps for that tool before proceeding.</p>
+
+  <!-- CHAPTER 5 -->
+  <h2 id="ch5">Chapter 5: Install The PAL MCP Server</h2>
+
+  <div class="callout">
+   <div class="callout-label">The Core Idea</div>
+   <p>PAL stands for "Proxy AI Layer." It's a free MCP server that exposes Codex CLI and Gemini CLI as tools that Claude Code can call directly from inside a session. Without it, coordinating three CLIs means three separate terminal windows and manual copy-paste. With it, Claude Code handles the routing.</p>
+  </div>
+
+  <p>The PAL MCP server is an open-source project. You install it once and configure Claude Code to connect to it. After that, the three CLIs behave like a single coordinated system.</p>
+
+  <h3>Clone the repository</h3>
+
+  <p>First, clone the PAL repo to a stable location on your machine. The PAL server runs as a persistent background process, so put it somewhere you won't accidentally delete it:</p>
+
+<pre><code>git clone https://github.com/pals-ai/pal-mcp-server.git ~/.pal-mcp
+cd ~/.pal-mcp</code></pre>
+
+  <h3>Install dependencies</h3>
+
+  <p>PAL uses uv to manage its Python dependencies. With uv installed from Chapter 3, run:</p>
+
+<pre><code>uv sync</code></pre>
+
+  <p>This reads the project's dependency file and installs everything into an isolated virtual environment. It does not affect your global Python installation.</p>
+
+  <h3>Configure Claude Code to use PAL</h3>
+
+  <p>Claude Code looks for MCP server configurations in its settings file. Open or create <code>~/.claude/claude_desktop_config.json</code> and add the PAL server entry:</p>
+
+<pre><code>{
+  "mcpServers": {
+    "pal": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/Users/YOUR_USERNAME/.pal-mcp",
+        "run",
+        "pal-server"
+      ]
+    }
+  }
+}</code></pre>
+
+  <p>Replace <code>/Users/YOUR_USERNAME/.pal-mcp</code> with the actual path where you cloned the repo. On Windows, use a path like <code>C:\\Users\\YOUR_USERNAME\\.pal-mcp</code> with double backslashes.</p>
+
+  <div class="callout">
+   <div class="callout-label">What This Gives Claude</div>
+   <p>Once this configuration is in place, Claude Code gains two new tools it can call mid-session: <code>pal_ask_codex</code> and <code>pal_ask_gemini</code>. These let Claude pass a question or task directly to Codex CLI or Gemini CLI and receive the response back in the same session thread. You don't need to describe the routing in your prompts. Claude decides when to use each tool based on what the task calls for.</p>
+  </div>
+
+  <h3>Restart Claude Code</h3>
+
+  <p>After saving the config file, restart Claude Code completely. On the next launch, it will start the PAL server automatically and connect to it. You should see a small indicator in the Claude Code interface confirming MCP servers are active.</p>
+
+  <!-- CHAPTER 6 -->
+  <h2 id="ch6">Chapter 6: Verify It's Working</h2>
+
+  <p>Don't assume the setup is working. Verify it explicitly before you rely on it for real work. This chapter gives you three tests that confirm each layer of the stack is functioning correctly.</p>
+
+  <h3>Test 1: Confirm PAL tools are available</h3>
+
+  <p>Start a new Claude Code session and ask it directly what tools it has access to:</p>
+
+<pre><code>What MCP tools do you currently have available? List them.</code></pre>
+
+  <p>In the response, you should see <code>pal_ask_codex</code> and <code>pal_ask_gemini</code> listed among the available tools. If you don't see them, the PAL MCP server did not start correctly. The most common cause is a path error in <code>claude_desktop_config.json</code>. Double-check the directory path and restart Claude Code again.</p>
+
+  <h3>Test 2: Trigger a Codex handoff</h3>
+
+  <p>Ask Claude to use Codex explicitly for a simple task:</p>
+
+<pre><code>Use Codex to review this function and tell me if there are any edge cases:
+
+function divide(a, b) {
+  return a / b;
+}</code></pre>
+
+  <p>Claude should call <code>pal_ask_codex</code>, pass the function to Codex CLI, and return Codex's response alongside its own. You'll see the tool call appear in Claude's response thread. If you only see Claude's own analysis with no tool call, the PAL connection isn't working. Check the Claude Code logs for error messages.</p>
+
+  <h3>Test 3: Trigger a Gemini handoff</h3>
+
+  <p>Test the Gemini route with a question that benefits from its context capacity:</p>
+
+<pre><code>Use Gemini to summarize what you know about large context window use cases in AI development.</code></pre>
+
+  <p>Claude should call <code>pal_ask_gemini</code> and return the response. If this works, all three layers of the stack are functioning.</p>
+
+  <div class="callout">
+   <div class="callout-label">If It Doesn't Trigger</div>
+   <p>Claude will use its own judgment about when to call PAL tools, even when asked. If it answers from its own knowledge instead of calling the tool, rephrase to be more explicit: "Call pal_ask_gemini with this question." That forces the tool call rather than letting Claude decide it can answer without one. For automated workflows, this explicit phrasing is the more reliable pattern anyway.</p>
+  </div>
+
+  <!-- CHAPTER 7 -->
+  <h2 id="ch7">Chapter 7: Prompts To Run Your AI Team</h2>
+
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>The prompts below are starting points. Adapt the specifics to your own codebase and workflow. The underlying pattern, being explicit about which model you want to handle which task, is what matters.</p>
+  </div>
+
+  <p>The most effective way to use this three-model setup is to be deliberate about routing from the start. Rather than asking Claude to handle everything and hoping it delegates appropriately, describe the work and specify which model should handle which part.</p>
+
+  <h3>The dual-review pattern</h3>
+
+  <p>After Claude Code makes changes to a file, send it for a second pass through Codex:</p>
+
+<pre><code>You've just edited auth.js. Now use Codex to review the changes
+for logic errors, off-by-one errors, and any edge cases in the
+token validation flow. Return both your own notes and Codex's
+findings side by side.</code></pre>
+
+  <p>This is the core workflow. Claude builds, Codex reviews. The side-by-side format makes disagreements visible rather than blending them into a single response.</p>
+
+  <h3>The large-codebase analysis pattern</h3>
+
+  <p>When you need to understand something that spans the whole project:</p>
+
+<pre><code>Use Gemini to read the entire src/ directory and identify every
+place we're directly mutating state outside of a dedicated state
+management function. Return the file paths and line numbers.</code></pre>
+
+  <p>Gemini's context window is what makes this possible at scale. On a large codebase, asking Claude or Codex to do this would require chunking, which introduces the risk of missing cross-file patterns.</p>
+
+  <h3>The architecture disagreement pattern</h3>
+
+  <p>When you're making a significant structural decision and want genuine divergence of opinion:</p>
+
+<pre><code>I'm deciding between approach A and approach B for the caching
+layer. First, give me your own recommendation with reasoning.
+Then use Codex to evaluate the same two options independently.
+Then use Gemini to do the same. Present all three positions
+clearly, including any disagreements.</code></pre>
+
+  <p>Three models giving independent assessments of the same architectural question is more useful than one model asked to play devil's advocate. The disagreements between them are genuine signals about the tradeoffs in each approach.</p>
+
+  <h3>The automated review hook</h3>
+
+  <p>If you want Codex to run automatically every time Claude Code completes a coding task, you can configure this in your CLAUDE.md file. Add an instruction at the top:</p>
+
+<pre><code># Auto-review rule
+After every coding task that modifies or creates a file, call
+pal_ask_codex with the changed file contents and the task
+description. Append Codex's review to your response under a
+heading called "Codex Review."</code></pre>
+
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>Adding this instruction to CLAUDE.md makes it a persistent rule for the project rather than something you have to repeat in every prompt. Claude Code reads CLAUDE.md at the start of every session, so the behavior applies automatically from that point forward.</p>
+  </div>
+
+  <h3>The document analysis pattern</h3>
+
+  <p>When you have a long spec, RFC, or technical document to work from:</p>
+
+<pre><code>Use Gemini to read the attached architecture spec (spec.pdf) and
+extract every requirement that affects the database schema.
+Return a numbered list. Then use that list as the basis for
+our schema design work.</code></pre>
+
+  <p>This takes advantage of Gemini's ability to hold a large document in a single pass, rather than summarizing it in chunks and potentially losing detail in the compression.</p>
+
+  <!-- CHAPTER 8 -->
+  <h2 id="ch8">Chapter 8: Permissions, Limits &amp; Costs</h2>
+
+  <div class="callout">
+   <div class="callout-label">Why This Matters</div>
+   <p>Three models running in parallel can consume plan usage faster than expected. Understanding what each model charges for, and what the limits look like in practice, prevents surprises at the end of the billing period.</p>
+  </div>
+
+  <p>Before you make this setup a core part of your daily workflow, it's worth being clear about how each tool handles permissions and how costs accumulate.</p>
+
+  <h3>Claude Code permissions</h3>
+
+  <p>Claude Code runs with the file system permissions of the user account that launched it. By default, it will ask for confirmation before editing files, running terminal commands, or making network requests. The PAL MCP server runs as a subprocess of Claude Code and inherits the same permissions.</p>
+
+  <p>In the Claude Code settings, you can configure auto-approve rules for specific directories or command types. For a development environment where you trust Claude Code to edit files freely, setting auto-approve for your project directory reduces friction significantly. For production environments or repos with sensitive configuration, keep the confirmation prompts on.</p>
+
+  <h3>Codex CLI permissions</h3>
+
+  <p>Codex CLI can execute code locally, which means it has real side effects. When PAL passes a task to Codex, Codex can run commands in your terminal environment. Be specific about what you're asking it to do. "Review this function for edge cases" is safe. "Fix this function and run the tests" gives it execution access.</p>
+
+  <p>Codex CLI has a sandbox mode that restricts it to read-only operations. For pure review tasks, enabling sandbox mode is a sensible default. You can pass the <code>--sandbox</code> flag when invoking Codex manually, or configure PAL to pass it automatically.</p>
+
+  <h3>Usage limits by plan</h3>
+
+  <p>All three tools enforce usage limits based on your subscription tier. The practical limits you'll hit depend heavily on how you use them:</p>
+
+  <ul>
+   <li><strong>Claude Code on Pro or Max</strong> has generous included usage. Running Codex reviews on every single file edit will consume usage faster than using it selectively on significant changes.</li>
+   <li><strong>Codex CLI on ChatGPT Plus</strong> has a monthly usage cap. Heavy automated review workflows may require a Pro or higher plan to avoid hitting the limit mid-month.</li>
+   <li><strong>Gemini CLI on a free Google account</strong> uses Gemini's free tier, which resets daily. For occasional large-context analysis, this is usually enough. For continuous heavy use, consider a Gemini Advanced subscription or API key with billing.</li>
+  </ul>
+
+  <h3>Cost when using API keys</h3>
+
+  <p>If you switch to API key authentication for either Codex or Gemini (as described in Chapter 4), usage is billed per token at standard rates. This is usually more expensive than a flat subscription for heavy use, but cheaper for light or irregular use. Track your API usage in the provider dashboards during the first week so you can calibrate.</p>
+
+  <h3>What not to let run automatically</h3>
+
+  <p>The automated review hook from Chapter 7 is powerful, but attaching it to every file edit is aggressive. In a long Claude Code session with many small changes, you can hit rate limits before the important work is done. A more sustainable pattern is to trigger the multi-model review at meaningful checkpoints: after completing a feature, before committing, or after a major refactor, rather than after every individual edit.</p>
+
+  <div class="ref-strip">
+   <div class="ref-card">
+    <div class="ref-name">Claude Code</div>
+    <div class="ref-role">Drives the session, builds the work</div>
+    <div class="ref-url">claude.ai/code</div>
+   </div>
+   <div class="ref-card">
+    <div class="ref-name">Codex CLI</div>
+    <div class="ref-role">Reviews and catches edge cases</div>
+    <div class="ref-url">developers.openai.com/codex</div>
+   </div>
+   <div class="ref-card">
+    <div class="ref-name">Gemini CLI</div>
+    <div class="ref-role">Handles the large-context work</div>
+    <div class="ref-url">github.com/google-gemini/gemini-cli</div>
+   </div>
+  </div>
+
+ </main>
+
+ <aside class="toc-sidebar">
+  <div class="toc-box">
+   <h3>Chapters</h3>
+   <ol>
+    <li><a href="#ch1">Why One Model Isn't Enough</a></li>
+    <li><a href="#ch2">Meet Your AI Team</a></li>
+    <li><a href="#ch3">What You Need &amp; Installing The CLIs</a></li>
+    <li><a href="#ch4">Sign In With Your Existing Subscriptions</a></li>
+    <li><a href="#ch5">Install The PAL MCP Server</a></li>
+    <li><a href="#ch6">Verify It's Working</a></li>
+    <li><a href="#ch7">Prompts To Run Your AI Team</a></li>
+    <li><a href="#ch8">Permissions, Limits &amp; Costs</a></li>
+   </ol>
+  </div>
+ </aside>
+
+</div>
+
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+</body>
+</html>

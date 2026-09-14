@@ -1,0 +1,29 @@
+{
+  "id": "AI-033",
+  "slug": "ai-print-on-demand-setup-guide",
+  "title": "AI Print-On-Demand Setup Guide",
+  "category": "Building & Monetising",
+  "subcategory": "Monetisation Strategy",
+  "difficulty": "Beginner",
+  "description": "Build a print-on-demand business with Claude handling design generation, listing copy, and product research. Full setup from Printful or Printify through to live product listings.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Building & Monetising",
+    "How It Works, The Full Picture",
+    "Step 01, Pick Your Niche",
+    "Monetisation Strategy"
+  ],
+  "ai_tools": [
+    "Claude"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-033_ai-print-on-demand-setup-guide.html",
+  "summary_file": "summaries/AI-033.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

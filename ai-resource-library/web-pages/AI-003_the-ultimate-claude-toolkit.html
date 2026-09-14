@@ -1,0 +1,488 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>The Ultimate Claude Toolkit</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3Eâœ¦%3C/text%3E%3C/svg%3E">
+ <style>
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ :root {
+ --accent: #1A7A6A;
+ --accent-indigo: #6366F1;
+ --accent-light: #E8F5F3;
+ --accent-border: #9FD5CE;
+ --text: #000000;
+ --muted: #6B7280;
+ --bg: #FFFFFF;
+ --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+ --card-gradient: linear-gradient(160deg, #E8F5F3 0%, #FFFFFF 100%);
+ --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+ --shadow-hover: 0 8px 24px rgba(26,122,106,0.12), 0 2px 8px rgba(0,0,0,0.08);
+ --shadow-hard: 4px 4px 0px #000000;
+ --radius: 12px;
+ --header-height: 64px;
+ }
+ html { scroll-behavior: smooth; }
+ body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+
+ .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+ .header.scrolled { border-color: var(--accent-border); }
+ .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+ .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+ .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+ .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+ .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+ a.logo-subtitle:hover { color: var(--accent); }
+ .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+ .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+
+ .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+ @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+
+ .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+ .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+ .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+ .badge-cat { background: var(--accent); color: #fff; }
+ .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+ .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+ .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+ .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+ .author-name { display: block; font-weight: 600; font-size: 0.875rem; color: var(--text); }
+ .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+
+ .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+ .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+ .toc-box ol { list-style: none; counter-reset: toc; }
+ .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+ .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+ .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+ .toc-box a:hover { color: var(--accent); }
+
+ .guide-content { padding: 2rem 0 5rem; }
+ .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+ .guide-content h2:first-child { border-top: none; margin-top: 0; }
+ .guide-content h3 { font-size: 1.125rem; font-weight: 600; margin-top: 1.75rem; margin-bottom: 0.75rem; }
+ .guide-content p { margin-bottom: 1.125rem; }
+ .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+ .guide-content li { margin-bottom: 0.375rem; }
+ .guide-content strong { font-weight: 600; }
+
+ .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+
+ .callout { background: var(--accent-light); border-left: 3px solid var(--accent); padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; font-size: 0.9375rem; margin: 1.25rem 0; }
+ .callout p { margin: 0; }
+ .callout strong { color: var(--accent); }
+
+ .code-block { background: #000; color: #fff; font-family: 'Courier New', Courier, monospace; font-size: 0.875rem; line-height: 1.6; padding: 1.25rem 1.5rem; border-radius: 8px; overflow-x: auto; margin: 1.25rem 0; }
+ .code-block code { background: none; color: inherit; }
+
+ .prompt-example { background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 8px; padding: 1.125rem 1.25rem; margin: 1rem 0; font-size: 0.9rem; font-family: 'Courier New', Courier, monospace; line-height: 1.65; white-space: pre-wrap; }
+
+ /* Visual Block Styles */
+ .plan-table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+ .plan-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+ .plan-table th, .plan-table td { padding: 0.75rem 1rem; text-align: left; border: 1px solid #E5E7EB; }
+ .plan-table th { background: #F9FAFB; font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; }
+ .plan-table td.check { text-align: center; color: var(--accent); font-weight: 700; }
+ .plan-table .col-pro { background: var(--accent-light); }
+ .plan-table .col-pro th, .plan-table .col-pro td { border-color: var(--accent-border); }
+ .recommended-badge { display: inline-block; background: var(--accent); color: #fff; font-size: 0.625rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 0.15rem 0.5rem; border-radius: 9999px; margin-left: 0.5rem; vertical-align: middle; }
+ .plan-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 1.5rem 0; }
+ @media (max-width: 700px) { .plan-grid { grid-template-columns: repeat(2, 1fr); } }
+ .plan-card { background: #fff; border: 1.5px solid #E5E7EB; border-radius: 10px; padding: 1.25rem 1rem; }
+ .plan-card.recommended { border-color: var(--accent); background: var(--accent-light); }
+ .plan-card .plan-name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.25rem; }
+ .plan-card .plan-price { font-size: 1.25rem; font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; }
+ .plan-card .plan-label { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.75rem; }
+ .plan-card ul { list-style: none; padding: 0; font-size: 0.8rem; }
+ .plan-card ul li { padding: 0.2rem 0; border-top: 1px solid rgba(0,0,0,0.06); color: var(--muted); }
+ .plan-card ul li:first-child { border-top: none; }
+
+ @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+     .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+    @page { margin: 1.5cm; } @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .chapter-card, .compare-card, .checklist-card, blockquote { break-inside: avoid; page-break-inside: avoid; } .chapter-overview, .compare-grid, .checklist-grid, .email-flow { break-inside: avoid; page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+
+<header class="header" id="site-header">
+ <div class="header-inner">
+ <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+ <div class="logo-divider"></div>
+ <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">â† All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+ <span class="badge badge-cat">Getting Started</span>
+ <span class="badge badge-diff">Beginner</span>
+ </div>
+ <h1>The Ultimate Claude Toolkit</h1>
+ <div class="hero-author">
+ <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+ <div>
+ <span class="author-name">Max Johnson</span>
+ <span class="author-meta">@maxjohnscn</span>
+ </div>
+ </div>
+</div>
+
+<div class="page-wrap">
+ <article class="guide-content">
+    <button class="download-btn" onclick="downloadPDF()">&#8595; Download PDF</button>
+ <p class="intro-blurb">Everything a complete beginner needs to set up, use and get real value from Claude. Every step is actionable. Nothing is skipped.</p>
+
+ <p><strong>What is covered:</strong></p>
+ <ul>
+ <li>01, Get the setup right from the start</li>
+ <li>02, Stop burning through your usage limits</li>
+ <li>03, Skills, give Claude a job description</li>
+ <li>04, Projects, your permanent workspace</li>
+ <li>05, Prompting that actually works</li>
+ <li>06, Claude on your desktop and phone</li>
+ <li>07, The best free tools to pair with Claude</li>
+ <li>08, Memory and personalisation</li>
+ </ul>
+
+ <h2 id="01-get-the-setup-right-from-the-start">01, Get the Setup Right From the Start</h2>
+ <p>Before you do anything else, make sure you are on the right version of Claude and have the basics configured. Most people skip this and wonder why Claude keeps forgetting who they are.</p>
+
+ <h3>Which plan do you need</h3>
+ <p>The free plan is a good starting point. The Pro plan is worth paying for the moment Claude becomes part of your actual work routine. The key differences:</p>
+ <ul>
+ <li>Free plan gives you Claude Sonnet with usage limits that reset every few hours</li>
+ <li>Pro unlocks Claude Opus, which is the most capable model, and significantly higher limits</li>
+ <li>Pro is also required to create Projects, which are covered in Section 04 and are one of the most useful things in this entire toolkit</li>
+ </ul>
+ <p>Go to claude.ai to sign in or create an account. The model you are currently using shows in the top left of any chat window.</p>
+
+ <!-- VISUAL BLOCK 1 -->
+ <div class="plan-grid">
+ <div class="plan-card">
+ <div class="plan-name">Free</div>
+ <div class="plan-price">$0/mo</div>
+ <div class="plan-label">Trying it out</div>
+ <ul>
+ <li>Sonnet only</li>
+ <li>No Projects</li>
+ <li>No Claude Code</li>
+ </ul>
+ </div>
+ <div class="plan-card recommended">
+ <div class="plan-name">Pro <span class="recommended-badge">Recommended</span></div>
+ <div class="plan-price">$20/mo</div>
+ <div class="plan-label">Daily work</div>
+ <ul>
+ <li>All models</li>
+ <li>Projects: Yes</li>
+ <li>Claude Code: Yes</li>
+ </ul>
+ </div>
+ <div class="plan-card">
+ <div class="plan-name">Max</div>
+ <div class="plan-price">$100 $200/mo</div>
+ <div class="plan-label">Power users</div>
+ <ul>
+ <li>All + priority</li>
+ <li>Projects: Yes</li>
+ <li>Claude Code: Extended</li>
+ </ul>
+ </div>
+ <div class="plan-card">
+ <div class="plan-name">Team</div>
+ <div class="plan-price">$25/seat/mo</div>
+ <div class="plan-label">Businesses</div>
+ <ul>
+ <li>All models</li>
+ <li>Projects: Shared</li>
+ <li>Claude Code: Yes</li>
+ </ul>
+ </div>
+ </div>
+
+ <h3>The first thing to do after signing up</h3>
+ <p>Go to Settings by clicking your profile picture in the bottom left corner of claude.ai. The two things to set up immediately are your Profile and your User Preferences. Both take about five minutes and the impact is immediate.</p>
+ <ol>
+ <li><strong>Click Settings, then Profile.</strong> Write a short paragraph describing who you are and what you do. Include your job, your industry and how you prefer Claude to respond.</li>
+ <li><strong>Click User Preferences.</strong> Write standing instructions that apply to every conversation. This is where you store things like preferred tone, format rules and anything Claude should always or never do.</li>
+ <li><strong>Save both and start a new chat.</strong> The next conversation will already have context. You will not need to re-explain yourself.</li>
+ </ol>
+ <p><strong>Why this matters:</strong> Claude re-reads the full conversation history on every single message you send. Without a profile, you burn 3 to 5 messages at the start of every chat just getting Claude up to speed. The Profile and Preferences settings fix this permanently.</p>
+ <p><strong>A good Profile looks like this:</strong></p>
+ <div class="code-block"><pre>Settings &gt; Profile
+
+# Who I am
+I run a small marketing agency in Manchester.
+I work with food, drink and supplement brands in the UK.
+My clients are mostly founder-led businesses with small teams.
+# How I like to work
+Concise answers. No waffle. Give me options where possible.
+When writing copy, always match the brand's tone of voice.
+British English throughout.</pre></div>
+ <p>The more specific this is, the better Claude performs on every task. Generic descriptions produce generic results.</p>
+
+ <h2 id="02-stop-burning-through-your-usage-limits">02, Stop Burning Through Your Usage Limits</h2>
+ <p>Claude does not count messages. It counts tokens. A token is roughly three quarters of a word. Every message you send, and every response Claude sends back, adds to the running total that Claude has to re-read from scratch on every subsequent turn. A short conversation is cheap. A long one with back and forth corrections can burn through days of tokens in an afternoon.</p>
+ <p>These five habits are the ones from the viral post that prompted this toolkit. They are included here with step-by-step instructions because understanding the reason behind each one makes them stick.</p>
+
+ <h3>Habit 1: Edit your message, do not send a follow-up</h3>
+ <p>When Claude gets something wrong, the instinct is to send a correction in a new message. This is the most expensive habit you can have. Every new message adds to the conversation history and Claude re-reads it all in full every time.</p>
+ <p><strong>Before:</strong> Claude gives a weak answer. You send a follow-up message. Claude corrects it. You send another tweak. Three turns in and the context is already heavy.</p>
+ <p><strong>After:</strong> Claude gives a weak answer. You hover over your original message and click the pencil icon. You improve the prompt and regenerate. The failed response is replaced, not added.</p>
+ <p>How to edit a message: hover over your message in the conversation. A pencil icon appears in the top right corner of the message bubble. Click it, make your changes and press Enter to regenerate. Over a long working session this single habit reduces token use by 80 to 90 percent.</p>
+
+ <h3>Habit 2: Start a fresh chat every 15 to 20 messages</h3>
+ <p>Your first message in a chat costs around 200 tokens. By message 30, that same simple question costs 50,000 tokens because Claude is processing everything that came before it. Conversations get exponentially heavier the longer they run.</p>
+ <p>When a chat starts feeling sluggish or Claude's responses get less sharp, that is usually a sign the context is overloaded. Here is the reset process:</p>
+ <ol>
+ <li>Ask Claude: summarise where we are up to in four sentences.</li>
+ <li>Open a new chat.</li>
+ <li>Paste the summary in as your first message and continue from there.</li>
+ </ol>
+ <p>You carry the progress without carrying the weight of the full conversation history.</p>
+
+ <h3>Habit 3: Batch your questions</h3>
+ <p>Three separate messages means three separate context loads. One message with three questions means one. List everything you need in a single message and ask Claude to address each point. The answers tend to be better because Claude can see how the questions relate to each other.</p>
+ <p><strong>Practical example:</strong> Instead of asking three follow-up questions one by one, write them as a numbered list in a single message: 1. Can you make this paragraph shorter? 2. Suggest a better headline. 3. What is missing from this brief? One send. One context load. Faster and cheaper.</p>
+
+ <h3>Habit 4: Upload recurring files to Projects</h3>
+ <p>Every time you drag the same PDF, brief or document into a chat, Claude counts every word in it again from scratch. If you are working with the same files across multiple sessions, this costs a significant number of tokens for no reason. Projects cache your uploaded files so they do not eat into your token limit on each individual conversation. Section 04 covers how to set these up. Anything you find yourself uploading more than twice should live in a Project.</p>
+
+ <h3>Habit 5: Set up Memory and User Preferences</h3>
+ <p>Already covered in Section 01, but worth restating here in the context of limits. Every conversation started without context costs 3 to 5 messages just re-establishing who you are and how you work. Memory and Preferences eliminate that overhead permanently. Go to Settings, write it once, stop paying for it every single time.</p>
+
+ <h2 id="03-skills-give-claude-a-job-description">03, Skills, Give Claude a Job Description</h2>
+ <p>A skill is a set of instructions you upload to Claude that changes how it behaves for a specific type of task. Instead of explaining what you need on every conversation, the skill does that work automatically. Think of it as a job description Claude reads before starting a particular kind of work.</p>
+ <p>You can write your own skills or download them free from GitHub repositories built by the Claude community. Once a skill is installed, you activate it by telling Claude to use it and it handles the rest.</p>
+
+ <h3>How to install a skill step by step</h3>
+ <ol>
+ <li><strong>Go to claude.ai and click Settings.</strong> Then click Capabilities and scroll down until you see Skills.</li>
+ <li><strong>Click Create skill.</strong> You can either write your own instructions or upload a file you have downloaded.</li>
+ <li><strong>To install from GitHub.</strong> Go to github.com, find the repository, locate the skill file (it will end in .md), click it, then click the download icon. Upload that file in the Skills section.</li>
+ <li><strong>Name it and save.</strong> Use a name that describes what the skill does so you can invoke it easily.</li>
+ <li><strong>To use it in a conversation.</strong> Just say: use the [skill name] skill. Claude will apply everything in those instructions automatically.</li>
+ </ol>
+
+ <h3>Skills worth downloading first</h3>
+ <p><strong>alirezarezvani/claude-skills, Marketing and content writing.</strong> 43 skills covering content, SEO, email sequences, competitor analysis and copywriting. Install the content-creator skill first for immediate practical use.</p>
+ <p><strong>coreyhaines31/marketingskills, Ad creative and cold email.</strong> Covers ad copywriting, landing page optimisation and email sequences. A good complement to the first repository.</p>
+ <p><strong>teng-lin/notebooklm-py, Research and document analysis.</strong> Bridges Claude to Google NotebookLM so it can query your research notebooks directly. Useful if you work with a lot of source material.</p>
+ <p><strong>klaudworks/skill-codex, Code and build projects.</strong> Pairs Claude Code with OpenAI Codex for dual-model code review. Only relevant if you are building things with Claude Code.</p>
+
+ <h3>Writing your own skill</h3>
+ <p>A skill is just a plain text file saved with a .md extension. You do not need any technical knowledge to write one. Open any text editor, describe how you want Claude to behave for a specific task, and save it. That is the full process.</p>
+ <p>The most useful first skill to write for yourself: describe your business in detail, list the tone Claude should always use when writing for you, and note any phrases or formats it should avoid. Upload it and every piece of writing Claude produces for you will automatically match your brand.</p>
+ <p><strong>My brand skill, example:</strong></p>
+ <div class="code-block"><pre># Brand writing skill
+## Context
+This is for a UK skincare brand targeting women aged 28 to 45.
+Products are premium but not inaccessible. Tone is knowledgeable
+and warm without being clinical.
+## Always
+Write in British English.
+Use second person (you, your).
+Keep sentences short and active.
+## Never
+Use the words luxury, premium, revolutionary or game-changer.
+Use exclamation marks.
+Write in passive voice.</pre></div>
+
+ <h2 id="04-projects-your-permanent-workspace">04, Projects, Your Permanent Workspace</h2>
+ <p>A Project is a persistent workspace inside Claude that keeps your files, instructions and conversation history together in one place. It is the closest thing Claude has to a folder for an ongoing piece of work.</p>
+ <p>Without Projects, every chat starts completely blank and you pay the token cost of uploading the same files repeatedly. With Projects, Claude already has your files cached, knows the context and can pick up where you left off.</p>
+ <div class="callout"><p><strong>Note:</strong> Projects require a Pro account. If you are on the free plan, this section is still worth reading so you know what to set up when you upgrade.</p></div>
+
+ <h3>How to create a Project</h3>
+ <ol>
+ <li><strong>Click Projects in the left sidebar on claude.ai.</strong> If you cannot see it, check you are on a Pro plan.</li>
+ <li><strong>Click New Project.</strong> Give it a name that describes the work, not the tool. Client Name Strategy is better than AI Project.</li>
+ <li><strong>Click Add content.</strong> Upload files: PDFs, Word documents, text files and images all work. These are now cached and will not count against your token limit on each conversation.</li>
+ <li><strong>Click Project Instructions.</strong> Write a short description of what this project is, who the audience is, and any standing rules Claude should follow in this context.</li>
+ <li><strong>Open a new chat inside the Project.</strong> Every conversation in this Project starts with access to your files and instructions automatically.</li>
+ </ol>
+
+ <h3>What to upload to a Project</h3>
+ <p>The most useful files to put in a Project are the ones you find yourself reaching for repeatedly across different tasks:</p>
+ <ul>
+ <li>Brand guidelines or tone of voice documents</li>
+ <li>Briefs or specifications for ongoing work</li>
+ <li>Previous examples of output you want Claude to match or avoid</li>
+ <li>Research reports or background reading</li>
+ <li>Product catalogues, price lists or data files</li>
+ </ul>
+
+ <h3>Getting the most out of Project Instructions</h3>
+ <p>The Project Instructions field is where you get the most value. Be specific. Instead of writing "write professional copy", write "copy for a sustainable pet food brand targeting millennial dog owners in the UK. Warm, slightly playful, never corporate. Never use the word premium."</p>
+
+ <h3>How many Projects to create</h3>
+ <p>Create a Project for each distinct ongoing area of work rather than one large Project for everything. A useful rule: if you would create a separate folder for it on your computer, it deserves its own Project. One per client, one per product you are building, one for learning and experimentation.</p>
+
+ <h2 id="05-prompting-that-actually-works">05, Prompting That Actually Works</h2>
+ <p>Most people get weak results from Claude because they ask vague questions. Claude is very good at following specific instructions. It is much less good at guessing what you mean. The difference between a useful answer and a useless one is almost always in how the prompt was structured.</p>
+
+ <h3>The four parts of a strong prompt</h3>
+ <p>A well-constructed prompt tells Claude four things: what role it should take, what the task is, what the output should look like, and what it should avoid. You do not need all four every time, but including more of them consistently produces better results.</p>
+ <p><strong>Role:</strong> Act as a senior email copywriter who specialises in e-commerce for UK food brands. Framing Claude in a specific role immediately improves quality. The more specific the role, the better.</p>
+ <p><strong>Task:</strong> Rewrite this product page description to be more compelling for a health-conscious 30-something audience. One clear task at a time. If you have multiple tasks, number them in a single message.</p>
+ <p><strong>Format:</strong> Two short paragraphs. No bullet points. Maximum 90 words total. Specifying format prevents Claude from defaulting to generic structures you will need to redo.</p>
+ <p><strong>Constraint:</strong> Do not use the words natural, artisan or premium. No exclamation marks. Negative instructions are often more effective than positive ones. Tell Claude exactly what to avoid.</p>
+
+ <h3>Patterns that consistently work</h3>
+ <p><strong>Give Claude a role.</strong> Act as a [specific role] at the start of a prompt reliably improves output quality. Act as a financial analyst reviewing this pitch deck for risks is noticeably better than What do you think of this. Claude performs better when it has a clear frame to work from.</p>
+ <p><strong>Show Claude what good looks like.</strong> Paste in an example of the output you want before asking for your actual request. Here is an email subject line I like the tone of: [paste example]. Write five more in the same style. Claude pattern-matches well and will replicate structure, tone and register from whatever you show it.</p>
+ <p><strong>Ask for options.</strong> Give me three versions of this is almost always better than Give me this. You get more range, it is easier to spot what works, and you can combine the best parts. Claude produces better options when asked for three than when it is implicitly told there is one right answer.</p>
+ <p><strong>Use negative instructions.</strong> Do not use bullet points, avoid the word leverage, never open a paragraph with the word The are all more effective than asking for a particular style. Claude takes constraints seriously. Use them.</p>
+ <p><strong>Iterate with precision.</strong> When Claude gets close but not quite right, point at the specific part that is wrong rather than asking for a full rewrite. The second paragraph is too formal, can you loosen it up? works better than Can you rewrite this more casually because Claude knows exactly what to change without touching the parts that were working.</p>
+
+ <h3>Prompts worth saving</h3>
+ <p>When you find a prompt that works well, save it somewhere. A text file, a note on your phone, anywhere you can find it again. Over time this becomes a personal library you can return to for recurring tasks. The most useful ones to save are formats for reviewing work, templates for documents you produce regularly, and prompts that reliably get Claude into the right tone for your writing.</p>
+
+ <h2 id="06-claude-on-your-desktop-and-phone">06, Claude on Your Desktop and Phone</h2>
+ <p>Claude is not only a browser tab. The desktop app and the mobile app have features that the web version does not, and some of them are worth using every day.</p>
+
+ <h3>The desktop app</h3>
+ <p>Download it from claude.ai/download. It installs like any normal application on Mac or Windows. The interface looks similar to the web version but the key difference is what lives at the top of the window: CoWork mode.</p>
+ <p><strong>What CoWork does.</strong> When you switch to CoWork, Claude can see and interact with what is on your screen. It can read files in folders you point it at, access documents you have open and take actions in other applications on your computer.</p>
+ <ul>
+ <li>Point Claude at a folder of files and ask it to organise, rename or summarise them</li>
+ <li>Ask it to work through a spreadsheet that is open on your desktop</li>
+ <li>Have it fill in a form in another application based on information you give it</li>
+ <li>Tell it to monitor a folder and process new files automatically as they arrive</li>
+ </ul>
+ <p><strong>Dispatch, control your desktop from your phone.</strong> Inside CoWork there is a feature called Dispatch. It links your phone to an active Claude desktop session. You send instructions from your phone and Claude executes them on your computer. Your files stay exactly where they are and you do not need to be sitting at your desk.</p>
+
+ <h3>The mobile app</h3>
+ <p>Available on iPhone and Android from the App Store and Google Play. Two specific reasons it is worth having:</p>
+ <ul>
+ <li>You can speak to Claude using your voice, which makes long detailed prompts much easier to write</li>
+ <li>You can photograph documents, handwritten notes or whiteboards and ask Claude to read, transcribe or work with them</li>
+ </ul>
+ <p>For voice input on desktop, Wispr Flow is also worth downloading separately. It lets you dictate into any text field on your computer and the transcription quality is very good. Free tier available at wispr.flow.</p>
+
+ <h3>Connectors worth installing</h3>
+ <p>In the desktop app go to Settings then Connectors. Each one gives Claude access to an external service or file type.</p>
+ <ul>
+ <li><strong>PDF connector</strong>, upload PDF forms and Claude fills them out automatically based on your information. Particularly useful for rental applications, job applications and any form-heavy admin work.</li>
+ <li><strong>Figma connector</strong>, Claude can read your Figma designs and create new diagrams inside Figma directly from a prompt. Useful if you do any design or product work.</li>
+ <li><strong>PostHog connector</strong>, if you have a website or app with analytics, Claude can read your data and suggest specific improvements to conversion rate and user experience.</li>
+ </ul>
+ <p>Each connector takes around 30 seconds to set up. Only install the ones relevant to your actual work.</p>
+
+ <h2 id="07-the-best-free-tools-to-pair-with-claude">07, The Best Free Tools to Pair with Claude</h2>
+ <p>Claude is significantly more powerful when combined with a small number of other tools. These are all free or have generous free tiers. Each one solves a specific problem that Claude cannot solve on its own.</p>
+
+ <h3>NotebookLM, for research</h3>
+ <p>notebooklm.google.com. Completely free. You upload documents, PDFs, audio files or web links and NotebookLM becomes a research assistant trained specifically on that material. Unlike Claude, it will never make things up from outside your uploaded sources because it only works from what you give it.</p>
+ <p>The workflow that works well: use NotebookLM to ask precise questions about your source material, then bring those answers into Claude to write from them, synthesise them or turn them into a finished document.</p>
+ <ul>
+ <li>Upload: research reports, interview transcripts, PDFs, competitor websites</li>
+ <li>Ask: what are the main arguments in these three documents? Where do they contradict each other?</li>
+ <li>Then take those answers into Claude to draft, write or analyse further</li>
+ </ul>
+
+ <h3>Perplexity, for current information</h3>
+ <p>perplexity.ai. Free tier available. This is the best tool for up-to-date information because it searches the web in real time and cites its sources. Claude's knowledge has a training cutoff date and cannot browse the web by default. Use Perplexity when you need recent news, current data or specific facts, then bring those results into Claude for deeper analysis or writing.</p>
+
+ <h3>Claude Code, for building things</h3>
+ <p>If you build anything with code, Claude Code is worth knowing about even if you are not a developer. It is a command line tool that lets Claude operate directly on your file system: run code, read and write files across an entire project and install packages. It works on full codebases rather than individual file snippets.</p>
+ <p>Non-developers can also use it productively. Point Claude Code at a folder in plain English and ask it to rename files according to a pattern, extract specific information from a collection of documents, or convert files from one format to another.</p>
+ <p>To install it you need Node.js on your computer. Then open your terminal and run:</p>
+ <div class="code-block"><pre>npm install -g @anthropic-ai/claude-code
+# To start a session
+claude
+# Point it at a folder
+claude --project /path/to/your/folder</pre></div>
+ <p>Once it is running, give instructions in plain English. You do not need to know what any of the above commands do to use it effectively once it is installed.</p>
+
+ <h3>blink.new, for building apps fast</h3>
+ <p>blink.new. Free. An AI agent that builds full web applications from a plain English description. Where Claude Code works on existing code, Blink starts from nothing. Describe what you want to build, click start and it produces a working version with a live URL. One click to publish, one click to add payments via Stripe.</p>
+ <p>The workflow worth knowing: use Claude to research and validate an idea first (search Reddit for problems people are actively asking for solutions to, use Claude to analyse the responses), then bring the idea straight into Blink to build a working version the same day.</p>
+
+ <h3>Wispr Flow, for voice input</h3>
+ <p>wispr.flow. Free tier available. A voice-to-text tool that works in any text field on your computer or phone, not just inside Claude. The reason it belongs in this toolkit: talking is faster than typing and Claude responds better to detailed prompts than short ones. Wispr Flow makes it practical to dictate long, well-structured prompts naturally rather than typing them out.</p>
+
+ <h2 id="08-memory-and-personalisation">08, Memory and Personalisation</h2>
+ <p>Claude can remember things about you across conversations. By default this is switched on but empty. The more you put in, the less you have to repeat yourself and the more every response feels tailored to your actual situation rather than a generic answer.</p>
+
+ <h3>How Claude's memory works</h3>
+ <p>There are two types of memory. The first is your Profile, which is a fixed description you write manually in Settings. The second is memory Claude builds automatically as you have conversations. When Claude notices something worth keeping, it adds it to your memory file on its own.</p>
+ <p>You can see, edit and delete everything stored by going to Settings then Memory. Check this occasionally because the automatic additions are sometimes useful and sometimes not, and you want what is stored there to be accurate.</p>
+
+ <h3>What to store in memory</h3>
+ <p>Specific information is far more useful than generic. "I like concise answers" tells Claude almost nothing. "I write a weekly email newsletter for 5,000 subscribers who are small business owners in the UK" gives Claude something it can actually use when you ask for anything writing-related.</p>
+ <ul>
+ <li>Your role, industry and who your audience or customers are</li>
+ <li>Tone preferences and any words or phrases to always avoid</li>
+ <li>Recurring context that would otherwise need explaining every time (current project, ongoing client situation, standing constraints)</li>
+ <li>Format preferences: bullet points or prose, short answers or detailed, UK or US spelling</li>
+ </ul>
+
+ <h3>Transferring your ChatGPT history to Claude</h3>
+ <p>If you have been using ChatGPT and want to carry that context across, there is a built-in way to do it. Go to Settings then Capabilities in Claude. Scroll down to find the option to import memory from other AI tools. Claude generates a short code snippet. Paste that snippet into a ChatGPT conversation and run it. ChatGPT outputs a structured summary of everything it knows about you from your history. Copy that summary, bring it back into Claude and paste it into your Memory section. Claude now has all the context ChatGPT built up about you.</p>
+
+ <h3>User Preferences versus Memory</h3>
+ <p>Memory is about facts and context. User Preferences are about how Claude behaves. They are stored separately for good reason.</p>
+ <div class="code-block"><pre>Settings &gt; User Preferences, example
+
+# Format
+Always write in British English.
+Never use bullet points unless I specifically ask for them.
+Keep answers under 200 words unless I ask for more.
+# Tone
+Confident and direct. No hedging language.
+Do not start sentences with 'Certainly' or 'Of course'.
+# Output
+When writing copy, always give me two versions.
+Always suggest one next step at the end of a task.</pre></div>
+ <p>These apply to every single conversation automatically. Review them every month and update anything that has changed.</p>
+
+ <h2 id="where-to-start">Where to Start</h2>
+ <p>The most common mistake is trying to do everything at once. Pick one section, implement it today and see what changes. The sections with the biggest immediate impact, in order of priority:</p>
+ <ol>
+ <li><strong>Section 01 and 08.</strong> Twenty minutes. Immediate difference to every conversation. Set up your Profile and Memory.</li>
+ <li><strong>Section 02.</strong> Especially editing messages instead of sending follow-ups. Saves a significant amount of your limit. Apply the five usage habits.</li>
+ <li><strong>Section 04.</strong> Upload the two or three files you reach for most often. Create your first Project.</li>
+ <li><strong>Section 03.</strong> Start with the one closest to your main use case. Install one skill.</li>
+ <li><strong>Section 06.</strong> Pick one real task to run through it. Download the desktop app and try CoWork.</li>
+ </ol>
+
+ </article>
+ <aside class="toc-sidebar">
+ <div class="toc-box">
+ <h3>Contents</h3>
+ <ol>
+ <li><a href="#01-get-the-setup-right-from-the-start">Get the Setup Right</a></li>
+ <li><a href="#02-stop-burning-through-your-usage-limits">Stop Burning Usage</a></li>
+ <li><a href="#03-skills-give-claude-a-job-description">Skills</a></li>
+ <li><a href="#04-projects-your-permanent-workspace">Projects</a></li>
+ <li><a href="#05-prompting-that-actually-works">Prompting</a></li>
+ <li><a href="#06-claude-on-your-desktop-and-phone">Desktop & Phone</a></li>
+ <li><a href="#07-the-best-free-tools-to-pair-with-claude">Best Free Tools</a></li>
+ <li><a href="#08-memory-and-personalisation">Memory & Personalisation</a></li>
+ <li><a href="#where-to-start">Where to Start</a></li>
+ </ol>
+ </div>
+ </aside>
+</div>
+
+
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+<script>
+function downloadPDF() {
+  window.print();
+}
+</script>
+</body>
+</html>

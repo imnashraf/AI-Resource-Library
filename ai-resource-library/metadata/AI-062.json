@@ -1,0 +1,35 @@
+{
+  "id": "AI-062",
+  "slug": "10-ai-automations-that-run-your-week",
+  "title": "10 AI Automations That Run Your Week",
+  "category": "Getting Started",
+  "subcategory": "Core Fundamentals",
+  "difficulty": "Intermediate",
+  "description": "Ten scheduled automations built for both Claude and ChatGPT, inbox triage, meeting prep and recaps, a founder brief, expense organising, content repurposing, brand deal scanning and a performance digest. Full prompts, cadences, and connector setup for each.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Getting Started",
+    "Contents",
+    "What You'll Set Up",
+    "Before You Start",
+    "The Two Engines",
+    "Switch These On First",
+    "Ground Rules",
+    "Core Fundamentals"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude",
+    "ChatGPT"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-062_10-ai-automations-that-run-your-week.html",
+  "summary_file": "summaries/AI-062.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

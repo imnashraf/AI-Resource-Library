@@ -1,0 +1,36 @@
+{
+  "id": "AI-063",
+  "slug": "how-to-scrape-thousands-of-leads-with-claude",
+  "title": "How to Scrape Thousands of Leads with Claude",
+  "category": "Tools & Integrations",
+  "subcategory": "Data & Lead Generation",
+  "difficulty": "Intermediate",
+  "description": "Connect the open-source ScrapeGraphAI scraper to Claude as a custom connector and pull business names, websites and public contact details into a clean list. Covers account setup, your first lead search, exporting to a sheet, and scheduling it to run every morning.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Tools & Integrations",
+    "Contents",
+    "What You'll Build",
+    "The Opportunity",
+    "What You're Actually Building",
+    "Get Your ScrapeGraphAI Account",
+    "Connect It to Claude",
+    "Data & Lead Generation"
+  ],
+  "ai_tools": [
+    "Claude Desktop",
+    "Claude",
+    "Apify",
+    "ScrapeGraphAI"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-063_how-to-scrape-thousands-of-leads-with-claude.html",
+  "summary_file": "summaries/AI-063.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

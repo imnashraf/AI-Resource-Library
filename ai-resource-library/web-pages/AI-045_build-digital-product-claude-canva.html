@@ -1,0 +1,374 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Build a Digital Product With Claude + Canva</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✦%3C/text%3E%3C/svg%3E">
+ <style>
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+ html { scroll-behavior: smooth; }
+ body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+ .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+ .header.scrolled { border-color: var(--accent-border); }
+ .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+ .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+ .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+ .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+ .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+ a.logo-subtitle:hover { color: var(--accent); }
+ .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+ .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+ .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+ @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+ .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+ .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+ .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+ .badge-cat { background: var(--accent); color: #fff; }
+ .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+ .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+ .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+ .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+ .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+ .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+ .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+ .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+ .toc-box ol { list-style: none; counter-reset: toc; }
+ .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+ .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+ .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+ .toc-box a:hover { color: var(--accent); }
+ .guide-content { padding: 2rem 0 5rem; }
+ .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+ .guide-content h2:first-child { border-top: none; margin-top: 0; }
+ .guide-content h3 { font-size: 1.0625rem; font-weight: 700; margin-top: 1.75rem; margin-bottom: 0.625rem; }
+ .guide-content p { margin-bottom: 1.125rem; }
+ .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+ .guide-content li { margin-bottom: 0.375rem; }
+ .guide-content strong { font-weight: 600; }
+ .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+ pre code { display: block; background: #1a1a1a; color: #e5e7eb; font-family: 'Courier New', Courier, monospace; font-size: 0.875rem; line-height: 1.6; padding: 1.25rem 1.5rem; border-radius: 8px; overflow-x: auto; white-space: pre-wrap; margin-bottom: 1.125rem; }
+ .callout { background: var(--accent-light); border-left: 3px solid var(--accent); padding: 1rem 1.25rem; border-radius: 6px; margin-bottom: 1.25rem; font-size: 0.9375rem; line-height: 1.65; }
+ .callout strong { color: var(--accent); font-weight: 700; display: block; margin-bottom: 0.2rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+ .three-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0; }
+ @media (max-width: 700px) { .three-cards { grid-template-columns: 1fr; } }
+ .tool-card { background: #fff; border: 1.5px solid var(--accent-border); border-top: 3px solid var(--accent); border-radius: 10px; padding: 1.25rem 1rem; text-align: center; }
+ .tool-card-icon { font-size: 1.75rem; margin-bottom: 0.5rem; }
+ .tool-card-name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.5rem; }
+ .tool-card-desc { font-size: 0.8125rem; color: var(--muted); line-height: 1.55; }
+ .step-flow { display: flex; align-items: stretch; gap: 0; margin: 1.5rem 0; flex-wrap: wrap; }
+ .step-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1rem; flex: 1; min-width: 130px; }
+ .step-num { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: var(--accent); color: #fff; border-radius: 50%; font-size: 0.75rem; font-weight: 700; margin-bottom: 0.5rem; }
+ .step-title { font-weight: 700; font-size: 0.875rem; margin-bottom: 0.375rem; }
+ .step-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+ .step-arrow { display: flex; align-items: center; padding: 0 0.5rem; color: var(--accent-border); font-size: 1.125rem; flex-shrink: 0; }
+ @media (max-width: 600px) { .step-flow { flex-direction: column; } .step-arrow { transform: rotate(90deg); align-self: center; } }
+ .compare-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+ @media (max-width: 600px) { .compare-cards { grid-template-columns: 1fr; } }
+ .compare-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .compare-card.featured { border-color: var(--accent); border-top: 3px solid var(--accent); }
+ .compare-card h4 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.875rem; color: var(--text); }
+ .compare-row { display: flex; justify-content: space-between; gap: 0.5rem; font-size: 0.8125rem; margin-bottom: 0.4rem; }
+ .compare-label { color: var(--muted); }
+ .compare-val { font-weight: 600; text-align: right; }
+ .compare-note { font-size: 0.8rem; color: var(--muted); margin-top: 0.75rem; line-height: 1.5; font-style: italic; }
+ .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.875rem; margin: 1.5rem 0; }
+ @media (max-width: 800px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+ @media (max-width: 480px) { .product-grid { grid-template-columns: 1fr; } }
+ .product-card { background: #fff; border: 1.5px solid var(--accent-border); border-top: 3px solid var(--accent); border-radius: 10px; padding: 1rem; }
+ .product-card-name { font-weight: 700; font-size: 0.875rem; margin-bottom: 0.375rem; }
+ .product-card-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+ @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+     .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+    @page { margin: 1.5cm; } @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .chapter-card, .compare-card, .checklist-card, blockquote { break-inside: avoid; page-break-inside: avoid; } .chapter-overview, .compare-grid, .checklist-grid, .email-flow { break-inside: avoid; page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+ <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+ <div class="logo-divider"></div>
+ <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">&#8592; All guides</a>
+ </div>
+</header>
+<div class="guide-hero">
+ <div class="hero-meta">
+ <span class="badge badge-cat">Building &amp; Monetising</span>
+ <span class="badge badge-diff">Beginner</span>
+ </div>
+ <h1>Build a Digital Product With Claude + Canva</h1>
+ <div class="hero-author">
+ <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+ <div><span class="author-name">Max Johnson</span><span class="author-meta">@maxjohnscn</span></div>
+ </div>
+</div>
+<div class="page-wrap">
+ <article class="guide-content">
+    <button class="download-btn" onclick="downloadPDF()">&#8595; Download PDF</button>
+
+ <p class="intro-blurb">The exact process for turning one prompt into a finished, sellable digital product. No design skills needed. No blank page. Just a system you can run tonight.</p>
+
+ <p><strong>What's inside:</strong></p>
+ <ul>
+ <li>The prompt structure that writes your entire product for you</li>
+ <li>How to make Claude format content so it drops straight into Canva</li>
+ <li>Turning Claude's output into a finished design, page by page</li>
+ <li>The native Canva connector that builds designs without switching tabs</li>
+ <li>A reusable prompt formula that works for any product type</li>
+ </ul>
+
+ <div class="callout"><strong>Note</strong>You can do all of this on Canva's free plan and Claude's free plan. A Canva Pro account unlocks more templates and one-click background removal, but it isn't required to finish your first product.</div>
+
+ <h2 id="ch-01">Chapter 01: The Opportunity</h2>
+
+ <p>A digital product is anything someone can buy, download, and use without you shipping a physical thing. A meal plan. A workout guide. A set of templates. You make it once and sell it again and again.</p>
+
+ <p>The hard part was always the making. Writing the content took days. Designing it took skills most people don't have. That is the exact bottleneck Claude and Canva remove. Claude writes and structures the content. Canva turns it into something that looks professional. Together they collapse a week of work into an evening.</p>
+
+ <p>This guide walks through the four steps, in order. Read it once, then do it with a real product idea open in front of you.</p>
+
+ <div class="three-cards">
+ <div class="tool-card">
+ <div class="tool-card-icon">&#10024;</div>
+ <div class="tool-card-name">Claude</div>
+ <div class="tool-card-desc">Generates the words. Writes the content, then reformats it into clean pages you can lay out without editing.</div>
+ </div>
+ <div class="tool-card">
+ <div class="tool-card-icon">&#127912;</div>
+ <div class="tool-card-name">Canva</div>
+ <div class="tool-card-desc">Generates the look. Provides the template, the fonts, and the layout so the finished product looks designed, not typed.</div>
+ </div>
+ <div class="tool-card">
+ <div class="tool-card-icon">&#128100;</div>
+ <div class="tool-card-name">You</div>
+ <div class="tool-card-desc">Make two decisions: what the product is, and who it's for. Everything after that is assembly.</div>
+ </div>
+ </div>
+
+ <h2 id="ch-02">Chapter 02: Step 1 - Write The Prompt</h2>
+
+ <p>The prompt is everything. Before you open Canva or Claude, you need to know exactly what product you're making and who it's for. Get the prompt right and Claude hands you a finished draft. Get it vague and you'll spend an hour pulling teeth.</p>
+
+ <p>Use this structure every time:</p>
+
+ <pre><code>THE STRUCTURE
+
+Create a [product type] for [specific audience]
+who want to [specific outcome]. Include [number]
+pages/sections. Keep the tone [casual / professional
+/ motivational]. Format it so it's ready to design
+in Canva.</code></pre>
+
+ <p>A real example:</p>
+
+ <pre><code>EXAMPLE PROMPT
+
+Create a 7-day meal plan for busy mums who want
+to eat healthier without spending hours cooking.
+Include a shopping list at the end. Keep the tone
+friendly and practical. Format it so it's ready to
+design in Canva.</code></pre>
+
+ <p>That one prompt gives you all the content you need before you've opened Canva once. Notice what makes it work: a specific audience, a specific outcome, a set length, a defined tone, and the instruction to format for design.</p>
+
+ <div class="callout"><strong>Tip</strong>The narrower the audience, the better the product. 'For busy mums' beats 'for people' every time. A tight audience makes the content feel written for one person.</div>
+
+ <h2 id="ch-03">Chapter 03: Step 2 - Structure It For Canva</h2>
+
+ <p>Once you've got the content back, ask Claude to format it clearly so it maps directly onto Canva pages. This is the step most people skip, and it's the one that saves you hours of cutting and reorganising content inside Canva later.</p>
+
+ <p>Paste this straight after your first prompt:</p>
+
+ <pre><code>FORMATTING PROMPT
+
+Now break this into individual pages. Each page
+should have a title, a short paragraph, and no more
+than five bullet points. Keep it clean and easy to
+lay out.</code></pre>
+
+ <p>Now every page Claude gives you has the same shape: one title, one short paragraph, and a handful of bullets. That consistency is what lets you fly through the design step. You're no longer reading a wall of text and deciding what goes where. You're copying page one into page one.</p>
+
+ <p>Why this matters:</p>
+ <ul>
+ <li><strong>Predictable layout.</strong> Every page has identical structure, so one Canva template fits all of them.</li>
+ <li><strong>No editing in Canva.</strong> Canva is a slow place to write. Do all the writing in Claude where editing is fast.</li>
+ <li><strong>Faster than copy-paste.</strong> You're matching shape to shape, not hunting for where each sentence belongs.</li>
+ </ul>
+
+ <div class="step-flow">
+ <div class="step-card">
+ <div class="step-num">1</div>
+ <div class="step-title">Run your content prompt</div>
+ <div class="step-desc">Claude writes the full product content.</div>
+ </div>
+ <div class="step-arrow">&#8594;</div>
+ <div class="step-card">
+ <div class="step-num">2</div>
+ <div class="step-title">Run the formatting prompt</div>
+ <div class="step-desc">Claude breaks content into page-shaped chunks: title + paragraph + bullets.</div>
+ </div>
+ <div class="step-arrow">&#8594;</div>
+ <div class="step-card">
+ <div class="step-num">3</div>
+ <div class="step-title">Open Canva</div>
+ <div class="step-desc">Each page-shaped chunk maps directly onto one template page.</div>
+ </div>
+ </div>
+
+ <h2 id="ch-04">Chapter 04: Step 3 - Build It In Canva</h2>
+
+ <p>You've got clean, page-shaped content. Now you turn it into a finished design. There are two ways to do this. Start with the first. Move to the second when you want to skip tabs entirely.</p>
+
+ <h3>Option A: Drop it into a template</h3>
+
+ <p>1. <strong>Pick a template that matches your product:</strong> Open Canva and search for your product type directly. Meal plan, ebook, guide, worksheet. Canva has thousands of pre-designed templates for each.</p>
+
+ <div class="callout"><strong>Tip</strong>Search the exact product name. 'Meal plan' returns better results than 'document'.</div>
+
+ <p>2. <strong>Go page by page and replace the placeholder text:</strong> You're not designing from scratch. You're swapping the template's dummy text for your actual content. Title into title, paragraph into paragraph, bullets into bullets. Because your content is already page-shaped, it slots in cleanly.</p>
+
+ <div class="callout"><strong>Tip</strong>Resist restyling. The template already looks good. Just change the words.</div>
+
+ <h3>Option B: The native Canva connector</h3>
+
+ <p>Claude has a native Canva connector. Once enabled, you can prompt Claude to generate and edit Canva designs directly, without switching between tabs. You stay in one conversation and the design appears in your Canva account.</p>
+
+ <p>1. <strong>Enable the Canva connector in Claude:</strong> In Claude, go to Settings and open Connectors. Find Canva and follow the prompts to connect your account. It's a standard sign-in, the same as connecting any other app.</p>
+
+ <div class="callout"><strong>Tip</strong>One-time setup. Once connected it stays available across your chats.</div>
+
+ <p>2. <strong>Turn it on for your chat:</strong> Start a new conversation, open the tools menu, and switch Canva on for that session. Now Claude can act inside Canva when you ask it to.</p>
+
+ <p>3. <strong>Prompt Claude to build the design:</strong> Ask in plain English. Claude can create new designs, autofill templates with your content, search your existing designs, and resize or export them. Your structured pages from Step 2 become the content it fills in.</p>
+
+ <div class="callout"><strong>Tip</strong>Be specific: name the product, the style, and the page count in your prompt.</div>
+
+ <pre><code>CONNECTOR PROMPT
+
+Using my 7-day meal plan content above, create a
+clean Canva design. One page per day, plus a final
+shopping list page. Friendly, modern style.</code></pre>
+
+ <div class="compare-cards">
+ <div class="compare-card">
+ <h4>Option A: Template</h4>
+ <div class="compare-row"><span class="compare-label">Best for</span><span class="compare-val">First product</span></div>
+ <div class="compare-row"><span class="compare-label">Effort</span><span class="compare-val">Low</span></div>
+ <div class="compare-row"><span class="compare-label">Requirement</span><span class="compare-val">None</span></div>
+ <p class="compare-note">Drop and swap, paste your content into Canva's dummy text fields.</p>
+ </div>
+ <div class="compare-card featured">
+ <h4>Option B: Connector</h4>
+ <div class="compare-row"><span class="compare-label">Best for</span><span class="compare-val">Faster workflow</span></div>
+ <div class="compare-row"><span class="compare-label">Effort</span><span class="compare-val">2-min setup</span></div>
+ <div class="compare-row"><span class="compare-label">Requirement</span><span class="compare-val">Canva account connected in Claude Settings</span></div>
+ <p class="compare-note">Stay in Claude, the design appears in your Canva account automatically.</p>
+ </div>
+ </div>
+
+ <h2 id="ch-05">Chapter 05: Step 4 - The Reusable Formula</h2>
+
+ <p>Save this and reuse it every time. Just swap out the brackets. This is the same structure from Step 1, tightened into one skeleton you can paste for any product you'll ever make.</p>
+
+ <pre><code>THE FORMULA - PASTE AND SWAP THE BRACKETS
+
+Create a [product type] for [audience] who want to
+[outcome]. Make it [number] pages. Tone should be
+[tone]. Structure each page with a title, a short
+intro, and bullet points. Format it ready to drop
+into Canva.</code></pre>
+
+ <p>How to fill each bracket:</p>
+ <ul>
+ <li><strong>[product type]:</strong> The format. Meal plan, workout guide, ebook, planner, template pack.</li>
+ <li><strong>[audience]:</strong> Who it's for, as narrow as you can make it. Busy mums, new gym-goers, freelancers.</li>
+ <li><strong>[outcome]:</strong> The result they want. Eat healthier, build muscle, get organised.</li>
+ <li><strong>[number]:</strong> How many pages or sections. Keep first products short: five to ten pages.</li>
+ <li><strong>[tone]:</strong> How it should read. Friendly, professional, motivational, no-nonsense.</li>
+ </ul>
+
+ <div class="callout"><strong>Tip</strong>Keep this formula in a note on your phone. The moment a product idea lands, you can run it in under a minute.</div>
+
+ <h2 id="ch-06">Chapter 06: Products This Works For</h2>
+
+ <p>The same prompt, the same four steps, works across all of these. Pick one and run it tonight.</p>
+
+ <div class="product-grid">
+ <div class="product-card">
+ <div class="product-card-name">Meal plans</div>
+ <div class="product-card-desc">Daily menus with a shopping list. Easy to niche by diet or goal.</div>
+ </div>
+ <div class="product-card">
+ <div class="product-card-name">Workout guides</div>
+ <div class="product-card-desc">Structured routines by week. Great for a specific fitness level.</div>
+ </div>
+ <div class="product-card">
+ <div class="product-card-name">Recipe cards</div>
+ <div class="product-card-desc">One recipe per page. Simple to design, easy to bundle into packs.</div>
+ </div>
+ <div class="product-card">
+ <div class="product-card-name">Ebook covers</div>
+ <div class="product-card-desc">A single striking page. Fast to make, high perceived value.</div>
+ </div>
+ <div class="product-card">
+ <div class="product-card-name">Instagram post templates</div>
+ <div class="product-card-desc">Editable layouts other creators buy to reuse.</div>
+ </div>
+ <div class="product-card">
+ <div class="product-card-name">Story &amp; reel cover packs</div>
+ <div class="product-card-desc">Sets of matching covers. Sell as a themed bundle.</div>
+ </div>
+ <div class="product-card">
+ <div class="product-card-name">Business card templates</div>
+ <div class="product-card-desc">Clean, professional layouts people customise and print.</div>
+ </div>
+ <div class="product-card">
+ <div class="product-card-name">Digital product planners</div>
+ <div class="product-card-desc">A planner that helps people plan their own products.</div>
+ </div>
+ </div>
+
+ <h2 id="ch-closing">The Only Thing Left Is Doing It</h2>
+
+ <p>Pick one product from the list. Run the prompt. Get Claude to structure it. Drop it into a Canva template, or let the connector build it for you. You can have something ready to sell by tonight.</p>
+
+ <p><strong>Your Three Moves:</strong></p>
+ <ol>
+ <li>Open Claude and run the formula with a real product idea.</li>
+ <li>Add the formatting prompt so the content is page-shaped.</li>
+ <li>Open Canva, drop it in, and export your finished product.</li>
+ </ol>
+
+ </article>
+ <aside class="toc-sidebar">
+ <div class="toc-box">
+ <h3>Contents</h3>
+ <ol>
+ <li><a href="#ch-01">The Opportunity</a></li>
+ <li><a href="#ch-02">Step 1 - Write The Prompt</a></li>
+ <li><a href="#ch-03">Step 2 - Structure It For Canva</a></li>
+ <li><a href="#ch-04">Step 3 - Build It In Canva</a></li>
+ <li><a href="#ch-05">Step 4 - The Reusable Formula</a></li>
+ <li><a href="#ch-06">Products This Works For</a></li>
+ </ol>
+ </div>
+ </aside>
+</div>
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+<script>
+function downloadPDF() {
+  window.print();
+}
+</script>
+</body>
+</html>

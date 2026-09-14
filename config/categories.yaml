@@ -1,0 +1,98 @@
+# ==============================================================================
+# Category Taxonomy & Roadmap Mappings
+# ==============================================================================
+
+categories:
+  - name: "Getting Started"
+    code: "GS"
+    color: "#1A7A6A"
+    description: "Foundational AI workflows, starter guides, and beginner essentials."
+
+  - name: "Claude Code"
+    code: "CC"
+    color: "#D97706"
+    description: "CLI agentic coding, setup configurations, commands, and multi-agent loops."
+
+  - name: "Tools & Integrations"
+    code: "TI"
+    color: "#2563EB"
+    description: "Third-party tool connectors, MCP servers, and integrations."
+
+  - name: "Prompts & Skills"
+    code: "PS"
+    color: "#7C3AED"
+    description: "High-leverage prompts, custom skill architectures, and context engineering."
+
+  - name: "Building & Monetising"
+    code: "BM"
+    color: "#059669"
+    description: "AI micro-SaaS, agencies, digital products, automation services, and client acquisition."
+
+  - name: "AI Automation"
+    code: "AA"
+    color: "#DC2626"
+    description: "Scheduled routines, n8n workflows, and hands-off business processes."
+
+  - name: "AI Agents"
+    code: "AG"
+    color: "#4F46E5"
+    description: "Autonomous agents, multi-agent frameworks, and team orchestration."
+
+  - name: "AI Business"
+    code: "AB"
+    color: "#0D9488"
+    description: "Commercial strategy, economics, ROI analysis, and enterprise adoption."
+
+  - name: "AI Coding"
+    code: "AC"
+    color: "#EA580C"
+    description: "Vibe coding, automated testing, verification gates, and software delivery."
+
+  - name: "AI Marketing"
+    code: "AM"
+    color: "#DB2777"
+    description: "Content repurposing, ad operations, copywriting, and market intelligence."
+
+  - name: "AI Productivity"
+    code: "AP"
+    color: "#475569"
+    description: "Personal workflow acceleration, memory systems, and daily routines."
+
+  - name: "Other Categories Discovered"
+    code: "OC"
+    color: "#64748B"
+    description: "Supplemental domains and newly identified topic categories."
+
+roadmaps:
+  path_a:
+    id: "PATH-A"
+    title: "Complete Beginner"
+    target_audience: "Anyone new to AI who wants structured foundational mastery."
+  path_b:
+    id: "PATH-B"
+    title: "AI Power User"
+    target_audience: "Users looking to master advanced prompting, routines, and desktop skills."
+  path_c:
+    id: "PATH-C"
+    title: "Claude Code Specialist"
+    target_audience: "Developers and technical creators building agentic CLI workflows."
+  path_d:
+    id: "PATH-D"
+    title: "AI Automation Engineer"
+    target_audience: "Builders automating weekly workflows, lead scrapers, and data feeds."
+  path_e:
+    id: "PATH-E"
+    title: "AI Agency / Freelancer"
+    target_audience: "Entrepreneurs offering paid AI services, cold outreach, and client deliverables."
+  path_f:
+    id: "PATH-F"
+    title: "AI Startup Builder"
+    target_audience: "Founders launching micro-SaaS and digital products with Claude & modern stacks."
+  path_g:
+    id: "PATH-G"
+    title: "AI Developer"
+    target_audience: "Software engineers integrating multi-model pipelines, APIs, and custom tools."
+  path_h:
+    id: "PATH-H"
+    title: "AI Business / Monetisation"
+    target_audience: "Operators, founders, and executives optimizing business operations with AI."

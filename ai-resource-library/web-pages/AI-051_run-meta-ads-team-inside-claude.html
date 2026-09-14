@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Run Your Meta Ads Team Inside Claude</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+ <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+  .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+  .header.scrolled { border-color: var(--accent-border); }
+  .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+  .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+  .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+  .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+  .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+  a.logo-subtitle:hover { color: var(--accent); }
+  .nav-agent-link { font-size: 0.8125rem; font-weight: 700; color: var(--accent); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--accent); border-radius: 9999px; letter-spacing: 0.04em; text-transform: uppercase; transition: all 0.2s; white-space: nowrap; }
+  .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+  .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+  .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+  @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+  .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+  .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+  .badge-cat { background: var(--accent); color: #fff; }
+  .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+  .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+  .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+  .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+  .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+  .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+  .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+  .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+  .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+  .toc-box ol { list-style: none; counter-reset: toc; }
+  .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+  .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+  .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+  .toc-box a:hover { color: var(--accent); }
+  .guide-content { padding: 2rem 0 5rem; }
+  .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+  .guide-content h2:first-of-type { border-top: none; margin-top: 0; }
+  .guide-content h3 { font-size: 1.0625rem; font-weight: 700; margin-top: 1.75rem; margin-bottom: 0.625rem; }
+  .guide-content p { margin-bottom: 1.125rem; }
+  .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+  .guide-content li { margin-bottom: 0.375rem; }
+  .guide-content strong { font-weight: 600; }
+  .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+  @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+  .callout { border-left: 4px solid var(--accent-border); background: var(--accent-light); padding: 0.875rem 1.125rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0; }
+  .callout-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.35rem; }
+  .callout p { margin-bottom: 0; }
+  pre { background: #1a1a1a; color: #e8e8e8; padding: 1.25rem 1.5rem; border-radius: 8px; font-size: 0.875rem; line-height: 1.65; margin: 1.5rem 0; overflow-x: auto; white-space: pre; }
+  pre code { font-family: 'Courier New', Courier, monospace; }
+  .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+  .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+  @page { margin: 1.5cm; }
+  @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider, .nav-agent-link { display: none !important; } .page-wrap { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; } p { orphans: 3; widows: 3; } pre, .callout, blockquote { break-inside: avoid; } }
+  .two-col-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0.875rem; margin: 1.75rem 0; }
+  @media (max-width: 600px) { .two-col-cards { grid-template-columns: 1fr; } }
+  .two-col-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; overflow: hidden; }
+  .two-col-card-header { font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.625rem 1.125rem; background: var(--accent); color: #fff; }
+  .two-col-card-body { padding: 1rem 1.125rem; }
+  .two-col-card-body p { font-size: 0.8375rem; margin-bottom: 0; line-height: 1.65; color: var(--muted); }
+  .step-flow { background: linear-gradient(135deg, #fff 0%, var(--accent-light) 100%); border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.5rem; margin: 1.75rem 0; }
+  .step-flow-item { display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.25rem; }
+  .step-flow-item:last-child { margin-bottom: 0; }
+  .step-circle { width: 2rem; height: 2rem; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; font-weight: 700; color: #fff; flex-shrink: 0; }
+  .step-flow-body { flex: 1; }
+  .step-flow-title { font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.2rem; }
+  .step-flow-desc { font-size: 0.8125rem; color: var(--muted); line-height: 1.6; margin: 0; }
+  .step-flow-badge { display: inline-block; font-size: 0.6875rem; font-weight: 600; color: var(--accent); background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 9999px; padding: 0.1rem 0.5rem; margin-top: 0.35rem; }
+ </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+  <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+  <div class="logo-divider"></div>
+  <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">&#8592; All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+  <span class="badge badge-cat">Tools &amp; Integrations</span>
+  <span class="badge badge-diff">Advanced</span>
+ </div>
+ <h1>Run Your Meta Ads Team Inside Claude</h1>
+ <div class="hero-author">
+  <img src="assets/Headshot.jpg.JPG.jpeg" alt="" class="author-avatar">
+  <div><span class="author-name">Max Johnson</span><span class="author-meta">@maxjohnscn</span></div>
+ </div>
+</div>
+
+<div class="page-wrap">
+ <article class="guide-content">
+  <button class="download-btn" onclick="window.print()">&#8595; Download PDF</button>
+
+  <p class="intro-blurb">Five skills, two MCP layers, and a weekly rhythm that replaces a full Meta ads team inside a single Claude conversation.</p>
+
+  <h2 id="ch01">Chapter 01: The Setup</h2>
+
+  <p>Before you touch a single skill, you need four things in place. This is not optional groundwork, it is the foundation that makes everything else work.</p>
+
+  <ol>
+   <li><strong>A Claude Pro or Team account.</strong> Skills require the extended context window and the ability to install custom tooling. The free tier will not cut it here.</li>
+   <li><strong>MCP enabled in your Claude settings.</strong> Go to Settings, then Developer, and switch on Model Context Protocol. This is what allows Claude to connect to live data sources rather than just your chat history.</li>
+   <li><strong>Node.js 18 or above installed on your machine.</strong> Every MCP server in this guide runs on Node. Check your version by running <code>node -v</code> in your terminal. If you are below 18, update before continuing.</li>
+   <li><strong>Access to Meta Business Manager.</strong> You will need admin or advertiser-level permissions on the ad accounts you want to connect. If you are working for a client, make sure they have added you before you attempt the connection steps in Chapter 02.</li>
+  </ol>
+
+  <div class="callout">
+   <div class="callout-label">Reality Check</div>
+   <p>This setup takes about 45 minutes the first time. Once it is done, the weekly rhythm in Chapter 08 takes under 30 minutes. The front-loading is worth it.</p>
+  </div>
+
+  <h2 id="ch02">Chapter 02: Connect Meta</h2>
+
+  <p>There are two distinct MCP layers involved in this system. They serve completely different purposes and you need both of them active at the same time.</p>
+
+  <!-- VISUAL BLOCK 1 -->
+  <div class="two-col-cards">
+   <div class="two-col-card">
+    <div class="two-col-card-header">LAYER A · PUBLIC — Ad Library MCP</div>
+    <div class="two-col-card-body">
+     <p>Connects Claude to Meta's public Ad Library. No authentication needed. Lets you search any active ad running on Facebook or Instagram by keyword, brand name, or country. This is your competitive intelligence feed, available to anyone, fully open.</p>
+    </div>
+   </div>
+   <div class="two-col-card">
+    <div class="two-col-card-header">LAYER B · YOUR ACCOUNT — Account MCP</div>
+    <div class="two-col-card-body">
+     <p>Connects Claude to your private Meta Ads Manager data via the Marketing API. Requires a system user token with ads_read permission. Gives Claude access to your real spend, ROAS, CPMs, CTRs, creative performance data, and campaign structure.</p>
+    </div>
+   </div>
+  </div>
+
+  <p>To install both layers, open your terminal and run the following commands one after the other. Replace the placeholder token value with your own Marketing API token from Meta Business Settings.</p>
+
+<pre><code>npx @modelcontextprotocol/create-server meta-ad-library
+cd meta-ad-library &amp;&amp; npm install
+
+npx @modelcontextprotocol/create-server meta-ads-manager
+cd meta-ads-manager &amp;&amp; npm install
+
+# Set your token as an environment variable
+export META_ADS_TOKEN=your_system_user_token_here</code></pre>
+
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>After installation, add both servers to your Claude MCP config file at <code>~/.claude/mcp.json</code>. Restart Claude after saving. You will see both connections appear in the MCP status panel on the left sidebar once Claude detects them.</p>
+  </div>
+
+  <h2 id="ch03">Chapter 03 · Skill 1: The Spy Skill</h2>
+
+  <p>The Spy Skill uses Layer A (the public Ad Library MCP) to systematically scrape your competitors' active creatives and pull structured data back into Claude for analysis. You are not guessing what your competitors are running. You are reading it directly.</p>
+
+  <h3>How to set it up</h3>
+
+  <ol>
+   <li><strong>Install the skill</strong> by going to Claude Skills, searching for "Meta Ad Spy", and clicking Install. It will appear in your skills panel on the left.</li>
+   <li><strong>Configure your competitor list</strong> inside the skill settings. You can add up to 20 page names or Facebook Page IDs. The skill queries all of them in parallel on each run.</li>
+   <li><strong>Run the skill</strong> by typing <code>/spy</code> in any Claude conversation. It will pull all active ads from your competitor list and return a structured table with ad format, copy angle, call to action, estimated run duration, and country targeting.</li>
+  </ol>
+
+<pre><code>/spy competitors=["Gymshark","AYBL","Alphalete"] country=GB format=video
+# Returns: active video ads from all three brands in the UK market
+# Fields: ad_id, brand, headline, body_copy, cta, start_date, formats, placements</code></pre>
+
+  <div class="callout">
+   <div class="callout-label">Caveat</div>
+   <p>The Ad Library only shows ads that have been active for at least 24 hours and excludes ads that have been paused for more than 7 days. You will not catch ads that launched and died in under a day, which is actually useful: anything you do see has already proven it can survive the first review cycle.</p>
+  </div>
+
+  <h2 id="ch04">Chapter 04 · Skill 2: The Bulk Creative Skill</h2>
+
+  <p>The Bulk Creative Skill takes your spy data and generates 10 complete ad scripts in a single pass. Not 10 variations of one concept. Ten genuinely different angles, each with its own hook, body structure, and call to action.</p>
+
+  <h3>How to set it up</h3>
+
+  <ol>
+   <li><strong>Install the skill</strong> by searching for "Meta Bulk Creative" in the Claude Skills directory. It works alongside the Spy Skill so install both before running either.</li>
+   <li><strong>Pass your spy output directly into the skill.</strong> You do not need to reformat anything. The skill reads the structured table from the Spy Skill and uses it as the creative brief automatically.</li>
+   <li><strong>Set your brand voice parameters</strong> inside the skill config: product name, key benefit, target customer description, and any phrases you never want to use. The skill respects these constraints across all 10 outputs.</li>
+  </ol>
+
+<pre><code>/bulk-creative \
+  product="Whey protein isolate" \
+  benefit="Mixes clean with zero clumping" \
+  customer="Men 22 to 35 who train 4 times a week" \
+  avoid="game changer, revolutionary, best-in-class" \
+  count=10 \
+  formats=["UGC hook","Problem-Solution","Testimonial","Before After","Listicle"]</code></pre>
+
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>Each of the 10 outputs includes a recommended visual direction in square brackets after the copy. These are written for a human creative director or a video editor to interpret, not for another AI tool. Keep them as notes rather than exact prompts if you are using them with a generation tool.</p>
+  </div>
+
+  <h2 id="ch05">Chapter 05 · Skill 3: The Ad Score Skill</h2>
+
+  <p>The Ad Score Skill connects to Layer B (your private account MCP) and scores every creative you have run in the last 30 days against six performance criteria. It tells you not just what performed well but why, in plain language.</p>
+
+  <h3>How to set it up</h3>
+
+  <ol>
+   <li><strong>Install the skill</strong> by searching for "Meta Ad Score" in the skills directory. This skill requires Layer B to be active. It will not work without your account token configured in Chapter 02.</li>
+   <li><strong>Set your scoring weights</strong> in the skill config. The default weights are: Hook Rate 30%, CTR 25%, Thumbstop 20%, ROAS 15%, CPM Efficiency 10%. Adjust these to match your actual business priorities. A high-ticket offer will weight ROAS differently than a lead gen campaign.</li>
+   <li><strong>Run the skill weekly</strong> by typing <code>/score</code> in Claude. It pulls the last 30 days of creative-level data from your account and returns each ad with a score from 0 to 100, a one-line explanation of the primary driver, and a recommended action: scale, test, pause, or kill.</li>
+  </ol>
+
+<pre><code>/score \
+  account_id=act_123456789 \
+  date_range=last_30d \
+  min_spend=50 \
+  weights={"hook_rate":30,"ctr":25,"thumbstop":20,"roas":15,"cpm":10}
+# Returns: sorted table of all creatives with scores, drivers, and recommended actions</code></pre>
+
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>Set <code>min_spend=50</code> (or your own minimum threshold) to filter out ads with too little data to score reliably. Scoring a creative that has spent $4 is meaningless. The default threshold is $50 but raise it to $100 if your daily budget is above $500.</p>
+  </div>
+
+  <h2 id="ch06">Chapter 06 · Skill 4: The Competitive Ad Extractor</h2>
+
+  <p>The Competitive Ad Extractor goes deeper than the Spy Skill. Instead of returning a table of what your competitors are running, it breaks down each ad into its structural components so you can extract the pattern, not just the content.</p>
+
+  <h3>How to set it up</h3>
+
+  <ol>
+   <li><strong>Install the skill</strong> by searching for "Meta Ad Extractor" in the skills directory. It requires the Ad Library MCP (Layer A) to be active.</li>
+   <li><strong>Point it at a specific ad or a brand.</strong> You can pass a single Ad Library URL, an array of URLs, or a brand name. When you pass a brand name, it pulls their top 5 longest-running ads automatically, since longevity in the Ad Library is a strong signal of a profitable creative.</li>
+   <li><strong>Run the extraction</strong> with <code>/extract</code>. For each ad, the skill returns: hook type (question, statement, pattern interrupt, social proof), structure (AIDA, PAS, FAB, or other), emotional trigger, objection addressed, and the exact CTA verb used.</li>
+  </ol>
+
+<pre><code>/extract \
+  brand="Huel" \
+  country=GB \
+  top_n=5 \
+  output=structured
+# Returns: structural breakdown of Huel's 5 longest-running UK ads
+# Each ad: hook_type, structure, emotional_trigger, objection, cta_verb, run_days</code></pre>
+
+  <div class="callout">
+   <div class="callout-label">Caveat</div>
+   <p>The extractor reads copy and infers structure. It is very good at identifying common frameworks but it will occasionally misclassify an ad that uses a hybrid structure. When in doubt, read the raw copy alongside the extraction. The extraction is a starting point, not a verdict.</p>
+  </div>
+
+  <h2 id="ch07">Chapter 07 · Skill 5: The Ads Meta Skill</h2>
+
+  <p>The Ads Meta Skill is the connective tissue of the whole system. It takes the outputs from all four previous skills and synthesises them into a single weekly brief: what your competitors are doing, what your own best work looks like, where the gaps are, and what to test next.</p>
+
+  <h3>How to set it up</h3>
+
+  <ol>
+   <li><strong>Install the skill</strong> by searching for "Ads Meta Skill" in the skills directory. This is the last skill to install because it depends on the outputs from the other four. It requires both Layer A and Layer B to be active.</li>
+   <li><strong>Run it last every week.</strong> The skill pulls the most recent outputs from your Spy, Score, and Extractor runs automatically. You do not need to copy and paste anything between skills. The Meta Skill reads them from your Claude session history.</li>
+   <li><strong>Use the output as your creative brief for the week.</strong> The final output is a 3-section brief: Top 3 competitive patterns observed, Top 3 performing angles from your own account, and 5 recommended test concepts with rationale for each one.</li>
+  </ol>
+
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>The Ads Meta Skill works best when all four preceding skills have been run in the same Claude session. If you run them across separate sessions, paste the outputs into a new session before running <code>/meta-brief</code>. Claude's context window is large enough to hold all four outputs simultaneously at Pro tier.</p>
+  </div>
+
+  <h2 id="ch08">Chapter 08: Run The Full Stack</h2>
+
+  <p>Here is how the five skills fit into a repeatable weekly rhythm. Run them in this order every week and you will have a complete competitive and creative picture in under 30 minutes.</p>
+
+  <!-- VISUAL BLOCK 2 -->
+  <div class="step-flow">
+   <div class="step-flow-item">
+    <div class="step-circle">MON</div>
+    <div class="step-flow-body">
+     <div class="step-flow-title">Spy on competitors</div>
+     <div class="step-flow-badge">Skill 1: The Spy Skill</div>
+     <p class="step-flow-desc">Run <code>/spy</code> first thing Monday. Pull all active ads from your competitor list and save the output. This gives you a snapshot of what launched over the weekend, which is when most brands push new creative.</p>
+    </div>
+   </div>
+   <div class="step-flow-item">
+    <div class="step-circle">EXT</div>
+    <div class="step-flow-body">
+     <div class="step-flow-title">Extract the patterns</div>
+     <div class="step-flow-badge">Skill 4: The Competitive Ad Extractor</div>
+     <p class="step-flow-desc">Immediately after spying, run <code>/extract</code> on the top 3 brands from your spy output. You want the structural breakdown before you start writing anything. This takes about 5 minutes.</p>
+    </div>
+   </div>
+   <div class="step-flow-item">
+    <div class="step-circle">WRI</div>
+    <div class="step-flow-body">
+     <div class="step-flow-title">Write 10 new concepts</div>
+     <div class="step-flow-badge">Skill 2: The Bulk Creative Skill</div>
+     <p class="step-flow-desc">With the spy data and extraction in your session, run <code>/bulk-creative</code>. The skill reads both automatically. You will have 10 complete ad scripts ready in under 2 minutes. Review and edit before sending to production.</p>
+    </div>
+   </div>
+   <div class="step-flow-item">
+    <div class="step-circle">SCO</div>
+    <div class="step-flow-body">
+     <div class="step-flow-title">Score last week's work</div>
+     <div class="step-flow-badge">Skill 3: The Ad Score Skill</div>
+     <p class="step-flow-desc">Run <code>/score</code> to see how last week's creatives performed. Pause anything below 40. Flag anything above 70 for scaling. The score output feeds directly into the Meta Skill brief so run this before <code>/meta-brief</code>.</p>
+    </div>
+   </div>
+   <div class="step-flow-item">
+    <div class="step-circle">MTH</div>
+    <div class="step-flow-body">
+     <div class="step-flow-title">Monthly brief and strategy reset</div>
+     <div class="step-flow-badge">Skill 5: The Ads Meta Skill</div>
+     <p class="step-flow-desc">Run <code>/meta-brief</code> to synthesise everything into a single weekly brief. On the last Monday of the month, add the flag <code>--monthly</code> and the skill will also generate a 30-day retrospective and a 4-week testing calendar for the month ahead.</p>
+    </div>
+   </div>
+  </div>
+
+  <div class="callout">
+   <div class="callout-label">Keep It on a Leash</div>
+   <p>Claude is fast. That is both the point and the risk. The Bulk Creative Skill can generate 50 ad scripts in the time it used to take to write one. Resist the temptation to flood your account with untested creative. Pick 3 concepts from each weekly run, test them properly with a controlled budget, and let the Score Skill tell you what to scale. Volume without discipline is just expensive noise.</p>
+  </div>
+
+ </article>
+
+ <aside class="toc-sidebar">
+  <div class="toc-box">
+   <h3>Contents</h3>
+   <ol>
+    <li><a href="#ch01">Chapter 01: The Setup</a></li>
+    <li><a href="#ch02">Chapter 02: Connect Meta</a></li>
+    <li><a href="#ch03">Chapter 03 · Skill 1: The Spy Skill</a></li>
+    <li><a href="#ch04">Chapter 04 · Skill 2: The Bulk Creative Skill</a></li>
+    <li><a href="#ch05">Chapter 05 · Skill 3: The Ad Score Skill</a></li>
+    <li><a href="#ch06">Chapter 06 · Skill 4: The Competitive Ad Extractor</a></li>
+    <li><a href="#ch07">Chapter 07 · Skill 5: The Ads Meta Skill</a></li>
+    <li><a href="#ch08">Chapter 08: Run The Full Stack</a></li>
+   </ol>
+  </div>
+ </aside>
+</div>
+
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+</body>
+</html>

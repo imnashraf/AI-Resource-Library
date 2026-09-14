@@ -1,0 +1,35 @@
+{
+  "id": "AI-032",
+  "slug": "the-startup-stack",
+  "title": "The Startup Stack",
+  "category": "Building & Monetising",
+  "subcategory": "Startup & Products",
+  "difficulty": "Beginner",
+  "description": "The full toolstack for building a software startup with Claude, from idea validation through build, launch, and early growth. Every tool, every integration, and the order to set them up.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Building & Monetising",
+    "01, Claude",
+    "02, Cookiy",
+    "03, Figma",
+    "04, Claude Code",
+    "05, N8N",
+    "Startup & Products"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude",
+    "n8n",
+    "Figma"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-032_the-startup-stack.html",
+  "summary_file": "summaries/AI-032.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

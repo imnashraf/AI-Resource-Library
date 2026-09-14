@@ -1,0 +1,30 @@
+{
+  "id": "AI-068",
+  "slug": "4-ways-to-get-ahead-of-everyone-else-using-ai",
+  "title": "4 Ways To Get Ahead Of Everyone Else Using AI",
+  "category": "Getting Started",
+  "subcategory": "Core Fundamentals",
+  "difficulty": "Intermediate",
+  "description": "The four systems worth building before everyone else catches on: an AI second brain, one real chained workflow, a specialised AI teammate, and one automation that runs itself. Full setup and prompts for both Claude and ChatGPT.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Getting Started",
+    "Contents: The Four Systems",
+    "What this looks like",
+    "Core Fundamentals"
+  ],
+  "ai_tools": [
+    "Claude",
+    "ChatGPT"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-068_4-ways-to-get-ahead-of-everyone-else-using-ai.html",
+  "summary_file": "summaries/AI-068.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

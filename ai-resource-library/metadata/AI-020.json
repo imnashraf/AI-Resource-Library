@@ -1,0 +1,29 @@
+{
+  "id": "AI-020",
+  "slug": "indeed-claude-job-hunter-setup-guide",
+  "title": "Indeed + Claude Job Hunter Setup Guide",
+  "category": "Tools & Integrations",
+  "subcategory": "Data & Lead Generation",
+  "difficulty": "Beginner",
+  "description": "Automate your job search with Claude and Indeed. Scrape listings, score them against your criteria, draft tailored cover letters, and track applications, all from a single Claude workflow.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Tools & Integrations",
+    "Step 1, Connect Indeed to Claude",
+    "Step 2, Upload your CV",
+    "Data & Lead Generation"
+  ],
+  "ai_tools": [
+    "Claude"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-020_indeed-claude-job-hunter-setup-guide.html",
+  "summary_file": "summaries/AI-020.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "AI-061",
+  "slug": "33-best-claude-prompts-refreshed-for-sonnet-5",
+  "title": "33 Best Claude Prompts",
+  "category": "Prompts & Skills",
+  "subcategory": "Prompt Engineering",
+  "difficulty": "Beginner to Advanced",
+  "description": "Rebuilt around context engineering instead of prompt engineering: 33 prompts for Sonnet 5, Opus 5 and Haiku 4.5, organised by what you're trying to get done. Covers writing, coding, data, strategy, sales, research, team systems, and decisions.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Prompts & Skills",
+    "What's Inside",
+    "Before You Use This",
+    "Which Model to Use",
+    "Contents",
+    "Category 01: Writing & Content",
+    "Prompt Engineering"
+  ],
+  "ai_tools": [
+    "Claude",
+    "ChatGPT"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-061_33-best-claude-prompts-refreshed-for-sonnet-5.html",
+  "summary_file": "summaries/AI-061.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

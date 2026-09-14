@@ -1,0 +1,432 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Loop Engineering</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+ <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+  .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+  .header.scrolled { border-color: var(--accent-border); }
+  .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+  .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+  .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+  .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+  .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+  a.logo-subtitle:hover { color: var(--accent); }
+  .nav-agent-link { font-size: 0.8125rem; font-weight: 700; color: var(--accent); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--accent); border-radius: 9999px; letter-spacing: 0.04em; text-transform: uppercase; transition: all 0.2s; white-space: nowrap; }
+    .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+  .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+  .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+  @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+  .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+  .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+  .badge-cat { background: var(--accent); color: #fff; }
+  .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+  .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+  .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+  .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+  .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+  .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+  .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+  .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+  .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+  .toc-box ol { list-style: none; counter-reset: toc; }
+  .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+  .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+  .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+  .toc-box a:hover { color: var(--accent); }
+  .guide-content { padding: 2rem 0 5rem; }
+  .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+  .guide-content h2:first-of-type { border-top: none; margin-top: 0; }
+  .guide-content h3 { font-size: 1.0625rem; font-weight: 700; margin-top: 1.75rem; margin-bottom: 0.625rem; }
+  .guide-content p { margin-bottom: 1.125rem; }
+  .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+  .guide-content li { margin-bottom: 0.375rem; }
+  .guide-content strong { font-weight: 600; }
+  .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+  @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+  .callout { border-left: 4px solid var(--accent-border); background: var(--accent-light); padding: 0.875rem 1.125rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0; }
+  .callout-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.35rem; }
+  .callout p { margin-bottom: 0; }
+  pre { background: #1a1a1a; color: #e8e8e8; padding: 1.25rem 1.5rem; border-radius: 8px; font-size: 0.875rem; line-height: 1.65; margin: 1.5rem 0; overflow-x: auto; white-space: pre-wrap; }
+  pre code { font-family: 'Courier New', Courier, monospace; }
+  .prompt-label { font-family: 'Space Grotesk', sans-serif; font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.35rem; margin-top: 1.5rem; }
+  blockquote { border-left: 3px solid var(--accent-border); padding: 0.75rem 1.25rem; margin: 1.5rem 0; background: #fff; border-radius: 0 8px 8px 0; }
+  blockquote p { margin-bottom: 0.5rem; font-style: italic; }
+  blockquote cite { font-size: 0.8125rem; font-weight: 600; color: var(--accent); font-style: normal; }
+
+  /* VB1: Two-col comparison */
+  .two-col-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0.875rem; margin: 1.75rem 0; }
+  @media (max-width: 600px) { .two-col-cards { grid-template-columns: 1fr; } }
+  .two-col-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; overflow: hidden; }
+  .two-col-card-header { font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.625rem 1.125rem; }
+  .two-col-card-header.accent { background: var(--accent); color: #fff; }
+  .two-col-card-header.muted { background: #F3F4F6; color: var(--muted); }
+  .two-col-card ul { list-style: none; padding: 1rem 1.125rem; margin: 0; }
+  .two-col-card li { font-size: 0.8375rem; color: var(--text); padding: 0.3rem 0 0.3rem 1.25rem; position: relative; line-height: 1.55; }
+  .two-col-card li::before { content: "›"; position: absolute; left: 0; color: var(--accent); font-size: 1rem; line-height: 1.4; }
+
+  /* VB2: Loop flow diagram */
+  .loop-flow { background: linear-gradient(135deg, #fff 0%, var(--accent-light) 100%); border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.75rem 1.5rem; margin: 1.75rem 0; }
+  .loop-steps { display: flex; align-items: center; justify-content: center; gap: 0; margin-bottom: 1.125rem; }
+  .loop-step { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1rem 1.125rem; text-align: center; flex: 1; }
+  .loop-step-badge { display: inline-block; font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; font-weight: 700; background: var(--accent); color: #fff; border-radius: 9999px; padding: 0.15rem 0.55rem; margin-bottom: 0.4rem; }
+  .loop-step-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.45; }
+  .loop-arrow { font-size: 1.5rem; color: var(--accent-border); padding: 0 0.4rem; flex-shrink: 0; line-height: 1; }
+  .loop-feedback { text-align: center; font-size: 0.8125rem; color: var(--muted); border-top: 1.5px dashed var(--accent-border); padding-top: 0.875rem; }
+  @media (max-width: 640px) { .loop-steps { flex-direction: column; gap: 0.5rem; } .loop-arrow { transform: rotate(90deg); padding: 0; } }
+
+  /* VB3: Piece stack */
+  .piece-stack { background: linear-gradient(135deg, #fff 0%, var(--accent-light) 100%); border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.5rem; margin: 1.75rem 0; display: flex; flex-direction: column; gap: 0.875rem; }
+  .piece-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.125rem 1.25rem; display: flex; gap: 1rem; align-items: flex-start; }
+  .piece-badge { font-family: 'Space Grotesk', sans-serif; font-size: 0.9375rem; font-weight: 700; background: var(--accent); color: #fff; border-radius: 50%; width: 2.25rem; height: 2.25rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .piece-body { flex: 1; }
+  .piece-title { font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.25rem; }
+  .piece-desc { font-size: 0.8125rem; color: var(--muted); margin: 0; line-height: 1.6; }
+
+  /* Download button */
+  .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+  .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+
+  @page { margin: 1.5cm; }
+  @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .piece-card, blockquote { break-inside: avoid; page-break-inside: avoid; } .two-col-cards, .loop-flow, .piece-stack { break-inside: avoid; page-break-inside: avoid; } }
+ </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+  <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+  <div class="logo-divider"></div>
+  <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">&#8592; All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+  <span class="badge badge-cat">Claude Code</span>
+  <span class="badge badge-diff">Advanced</span>
+ </div>
+ <h1>Loop Engineering</h1>
+ <div class="hero-author">
+  <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+  <div>
+   <span class="author-name">Max Johnson</span>
+   <span class="author-meta">AI Agency Founder · @maxjohnscn</span>
+  </div>
+ </div>
+</div>
+
+<div class="page-wrap">
+ <article class="guide-content">
+  <button class="download-btn" onclick="downloadPDF()">&#8595; Download PDF</button>
+
+  <p class="intro-blurb">The head of Claude Code stopped writing prompts. Now he hands Claude a goal and builds a loop that runs until it's done. Here's the shift, and the four pieces you need to build your first loop inside Claude Code.</p>
+
+  <h3>What's Inside</h3>
+  <ul>
+   <li>Why the head of Claude Code stopped prompting and now writes loops</li>
+   <li>What a loop really is: a goal, a check, and a stopping condition</li>
+   <li>The four pieces: automations, worktrees, skills and subagents</li>
+   <li>The exact commands and files for each, inside Claude Code</li>
+   <li>When a loop is worth it, and when a prompt is still faster</li>
+  </ul>
+
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>Everything here runs inside Claude Code, the command-line and desktop tool, not the chat box. You don't need to write traditional code to start; a loop begins as a clear brief the agent follows. One thing to know upfront: loops run several agent turns per item, so they use more of your plan than a single prompt. Start with small batches.</p>
+  </div>
+
+  <h2 id="ch-01">The Shift</h2>
+
+  <p>For two years, getting work out of a coding agent meant writing a good prompt. You typed a thing, read what came back, typed the next thing. The agent was a tool and you held it the whole time, one turn after another. Boris Cherny, the head of Claude Code at Anthropic, the person who built it, says that part is over for him.</p>
+
+  <blockquote>
+   <p>"I don't prompt Claude anymore... My job is to write loops."</p>
+   <cite>Boris Cherny, Head of Claude Code, Anthropic</cite>
+  </blockquote>
+
+  <p>By his own account he hasn't hand-written production code in months. On one record day he merged 150 pull requests. He runs five to ten Claude sessions at once, and his main development machine is his phone. The numbers grab the headlines, but they aren't the point.</p>
+
+  <p>The point is the change in posture. Instead of holding the tool turn by turn, you build a small system that finds the work, hands it out, checks it, records what's done and decides what's next, then you let that system poke the agent instead of you. That practice now has a name: loop engineering.</p>
+
+  <div class="two-col-cards">
+   <div class="two-col-card">
+    <div class="two-col-card-header muted">The Old Way</div>
+    <ul>
+     <li>Prompt, read, prompt again</li>
+     <li>You're in the loop for every turn</li>
+     <li>One task at a time</li>
+     <li>The work stops when you stop</li>
+    </ul>
+   </div>
+   <div class="two-col-card">
+    <div class="two-col-card-header accent">The Loop</div>
+    <ul>
+     <li>A goal in, a finished result out</li>
+     <li>The system runs the turns, not you</li>
+     <li>Many tasks at once, in parallel</li>
+     <li>It keeps going while you're away</li>
+    </ul>
+   </div>
+  </div>
+
+  <h2 id="ch-02">What a Loop Actually Is</h2>
+
+  <p>A prompt is one instruction you babysit. A loop is a goal plus the machinery to chase it without you. Three things have to be true before you actually have a loop, and not just a prompt with extra steps.</p>
+
+  <p><strong>1. A goal, not a prompt.</strong> You describe the end state ("every public function has a docstring") not the keystrokes to get there. The agent works out the steps.</p>
+
+  <p><strong>2. A check it can't fake.</strong> Something verifiable decides "done": the tests pass, the linter is clean, a second agent approves. The one rule everyone building these agrees on: the agent doing the work must never grade its own work.</p>
+
+  <p><strong>3. A stopping condition.</strong> The loop runs until the check passes, or until a budget (turns, cost or items) runs out. A fuzzy goal gives it nothing to check, so it just stops like an ordinary prompt.</p>
+
+  <div class="loop-flow">
+   <div class="loop-steps">
+    <div class="loop-step">
+     <div class="loop-step-badge">Goal</div>
+     <div class="loop-step-desc">the end state you want</div>
+    </div>
+    <div class="loop-arrow">›</div>
+    <div class="loop-step">
+     <div class="loop-step-badge">Work</div>
+     <div class="loop-step-desc">agent attempts it</div>
+    </div>
+    <div class="loop-arrow">›</div>
+    <div class="loop-step">
+     <div class="loop-step-badge">Check</div>
+     <div class="loop-step-desc">verify against the goal</div>
+    </div>
+    <div class="loop-arrow">›</div>
+    <div class="loop-step">
+     <div class="loop-step-badge">Done</div>
+     <div class="loop-step-desc">check passes</div>
+    </div>
+   </div>
+   <div class="loop-feedback">fails the check → back to Work</div>
+  </div>
+
+  <div class="callout">
+   <div class="callout-label">Tip</div>
+   <p>If you can't name how you'd check the result, you don't have a loop yet, you have a prompt. Define the check first; everything else hangs off it.</p>
+  </div>
+
+  <h2 id="ch-03">Piece One: Automations</h2>
+
+  <h3>The part that runs without you in the room.</h3>
+
+  <p>Claude Code has a headless mode. Instead of opening the interactive session, you pass the goal on the command line with <code>-p</code>: one prompt in, one result out to stdout, then it exits. No window to watch, no clicking. That's the engine a loop wraps around, you can fire it from a script, from CI, from a git hook, or on a schedule.</p>
+
+  <div class="prompt-label">Headless: one goal in, one result out</div>
+  <pre><code>claude -p "Add docstrings to every public function in src/.
+Run the tests. Only stop once they pass." \
+--allowedTools "Edit,Read,Bash(npm test)" \
+--max-turns 40 \
+--output-format json</code></pre>
+
+  <p>The flags are your control panel. <code>--allowedTools</code> pins exactly what it may touch. <code>--max-turns</code> and a budget cap are the circuit breakers that stop a loop running forever. <code>--output-format json</code> hands you a clean result you can pipe straight into the next step. For fully unattended runs, add <code>--permission-mode dontAsk</code> so it never pauses to ask.</p>
+
+  <p>To make it recurring, you don't sit and re-run it. A cron entry, or a scheduled task on Anthropic's own infrastructure, fires the same command every morning, so the loop kicks off on its own and the result is waiting when you look.</p>
+
+  <div class="callout">
+   <div class="callout-label">Tip</div>
+   <p>Always cap turns and budget before you walk away. An uncapped loop is how you come back to a job that ran all night and a bill to match. Caps first, ambition second.</p>
+  </div>
+
+  <h2 id="ch-04">Piece Two: Worktrees</h2>
+
+  <h3>Two agents, same repo, zero collisions.</h3>
+
+  <p>Run two Claude sessions on the same folder and they overwrite each other's work. A git worktree fixes this: each session gets its own working directory on its own branch, while sharing the same repository history. It's built into Claude Code, so one agent can build a feature in one place while another fixes a bug in another, neither touches the other's files.</p>
+
+  <div class="prompt-label">Each command opens an isolated, parallel session</div>
+  <pre><code>claude --worktree feature-auth  # branch: worktree-feature-auth
+claude --worktree fix-checkout  # a second, no conflicts
+
+# each lands in .claude/worktrees/&lt;name&gt;/</code></pre>
+
+  <p>The desktop app creates a worktree for every new session automatically. For loops, the real power is pairing this with subagents: add <code>isolation: worktree</code> to an agent's settings, or simply ask Claude to "use worktrees for your agents", and every parallel agent gets its own throwaway worktree that's cleaned up when it finishes. That's what lets one loop fan out across a dozen tasks at once.</p>
+
+  <div class="callout">
+   <div class="callout-label">Watch For</div>
+   <p>A worktree is a fresh checkout, so untracked files like <code>.env</code> aren't carried over. Add a <code>.worktreeinclude</code> file (it uses .gitignore syntax) to your project root and Claude copies those files into every new worktree automatically.</p>
+  </div>
+
+  <div class="callout">
+   <div class="callout-label">Tip</div>
+   <p>Worktrees isolate the files. Subagents (next chapter) divide the work. A loop that runs wide needs both, one without the other either collides or bottlenecks.</p>
+  </div>
+
+  <h2 id="ch-05">Piece Three: Skills</h2>
+
+  <h3>Stop explaining the same goal over and over.</h3>
+
+  <p>A skill is a folder with a <code>SKILL.md</code> file: a little block of YAML at the top (a name and a description) and your instructions in plain Markdown below. Write down how you want something done once, and Claude pulls it in automatically whenever it's relevant. No more pasting the same context into every session. Skills live in <code>.claude/skills/</code> for a project, or <code>~/.claude/skills/</code> for everywhere.</p>
+
+  <div class="prompt-label">.claude/skills/pr-checklist/SKILL.md</div>
+  <pre><code>---
+name: pr-checklist
+description: Use before opening any pull request.
+  Runs lint and tests and checks the changelog is updated.
+---
+When preparing a PR:
+1. Run the linter and fix what it flags
+2. Run the full test suite. Do not open the PR if it fails
+3. Confirm CHANGELOG.md has an entry for this change</code></pre>
+
+  <p>Here's the part that matters: at startup Claude only reads the name and description of each skill. It loads the full file only when the description matches what you're doing. So the description is the whole game, write it as "use when..." and be specific, or it won't fire at the right moment. And you don't have to write skills by hand; ask Claude to create one for you.</p>
+
+  <div class="callout">
+   <div class="callout-label">Tip</div>
+   <p>In a loop, skills are the standing instructions. The goal changes each run, the skill keeps the how constant, so you're not re-teaching the agent every single time it goes around.</p>
+  </div>
+
+  <h2 id="ch-06">Piece Four: Subagents</h2>
+
+  <h3>Send Claude off on its own, and get the result back.</h3>
+
+  <p>A subagent is a separate worker with its own context window. The main session hands it a job, it goes away and does it, and it returns just the result, so your main context stays clean. The format is the same as a skill: a Markdown file with frontmatter and a system prompt. They live in <code>.claude/agents/</code> (project) or <code>~/.claude/agents/</code> (personal), and you can create one with the <code>/agents</code> command or just write the file.</p>
+
+  <div class="prompt-label">.claude/agents/test-runner.md</div>
+  <pre><code>---
+name: test-runner
+description: Runs the test suite and reports failures.
+  Use proactively after any code change.
+tools: Read, Bash
+---
+You run tests and report results. Run the suite, then list
+only the failures with the file and line. Do not fix anything.</code></pre>
+
+  <p>The description is the routing hint, it's how the main agent decides to hand work off, so be specific about when to use it. Omit tools and it inherits the session's tools; list them to keep it tight. And by design a subagent can't spawn its own subagents, that's deliberate, it stops a loop from spiralling into runaway recursion.</p>
+
+  <div class="callout">
+   <div class="callout-label">Tip</div>
+   <p>Keep the doer and the grader separate. A subagent that does the work should never be the one that approves it, spin up a second reviewer agent for the check. That separation is what makes the loop trustworthy.</p>
+  </div>
+
+  <h2 id="ch-07">Wiring It Into One Loop</h2>
+
+  <p>None of the four pieces is the loop on its own. The loop is what you get when you stack them:</p>
+
+  <div class="piece-stack">
+   <div class="piece-card">
+    <div class="piece-badge">A</div>
+    <div class="piece-body">
+     <div class="piece-title">Automations are the engine</div>
+     <p class="piece-desc"><code>claude -p</code> on a schedule, it runs with nobody watching.</p>
+    </div>
+   </div>
+   <div class="piece-card">
+    <div class="piece-badge">S</div>
+    <div class="piece-body">
+     <div class="piece-title">Skills are the standing instructions</div>
+     <p class="piece-desc">How the work gets done, the same way, every time round.</p>
+    </div>
+   </div>
+   <div class="piece-card">
+    <div class="piece-badge">U</div>
+    <div class="piece-body">
+     <div class="piece-title">Subagents are the hands</div>
+     <p class="piece-desc">One finds the work, others do it, a separate one checks it.</p>
+    </div>
+   </div>
+   <div class="piece-card">
+    <div class="piece-badge">W</div>
+    <div class="piece-body">
+     <div class="piece-title">Worktrees are the lanes</div>
+     <p class="piece-desc">So the hands work in parallel without ever colliding.</p>
+    </div>
+   </div>
+  </div>
+
+  <p>Put together, a run looks like this: the schedule fires, the main agent reads the goal, spawns subagents in their own worktrees, each does its task using your skills, a separate reviewer checks the result against the goal. Pass and it commits or opens a PR, fail and it goes back round, until the check passes or the budget runs out. You can stand up a first version with nothing more than a plain-English brief.</p>
+
+  <div class="prompt-label">A starter loop charter, paste into Claude Code and fill the brackets</div>
+  <pre><code>You are running a loop, not answering once.
+GOAL: [the end state you want, must be checkable]
+EACH RUN: take the next item, do the work in its own worktree,
+  then have a separate reviewer agent check it against the goal.
+DONE WHEN: [the verifiable condition is met]
+STOP IF: you pass [N] items, or the check fails twice.
+Use my [skill name] for how the work should be done.</code></pre>
+
+  <div class="callout">
+   <div class="callout-label">Start Small</div>
+   <p>A loop runs several agent turns per item, so it uses your plan faster than a single prompt. Keep the [N] items cap low on the first run, watch one full cycle, then widen it once you trust the check.</p>
+  </div>
+
+  <h2 id="ch-08">When To Build A Loop</h2>
+
+  <p>A loop costs setup and burns more usage than a prompt. That trade pays off on some work and wastes your time on the rest. Know which is which before you build.</p>
+
+  <div class="two-col-cards">
+   <div class="two-col-card">
+    <div class="two-col-card-header accent">Build a Loop For</div>
+    <ul>
+     <li>Repeating work across many items, every file, every endpoint</li>
+     <li>Anything with a clear pass or fail check</li>
+     <li>Migrations and large batched changes</li>
+     <li>Overnight or scheduled work you'd rather not babysit</li>
+     <li>Tasks worth the setup and the extra usage</li>
+    </ul>
+   </div>
+   <div class="two-col-card">
+    <div class="two-col-card-header muted">Just Prompt For</div>
+    <ul>
+     <li>A single answer you need once, write this, explain that</li>
+     <li>Work with no verifiable "done" state</li>
+     <li>Quick edits and one-off questions</li>
+     <li>Exploration where you want to stay in the driver's seat</li>
+     <li>Anything faster done by hand than wired up</li>
+    </ul>
+   </div>
+  </div>
+
+  <div class="callout">
+   <div class="callout-label">The Tell</div>
+   <p>If you've run the same kind of prompt five times today, tweaking it a little each time, that's a loop waiting to be written. The repetition is the signal, stop tweaking and define the goal and the check.</p>
+  </div>
+
+  <h2>You're Not Prompting Anymore.</h2>
+
+  <p>Pick one repeating task. Write the goal and the check. Wrap it in <code>claude -p</code>, give it a skill and a reviewer subagent, run it in a worktree, then step back and let it go. That's the whole shift: from holding the tool, to building the thing that holds it.</p>
+
+ </article>
+
+ <aside class="toc-sidebar">
+  <div class="toc-box">
+   <h3>Chapters</h3>
+   <ol>
+    <li><a href="#ch-01">The Shift</a></li>
+    <li><a href="#ch-02">What a Loop Actually Is</a></li>
+    <li><a href="#ch-03">Piece One: Automations</a></li>
+    <li><a href="#ch-04">Piece Two: Worktrees</a></li>
+    <li><a href="#ch-05">Piece Three: Skills</a></li>
+    <li><a href="#ch-06">Piece Four: Subagents</a></li>
+    <li><a href="#ch-07">Wiring It Into One Loop</a></li>
+    <li><a href="#ch-08">When To Build A Loop</a></li>
+   </ol>
+  </div>
+ </aside>
+</div>
+
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+<script>
+function downloadPDF() {
+  window.print();
+}
+</script>
+</body>
+</html>

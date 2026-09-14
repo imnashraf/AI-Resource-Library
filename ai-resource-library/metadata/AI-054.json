@@ -1,0 +1,34 @@
+{
+  "id": "AI-054",
+  "slug": "claude-opus-vs-chatgpt-5-5-run-both",
+  "title": "Claude Opus vs ChatGPT 5.5: Stop Debating. Run Both.",
+  "category": "Claude Code",
+  "subcategory": "CLI Workflows",
+  "difficulty": "Intermediate",
+  "description": "The free integration that lets Claude Code call in Codex CLI mid-conversation. Claude builds, GPT-5.5 reviews. Covers installing Codex CLI, adding the skill-codex plugin, the exact prompts that trigger a review, and how to verify the handoff is actually working.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Claude Code",
+    "The Real Split",
+    "Installing Codex CLI",
+    "Installing From the Marketplace",
+    "CLI Workflows"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude Opus",
+    "Claude",
+    "ChatGPT",
+    "GPT-5"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-054_claude-opus-vs-chatgpt-5-5-run-both.html",
+  "summary_file": "summaries/AI-054.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

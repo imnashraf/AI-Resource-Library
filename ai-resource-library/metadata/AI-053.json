@@ -1,0 +1,34 @@
+{
+  "id": "AI-053",
+  "slug": "turn-any-pdf-into-claude-skill",
+  "title": "Turn Any PDF Into a Claude Skill",
+  "category": "Prompts & Skills",
+  "subcategory": "Custom Skills",
+  "difficulty": "Beginner",
+  "description": "Drop any guide into Claude as a Project and get a working skill that runs on command. Covers the conversion prompt, Project setup, how to trigger skills in one sentence, stacking multiple guides, and what to do when Claude goes off-script.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Prompts & Skills",
+    "What a Claude Skill Actually Is",
+    "The Conversion, Step by Step",
+    "Saving It So It's Always Ready",
+    "Triggering Your Skill",
+    "Stack multiple guides",
+    "When It Doesn't Work",
+    "Custom Skills"
+  ],
+  "ai_tools": [
+    "Claude Projects",
+    "Claude"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-053_turn-any-pdf-into-claude-skill.html",
+  "summary_file": "summaries/AI-053.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

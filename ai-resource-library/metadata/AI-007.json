@@ -1,0 +1,36 @@
+{
+  "id": "AI-007",
+  "slug": "claude-routines-setup-guide",
+  "title": "Claude Routines Setup Guide",
+  "category": "Claude Code",
+  "subcategory": "Environment Setup",
+  "difficulty": "Intermediate",
+  "description": "Build scheduled tasks that run automatically without you being at your desk. How to set up Claude Routines in Claude Desktop, connect your tools, and have Claude handle recurring work on autopilot.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Claude Code",
+    "What Routines Are",
+    "What a Routine Contains",
+    "Where to Find It",
+    "Chapter 02, Setting Up a Routine",
+    "1 Write Your Prompt",
+    "2 Connect Your Repositories",
+    "Environment Setup"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude",
+    "n8n",
+    "Zapier"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-007_claude-routines-setup-guide.html",
+  "summary_file": "summaries/AI-007.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

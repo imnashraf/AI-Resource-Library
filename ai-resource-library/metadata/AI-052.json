@@ -1,0 +1,33 @@
+{
+  "id": "AI-052",
+  "slug": "apollo-lead-list-playbook",
+  "title": "The Apollo Lead List Playbook",
+  "category": "Tools & Integrations",
+  "subcategory": "Data & Lead Generation",
+  "difficulty": "Intermediate",
+  "description": "How to build ICP-matched lead lists in Apollo that are actually worth sending. Covers filter stacking, reusable personas, lookalike shortcuts, trigger-based targeting, list hygiene, and scaling past selection limits.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Tools & Integrations",
+    "What's Inside",
+    "Define Your ICP First",
+    "Stack Your Filters in Order",
+    "Save the Search",
+    "Build a Reusable Persona",
+    "The Lookalike Shortcut",
+    "Data & Lead Generation"
+  ],
+  "ai_tools": [
+    "Apollo"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-052_apollo-lead-list-playbook.html",
+  "summary_file": "summaries/AI-052.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

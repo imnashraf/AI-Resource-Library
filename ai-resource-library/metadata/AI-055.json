@@ -1,0 +1,36 @@
+{
+  "id": "AI-055",
+  "slug": "run-claude-code-chatgpt-gemini-as-one-ai-team",
+  "title": "Run Claude Code, ChatGPT & Gemini As One AI Team",
+  "category": "Tools & Integrations",
+  "subcategory": "Third-Party Connectors",
+  "difficulty": "Advanced",
+  "description": "The free setup that connects Claude Code, Codex CLI and Gemini CLI so they work the same task together. Claude builds, Codex reviews, Gemini handles the files Claude chokes on. Built on your existing subscriptions with no extra cost.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Tools & Integrations",
+    "Why One Model Isn't Enough",
+    "The echo chamber problem",
+    "The context window problem",
+    "Meet Your AI Team",
+    "Claude Code in practice",
+    "Third-Party Connectors"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude",
+    "ChatGPT",
+    "Gemini CLI",
+    "Gemini"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-055_run-claude-code-chatgpt-gemini-as-one-ai-team.html",
+  "summary_file": "summaries/AI-055.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

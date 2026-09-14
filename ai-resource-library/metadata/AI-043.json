@@ -1,0 +1,38 @@
+{
+  "id": "AI-043",
+  "slug": "the-competitor-intelligence-engine",
+  "title": "The Competitor Intelligence Engine",
+  "category": "Building & Monetising",
+  "subcategory": "Monetisation Strategy",
+  "difficulty": "Advanced",
+  "description": "The first service sold to a paying client, built end to end. A system that scrapes competitor content on a schedule, analyses it, finds the gaps, and delivers content drafts in the client's voice. Full architecture, stack, schema, and n8n workflow.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Building & Monetising",
+    "What's inside",
+    "The Service We Sold",
+    "BEFORE: Manual & guesswork",
+    "AFTER: A running engine",
+    "The Architecture",
+    "The Stack",
+    "Monetisation Strategy"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude Haiku",
+    "Claude",
+    "n8n",
+    "Apify",
+    "Supabase"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-043_the-competitor-intelligence-engine.html",
+  "summary_file": "summaries/AI-043.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

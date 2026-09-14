@@ -1,0 +1,422 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>The Cold Outreach Playbook</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✦%3C/text%3E%3C/svg%3E">
+ <style>
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+ html { scroll-behavior: smooth; }
+ body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+ .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+ .header.scrolled { border-color: var(--accent-border); }
+ .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+ .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+ .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+ .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+ .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+ a.logo-subtitle:hover { color: var(--accent); }
+ .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+ .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+ .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+ @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+ .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+ .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+ .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+ .badge-cat { background: var(--accent); color: #fff; }
+ .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+ .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+ .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+ .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+ .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+ .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+ .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+ .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+ .toc-box ol { list-style: none; counter-reset: toc; }
+ .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+ .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+ .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+ .toc-box a:hover { color: var(--accent); }
+ .guide-content { padding: 2rem 0 5rem; }
+ .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+ .guide-content h2:first-child { border-top: none; margin-top: 0; }
+ .guide-content h3 { font-size: 1.0625rem; font-weight: 700; margin-top: 1.75rem; margin-bottom: 0.625rem; }
+ .guide-content p { margin-bottom: 1.125rem; }
+ .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+ .guide-content li { margin-bottom: 0.375rem; }
+ .guide-content strong { font-weight: 600; }
+ .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+ @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+
+ /* Tip / Note callout boxes */
+ .callout { border-left: 4px solid var(--accent-border); background: var(--accent-light); padding: 0.875rem 1.125rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0; }
+ .callout-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.35rem; }
+ .callout p { margin-bottom: 0; }
+
+ /* Code blocks */
+ pre { background: #1a1a1a; color: #e8e8e8; padding: 1.25rem 1.5rem; border-radius: 8px; font-size: 0.875rem; line-height: 1.65; margin: 1.5rem 0; overflow-x: auto; }
+ pre code { font-family: 'Courier New', Courier, monospace; }
+
+ /* Visual Block 1: Chapter overview cards */
+ .chapter-overview { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin: 1.75rem 0; }
+ @media (max-width: 700px) { .chapter-overview { grid-template-columns: 1fr 1fr; } }
+ @media (max-width: 480px) { .chapter-overview { grid-template-columns: 1fr; } }
+ .chapter-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1rem 1.125rem; }
+ .chapter-num { font-size: 1.25rem; font-weight: 700; color: var(--accent); margin-bottom: 0.25rem; font-family: 'Space Grotesk', sans-serif; }
+ .chapter-name { font-weight: 700; font-size: 0.9rem; }
+
+ /* Visual Block 2: Comparison cards */
+ .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.75rem 0; }
+ @media (max-width: 640px) { .compare-grid { grid-template-columns: 1fr; } }
+ .compare-card { background: #fff; border: 1.5px solid #E5E7EB; border-radius: 10px; padding: 1.25rem; }
+ .compare-card.strong { border-color: var(--accent-border); background: var(--accent-light); }
+ .compare-label { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.625rem; }
+ .compare-card.strong .compare-label { color: var(--accent); }
+ .compare-quote { font-style: italic; font-size: 0.9375rem; margin-bottom: 0.75rem; color: var(--text); border-left: 3px solid var(--accent-border); padding-left: 0.875rem; }
+ .compare-desc { font-size: 0.8375rem; color: var(--muted); line-height: 1.6; }
+
+ /* Visual Block 3: Six-step stacked cards */
+ .step-list { display: flex; flex-direction: column; gap: 0.625rem; margin: 1.75rem 0; }
+ .step-item { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 0.875rem 1.125rem; display: flex; gap: 1rem; align-items: flex-start; }
+ .step-num { font-size: 1.125rem; font-weight: 700; color: var(--accent); flex-shrink: 0; min-width: 1.5rem; font-family: 'Space Grotesk', sans-serif; }
+ .step-body { }
+ .step-title { font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.2rem; }
+ .step-desc { font-size: 0.8375rem; color: var(--muted); line-height: 1.5; }
+
+ /* Visual Block 4: Four-email horizontal flow */
+ .email-flow { display: flex; align-items: center; gap: 0; flex-wrap: wrap; margin: 1.75rem 0; }
+ .email-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 0.875rem 1rem; flex: 1; min-width: 110px; text-align: center; }
+ .email-num { font-weight: 700; color: var(--accent); font-size: 0.875rem; margin-bottom: 0.2rem; font-family: 'Space Grotesk', sans-serif; }
+ .email-name { font-weight: 700; font-size: 0.875rem; }
+ .email-arrow { color: var(--accent-border); font-size: 1.25rem; padding: 0 0.5rem; flex-shrink: 0; }
+ @media (max-width: 640px) { .email-flow { flex-direction: column; align-items: stretch; } .email-arrow { transform: rotate(90deg); align-self: center; } }
+
+ /* Visual Block 5: 2x2 checklist grid */
+ .checklist-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.75rem 0; }
+ @media (max-width: 640px) { .checklist-grid { grid-template-columns: 1fr; } }
+ .checklist-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 10px; padding: 1.125rem 1.25rem; }
+ .checklist-card-title { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+ .checklist-card ul { list-style: none; padding: 0; margin: 0; }
+ .checklist-card li { font-size: 0.8375rem; color: var(--text); padding: 0.3rem 0 0.3rem 1.5rem; position: relative; line-height: 1.55; }
+ .checklist-card li::before { content: ""; position: absolute; left: 0; top: 0.55rem; width: 12px; height: 12px; border: 1.5px solid var(--accent-border); border-radius: 3px; }
+ .checklist-footer { text-align: center; font-size: 0.8125rem; font-weight: 700; color: var(--accent); margin-top: 0.75rem; }
+     .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+    @page { margin: 1.5cm; } @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .chapter-card, .compare-card, .checklist-card, blockquote { break-inside: avoid; page-break-inside: avoid; } .chapter-overview, .compare-grid, .checklist-grid, .email-flow { break-inside: avoid; page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+ <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+ <div class="logo-divider"></div>
+ <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">&#8592; All guides</a>
+ </div>
+</header>
+<div class="guide-hero">
+ <div class="hero-meta">
+ <span class="badge badge-cat">Building &amp; Monetising</span>
+ <span class="badge badge-diff">Intermediate</span>
+ </div>
+ <h1>The Cold Outreach Playbook</h1>
+ <div class="hero-author">
+ <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+ <div><span class="author-name">Max Johnson</span><span class="author-meta">@maxjohnscn</span></div>
+ </div>
+</div>
+<div class="page-wrap">
+ <article class="guide-content">
+    <button class="download-btn" onclick="downloadPDF()">&#8595; Download PDF</button>
+
+ <p class="intro-blurb">A complete system for turning cold strangers into booked calls. What to know, what to say, what to show, and what to do. Built around messages people actually reply to, not the ones they delete.</p>
+
+ <p>What's inside:</p>
+ <ul>
+ <li>How to define an ideal client actually worth chasing</li>
+ <li>The first-email anatomy that earns a reply</li>
+ <li>Why context beats flattery in every opening line</li>
+ <li>A four-email sequence that builds instead of nags</li>
+ <li>The proof and the close that turn interest into a call</li>
+ </ul>
+
+ <p>Note: Everything here works whether you sell a service, a product, or yourself. Email is the backbone, but the same thinking carries to LinkedIn, DMs, and calls. Start with one ideal client and one sharp message. Not a list of a thousand names.</p>
+
+ <!-- VISUAL BLOCK 1: Chapter overview -->
+ <div class="chapter-overview">
+ <div class="chapter-card"><div class="chapter-num">01</div><div class="chapter-name">What to Know</div></div>
+ <div class="chapter-card"><div class="chapter-num">02</div><div class="chapter-name">What to Say</div></div>
+ <div class="chapter-card"><div class="chapter-num">03</div><div class="chapter-name">The Sequence</div></div>
+ <div class="chapter-card"><div class="chapter-num">04</div><div class="chapter-name">What to Show</div></div>
+ <div class="chapter-card"><div class="chapter-num">05</div><div class="chapter-name">What to Do</div></div>
+ <div class="chapter-card"><div class="chapter-num">06</div><div class="chapter-name">The Playbook Checklist</div></div>
+ </div>
+
+ <h2 id="ch-01">Chapter 01, What to Know</h2>
+
+ <p>A playbook exists so you stop improvising. Before you write a single line, you need to be clear on three things: who you're for, what they're struggling with, and why you're worth their thirty seconds. Most cold outreach fails right here. Not in the writing, but in the aim. A brilliant message sent to the wrong person still gets deleted.</p>
+
+ <h3>Define your ideal client first</h3>
+
+ <p>You can't write a message that lands until you know exactly who it's landing on. Vague targeting produces vague emails, and vague emails get ignored. Get specific, then build everything around that one person.</p>
+
+ <h3>Build your ICP: nail these five</h3>
+
+ <ul>
+ <li><strong>Industry &amp; niche:</strong> the narrower the better. "Boutique fitness studios" beats "businesses".</li>
+ <li><strong>Company size:</strong> a solo founder and a 200-person team have completely different problems.</li>
+ <li><strong>Decision-maker:</strong> who actually signs off, named by role, not job title soup.</li>
+ <li><strong>The pain:</strong> the one specific problem they'd happily pay to make disappear.</li>
+ <li><strong>The trigger:</strong> what recently changed that makes now the moment to reach out.</li>
+ </ul>
+
+ <div class="callout">
+ <div class="callout-label">TIP: USE CLAUDE</div>
+ <p>Paste a prospect's website, a recent post, or a funding announcement into Claude and ask it to pull out the three problems they're most likely facing right now. You'll write a sharper, more relevant opener in seconds.</p>
+ </div>
+
+ <h2 id="ch-01b">Chapter 01, The Big Idea: Context Beats Flattery</h2>
+
+ <p>Most people think personalisation is the answer. It isn't. Not on its own.</p>
+
+ <p>Personalisation is about who someone is: "Loved your talk at the conference." It's flattering, but it rarely connects to a problem they'd pay to solve.</p>
+
+ <p>Contextualisation is about what's happening around them right now: "Saw you just opened a second location. Staffing two sites is a different game." That creates instant relevance. It tells them you understand their situation, not just their name.</p>
+
+ <!-- VISUAL BLOCK 2: Comparison cards -->
+ <div class="compare-grid">
+ <div class="compare-card">
+ <div class="compare-label">Personalisation: Weak Alone</div>
+ <div class="compare-quote">"I saw you studied at the same university as me."</div>
+ <div class="compare-desc">Focuses on who they are. Flatters the ego, but doesn't touch a real problem.</div>
+ </div>
+ <div class="compare-card strong">
+ <div class="compare-label">Contextualisation: What Works</div>
+ <div class="compare-quote">"Noticed you just launched on three new channels. Tracking them all is usually where it breaks."</div>
+ <div class="compare-desc">Focuses on what's changing for them. Creates relevance, urgency, and a clear reason to write back.</div>
+ </div>
+ </div>
+
+ <div class="callout">
+ <div class="callout-label">TIP</div>
+ <p>A trigger event is the single best reason to reach out: a launch, a new hire, a funding round, a tool they just adopted, or a post complaining about a problem. Lead with the trigger, not with yourself. That is what turns a cold email into a timely one.</p>
+ </div>
+
+ <p>Get this right and the rest of the playbook gets easier. Everything that follows (the subject line, the hook, the follow-ups) is just a way of carrying that context to the right person at the right moment.</p>
+
+ <h2 id="ch-02">Chapter 02, What to Say</h2>
+
+ <p>This is where outreach is won or lost. The goal of a cold email is not to close. It's to earn a single reply. Keep it short. Under 150 words. Every extra sentence is another reason to stop reading.</p>
+
+ <div class="callout">
+ <div class="callout-label">NOTE: BEFORE YOU SEND</div>
+ <p>Sort your email authentication (SPF, DKIM, DMARC) so you actually land in the inbox, not spam. And stop fixating on open rates. They're unreliable and easy to misread. The metric that matters is replies, and replies come from emails worth reading.</p>
+ </div>
+
+ <h3>The first email: six parts</h3>
+
+ <!-- VISUAL BLOCK 3: Six-step stacked cards -->
+ <div class="step-list">
+ <div class="step-item">
+ <div class="step-num">1</div>
+ <div class="step-body"><div class="step-title">The subject line</div><div class="step-desc">Everything depends on it. If it isn't opened, nothing else matters. Spark curiosity tied to their world, not yours. Specific and intriguing beats clever.</div></div>
+ </div>
+ <div class="step-item">
+ <div class="step-num">2</div>
+ <div class="step-body"><div class="step-title">The open</div><div class="step-desc">Who you are, why you're credible. Fast. No long wind-up.</div></div>
+ </div>
+ <div class="step-item">
+ <div class="step-num">3</div>
+ <div class="step-body"><div class="step-title">The hook</div><div class="step-desc">"This is about you." Researched. A specific observation about their situation that's impossible to skim past.</div></div>
+ </div>
+ <div class="step-item">
+ <div class="step-num">4</div>
+ <div class="step-body"><div class="step-title">The value</div><div class="step-desc">One clear benefit framed around their problem. Not your feature list.</div></div>
+ </div>
+ <div class="step-item">
+ <div class="step-num">5</div>
+ <div class="step-body"><div class="step-title">The proof</div><div class="step-desc">Others like them already trust you. No name-dropping competitors. Just enough to build belief.</div></div>
+ </div>
+ <div class="step-item">
+ <div class="step-num">6</div>
+ <div class="step-body"><div class="step-title">The ask</div><div class="step-desc">Low-barrier question. Not a meeting. "Would it help if I showed you how?" A single positive reply is the only goal.</div></div>
+ </div>
+ </div>
+
+ <h2 id="ch-02-example">Chapter 02, Example: What It Looks Like Put Together</h2>
+
+ <p>Here are the six parts assembled into one short email. Notice how every line earns the next, and the ask costs the reader almost nothing.</p>
+
+ <p><strong>Cold email, Under 150 words</strong></p>
+
+ <pre><code>Subject: Quick idea for [their recent launch]
+
+Hi [name],
+
+I run [what you do]. We help [their type of business] turn [problem] into [outcome].
+
+Saw you just launched [thing]. Most teams at that stage quietly lose [specific costly problem] without realising it.
+
+A few [similar businesses] switched to us for exactly this and saw [result] in [timeframe].
+
+Would it help if I sent over how we'd approach it for you?
+
+[your name]</code></pre>
+
+ <div class="callout">
+ <div class="callout-label">TIP: USE CLAUDE</div>
+ <p>Drafted something too long or too salesy? Paste it into Claude and ask it to cut it under 150 words while keeping the hook and the low-barrier ask. Then ask for two subject-line variants and send the one with more intrigue.</p>
+ </div>
+
+ <p>Read it out loud before you send. If a line doesn't earn its place, cut it. Short isn't a style choice here. It's what protects your reply rate.</p>
+
+ <h2 id="ch-03">Chapter 03, The Sequence</h2>
+
+ <p>One email rarely does it. Most of the replies come from the follow-ups. But only if each one adds something. Never just "bumping this." Every touch earns its place. Space them out, stay consistent, and let belief build.</p>
+
+ <!-- VISUAL BLOCK 4: Four-email flow -->
+ <div class="email-flow">
+ <div class="email-card"><div class="email-num">Email 1</div><div class="email-name">The Opener</div></div>
+ <div class="email-arrow">&#8594;</div>
+ <div class="email-card"><div class="email-num">Email 2</div><div class="email-name">The Value Drop</div></div>
+ <div class="email-arrow">&#8594;</div>
+ <div class="email-card"><div class="email-num">Email 3</div><div class="email-name">The Proof</div></div>
+ <div class="email-arrow">&#8594;</div>
+ <div class="email-card"><div class="email-num">Email 4</div><div class="email-name">The Nudge</div></div>
+ </div>
+
+ <p><strong>1 Email one: the opener</strong><br>Short, contextual, one low-barrier ask. The only goal is a positive reply. Don't pitch a meeting here.</p>
+
+ <p><strong>2 Email two: the value drop</strong><br>Once they've replied, you're clear to share more. Send a short case study, a quick video, or a custom page built for them. An image that links to a tailored page often beats a plain link. It earns the click.</p>
+
+ <p><strong>3 Email three: the proof</strong><br>Show, don't tell. A screenshot or a piece of sample data that makes the opportunity real for them. Seeing it lands harder than reading about it.</p>
+
+ <p><strong>4 Email four: the nudge</strong><br>Bring a fresh angle: how someone similar is using it, a relevant result, a reason it's worth a conversation now. This is where you can finally move toward a call.</p>
+
+ <div class="callout">
+ <div class="callout-label">NOTE</div>
+ <p>Don't ask for a meeting in email one or two. Earn the reply first, build belief, then ask. Pushing for a call too early is the fastest way to get ignored for good.</p>
+ </div>
+
+ <h2 id="ch-04">Chapter 04, What to Show</h2>
+
+ <p>Words get you the reply. Proof gets you the call. This is the collateral you reach for once someone's paying attention. These are the assets that turn "maybe" into "let's talk." Have them ready before you start, so a warm reply never goes cold while you scramble.</p>
+
+ <h3>Sample data &amp; screenshots</h3>
+ <p>A glimpse of the actual insight or result, specific to them. The most convincing thing you can send, because it's real and not a promise.</p>
+
+ <h3>Case studies</h3>
+ <p>A short story of a similar client and the outcome you got them. Same situation, proven result. Keep it to one tight paragraph.</p>
+
+ <h3>A custom landing page</h3>
+ <p>A simple page built for one prospect, showing exactly what they need to see. Link it from an image in the email. Curiosity earns the click better than a bare URL.</p>
+
+ <h3>A short video</h3>
+ <p>A 60-second walkthrough. Record one quickly. It explains the offer better than a wall of text ever could.</p>
+
+ <h3>Testimonials &amp; social proof</h3>
+ <p>Evidence that other people already made this decision and were glad they did. Borrowed confidence, when yours is still unproven to them.</p>
+
+ <div class="callout">
+ <div class="callout-label">TIP</div>
+ <p>Match the asset to the moment. Early on, a single screenshot or a one-line result does more than a ten-page deck. Save the heavy collateral for when they actually ask for it.</p>
+ </div>
+
+ <h2 id="ch-05">Chapter 05, What to Do</h2>
+
+ <p>Knowing and saying mean nothing without doing. This is the operating side of the playbook: where you reach, how often, and how you turn a warm reply into a booked call.</p>
+
+ <h3>Pick the right channel</h3>
+ <p>Email is the backbone for personalised, considered outreach. LinkedIn works when your buyer lives there. It is ideal for B2B decision-makers. A call suits a direct, high-intent approach. Don't spread thin: go deep where your client actually is, then layer a second channel to stay top of mind.</p>
+
+ <h3>Follow up with discipline</h3>
+ <p>Most replies arrive after the first email, not from it. Space your follow-ups. Keep them consistent, never annoying. Make every one carry something new. The moment a follow-up is just "any update?", you've lost the thread.</p>
+
+ <h3>Close the loop</h3>
+ <p>Once there's genuine interest, stop selling and start scheduling. Be clear about the next step and propose a specific time. A gentle, honest reason to act now (a slot opening, a real window) helps, but only if it's true. Make saying yes the easiest thing in the email.</p>
+
+ <div class="callout">
+ <div class="callout-label">TIP</div>
+ <p>Go multichannel once a lead is warm. A LinkedIn message after an email, a light touch of retargeting. Stay visible without being a pest. Presence beats persistence.</p>
+ </div>
+
+ <h2 id="ch-06">Chapter 06, The Whole Playbook, One Page</h2>
+
+ <p>Run this before every campaign. If you can tick all of it, you're ready to send.</p>
+
+ <!-- VISUAL BLOCK 5: 2x2 checklist grid -->
+ <div class="checklist-grid">
+ <div class="checklist-card">
+ <div class="checklist-card-title">What to Know</div>
+ <ul>
+ <li>One specific ideal client</li>
+ <li>A real reason to reach out now</li>
+ <li>Context about their world</li>
+ </ul>
+ </div>
+ <div class="checklist-card">
+ <div class="checklist-card-title">What to Say</div>
+ <ul>
+ <li>Email under 150 words</li>
+ <li>Curiosity subject line</li>
+ <li>Researched hook</li>
+ <li>One benefit + light proof + low-barrier ask</li>
+ <li>Authentication sorted</li>
+ </ul>
+ </div>
+ <div class="checklist-card">
+ <div class="checklist-card-title">What to Show</div>
+ <ul>
+ <li>Case study/sample data/video ready</li>
+ <li>Custom page or screenshot for warm leads</li>
+ </ul>
+ </div>
+ <div class="checklist-card">
+ <div class="checklist-card-title">What to Do</div>
+ <ul>
+ <li>Right channel</li>
+ <li>Spaced value-adding follow-up sequence</li>
+ <li>Clear next step</li>
+ </ul>
+ </div>
+ </div>
+ <p class="checklist-footer">One sharp message to the right person beats a thousand generic ones. Aim, don't spray.</p>
+
+ <h2 id="closing">Now Go Win the Reply.</h2>
+
+ <p>Cold outreach isn't a numbers game played with the same bad email a thousand times. It's one sharp message, sent to the right person, at the right moment, followed up with discipline. Pick one ideal client. Write one email under 150 words. Lead with context. Earn the reply, then earn the call. That's the whole playbook.</p>
+
+ </article>
+ <aside class="toc-sidebar">
+ <div class="toc-box">
+ <h3>Chapters</h3>
+ <ol>
+ <li><a href="#ch-01">What to Know</a></li>
+ <li><a href="#ch-01b">Context Beats Flattery</a></li>
+ <li><a href="#ch-02">What to Say</a></li>
+ <li><a href="#ch-02-example">The Email, Assembled</a></li>
+ <li><a href="#ch-03">The Sequence</a></li>
+ <li><a href="#ch-04">What to Show</a></li>
+ <li><a href="#ch-05">What to Do</a></li>
+ <li><a href="#ch-06">The Playbook Checklist</a></li>
+ </ol>
+ </div>
+ </aside>
+</div>
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+<script>
+function downloadPDF() {
+  window.print();
+}
+</script>
+</body>
+</html>

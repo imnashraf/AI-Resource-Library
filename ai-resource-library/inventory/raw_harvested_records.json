@@ -1,0 +1,1975 @@
+[
+  {
+    "id": "AI-001",
+    "index": 1,
+    "slug": "the-ultimate-claude-starter-setup-guide",
+    "title": "The Ultimate Claude Starter Setup Guide",
+    "category": "Getting Started",
+    "difficulty": "Beginner",
+    "description": "How to set up Claude Projects, the memory system, custom instructions, Skills, and MCP connectors, the exact setup used to run an AI agency. From account basics to your first-week roadmap.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-001_the-ultimate-claude-starter-setup-guide.html",
+    "topics": [
+      "Getting Started",
+      "What Claude Actually Is",
+      "What You Get Access To",
+      "Claude Projects",
+      "The Memory System"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude Projects",
+      "Claude Skills",
+      "Claude",
+      "Figma",
+      "Supabase"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-002",
+    "index": 2,
+    "slug": "the-master-level-claude-guide",
+    "title": "The Master Level Claude Guide",
+    "category": "Getting Started",
+    "difficulty": "Beginner to Advanced",
+    "description": "From complete beginner to advanced user. Every practical workflow has been tested, from your first conversation through multi-agent automations, business monetisation, and a ready-to-use prompt reference library.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-002_the-master-level-claude-guide.html",
+    "topics": [
+      "Getting Started",
+      "01: Getting Started",
+      "The Plans",
+      "Setting Up",
+      "Setting up your first Project",
+      "02: The Basics",
+      "How to Prompt Properly"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude Skills",
+      "Claude",
+      "PostHog",
+      "Figma",
+      "Ruflo",
+      "NotebookLM"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-003",
+    "index": 3,
+    "slug": "the-ultimate-claude-toolkit",
+    "title": "The Ultimate Claude Toolkit",
+    "category": "Getting Started",
+    "difficulty": "Beginner",
+    "description": "A curated collection of the most useful Claude tools, extensions, and integrations. Everything in one place, from browser extensions to desktop apps to the best community-built skills.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-003_the-ultimate-claude-toolkit.html",
+    "topics": [
+      "Getting Started",
+      "Which plan do you need"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude Opus",
+      "Claude Desktop",
+      "Claude",
+      "ChatGPT",
+      "OpenAI Codex",
+      "PostHog",
+      "Figma",
+      "Wispr Flow",
+      "NotebookLM"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-004",
+    "index": 4,
+    "slug": "claude-dos-and-don-ts-guide",
+    "title": "The Full Claude Dos and Don'ts",
+    "category": "Getting Started",
+    "difficulty": "Beginner to Advanced",
+    "description": "The habits that make Claude output genuinely useful versus the common mistakes that produce generic, mediocre results. A practical reference you'll return to as your usage grows.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-004_claude-dos-and-don-ts-guide.html",
+    "topics": [
+      "Getting Started",
+      "Chapter 01, Context",
+      "Chapter 02, Instructions",
+      "Chapter 03, Memory",
+      "Chapter 04, Skills",
+      "Chapter 05, Connectors"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-005",
+    "index": 5,
+    "slug": "10-ways-to-stop-burning-your-claude-usage-limit",
+    "title": "10 Ways to Stop Burning Your Claude Usage Limit",
+    "category": "Getting Started",
+    "difficulty": "Beginner",
+    "description": "Usage limits hitting faster than expected? Ten concrete techniques to get more out of every message, from smarter prompting to caching strategies to knowing when to switch models.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-005_10-ways-to-stop-burning-your-claude-usage-limit.html",
+    "topics": [
+      "Getting Started"
+    ],
+    "ai_tools": [
+      "Claude Opus",
+      "Claude Haiku",
+      "Claude"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-006",
+    "index": 6,
+    "slug": "claude-wispr-flow-and-cookiy-ai-setup-guide",
+    "title": "Claude, Wispr Flow and Cookiy AI Setup Guide",
+    "category": "Getting Started",
+    "difficulty": "Intermediate",
+    "description": "Set up voice-to-AI and browser automation together. Wispr Flow turns your voice into Claude prompts. Cookiy AI handles repetitive browser tasks. This guide wires them both up in under an hour.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-006_claude-wispr-flow-and-cookiy-ai-setup-guide.html",
+    "topics": [
+      "Getting Started",
+      "Chapter 01, Claude",
+      "Chapter 02, Wispr Flow",
+      "Installation",
+      "Key features to know",
+      "Chapter 03, Cookiy AI",
+      "Setting up via the platform"
+    ],
+    "ai_tools": [
+      "Claude",
+      "Cursor",
+      "Figma",
+      "Wispr Flow",
+      "Cookiy AI"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-007",
+    "index": 7,
+    "slug": "claude-routines-setup-guide",
+    "title": "Claude Routines Setup Guide",
+    "category": "Claude Code",
+    "difficulty": "Intermediate",
+    "description": "Build scheduled tasks that run automatically without you being at your desk. How to set up Claude Routines in Claude Desktop, connect your tools, and have Claude handle recurring work on autopilot.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-007_claude-routines-setup-guide.html",
+    "topics": [
+      "Claude Code",
+      "What Routines Are",
+      "What a Routine Contains",
+      "Where to Find It",
+      "Chapter 02, Setting Up a Routine",
+      "1 Write Your Prompt",
+      "2 Connect Your Repositories"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude",
+      "n8n",
+      "Zapier"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-008",
+    "index": 8,
+    "slug": "claude-code-10x-setup-guide",
+    "title": "Claude Code 10x Setup Guide",
+    "category": "Claude Code",
+    "difficulty": "Intermediate",
+    "description": "The full Claude Code setup that maximises output quality, CLAUDE.md configuration, hooks, permissions, MCP servers, and the project structure that makes agentic coding actually reliable.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-008_claude-code-10x-setup-guide.html",
+    "topics": [
+      "Claude Code"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-009",
+    "index": 9,
+    "slug": "7-claude-code-agent-types",
+    "title": "7 Claude Code Agent Types",
+    "category": "Claude Code",
+    "difficulty": "Intermediate",
+    "description": "The seven distinct ways to use Claude Code as an agent, from single-task runners to persistent multi-step workflows. Understand what each type is built for and when to reach for each one.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-009_7-claude-code-agent-types.html",
+    "topics": [
+      "Claude Code"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-010",
+    "index": 10,
+    "slug": "claude-code-commands-guide",
+    "title": "Claude Code Commands Guide",
+    "category": "Claude Code",
+    "difficulty": "Beginner",
+    "description": "Every slash command, keyboard shortcut, and CLI flag explained. A reference guide for Claude Code users who want to move faster and use the tool the way it was designed to be used.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-010_claude-code-commands-guide.html",
+    "topics": [
+      "Claude Code",
+      "Command 01, /ultra plan",
+      "Command 02, /power up",
+      "Command 03, /insights",
+      "Now Go Try Them."
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-011",
+    "index": 11,
+    "slug": "claude-code-codex-setup-guide",
+    "title": "Claude Code + Codex Setup Guide",
+    "category": "Claude Code",
+    "difficulty": "Intermediate",
+    "description": "How to connect Claude Code to OpenAI Codex and run both models in the same agentic workflow. Setup, configuration, and the use cases where having both models available pays off.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-011_claude-code-codex-setup-guide.html",
+    "topics": [
+      "Claude Code"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude",
+      "ChatGPT",
+      "OpenAI Codex"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-012",
+    "index": 12,
+    "slug": "run-claude-code-free-with-ollama",
+    "title": "Run Claude Code Free With Ollama",
+    "category": "Claude Code",
+    "difficulty": "Intermediate",
+    "description": "Run local open-source models through Claude Code using Ollama, no API costs, fully offline. Covers installation, model selection, and the practical limits of local models versus Claude's hosted API.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-012_run-claude-code-free-with-ollama.html",
+    "topics": [
+      "Claude Code",
+      "Without Ollama",
+      "With Ollama",
+      "Chapter 02, Step 1, Install Ollama"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude",
+      "Ollama"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-013",
+    "index": 13,
+    "slug": "dynamic-workflows-in-claude-code",
+    "title": "Dynamic Workflows in Claude Code",
+    "category": "Claude Code",
+    "difficulty": "Intermediate",
+    "description": "Build workflows that adapt based on outputs, conditional logic, branching agents, and decision trees inside Claude Code. Moves beyond simple task execution into genuinely intelligent automation.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-013_dynamic-workflows-in-claude-code.html",
+    "topics": [
+      "Claude Code",
+      "Chapter 02, How It Actually Works",
+      "Chapter 04, The Review Layer"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-014",
+    "index": 14,
+    "slug": "ruflo-multi-agent-framework-setup-guide",
+    "title": "Ruflo Multi-Agent Framework Setup Guide",
+    "category": "Claude Code",
+    "difficulty": "Intermediate",
+    "description": "Set up Ruflo, the multi-agent orchestration framework built for Claude Code. Coordinate parallel agents, manage shared context, and build production-grade automation pipelines step by step.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-014_ruflo-multi-agent-framework-setup-guide.html",
+    "topics": [
+      "Claude Code",
+      "Overview",
+      "Setup Steps",
+      "Optional, Spawn a Manual Swarm",
+      "How the Cost Reduction Works",
+      "Useful Commands"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude",
+      "Ruflo"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-015",
+    "index": 15,
+    "slug": "graphify-setup-guide",
+    "title": "Graphify Setup Guide",
+    "category": "Claude Code",
+    "difficulty": "Intermediate",
+    "description": "Connect Graphify to Claude and turn natural language into data visualisations. Setup guide covers installation, connecting your data sources, and the prompts that produce the best chart outputs.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-015_graphify-setup-guide.html",
+    "topics": [
+      "Claude Code",
+      "Without Graphify",
+      "With Graphify"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude",
+      "Gemini CLI",
+      "Gemini",
+      "Cursor",
+      "Graphify"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-016",
+    "index": 16,
+    "slug": "claude-code-design-stack-setup-guide",
+    "title": "Claude Code Design Stack Setup Guide",
+    "category": "Claude Code",
+    "difficulty": "Beginner",
+    "description": "The design stack that works with Claude Code, frontend skills, component libraries, and the configuration that makes Claude produce production-quality UI from natural language descriptions.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-016_claude-code-design-stack-setup-guide.html",
+    "topics": [
+      "Claude Code"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-017",
+    "index": 17,
+    "slug": "figma-claude-setup-guide",
+    "title": "Figma + Claude Setup Guide",
+    "category": "Tools & Integrations",
+    "difficulty": "Beginner",
+    "description": "Connect Figma to Claude via MCP and work with your design files in conversation. Covers the Figma MCP server setup, authentication, and the most useful prompts for design workflows.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-017_figma-claude-setup-guide.html",
+    "topics": [
+      "Tools & Integrations"
+    ],
+    "ai_tools": [
+      "Claude",
+      "Figma"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-018",
+    "index": 18,
+    "slug": "notebooklm-claude-code-setup-guide",
+    "title": "NotebookLM + Claude Code Setup Guide",
+    "category": "Tools & Integrations",
+    "difficulty": "Intermediate",
+    "description": "Use NotebookLM for deep document research and Claude Code for execution, a two-tool research-to-action pipeline. Setup guide and the workflow that makes them work well together.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-018_notebooklm-claude-code-setup-guide.html",
+    "topics": [
+      "Tools & Integrations"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude",
+      "NotebookLM"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-019",
+    "index": 19,
+    "slug": "apify-reddit-intelligence-setup-guide",
+    "title": "Apify Reddit Intelligence Setup Guide",
+    "category": "Tools & Integrations",
+    "difficulty": "Beginner",
+    "description": "Scrape Reddit at scale with Apify and pipe the data into Claude for market research, trend spotting, and audience intelligence. Full setup with the prompts that extract usable insight from raw posts.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-019_apify-reddit-intelligence-setup-guide.html",
+    "topics": [
+      "Tools & Integrations",
+      "Step 1, Create your Apify account",
+      "Step 3, Connect Apify to Claude",
+      "What To Do With the Report"
+    ],
+    "ai_tools": [
+      "Claude",
+      "Apify"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-020",
+    "index": 20,
+    "slug": "indeed-claude-job-hunter-setup-guide",
+    "title": "Indeed + Claude Job Hunter Setup Guide",
+    "category": "Tools & Integrations",
+    "difficulty": "Beginner",
+    "description": "Automate your job search with Claude and Indeed. Scrape listings, score them against your criteria, draft tailored cover letters, and track applications, all from a single Claude workflow.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-020_indeed-claude-job-hunter-setup-guide.html",
+    "topics": [
+      "Tools & Integrations",
+      "Step 1, Connect Indeed to Claude",
+      "Step 2, Upload your CV"
+    ],
+    "ai_tools": [
+      "Claude"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-021",
+    "index": 21,
+    "slug": "posthog-claude-code-setup-guide",
+    "title": "PostHog + Claude Code Setup Guide",
+    "category": "Tools & Integrations",
+    "difficulty": "Intermediate",
+    "description": "Connect PostHog product analytics to Claude Code via MCP. Query events, funnels, and user data in plain English, then use Claude Code to act on what you find without leaving the terminal.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-021_posthog-claude-code-setup-guide.html",
+    "topics": [
+      "Tools & Integrations",
+      "Your Landing Page Is Now Learning"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude",
+      "PostHog"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-022",
+    "index": 22,
+    "slug": "remotion-claude-code-video-editor-setup-guide",
+    "title": "Remotion + Claude Code Video Editor Setup Guide",
+    "category": "Tools & Integrations",
+    "difficulty": "Beginner",
+    "description": "Build and edit programmatic video with Remotion, directed by Claude Code. Claude writes the React components, manages the timeline, and renders outputs, a full AI video editor in code.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-022_remotion-claude-code-video-editor-setup-guide.html",
+    "topics": [
+      "Tools & Integrations",
+      "Setup, Three Steps to Get Running"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude Desktop",
+      "Claude",
+      "Remotion"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-023",
+    "index": 23,
+    "slug": "claude-humanizer-setup-guide",
+    "title": "Claude Humanizer Setup Guide",
+    "category": "Tools & Integrations",
+    "difficulty": "Beginner",
+    "description": "Install and use the Claude Humanizer skill to remove AI-detectable patterns from your writing. Covers the skill setup, the prompts that work, and the techniques for different content types.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-023_claude-humanizer-setup-guide.html",
+    "topics": [
+      "Tools & Integrations",
+      "Step 1, Install Claude Code",
+      "Step 2, Install Git (if needed)",
+      "Step 4, Use the Humanizer",
+      "What the Humanizer Fixes",
+      "Troubleshooting"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-024",
+    "index": 24,
+    "slug": "clawdbot-openclaw-getting-started-guide",
+    "title": "Clawdbot (Openclaw) Getting Started Guide",
+    "category": "Tools & Integrations",
+    "difficulty": "Intermediate",
+    "description": "Get started with ClawdBot and OpenClaw, two community tools that extend what Claude can do. Installation, configuration, and the first workflows to run once everything is connected.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-024_clawdbot-openclaw-getting-started-guide.html",
+    "topics": [
+      "Tools & Integrations",
+      "Part I, Installation & Setup",
+      "Part II, Security & Hardening"
+    ],
+    "ai_tools": [
+      "Claude"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-025",
+    "index": 25,
+    "slug": "7-prompts-that-will-outperform-99-of-agents",
+    "title": "7 Prompts That Will Outperform 99% of Agents",
+    "category": "Prompts & Skills",
+    "difficulty": "Intermediate",
+    "description": "Seven prompt structures that get consistently better results than standard agent prompts. Each one includes the template, the reasoning behind why it works, and examples of real output.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-025_7-prompts-that-will-outperform-99-of-agents.html",
+    "topics": [
+      "Prompts & Skills"
+    ],
+    "ai_tools": [
+      "Claude"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-026",
+    "index": 26,
+    "slug": "5-skills-no-one-is-telling-you-about",
+    "title": "5 Skills No One Is Telling You About",
+    "category": "Prompts & Skills",
+    "difficulty": "Beginner",
+    "description": "Five underused Claude skills that produce dramatically better output for specific tasks. Covers what each skill does, where to get it, and the exact use cases where it outperforms standard prompting.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-026_5-skills-no-one-is-telling-you-about.html",
+    "topics": [
+      "Prompts & Skills",
+      "01, Frontend Design",
+      "Anthropic (Official)",
+      "02, User Research",
+      "Cookiy AI",
+      "03, Superpowers",
+      "Jesse Vincent"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude",
+      "Cookiy AI"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-027",
+    "index": 27,
+    "slug": "the-top-13-claude-skills",
+    "title": "The Top 13 Claude Skills",
+    "category": "Prompts & Skills",
+    "difficulty": "Beginner",
+    "description": "A curated list of the 13 most useful Claude skills available right now, what each one does, where to install it, and which workflows it transforms. Updated as new skills are released.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-027_the-top-13-claude-skills.html",
+    "topics": [
+      "Prompts & Skills",
+      "Skill 01, marketingskills",
+      "Skill 02, UI-UX-Pro-Max",
+      "Skill 03, superpowers",
+      "Skill 04, remotion",
+      "Skill 06, find-skills"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude Desktop",
+      "Claude Skills",
+      "Claude",
+      "Cursor",
+      "Remotion"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-028",
+    "index": 28,
+    "slug": "top-1-claude-skills",
+    "title": "Top 1% Claude Skills",
+    "category": "Prompts & Skills",
+    "difficulty": "Intermediate",
+    "description": "The advanced skill configurations used by the top 1% of Claude users. Custom skill architecture, skill chaining, and the patterns that separate power users from everyone else.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-028_top-1-claude-skills.html",
+    "topics": [
+      "Prompts & Skills"
+    ],
+    "ai_tools": [
+      "Claude Skills",
+      "Claude"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-029",
+    "index": 29,
+    "slug": "the-llm-council-setup-guide",
+    "title": "The LLM Council Setup Guide",
+    "category": "Prompts & Skills",
+    "difficulty": "Intermediate",
+    "description": "Set up a multi-model council where Claude, GPT-4, and other LLMs critique and improve each other's outputs. The architecture, the prompts, and the use cases where collective model reasoning wins.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-029_the-llm-council-setup-guide.html",
+    "topics": [
+      "Prompts & Skills",
+      "Chapter 02, How the Council Works",
+      "Chapter 03, The Five Advisors",
+      "Chapter 04, The Full Prompt",
+      "Chapter 05, How to Run It",
+      "Chapter 06, When to Use It"
+    ],
+    "ai_tools": [
+      "Claude",
+      "Gemini"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-030",
+    "index": 30,
+    "slug": "marketing-skills-complete-setup-guide",
+    "title": "Marketing Skills Complete Setup Guide for Claude Code",
+    "category": "Prompts & Skills",
+    "difficulty": "Beginner",
+    "description": "Install and configure the complete Briix marketing skills stack, copywriting, social media, email, and ad creative skills wired together into a single marketing workflow inside Claude.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-030_marketing-skills-complete-setup-guide.html",
+    "topics": [
+      "Prompts & Skills",
+      "What Else It Can Do"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-031",
+    "index": 31,
+    "slug": "13-ways-to-stop-your-ai-designs-looking-like-slop",
+    "title": "13 Ways to Stop Your AI Designs Looking Like Slop",
+    "category": "Prompts & Skills",
+    "difficulty": "Beginner",
+    "description": "Thirteen specific techniques to make AI-generated designs look intentional and professional. Covers prompting, post-processing, skill configuration, and the visual tells that expose generic AI output.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-031_13-ways-to-stop-your-ai-designs-looking-like-slop.html",
+    "topics": [
+      "Prompts & Skills",
+      "1, Efford, efford.co",
+      "2, Newform",
+      "3, SuperDesign",
+      "Tips 4 5",
+      "4, Install a UI Design Skill"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude Projects",
+      "Claude",
+      "Cursor",
+      "Canva"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-032",
+    "index": 32,
+    "slug": "the-startup-stack",
+    "title": "The Startup Stack",
+    "category": "Building & Monetising",
+    "difficulty": "Beginner",
+    "description": "The full toolstack for building a software startup with Claude, from idea validation through build, launch, and early growth. Every tool, every integration, and the order to set them up.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-032_the-startup-stack.html",
+    "topics": [
+      "Building & Monetising",
+      "01, Claude",
+      "02, Cookiy",
+      "03, Figma",
+      "04, Claude Code",
+      "05, N8N"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude",
+      "n8n",
+      "Figma"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-033",
+    "index": 33,
+    "slug": "ai-print-on-demand-setup-guide",
+    "title": "AI Print-On-Demand Setup Guide",
+    "category": "Building & Monetising",
+    "difficulty": "Beginner",
+    "description": "Build a print-on-demand business with Claude handling design generation, listing copy, and product research. Full setup from Printful or Printify through to live product listings.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-033_ai-print-on-demand-setup-guide.html",
+    "topics": [
+      "Building & Monetising",
+      "How It Works, The Full Picture",
+      "Step 01, Pick Your Niche"
+    ],
+    "ai_tools": [
+      "Claude"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-034",
+    "index": 34,
+    "slug": "from-zero-to-warm-inbound-how-to-get-clients-with-ai-skills",
+    "title": "From Zero to Warm Inbound: How to Get Clients With AI Skills",
+    "category": "Building & Monetising",
+    "difficulty": "Beginner",
+    "description": "Free work. Outreach. Social media. The exact path from your first unpaid AI project to a point where clients come to you, with no cold outreach required. Includes scripts, pricing ladders, and a 12-month roadmap.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-034_from-zero-to-warm-inbound-how-to-get-clients-with-ai-skills.html",
+    "topics": [
+      "Building & Monetising",
+      "Work for Free First",
+      "How to Choose Who to Work For",
+      "How to Ask for the Testimonial",
+      "The Finders Fee Offer",
+      "Raising Your Prices as You Grow"
+    ],
+    "ai_tools": [
+      "Claude",
+      "Apollo"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-035",
+    "index": 35,
+    "slug": "the-3-business-processes-you-can-automate-this-week",
+    "title": "The 3 Business Processes You Can Automate This Week",
+    "category": "Building & Monetising",
+    "difficulty": "Beginner",
+    "description": "Lead follow-up, meeting summaries, and weekly reporting, three complete automation walkthroughs you can have running by Friday. Full build steps, variations, and 11 15 hours back every week.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-035_the-3-business-processes-you-can-automate-this-week.html",
+    "topics": [
+      "Building & Monetising",
+      "Intro",
+      "Who this is for",
+      "Before You Start: One-Time Setup",
+      "Automation 01: Lead Follow-Up",
+      "The problem",
+      "What we're building"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude Desktop",
+      "Claude",
+      "n8n",
+      "Zapier",
+      "PostHog"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-036",
+    "index": 36,
+    "slug": "the-creator-tracking-system",
+    "title": "The Creator Tracking System",
+    "category": "Building & Monetising",
+    "difficulty": "Intermediate",
+    "description": "Stop guessing what's working. Build a content pillar system with a five-tab Excel tracker and seven AI prompts that analyse your posts automatically, showing exactly what drives reach, authority, and revenue.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-036_the-creator-tracking-system.html",
+    "topics": [
+      "Building & Monetising",
+      "The Content Pillar System",
+      "The Five-Tab Spreadsheet",
+      "Agent Mode Prompts: Plan & Grow"
+    ],
+    "ai_tools": [],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-037",
+    "index": 37,
+    "slug": "the-cold-outreach-playbook",
+    "title": "The Cold Outreach Playbook",
+    "category": "Building & Monetising",
+    "difficulty": "Intermediate",
+    "description": "A complete system for turning cold strangers into booked calls. Ideal client targeting, first-email anatomy, a four-email follow-up sequence, and the proof assets that turn interest into a meeting.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-037_the-cold-outreach-playbook.html",
+    "topics": [
+      "Building & Monetising",
+      "Chapter 01, What to Know",
+      "Define your ideal client first",
+      "Build your ICP: nail these five",
+      "Chapter 02, What to Say",
+      "The first email: six parts"
+    ],
+    "ai_tools": [
+      "Claude"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-038",
+    "index": 38,
+    "slug": "5-ai-services-you-can-sell-this-week",
+    "title": "5 AI Services You Can Sell This Week",
+    "category": "Building & Monetising",
+    "difficulty": "Beginner",
+    "description": "Five AI services you can start selling immediately with no coding required. AI copywriting, content repurposing, chatbot setup, email outbound systems, and vibe-coded web design, with pricing, tools, and first-client steps for each.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-038_5-ai-services-you-can-sell-this-week.html",
+    "topics": [
+      "Building & Monetising",
+      "Service 01, AI-Powered Copywriting",
+      "How to get started",
+      "Service 02, AI Content Repurposing",
+      "The core tool stack"
+    ],
+    "ai_tools": [
+      "Claude",
+      "ChatGPT",
+      "GPT-4",
+      "v0",
+      "Apollo"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-039",
+    "index": 39,
+    "slug": "5-things-that-break-your-claude-code-app",
+    "title": "5 Things That Will Break Your Claude Code App Before Launch",
+    "category": "Claude Code",
+    "difficulty": "Intermediate",
+    "description": "Five launch-breaking failures in Claude Code apps and exactly how to fix each one. Custom 404 pages, Sentry error tracking, resilient forms, proper loading states, and error boundaries, with ready-to-use Claude Code prompts for each fix.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-039_5-things-that-break-your-claude-code-app.html",
+    "topics": [
+      "Claude Code",
+      "Chapter 04, Broken Loading States",
+      "Chapter 05, The Blank White Screen",
+      "Your App Is Ready to Ship."
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude",
+      "Sentry"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-040",
+    "index": 40,
+    "slug": "the-7-boring-automations",
+    "title": "The 7 Boring Automations",
+    "category": "Building & Monetising",
+    "difficulty": "Intermediate",
+    "description": "Seven high-value automations that real businesses pay for every month. Covers home services, law firms, accounting, dental practices, recruitment, insurance, and property management, with full build steps, tool stacks, pricing, and sales pitches for each.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-040_the-7-boring-automations.html",
+    "topics": [
+      "Building & Monetising",
+      "What's inside",
+      "Why Boring Wins",
+      "Boring = recurring pain",
+      "Boring = recurring revenue",
+      "Boring = easy to prove",
+      "Boring = same shape every time"
+    ],
+    "ai_tools": [
+      "Claude",
+      "GPT-4",
+      "n8n"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-041",
+    "index": 41,
+    "slug": "claude-power-moves",
+    "title": "Claude Power Moves",
+    "category": "Claude Code",
+    "difficulty": "Intermediate",
+    "description": "Four moves to stop correcting Claude and start delegating to it. Plan mode, the clarifying-questions prompt, bypass permissions, and CLAUDE.md, with the exact commands and settings for each.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-041_claude-power-moves.html",
+    "topics": [
+      "Claude Code",
+      "What's inside",
+      "Plan Mode",
+      "Ask Questions",
+      "Bypass Permissions",
+      "The CLAUDE.md File",
+      "The Problem Is Probably You"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-042",
+    "index": 42,
+    "slug": "your-brutally-honest-ai-cofounder",
+    "title": "Your Brutally Honest AI Cofounder",
+    "category": "Prompts & Skills",
+    "difficulty": "Beginner",
+    "description": "Drop Sam Altman's Startup Playbook into Claude and pressure-test your idea. The full cofounder prompt scores your idea across five fronts and surfaces the quiet ways you're most likely to kill it yourself.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-042_your-brutally-honest-ai-cofounder.html",
+    "topics": [
+      "Prompts & Skills",
+      "What's inside",
+      "The Opportunity",
+      "The Rule That Matters Most",
+      "Read & Forget",
+      "Run It Through Claude",
+      "The Three Inputs"
+    ],
+    "ai_tools": [
+      "Claude"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-043",
+    "index": 43,
+    "slug": "the-competitor-intelligence-engine",
+    "title": "The Competitor Intelligence Engine",
+    "category": "Building & Monetising",
+    "difficulty": "Advanced",
+    "description": "The first service sold to a paying client, built end to end. A system that scrapes competitor content on a schedule, analyses it, finds the gaps, and delivers content drafts in the client's voice. Full architecture, stack, schema, and n8n workflow.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-043_the-competitor-intelligence-engine.html",
+    "topics": [
+      "Building & Monetising",
+      "What's inside",
+      "The Service We Sold",
+      "BEFORE: Manual & guesswork",
+      "AFTER: A running engine",
+      "The Architecture",
+      "The Stack"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude Haiku",
+      "Claude",
+      "n8n",
+      "Apify",
+      "Supabase"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-044",
+    "index": 44,
+    "slug": "how-to-reduce-claude-token-usage",
+    "title": "How to Reduce Claude Token Usage",
+    "category": "Getting Started",
+    "difficulty": "Beginner",
+    "description": "Ten practical techniques to stop burning through your Claude usage limit without losing output quality. Covers model routing, effort levels, batching context, output caps, and memory files for long-running projects.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-044_how-to-reduce-claude-token-usage.html",
+    "topics": [
+      "Getting Started",
+      "What's inside",
+      "The Prompt",
+      "Template"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-045",
+    "index": 45,
+    "slug": "build-digital-product-claude-canva",
+    "title": "Build a Digital Product With Claude + Canva",
+    "category": "Building & Monetising",
+    "difficulty": "Beginner",
+    "description": "The exact process for turning one prompt into a finished, sellable digital product using Claude and Canva. Covers the prompt structure, formatting for Canva, template workflow, the native Canva connector, and a reusable formula for any product type.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-045_build-digital-product-claude-canva.html",
+    "topics": [
+      "Building & Monetising",
+      "The Opportunity",
+      "Step 1 - Write The Prompt",
+      "Step 2 - Structure It For Canva",
+      "Step 3 - Build It In Canva",
+      "Option A: Drop it into a template"
+    ],
+    "ai_tools": [
+      "Claude",
+      "Canva"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-046",
+    "index": 46,
+    "slug": "how-to-get-most-out-of-claude-fable-5",
+    "title": "How to Get the Most Out of Claude Fable 5",
+    "category": "Getting Started",
+    "difficulty": "Beginner",
+    "description": "Anthropic's most powerful model, included free on Pro and Max plans until June 22. Fact-checked benchmarks, the four use cases where Fable 5 pulls furthest ahead, a two-minute setup guide, and how to prompt it differently.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-046_how-to-get-most-out-of-claude-fable-5.html",
+    "topics": [
+      "Getting Started",
+      "What Fable 5 Actually Is",
+      "The Free Window",
+      "The Benchmarks, Fact-Checked",
+      "Where Fable 5 Shines",
+      "Setup Guide",
+      "Prompt It Differently"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude Fable 5",
+      "Claude",
+      "GPT-5",
+      "Gemini",
+      "Cursor"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-047",
+    "index": 47,
+    "slug": "carousels-that-dont-look-ai-generated",
+    "title": "Carousels That Don't Look AI-Generated",
+    "category": "Tools & Integrations",
+    "difficulty": "Intermediate",
+    "description": "Give Claude Design a topic and a style, get a designer-grade Instagram carousel in minutes. Covers the six AI tells to kill, the full ready-to-paste prompt, and how to refine slide by slide until it looks like a human made it.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-047_carousels-that-dont-look-ai-generated.html",
+    "topics": [
+      "Tools & Integrations",
+      "What's Inside",
+      "What Claude Design Is",
+      "Why AI Carousels Look AI",
+      "The Setup: Topic, Style, Brand",
+      "Narrow and outcome-led",
+      "Reference, don't describe"
+    ],
+    "ai_tools": [
+      "Claude",
+      "ChatGPT",
+      "Canva"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-048",
+    "index": 48,
+    "slug": "sandcastles-content-strategy-setup-guide",
+    "title": "The Sandcastles Content Strategy Setup Guide",
+    "category": "Tools & Integrations",
+    "difficulty": "Intermediate",
+    "description": "How to reverse-engineer any creator's winning content strategy inside Claude using the Sandcastles connector. Pull their top videos, find the hidden patterns, and build a data-backed content playbook from outlier data.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-048_sandcastles-content-strategy-setup-guide.html",
+    "topics": [
+      "Tools & Integrations",
+      "What's Inside",
+      "How Sandcastles Works",
+      "The Four Core Features",
+      "The Claude Connection"
+    ],
+    "ai_tools": [
+      "Claude Desktop",
+      "Claude"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-049",
+    "index": 49,
+    "slug": "grillme-setup-guide",
+    "title": "The GrillMe Setup Guide",
+    "category": "Claude Code",
+    "difficulty": "Intermediate",
+    "description": "The Claude Code skill that refuses to write a single line until it's grilled you first. How to install Matt Pocock's GrillMe skill, run a full interview session, and get code that actually matches what was in your head.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-049_grillme-setup-guide.html",
+    "topics": [
+      "Claude Code",
+      "What's Inside",
+      "The Problem With Vague Prompts",
+      "How GrillMe Works",
+      "The Three Rules That Make It Work",
+      "Installing GrillMe in Claude Code",
+      "Running Your First Session"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-050",
+    "index": 50,
+    "slug": "loop-engineering-setup-guide",
+    "title": "Loop Engineering",
+    "category": "Claude Code",
+    "difficulty": "Advanced",
+    "description": "The head of Claude Code stopped prompting and started writing loops. How to build the four pieces: automations, worktrees, skills, and subagents, and wire them into a loop that runs while you're away.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-050_loop-engineering-setup-guide.html",
+    "topics": [
+      "Claude Code",
+      "What's Inside",
+      "The Shift",
+      "What a Loop Actually Is",
+      "Piece One: Automations",
+      "Piece Two: Worktrees"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-051",
+    "index": 51,
+    "slug": "run-meta-ads-team-inside-claude",
+    "title": "Run Your Meta Ads Team Inside Claude",
+    "category": "Tools & Integrations",
+    "difficulty": "Advanced",
+    "description": "Build a full Meta Ads operation inside Claude using two MCP layers: the public Ad Library for competitor intel and your own account data for live campaign management. Five skills covering spying, bulk creative, scoring, extraction, and account review.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-051_run-meta-ads-team-inside-claude.html",
+    "topics": [
+      "Tools & Integrations",
+      "The Setup",
+      "Connect Meta",
+      "How to set it up"
+    ],
+    "ai_tools": [
+      "Claude Skills",
+      "Claude"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-052",
+    "index": 52,
+    "slug": "apollo-lead-list-playbook",
+    "title": "The Apollo Lead List Playbook",
+    "category": "Tools & Integrations",
+    "difficulty": "Intermediate",
+    "description": "How to build ICP-matched lead lists in Apollo that are actually worth sending. Covers filter stacking, reusable personas, lookalike shortcuts, trigger-based targeting, list hygiene, and scaling past selection limits.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-052_apollo-lead-list-playbook.html",
+    "topics": [
+      "Tools & Integrations",
+      "What's Inside",
+      "Define Your ICP First",
+      "Stack Your Filters in Order",
+      "Save the Search",
+      "Build a Reusable Persona",
+      "The Lookalike Shortcut"
+    ],
+    "ai_tools": [
+      "Apollo"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-053",
+    "index": 53,
+    "slug": "turn-any-pdf-into-claude-skill",
+    "title": "Turn Any PDF Into a Claude Skill",
+    "category": "Prompts & Skills",
+    "difficulty": "Beginner",
+    "description": "Drop any guide into Claude as a Project and get a working skill that runs on command. Covers the conversion prompt, Project setup, how to trigger skills in one sentence, stacking multiple guides, and what to do when Claude goes off-script.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-053_turn-any-pdf-into-claude-skill.html",
+    "topics": [
+      "Prompts & Skills",
+      "What a Claude Skill Actually Is",
+      "The Conversion, Step by Step",
+      "Saving It So It's Always Ready",
+      "Triggering Your Skill",
+      "Stack multiple guides",
+      "When It Doesn't Work"
+    ],
+    "ai_tools": [
+      "Claude Projects",
+      "Claude"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-054",
+    "index": 54,
+    "slug": "claude-opus-vs-chatgpt-5-5-run-both",
+    "title": "Claude Opus vs ChatGPT 5.5: Stop Debating. Run Both.",
+    "category": "Claude Code",
+    "difficulty": "Intermediate",
+    "description": "The free integration that lets Claude Code call in Codex CLI mid-conversation. Claude builds, GPT-5.5 reviews. Covers installing Codex CLI, adding the skill-codex plugin, the exact prompts that trigger a review, and how to verify the handoff is actually working.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-054_claude-opus-vs-chatgpt-5-5-run-both.html",
+    "topics": [
+      "Claude Code",
+      "The Real Split",
+      "Installing Codex CLI",
+      "Installing From the Marketplace"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude Opus",
+      "Claude",
+      "ChatGPT",
+      "GPT-5"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-055",
+    "index": 55,
+    "slug": "run-claude-code-chatgpt-gemini-as-one-ai-team",
+    "title": "Run Claude Code, ChatGPT & Gemini As One AI Team",
+    "category": "Tools & Integrations",
+    "difficulty": "Advanced",
+    "description": "The free setup that connects Claude Code, Codex CLI and Gemini CLI so they work the same task together. Claude builds, Codex reviews, Gemini handles the files Claude chokes on. Built on your existing subscriptions with no extra cost.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-055_run-claude-code-chatgpt-gemini-as-one-ai-team.html",
+    "topics": [
+      "Tools & Integrations",
+      "Why One Model Isn't Enough",
+      "The echo chamber problem",
+      "The context window problem",
+      "Meet Your AI Team",
+      "Claude Code in practice"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude",
+      "ChatGPT",
+      "Gemini CLI",
+      "Gemini"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-056",
+    "index": 56,
+    "slug": "13-free-ai-courses-and-certifications",
+    "title": "13 Free AI Courses & Certifications",
+    "category": "Getting Started",
+    "difficulty": "Beginner",
+    "description": "Every one is free, every one has a direct link. A complete path from total beginner to building real AI agents and workflows, with badges and certificates to prove it. Covers Anthropic, OpenAI, Google, IBM, Microsoft, AWS, Harvard, and more.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-056_13-free-ai-courses-and-certifications.html",
+    "topics": [
+      "Getting Started",
+      "Overview",
+      "How to use this guide",
+      "Start Here",
+      "The 3 to run first",
+      "Go Further",
+      "Ten more, all free"
+    ],
+    "ai_tools": [
+      "Claude"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-057",
+    "index": 57,
+    "slug": "the-20-dollar-month-startup-stack",
+    "title": "The $20/Month Startup Stack",
+    "category": "Building & Monetising",
+    "difficulty": "Intermediate",
+    "description": "Thirteen tools, in the order you'd actually add them, what each one is for, when to reach for it, and what it costs. From domain and DNS through backend, auth, payments, analytics, and vector search.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-057_the-20-dollar-month-startup-stack.html",
+    "topics": [
+      "Building & Monetising",
+      "The Full Stack",
+      "Tools 01-03 of 13",
+      "Tools 04-06 of 13",
+      "Tools 07-09 of 13",
+      "Tools 10-13 of 13",
+      "Thirteen Tools. One At A Time."
+    ],
+    "ai_tools": [
+      "Claude",
+      "PostHog",
+      "Supabase",
+      "Sentry"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-058",
+    "index": 58,
+    "slug": "the-agent-manager-build-guide",
+    "title": "The Agent Manager Build Guide",
+    "category": "Building & Monetising",
+    "difficulty": "Intermediate",
+    "description": "The exact proof-of-work system to show any business you can run a team of AI agents safely, not just prompt one. Free Anthropic Academy courses, a three-agent team with hard limits, an approval gate, and a one-page scorecard to bring to an interview.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-058_the-agent-manager-build-guide.html",
+    "topics": [
+      "Building & Monetising",
+      "The Opportunity",
+      "Step 01: Learn The Theory First",
+      "Step 02: Build The Proof",
+      "Step 03: Run It, Then Grade It",
+      "Speak The Language"
+    ],
+    "ai_tools": [
+      "Claude"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-059",
+    "index": 59,
+    "slug": "the-weekend-ai-systems-guide",
+    "title": "The Weekend AI Systems Guide",
+    "category": "Getting Started",
+    "difficulty": "Beginner",
+    "description": "Eight no-code Claude systems you can build in a weekend, a proposal generator, competitor watch, sales call debrief, SOP builder, contract reviewer, hiring filter, website copy auditor, and a personal learning coach. Full setup steps and prompts for each.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-059_the-weekend-ai-systems-guide.html",
+    "topics": [
+      "Getting Started",
+      "Contents",
+      "Before You Start",
+      "Setup",
+      "System 02 of 08: Competitor Watch"
+    ],
+    "ai_tools": [
+      "Claude"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-060",
+    "index": 60,
+    "slug": "skill-mcp-safety-check",
+    "title": "Skill & MCP Safety Check",
+    "category": "Prompts & Skills",
+    "difficulty": "Beginner",
+    "description": "A ready-to-paste security audit prompt to run before installing any Claude Skill or MCP server. Checks credential access, network activity, code execution, file system access, obfuscation, and prompt injection, with a strict safe or not safe verdict.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-060_skill-mcp-safety-check.html",
+    "topics": [
+      "Prompts & Skills",
+      "Before You Install Anything"
+    ],
+    "ai_tools": [
+      "Claude",
+      "ChatGPT",
+      "Gemini"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-061",
+    "index": 61,
+    "slug": "33-best-claude-prompts-refreshed-for-sonnet-5",
+    "title": "33 Best Claude Prompts",
+    "category": "Prompts & Skills",
+    "difficulty": "Beginner to Advanced",
+    "description": "Rebuilt around context engineering instead of prompt engineering: 33 prompts for Sonnet 5, Opus 5 and Haiku 4.5, organised by what you're trying to get done. Covers writing, coding, data, strategy, sales, research, team systems, and decisions.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-061_33-best-claude-prompts-refreshed-for-sonnet-5.html",
+    "topics": [
+      "Prompts & Skills",
+      "What's Inside",
+      "Before You Use This",
+      "Which Model to Use",
+      "Contents",
+      "Category 01: Writing & Content"
+    ],
+    "ai_tools": [
+      "Claude",
+      "ChatGPT"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-062",
+    "index": 62,
+    "slug": "10-ai-automations-that-run-your-week",
+    "title": "10 AI Automations That Run Your Week",
+    "category": "Getting Started",
+    "difficulty": "Intermediate",
+    "description": "Ten scheduled automations built for both Claude and ChatGPT, inbox triage, meeting prep and recaps, a founder brief, expense organising, content repurposing, brand deal scanning and a performance digest. Full prompts, cadences, and connector setup for each.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-062_10-ai-automations-that-run-your-week.html",
+    "topics": [
+      "Getting Started",
+      "Contents",
+      "What You'll Set Up",
+      "Before You Start",
+      "The Two Engines",
+      "Switch These On First",
+      "Ground Rules"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude",
+      "ChatGPT"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-063",
+    "index": 63,
+    "slug": "how-to-scrape-thousands-of-leads-with-claude",
+    "title": "How to Scrape Thousands of Leads with Claude",
+    "category": "Tools & Integrations",
+    "difficulty": "Intermediate",
+    "description": "Connect the open-source ScrapeGraphAI scraper to Claude as a custom connector and pull business names, websites and public contact details into a clean list. Covers account setup, your first lead search, exporting to a sheet, and scheduling it to run every morning.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-063_how-to-scrape-thousands-of-leads-with-claude.html",
+    "topics": [
+      "Tools & Integrations",
+      "Contents",
+      "What You'll Build",
+      "The Opportunity",
+      "What You're Actually Building",
+      "Get Your ScrapeGraphAI Account",
+      "Connect It to Claude"
+    ],
+    "ai_tools": [
+      "Claude Desktop",
+      "Claude",
+      "Apify",
+      "ScrapeGraphAI"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-064",
+    "index": 64,
+    "slug": "copilot-in-excel-the-prompts-i-use-every-week",
+    "title": "Copilot in Excel",
+    "category": "Tools & Integrations",
+    "difficulty": "Beginner",
+    "description": "Turn the spreadsheet you never open into a clear picture of your business, charts, trends and margins, using Copilot in Excel. Covers file setup, a real monthly health-check sequence from a client project, forecasting, and asking your data plain-English questions.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-064_copilot-in-excel-the-prompts-i-use-every-week.html",
+    "topics": [
+      "Tools & Integrations",
+      "Contents",
+      "What You'll Set Up",
+      "The Unopened Spreadsheet",
+      "What You Need Before You Start",
+      "The Monthly Health Check",
+      "Going Further"
+    ],
+    "ai_tools": [
+      "Claude"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-065",
+    "index": 65,
+    "slug": "15-claude-routines-to-automate-your-business",
+    "title": "15 Claude Routines",
+    "category": "Getting Started",
+    "difficulty": "Intermediate",
+    "description": "The 5 routines from the video fully broken down, plus 10 more worth building right after, content, ads, competitors, error reports, email, briefings and triage. Every prompt, what each routine needs to work, and a setup checklist so nothing breaks on day one.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-065_15-claude-routines-to-automate-your-business.html",
+    "topics": [
+      "Getting Started",
+      "Contents",
+      "What You'll Find Inside",
+      "What Claude Routines Actually Are",
+      "How To Set One Up",
+      "The 5 Routines From The Video"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude",
+      "n8n"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-066",
+    "index": 66,
+    "slug": "9-things-youre-still-paying-for-that-claude-builds-for-free",
+    "title": "9 Things You're Still Paying For That Claude Builds for Free",
+    "category": "Tools & Integrations",
+    "difficulty": "Intermediate",
+    "description": "Nine real builds, one per role, each set up with the specific Claude feature that fits the job: Projects, Skills, Chrome, Mobile + Memory, Artifacts, Cowork, Excel, Word and Code. Full setup steps and the exact prompt for each, from interior designer to meal planner.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-066_9-things-youre-still-paying-for-that-claude-builds-for-free.html",
+    "topics": [
+      "Tools & Integrations",
+      "Build 01 of 09: Interior Designer",
+      "The Build",
+      "Build 02 of 09: Copywriter",
+      "Build 03 of 09: Travel Agent",
+      "Build 04 of 09: Language Tutor"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude Projects",
+      "Claude Desktop",
+      "Claude Skills",
+      "Claude"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-067",
+    "index": 67,
+    "slug": "5-claude-code-plugins-every-vibe-coder-needs",
+    "title": "5 Claude Code Plugins Every Vibe Coder Needs",
+    "category": "Claude Code",
+    "difficulty": "Intermediate",
+    "description": "The exact plugins for databases, security testing, browser QA, design cloning and live docs: Supabase, Strix, Playwright CLI, SkillUI and Context7, each with the install command and a prompt to confirm it's working.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-067_5-claude-code-plugins-every-vibe-coder-needs.html",
+    "topics": [
+      "Claude Code",
+      "Why These Five",
+      "Plugin 01 · Database: Supabase",
+      "What it does",
+      "Install",
+      "Plugin 02 · Security: Strix"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude",
+      "ChatGPT",
+      "Supabase",
+      "Playwright"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-068",
+    "index": 68,
+    "slug": "4-ways-to-get-ahead-of-everyone-else-using-ai",
+    "title": "4 Ways To Get Ahead Of Everyone Else Using AI",
+    "category": "Getting Started",
+    "difficulty": "Intermediate",
+    "description": "The four systems worth building before everyone else catches on: an AI second brain, one real chained workflow, a specialised AI teammate, and one automation that runs itself. Full setup and prompts for both Claude and ChatGPT.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-068_4-ways-to-get-ahead-of-everyone-else-using-ai.html",
+    "topics": [
+      "Getting Started",
+      "Contents: The Four Systems",
+      "What this looks like"
+    ],
+    "ai_tools": [
+      "Claude",
+      "ChatGPT"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-069",
+    "index": 69,
+    "slug": "3-free-ways-to-actually-learn-claude",
+    "title": "3 Free Ways to Actually Learn Claude",
+    "category": "Getting Started",
+    "difficulty": "Beginner",
+    "description": "The official course library (Claude Academy), the official Claude Skills repo, and the community-built Awesome Claude Code Subagents collection, fully researched and verified link by link, plus a sensible order to actually use all three together.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-069_3-free-ways-to-actually-learn-claude.html",
+    "topics": [
+      "Getting Started",
+      "Contents: What You'll Learn",
+      "Why This Is Worth Your Time",
+      "What makes it worth using",
+      "Why this one matters"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude Skills",
+      "Claude"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-070",
+    "index": 70,
+    "slug": "3-free-skills-that-kill-the-ai-look",
+    "title": "3 Free Skills That Kill The AI Look",
+    "category": "Prompts & Skills",
+    "difficulty": "Intermediate",
+    "description": "Three free Claude Code skills that stop your builds looking like every other vibe-coded site: Emil Kowalski's motion skill, Impeccable's design system and polish command, and the Taste anti-slop skill. Install commands and what each one actually fixes.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-070_3-free-skills-that-kill-the-ai-look.html",
+    "topics": [
+      "Prompts & Skills",
+      "Contents: What You'll Set Up",
+      "Why these three",
+      "Why Every AI Site Looks The Same",
+      "The three tells",
+      "What each skill fixes"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude Desktop",
+      "Claude",
+      "Cursor"
+    ],
+    "notes": "Public web guide cataloged"
+  },
+  {
+    "id": "AI-071",
+    "index": 71,
+    "slug": "the-5-checks-full-verification-guide",
+    "title": "The 5 Checks: Full Verification Guide",
+    "category": "Claude Code",
+    "difficulty": "Intermediate",
+    "description": "The exact prompts, setup and failure patterns for catching AI coding agents that report a task as done when it hasn't actually been tested. Requirement, Test, Regression, Diff and Unproven, plus the CLAUDE.md rule, hooks and subagents that enforce it automatically.",
+    "source_url": "",
+    "author": "AI Resource Library",
+    "status": "WEB_ONLY",
+    "download_url": null,
+    "local_file": null,
+    "local_html": "web-pages/AI-071_the-5-checks-full-verification-guide.html",
+    "topics": [
+      "Claude Code",
+      "Contents: What You'll Learn",
+      "1. REQUIREMENT"
+    ],
+    "ai_tools": [
+      "Claude Code",
+      "Claude",
+      "Cursor"
+    ],
+    "notes": "Public web guide cataloged"
+  }
+]

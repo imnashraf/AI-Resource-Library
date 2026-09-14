@@ -1,0 +1,1674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nabil AI Resource Library — Curated Personal Knowledge Base">
+  <title>Nabil AI Resource Library</title>
+  <style>
+    /* CSS Reset & Soothing Design Tokens */
+    :root {
+      /* Classy Midnight Slate Theme (Default: calming, zero eye strain) */
+      --bg-main: #0B1120;
+      --bg-surface: #111C30;
+      --bg-card: #162238;
+      --bg-subtle: #1C2B47;
+      --border-color: #243556;
+      --border-hover: #3B527E;
+      --text-main: #F1F5F9;
+      --text-muted: #94A3B8;
+      --text-light: #64748B;
+      
+      /* Vibrant Electric & Violet Accents */
+      --primary: #6366F1;
+      --primary-hover: #4F46E5;
+      --primary-light: rgba(99, 102, 241, 0.16);
+      --primary-border: rgba(99, 102, 241, 0.35);
+      --primary-gradient: linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #EC4899 100%);
+      --primary-glow: rgba(99, 102, 241, 0.35);
+
+      /* Soothing Difficulty Accents */
+      --diff-beginner-bg: rgba(16, 185, 129, 0.15);
+      --diff-beginner-text: #34D399;
+      --diff-beginner-border: rgba(16, 185, 129, 0.35);
+
+      --diff-inter-bg: rgba(245, 158, 11, 0.15);
+      --diff-inter-text: #FBBF24;
+      --diff-inter-border: rgba(245, 158, 11, 0.35);
+
+      --diff-adv-bg: rgba(139, 92, 246, 0.15);
+      --diff-adv-text: #C084FC;
+      --diff-adv-border: rgba(139, 92, 246, 0.35);
+
+      --diff-all-bg: rgba(59, 130, 246, 0.15);
+      --diff-all-text: #60A5FA;
+      --diff-all-border: rgba(59, 130, 246, 0.35);
+
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.38);
+      --shadow-lg: 0 14px 34px rgba(0, 0, 0, 0.5);
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --radius-full: 9999px;
+      --transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Classy Editorial Cashmere Theme (Warm Sepia Option) */
+    body[data-theme="cashmere"] {
+      --bg-main: #EDE7DE;
+      --bg-surface: #F6F2EC;
+      --bg-card: #FAF8F5;
+      --bg-subtle: #E6DFD4;
+      --border-color: #D5CCC0;
+      --border-hover: #BEB4A4;
+      --text-main: #222831;
+      --text-muted: #596172;
+      --text-light: #878E9E;
+
+      --primary: #4F46E5;
+      --primary-hover: #4338CA;
+      --primary-light: #EEF2FF;
+      --primary-border: #C7D2FE;
+      --primary-gradient: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+      --primary-glow: rgba(79, 70, 229, 0.22);
+
+      --diff-beginner-bg: #ECFDF5;
+      --diff-beginner-text: #059669;
+      --diff-beginner-border: #A7F3D0;
+
+      --diff-inter-bg: #FFFBEB;
+      --diff-inter-text: #D97706;
+      --diff-inter-border: #FDE68A;
+
+      --diff-adv-bg: #FAF5FF;
+      --diff-adv-text: #7C3AED;
+      --diff-adv-border: #E9D5FF;
+
+      --diff-all-bg: #EFF6FF;
+      --diff-all-text: #2563EB;
+      --diff-all-border: #BFDBFE;
+
+      --shadow-sm: 0 1px 3px rgba(44, 49, 61, 0.05);
+      --shadow-md: 0 4px 12px rgba(44, 49, 61, 0.07);
+      --shadow-lg: 0 12px 28px rgba(44, 49, 61, 0.12);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 13.5px;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Header & Large Avatar Branding */
+    header {
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+    }
+
+    .header-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0.9rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 1.15rem;
+    }
+
+    /* Larger Circular Avatar Container with Photo Cropper Trigger */
+    .avatar-uploader {
+      position: relative;
+      width: 66px;
+      height: 66px;
+      border-radius: 50%;
+      padding: 3px;
+      background: var(--primary-gradient);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+      transition: var(--transition);
+      flex-shrink: 0;
+    }
+
+    .avatar-uploader:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+    }
+
+    .avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: var(--bg-surface);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .avatar-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--bg-subtle), var(--border-color));
+      color: var(--primary);
+    }
+
+    .avatar-badge {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 22px;
+      height: 22px;
+      background: var(--primary);
+      color: #FFFFFF;
+      border-radius: 50%;
+      border: 2px solid var(--bg-surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.35);
+      transition: var(--transition);
+    }
+
+    .avatar-uploader:hover .avatar-badge {
+      transform: scale(1.15);
+      background: var(--primary-hover);
+    }
+
+    .brand-text h1 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      background: linear-gradient(135deg, var(--text-main) 40%, var(--primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.2;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .theme-toggle-btn {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      font-size: 0.76rem;
+      font-weight: 600;
+      padding: 0.35rem 0.8rem;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: var(--transition);
+    }
+
+    .theme-toggle-btn:hover {
+      background: var(--border-color);
+      transform: translateY(-1px);
+    }
+
+    .stat-pill {
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--primary);
+      background: var(--primary-light);
+      border: 1px solid var(--primary-border);
+      padding: 0.35rem 0.8rem;
+      border-radius: var(--radius-full);
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+
+    /* Centered Controls Panel */
+    .controls-panel {
+      max-width: 1320px;
+      margin: 1.25rem auto 0;
+      padding: 0 1.5rem;
+      width: 100%;
+    }
+
+    .filters-wrap {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.1rem 1.35rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.9rem;
+    }
+
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      row-gap: 0.6rem;
+      width: 100%;
+    }
+
+    .filter-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      margin-right: 0.25rem;
+      white-space: nowrap;
+    }
+
+    .pills-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      row-gap: 0.55rem;
+    }
+
+    .pill-btn {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      font-size: 0.76rem;
+      font-weight: 500;
+      padding: 0.35rem 0.8rem;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .pill-btn:hover {
+      background: var(--border-hover);
+      transform: translateY(-1px);
+    }
+
+    .pill-btn.active {
+      background: var(--primary-gradient);
+      border-color: transparent;
+      color: #FFFFFF;
+      font-weight: 600;
+      box-shadow: 0 2px 8px var(--primary-glow);
+    }
+
+    .pill-count {
+      font-size: 0.68rem;
+      opacity: 0.85;
+    }
+
+    /* Main Content & Results Bar */
+    main {
+      max-width: 1320px;
+      margin: 1.15rem auto 2.5rem;
+      padding: 0 1.5rem;
+      width: 100%;
+      flex: 1;
+    }
+
+    .results-bar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 1.15rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .results-count {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .results-count strong {
+      color: var(--primary);
+    }
+
+    /* Resource Cards Grid (Compact & Eye-Catching) */
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.15rem;
+    }
+
+    .resource-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.15rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .resource-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 24px -4px rgba(99, 102, 241, 0.22), 0 4px 10px rgba(0,0,0,0.1);
+      border-color: var(--border-hover);
+    }
+
+    .card-meta-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.6rem;
+      gap: 0.5rem;
+    }
+
+    .card-category-sub {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .card-diff-badge {
+      font-size: 0.68rem;
+      font-weight: 600;
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--radius-full);
+      border: 1px solid transparent;
+      text-transform: capitalize;
+      white-space: nowrap;
+    }
+
+    .diff-beginner {
+      background: var(--diff-beginner-bg);
+      color: var(--diff-beginner-text);
+      border-color: var(--diff-beginner-border);
+    }
+
+    .diff-intermediate {
+      background: var(--diff-inter-bg);
+      color: var(--diff-inter-text);
+      border-color: var(--diff-inter-border);
+    }
+
+    .diff-advanced {
+      background: var(--diff-adv-bg);
+      color: var(--diff-adv-text);
+      border-color: var(--diff-adv-border);
+    }
+
+    .diff-all {
+      background: var(--diff-all-bg);
+      color: var(--diff-all-text);
+      border-color: var(--diff-all-border);
+    }
+
+    .card-title {
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.35;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .card-desc {
+      font-size: 0.80rem;
+      color: var(--text-muted);
+      line-height: 1.48;
+      margin-bottom: 0.85rem;
+      flex-grow: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .tag-chip {
+      font-size: 0.68rem;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 0.12rem 0.45rem;
+      border-radius: var(--radius-sm);
+    }
+
+    .card-actions {
+      display: flex;
+      align-items: center;
+      padding-top: 0.85rem;
+      border-top: 1px solid var(--border-color);
+      margin-top: auto;
+    }
+
+    .btn-summary {
+      width: 100%;
+      background: var(--primary-gradient);
+      color: #FFFFFF;
+      border: none;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.52rem 0.85rem;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      transition: var(--transition);
+      box-shadow: 0 2px 6px var(--primary-glow);
+    }
+
+    .btn-summary:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px var(--primary-glow);
+    }
+
+    /* Empty State */
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 3.5rem 2rem;
+      background: var(--bg-surface);
+      border: 2px dashed var(--border-color);
+      border-radius: var(--radius-lg);
+    }
+
+    .empty-state h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.4rem;
+    }
+
+    .empty-state p {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    /* Summary Modal Viewer */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(8, 12, 22, 0.75);
+      backdrop-filter: blur(6px);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.22s ease, visibility 0.22s ease;
+    }
+
+    .modal-backdrop.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 860px;
+      max-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-lg);
+      transform: translateY(16px) scale(0.98);
+      transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+    }
+
+    .modal-backdrop.active .modal-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-header {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      background: var(--bg-subtle);
+    }
+
+    .modal-header-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .modal-close-btn {
+      background: none;
+      border: none;
+      width: 30px;
+      height: 30px;
+      border-radius: var(--radius-sm);
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      transition: var(--transition);
+    }
+
+    .modal-close-btn:hover {
+      background: var(--border-color);
+      color: var(--text-main);
+    }
+
+    .modal-body {
+      padding: 1.75rem 2rem;
+      overflow-y: auto;
+      flex: 1;
+      font-size: 0.88rem;
+      line-height: 1.65;
+    }
+
+    .modal-body h1 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 0.85rem;
+      letter-spacing: -0.02em;
+    }
+
+    .modal-body h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-top: 1.25rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .modal-body h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-top: 1.35rem;
+      margin-bottom: 0.45rem;
+      padding-bottom: 0.25rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .modal-body h4 {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-top: 0.85rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .modal-body p {
+      margin-bottom: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .modal-body ul, .modal-body ol {
+      margin-bottom: 0.85rem;
+      padding-left: 1.35rem;
+    }
+
+    .modal-body li {
+      margin-bottom: 0.3rem;
+      color: var(--text-muted);
+    }
+
+    .modal-body strong {
+      color: var(--text-main);
+    }
+
+    .modal-body code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.82em;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-color);
+      padding: 0.12em 0.38em;
+      border-radius: var(--radius-sm);
+      color: var(--primary);
+    }
+
+    .modal-body blockquote {
+      border-left: 3px solid var(--primary);
+      background: var(--primary-light);
+      padding: 0.65rem 0.9rem;
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      margin-bottom: 0.85rem;
+      color: var(--text-main);
+      font-style: italic;
+    }
+
+    .modal-footer {
+      padding: 0.85rem 1.5rem;
+      border-top: 1px solid var(--border-color);
+      background: var(--bg-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 1rem;
+    }
+
+    .modal-done-btn {
+      background: var(--primary-gradient);
+      color: #FFFFFF;
+      border: none;
+      padding: 0.45rem 1.25rem;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      font-size: 0.78rem;
+      cursor: pointer;
+      box-shadow: 0 2px 6px var(--primary-glow);
+      transition: var(--transition);
+    }
+
+    .modal-done-btn:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+    }
+
+    /* Interactive Photo Cropper Modal */
+    .crop-modal-card {
+      max-width: 440px;
+    }
+
+    .crop-viewport {
+      position: relative;
+      width: 280px;
+      height: 280px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: #000000;
+      cursor: grab;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+    }
+
+    .crop-viewport:active {
+      cursor: grabbing;
+    }
+
+    #crop-canvas {
+      width: 280px;
+      height: 280px;
+      display: block;
+    }
+
+    .crop-circular-mask {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      box-shadow: 0 0 0 9999px rgba(11, 17, 32, 0.72);
+      border: 2px dashed #6366F1;
+      pointer-events: none;
+    }
+
+    .crop-controls-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      width: 100%;
+      max-width: 280px;
+    }
+
+    .crop-zoom-label {
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .crop-slider {
+      flex: 1;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    .crop-icon-btn {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      width: 26px;
+      height: 26px;
+      border-radius: var(--radius-sm);
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-color);
+      padding: 1.25rem;
+      margin-top: auto;
+      text-align: center;
+      font-size: 0.76rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 768px) {
+      .header-inner {
+        padding: 0.75rem 1rem;
+      }
+      .controls-panel, main {
+        padding: 0 1rem;
+      }
+      .resource-grid {
+        grid-template-columns: 1fr;
+      }
+      .filters-wrap {
+        padding: 0.85rem 1rem;
+      }
+      .modal-card {
+        max-height: 94vh;
+      }
+      .modal-body {
+        padding: 1.15rem;
+      }
+    }
+  </style>
+</head>
+<body data-theme="midnight">
+
+  <!-- Top Header Navigation -->
+  <header>
+    <div class="header-inner">
+      <div class="brand-group">
+        <!-- Large Circular Avatar with Interactive Cropper Trigger -->
+        <div class="avatar-uploader" id="avatar-uploader" title="Click to adjust, crop or change your profile picture">
+          <div class="avatar-inner">
+            <img id="avatar-img" class="avatar-img" alt="Nabil Profile" style="display:none;">
+            <div id="avatar-placeholder" class="avatar-placeholder">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+          </div>
+          <div class="avatar-badge" title="Adjust & Crop Photo">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+              <circle cx="12" cy="13" r="4"></circle>
+            </svg>
+          </div>
+          <input type="file" id="avatar-file-input" accept="image/*" style="display:none;">
+        </div>
+
+        <div class="brand-text">
+          <h1>Nabil AI Resource Library</h1>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button id="theme-toggle-btn" class="theme-toggle-btn" title="Toggle soothing reading theme">
+          <span id="theme-toggle-icon">🌙</span> <span id="theme-toggle-text">Midnight</span>
+        </button>
+        <span class="stat-pill"><span id="hdr-total-count">71</span> Resources</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Centered Interactive Category & Difficulty Panel -->
+  <section class="controls-panel">
+    <div class="filters-wrap">
+      <!-- Category Filter Row -->
+      <div class="filter-row">
+        <span class="filter-label">Category:</span>
+        <div id="category-pills" class="pills-container">
+          <!-- Dynamically generated category buttons -->
+        </div>
+      </div>
+
+      <!-- Difficulty Filter Row (Single line, strictly non-overlapping) -->
+      <div class="filter-row">
+        <span class="filter-label">Difficulty:</span>
+        <div id="difficulty-pills" class="pills-container">
+          <button class="pill-btn active" data-diff="All">All</button>
+          <button class="pill-btn diff-pill-beginner" data-diff="Beginner">Beginner</button>
+          <button class="pill-btn diff-pill-intermediate" data-diff="Intermediate">Intermediate</button>
+          <button class="pill-btn diff-pill-advanced" data-diff="Advanced">Advanced</button>
+          <button class="pill-btn diff-pill-all" data-diff="Beginner to Advanced">Beginner to Advanced</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Grid Section -->
+  <main>
+    <div class="results-bar">
+      <div class="results-count" id="results-count">
+        Showing <strong>71</strong> of <strong>71</strong> resources
+      </div>
+    </div>
+
+    <!-- Cards Grid -->
+    <div id="resource-grid" class="resource-grid">
+      <!-- Dynamically rendered resource cards -->
+    </div>
+  </main>
+
+  <!-- Summary Modal Viewer -->
+  <div id="summary-modal" class="modal-backdrop" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-header-meta">
+          <span id="modal-category" class="pill-btn" style="cursor:default; pointer-events:none;">Category</span>
+          <span id="modal-diff-badge" class="card-diff-badge diff-beginner">Beginner</span>
+        </div>
+        <button id="modal-close-btn" class="modal-close-btn" title="Close modal (Esc)">×</button>
+      </div>
+      <div id="modal-body" class="modal-body">
+        <!-- Rendered HTML summary will be injected here -->
+      </div>
+      <div class="modal-footer">
+        <button id="modal-close-btn-footer" class="modal-done-btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Photo Cropper & Position Adjuster Modal -->
+  <div id="crop-modal" class="modal-backdrop" role="dialog" aria-modal="true">
+    <div class="modal-card crop-modal-card">
+      <div class="modal-header">
+        <h3 style="font-size:0.95rem; font-weight:700; color:var(--text-main); display:flex; align-items:center; gap:0.45rem;">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 8v8"></path>
+            <path d="M8 12h8"></path>
+          </svg>
+          Adjust & Frame Your Photo
+        </h3>
+        <button id="crop-modal-close" class="modal-close-btn" title="Close">×</button>
+      </div>
+      <div class="modal-body" style="display:flex; flex-direction:column; align-items:center; gap:1.1rem; padding:1.25rem;">
+        <p style="font-size:0.80rem; color:var(--text-muted); text-align:center;">
+          Drag the picture to center your face inside the circle, and use the zoom slider below to frame it clearly.
+        </p>
+
+        <!-- Viewport -->
+        <div id="crop-container" class="crop-viewport">
+          <canvas id="crop-canvas" width="280" height="280"></canvas>
+          <div class="crop-circular-mask"></div>
+        </div>
+
+        <!-- Zoom Slider -->
+        <div class="crop-controls-wrap">
+          <span class="crop-zoom-label">Zoom:</span>
+          <button id="crop-zoom-out" class="crop-icon-btn" title="Zoom Out">−</button>
+          <input type="range" id="crop-zoom-slider" min="1" max="3.5" step="0.05" value="1" class="crop-slider">
+          <button id="crop-zoom-in" class="crop-icon-btn" title="Zoom In">+</button>
+        </div>
+
+        <!-- Quick actions -->
+        <div style="display:flex; gap:0.6rem; flex-wrap:wrap; justify-content:center; width:100%;">
+          <button id="crop-upload-new-btn" class="pill-btn" style="cursor:pointer;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="17 8 12 3 7 8"></polyline>
+              <line x1="12" y1="3" x2="12" y2="15"></line>
+            </svg>
+            Choose Another Photo
+          </button>
+          <button id="crop-reset-btn" class="pill-btn" style="cursor:pointer;">Reset Center</button>
+        </div>
+      </div>
+      <div class="modal-footer" style="justify-content:space-between;">
+        <button id="crop-modal-cancel" class="pill-btn" style="cursor:pointer;">Cancel</button>
+        <button id="crop-modal-save" class="modal-done-btn">Save & Apply</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© Nabil AI Resource Library</p>
+  </footer>
+
+  <!-- Inlined Embedded User Avatar from Code (Local Asset) -->
+  <script id="user-avatar-data" type="text/plain">
+__USER_AVATAR_B64__
+  </script>
+
+  <!-- Inlined JSON Data Payload (Zero external fetch calls) -->
+  <script id="library-data" type="application/json">
+__LIBRARY_DATA_JSON__
+  </script>
+
+  <!-- Inlined Zero-Dependency Logic -->
+  <script>
+    (function () {
+      'use strict';
+
+      // 1. Parse Inlined Dataset
+      let rawData = [];
+      try {
+        const rawJsonEl = document.getElementById('library-data');
+        rawData = JSON.parse(rawJsonEl.textContent || '[]');
+      } catch (err) {
+        console.error('Error parsing embedded library data:', err);
+      }
+
+      // App State
+      const state = {
+        allResources: rawData,
+        filteredResources: [...rawData],
+        activeCategory: 'All',
+        activeDifficulty: 'All',
+        activeModalResource: null,
+        currentTheme: 'midnight'
+      };
+
+      // DOM Elements
+      const categoryPillsContainer = document.getElementById('category-pills');
+      const difficultyPillsContainer = document.getElementById('difficulty-pills');
+      const grid = document.getElementById('resource-grid');
+      const resultsCount = document.getElementById('results-count');
+      const hdrTotalCount = document.getElementById('hdr-total-count');
+
+      // Theme Elements
+      const themeToggleBtn = document.getElementById('theme-toggle-btn');
+      const themeToggleIcon = document.getElementById('theme-toggle-icon');
+      const themeToggleText = document.getElementById('theme-toggle-text');
+
+      // Modal Elements
+      const modal = document.getElementById('summary-modal');
+      const modalCloseBtn = document.getElementById('modal-close-btn');
+      const modalCloseBtnFooter = document.getElementById('modal-close-btn-footer');
+      const modalCategory = document.getElementById('modal-category');
+      const modalDiffBadge = document.getElementById('modal-diff-badge');
+      const modalBody = document.getElementById('modal-body');
+
+      // Avatar Elements
+      const avatarUploader = document.getElementById('avatar-uploader');
+      const avatarFileInput = document.getElementById('avatar-file-input');
+      const avatarImg = document.getElementById('avatar-img');
+      const avatarPlaceholder = document.getElementById('avatar-placeholder');
+      const embeddedAvatarEl = document.getElementById('user-avatar-data');
+      const embeddedAvatarB64 = embeddedAvatarEl ? embeddedAvatarEl.textContent.trim() : '';
+
+      // Cropper Modal Elements
+      const cropModal = document.getElementById('crop-modal');
+      const cropModalClose = document.getElementById('crop-modal-close');
+      const cropModalCancel = document.getElementById('crop-modal-cancel');
+      const cropModalSave = document.getElementById('crop-modal-save');
+      const cropContainer = document.getElementById('crop-container');
+      const cropCanvas = document.getElementById('crop-canvas');
+      const cropCtx = cropCanvas.getContext('2d');
+      const cropZoomSlider = document.getElementById('crop-zoom-slider');
+      const cropZoomIn = document.getElementById('crop-zoom-in');
+      const cropZoomOut = document.getElementById('crop-zoom-out');
+      const cropUploadNewBtn = document.getElementById('crop-upload-new-btn');
+      const cropResetBtn = document.getElementById('crop-reset-btn');
+
+      // Cropper State
+      const cropperState = {
+        img: new Image(),
+        scale: 1,
+        minScale: 1,
+        offsetX: 0,
+        offsetY: 0,
+        isDragging: false,
+        lastX: 0,
+        lastY: 0,
+        loaded: false
+      };
+
+      // 2. Soothing Theme Manager
+      function initTheme() {
+        let savedTheme = 'midnight';
+        try {
+          savedTheme = localStorage.getItem('nabil_library_theme') || 'midnight';
+        } catch (e) {
+          console.warn('LocalStorage unavailable for theme:', e);
+        }
+        setTheme(savedTheme);
+
+        if (themeToggleBtn) {
+          themeToggleBtn.addEventListener('click', () => {
+            const nextTheme = state.currentTheme === 'midnight' ? 'cashmere' : 'midnight';
+            setTheme(nextTheme);
+          });
+        }
+      }
+
+      function setTheme(theme) {
+        state.currentTheme = theme;
+        document.body.setAttribute('data-theme', theme);
+        try {
+          localStorage.setItem('nabil_library_theme', theme);
+        } catch (e) {}
+
+        if (theme === 'cashmere') {
+          themeToggleIcon.textContent = '📖';
+          themeToggleText.textContent = 'Cashmere';
+          themeToggleBtn.title = 'Switch to Midnight Slate Dark';
+        } else {
+          themeToggleIcon.textContent = '🌙';
+          themeToggleText.textContent = 'Midnight';
+          themeToggleBtn.title = 'Switch to Warm Cashmere Sepia';
+        }
+      }
+
+      // 3. Avatar Upload, Embedded Code & Interactive Cropper
+      function initAvatar() {
+        // Priority: 1) LocalStorage custom crop, 2) Embedded in code, 3) Placeholder
+        let savedAvatar = '';
+        try {
+          savedAvatar = localStorage.getItem('nabil_library_avatar');
+        } catch (e) {}
+
+        const activeSrc = savedAvatar || embeddedAvatarB64;
+        if (activeSrc) {
+          avatarImg.src = activeSrc;
+          avatarImg.style.display = 'block';
+          avatarPlaceholder.style.display = 'none';
+        }
+
+        // Open Cropper Modal on Avatar click
+        avatarUploader.addEventListener('click', (e) => {
+          openCropperModal(activeSrc || embeddedAvatarB64);
+        });
+
+        // Hidden file picker change
+        avatarFileInput.addEventListener('change', (e) => {
+          const file = e.target.files && e.target.files[0];
+          if (!file) return;
+
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            openCropperModal(event.target.result);
+          };
+          reader.readAsDataURL(file);
+        });
+
+        initCropperEvents();
+      }
+
+      function openCropperModal(imageSrc) {
+        if (!imageSrc) {
+          avatarFileInput.click();
+          return;
+        }
+
+        cropperState.img = new Image();
+        cropperState.img.onload = () => {
+          cropperState.loaded = true;
+          // Calculate initial fitting scale (cover the 280x280 viewport)
+          const imgW = cropperState.img.width;
+          const imgH = cropperState.img.height;
+          const scaleW = 280 / imgW;
+          const scaleH = 280 / imgH;
+          cropperState.minScale = Math.max(scaleW, scaleH);
+          cropperState.scale = cropperState.minScale;
+
+          // Center image by default
+          cropperState.offsetX = (280 - imgW * cropperState.scale) / 2;
+          // If vertical portrait, bias slightly upward toward the face
+          if (imgH > imgW) {
+            cropperState.offsetY = 0;
+          } else {
+            cropperState.offsetY = (280 - imgH * cropperState.scale) / 2;
+          }
+
+          cropZoomSlider.min = cropperState.minScale;
+          cropZoomSlider.max = cropperState.minScale * 3.5;
+          cropZoomSlider.value = cropperState.scale;
+
+          drawCropCanvas();
+          cropModal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        };
+        cropperState.img.src = imageSrc;
+      }
+
+      function closeCropperModal() {
+        cropModal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      function drawCropCanvas() {
+        if (!cropperState.loaded) return;
+        cropCtx.clearRect(0, 0, 280, 280);
+
+        const imgW = cropperState.img.width * cropperState.scale;
+        const imgH = cropperState.img.height * cropperState.scale;
+
+        cropCtx.drawImage(
+          cropperState.img,
+          cropperState.offsetX,
+          cropperState.offsetY,
+          imgW,
+          imgH
+        );
+      }
+
+      function initCropperEvents() {
+        // Drag to pan
+        cropContainer.addEventListener('mousedown', (e) => {
+          cropperState.isDragging = true;
+          cropperState.lastX = e.clientX;
+          cropperState.lastY = e.clientY;
+        });
+
+        window.addEventListener('mousemove', (e) => {
+          if (!cropperState.isDragging) return;
+          const dx = e.clientX - cropperState.lastX;
+          const dy = e.clientY - cropperState.lastY;
+          cropperState.lastX = e.clientX;
+          cropperState.lastY = e.clientY;
+
+          cropperState.offsetX += dx;
+          cropperState.offsetY += dy;
+          drawCropCanvas();
+        });
+
+        window.addEventListener('mouseup', () => {
+          cropperState.isDragging = false;
+        });
+
+        // Touch support
+        cropContainer.addEventListener('touchstart', (e) => {
+          if (e.touches.length === 1) {
+            cropperState.isDragging = true;
+            cropperState.lastX = e.touches[0].clientX;
+            cropperState.lastY = e.touches[0].clientY;
+          }
+        }, { passive: true });
+
+        cropContainer.addEventListener('touchmove', (e) => {
+          if (!cropperState.isDragging || e.touches.length !== 1) return;
+          const dx = e.touches[0].clientX - cropperState.lastX;
+          const dy = e.touches[0].clientY - cropperState.lastY;
+          cropperState.lastX = e.touches[0].clientX;
+          cropperState.lastY = e.touches[0].clientY;
+
+          cropperState.offsetX += dx;
+          cropperState.offsetY += dy;
+          drawCropCanvas();
+        }, { passive: true });
+
+        cropContainer.addEventListener('touchend', () => {
+          cropperState.isDragging = false;
+        });
+
+        // Zoom Slider
+        cropZoomSlider.addEventListener('input', (e) => {
+          const newScale = parseFloat(e.target.value);
+          const ratio = newScale / cropperState.scale;
+          // Zoom toward center of canvas (140, 140)
+          cropperState.offsetX = 140 - (140 - cropperState.offsetX) * ratio;
+          cropperState.offsetY = 140 - (140 - cropperState.offsetY) * ratio;
+          cropperState.scale = newScale;
+          drawCropCanvas();
+        });
+
+        cropZoomIn.addEventListener('click', () => {
+          cropZoomSlider.value = Math.min(parseFloat(cropZoomSlider.max), parseFloat(cropZoomSlider.value) + 0.2);
+          cropZoomSlider.dispatchEvent(new Event('input'));
+        });
+
+        cropZoomOut.addEventListener('click', () => {
+          cropZoomSlider.value = Math.max(parseFloat(cropZoomSlider.min), parseFloat(cropZoomSlider.value) - 0.2);
+          cropZoomSlider.dispatchEvent(new Event('input'));
+        });
+
+        // Choose Another Photo button
+        cropUploadNewBtn.addEventListener('click', () => {
+          avatarFileInput.click();
+        });
+
+        // Reset center
+        cropResetBtn.addEventListener('click', () => {
+          if (!cropperState.loaded) return;
+          const imgW = cropperState.img.width;
+          const imgH = cropperState.img.height;
+          cropperState.scale = cropperState.minScale;
+          cropZoomSlider.value = cropperState.scale;
+          cropperState.offsetX = (280 - imgW * cropperState.scale) / 2;
+          cropperState.offsetY = (imgH > imgW) ? 0 : (280 - imgH * cropperState.scale) / 2;
+          drawCropCanvas();
+        });
+
+        // Close/Cancel buttons
+        cropModalClose.addEventListener('click', closeCropperModal);
+        cropModalCancel.addEventListener('click', closeCropperModal);
+        cropModal.addEventListener('click', (e) => {
+          if (e.target === cropModal) closeCropperModal();
+        });
+
+        // Save & Apply cropped result
+        cropModalSave.addEventListener('click', () => {
+          if (!cropperState.loaded) return;
+
+          // Render high-res 400x400 offscreen canvas
+          const offCanvas = document.createElement('canvas');
+          offCanvas.width = 400;
+          offCanvas.height = 400;
+          const offCtx = offCanvas.getContext('2d');
+
+          // Multiplier from preview 280px to high-res 400px
+          const mult = 400 / 280;
+          const scaledW = cropperState.img.width * cropperState.scale * mult;
+          const scaledH = cropperState.img.height * cropperState.scale * mult;
+          const finalX = cropperState.offsetX * mult;
+          const finalY = cropperState.offsetY * mult;
+
+          offCtx.drawImage(cropperState.img, finalX, finalY, scaledW, scaledH);
+
+          const croppedDataUrl = offCanvas.toDataURL('image/jpeg', 0.92);
+          avatarImg.src = croppedDataUrl;
+          avatarImg.style.display = 'block';
+          avatarPlaceholder.style.display = 'none';
+
+          try {
+            localStorage.setItem('nabil_library_avatar', croppedDataUrl);
+          } catch (err) {
+            console.warn('Could not cache cropped avatar:', err);
+          }
+
+          closeCropperModal();
+        });
+      }
+
+      // 4. Initialize Counts & Categories
+      if (hdrTotalCount) {
+        hdrTotalCount.textContent = rawData.length;
+      }
+
+      function initCategories() {
+        const catMap = {};
+        rawData.forEach(item => {
+          const cat = item.category || 'Other';
+          catMap[cat] = (catMap[cat] || 0) + 1;
+        });
+
+        categoryPillsContainer.innerHTML = '';
+        
+        // "All" Button
+        const allBtn = document.createElement('button');
+        allBtn.className = 'pill-btn active';
+        allBtn.dataset.category = 'All';
+        allBtn.innerHTML = `All <span class="pill-count">(${rawData.length})</span>`;
+        allBtn.addEventListener('click', () => setCategory('All'));
+        categoryPillsContainer.appendChild(allBtn);
+
+        // Individual Categories
+        Object.keys(catMap).sort().forEach(cat => {
+          const btn = document.createElement('button');
+          btn.className = 'pill-btn';
+          btn.dataset.category = cat;
+          btn.innerHTML = `${cat} <span class="pill-count">(${catMap[cat]})</span>`;
+          btn.addEventListener('click', () => setCategory(cat));
+          categoryPillsContainer.appendChild(btn);
+        });
+      }
+
+      // 5. Filtering Engine
+      function applyFilters() {
+        let results = [...state.allResources];
+
+        // Category Filter
+        if (state.activeCategory !== 'All') {
+          results = results.filter(item => item.category === state.activeCategory);
+        }
+
+        // Difficulty Filter
+        if (state.activeDifficulty !== 'All') {
+          results = results.filter(item => item.difficulty === state.activeDifficulty);
+        }
+
+        state.filteredResources = results;
+        renderCards();
+      }
+
+      function setCategory(cat) {
+        state.activeCategory = cat;
+        categoryPillsContainer.querySelectorAll('.pill-btn').forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.category === cat);
+        });
+        applyFilters();
+      }
+
+      function setDifficulty(diff) {
+        state.activeDifficulty = diff;
+        difficultyPillsContainer.querySelectorAll('.pill-btn').forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.diff === diff);
+        });
+        applyFilters();
+      }
+
+      // 6. Card HTML Renderer
+      function getDiffClass(diff) {
+        const d = (diff || '').toLowerCase();
+        if (d === 'beginner') return 'diff-beginner';
+        if (d === 'intermediate') return 'diff-intermediate';
+        if (d === 'advanced') return 'diff-advanced';
+        return 'diff-all';
+      }
+
+      function escapeHtml(str) {
+        if (!str) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      function renderCards() {
+        const count = state.filteredResources.length;
+        resultsCount.innerHTML = `Showing <strong>${count}</strong> of <strong>${state.allResources.length}</strong> resources`;
+
+        if (count === 0) {
+          grid.innerHTML = `
+            <div class="empty-state">
+              <h3>No matching resources found</h3>
+              <p>Try clearing some of the active filters to explore more resources.</p>
+              <button id="empty-reset-btn" class="pill-btn active" style="margin:0 auto;">Reset Filters</button>
+            </div>
+          `;
+          const emptyBtn = document.getElementById('empty-reset-btn');
+          if (emptyBtn) emptyBtn.addEventListener('click', () => {
+            setCategory('All');
+            setDifficulty('All');
+          });
+          return;
+        }
+
+        const fragment = document.createDocumentFragment();
+
+        state.filteredResources.forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'resource-card';
+
+          const diffClass = getDiffClass(item.difficulty);
+
+          // Build tag chips (first 4 topics/tools)
+          const tags = [];
+          if (Array.isArray(item.ai_tools)) {
+            item.ai_tools.slice(0, 3).forEach(t => tags.push(t));
+          }
+          if (Array.isArray(item.topics) && tags.length < 4) {
+            item.topics.slice(0, 4 - tags.length).forEach(tp => tags.push(tp));
+          }
+
+          const tagsHtml = tags.map(t => `<span class="tag-chip">${escapeHtml(t)}</span>`).join('');
+
+          // Clean title: remove any AI-001, AI-002, etc. prefix
+          const cleanTitle = (item.title || '').replace(/^AI[-\s]?\d+[\s:–-]+/i, '');
+
+          card.innerHTML = `
+            <div class="card-meta-top">
+              <span class="card-category-sub">${escapeHtml(item.category)} • ${escapeHtml(item.subcategory || 'General')}</span>
+              <span class="card-diff-badge ${diffClass}">${escapeHtml(item.difficulty)}</span>
+            </div>
+            <h3 class="card-title">${escapeHtml(cleanTitle)}</h3>
+            <p class="card-desc">${escapeHtml(item.description || 'Educational resource guide.')}</p>
+            <div class="card-tags">${tagsHtml}</div>
+            <div class="card-actions">
+              <button class="btn-summary" data-id="${escapeHtml(item.id)}">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                </svg>
+                View Summary
+              </button>
+            </div>
+          `;
+
+          // Event Listener for "View Summary"
+          const viewBtn = card.querySelector('.btn-summary');
+          viewBtn.addEventListener('click', () => openModal(item));
+
+          fragment.appendChild(card);
+        });
+
+        grid.innerHTML = '';
+        grid.appendChild(fragment);
+      }
+
+      // 7. Inlined Lightweight Markdown Parser for Modal
+      function parseMarkdownToHtml(md) {
+        if (!md) return '<p><em>No summary content available.</em></p>';
+
+        const lines = md.split('\n');
+        let html = '';
+        let inList = false;
+        let inOrderedList = false;
+        let inBlockquote = false;
+
+        for (let i = 0; i < lines.length; i++) {
+          let line = lines[i];
+
+          // Filter out lines containing Local Asset, Status, or Resource ID
+          if (/^\s*[-*]\s*\*\*(Local Asset|Status|Resource ID|ID):\*\*/i.test(line)) {
+            continue;
+          }
+          if (/\*\*(Local Asset|Status):\*\*/i.test(line)) {
+            continue;
+          }
+
+          // Horizontal rule
+          if (/^(\*\*\*|---|___)$/.test(line.trim())) {
+            if (inList) { html += '</ul>'; inList = false; }
+            if (inOrderedList) { html += '</ol>'; inOrderedList = false; }
+            if (inBlockquote) { html += '</blockquote>'; inBlockquote = false; }
+            html += '<hr style="margin:1.25rem 0; border:0; border-top:1px solid var(--border-color);">';
+            continue;
+          }
+
+          // Blockquote
+          if (line.startsWith('>')) {
+            if (!inBlockquote) {
+              if (inList) { html += '</ul>'; inList = false; }
+              if (inOrderedList) { html += '</ol>'; inOrderedList = false; }
+              html += '<blockquote>';
+              inBlockquote = true;
+            }
+            line = line.replace(/^>\s*/, '');
+          } else if (inBlockquote && line.trim() === '') {
+            html += '</blockquote>';
+            inBlockquote = false;
+          }
+
+          // Headers: strip out any AI-xxx prefix
+          if (line.startsWith('### ')) {
+            if (inList) { html += '</ul>'; inList = false; }
+            if (inOrderedList) { html += '</ol>'; inOrderedList = false; }
+            const headerText = line.substring(4).replace(/^AI[-\s]?\d+[\s:–-]+/i, '');
+            html += `<h3>${formatInline(headerText)}</h3>`;
+            continue;
+          } else if (line.startsWith('## ')) {
+            if (inList) { html += '</ul>'; inList = false; }
+            if (inOrderedList) { html += '</ol>'; inOrderedList = false; }
+            const headerText = line.substring(3).replace(/^AI[-\s]?\d+[\s:–-]+/i, '');
+            html += `<h2>${formatInline(headerText)}</h2>`;
+            continue;
+          } else if (line.startsWith('# ')) {
+            if (inList) { html += '</ul>'; inList = false; }
+            if (inOrderedList) { html += '</ol>'; inOrderedList = false; }
+            const titleText = line.substring(2).replace(/^AI[-\s]?\d+[\s:–-]+/i, '');
+            html += `<h1>${formatInline(titleText)}</h1>`;
+            continue;
+          }
+
+          // Unordered Lists
+          const bulletMatch = line.match(/^(\s*)[-*]\s+(.*)$/);
+          if (bulletMatch) {
+            if (!inList) {
+              if (inOrderedList) { html += '</ol>'; inOrderedList = false; }
+              html += '<ul>';
+              inList = true;
+            }
+            const itemText = bulletMatch[2].replace(/^AI[-\s]?\d+[\s:–-]+/i, '');
+            html += `<li>${formatInline(itemText)}</li>`;
+            continue;
+          }
+
+          // Ordered Lists
+          const numMatch = line.match(/^(\s*)\d+\.\s+(.*)$/);
+          if (numMatch) {
+            if (!inOrderedList) {
+              if (inList) { html += '</ul>'; inList = false; }
+              html += '<ol>';
+              inOrderedList = true;
+            }
+            const itemText = numMatch[2].replace(/^AI[-\s]?\d+[\s:–-]+/i, '');
+            html += `<li>${formatInline(itemText)}</li>`;
+            continue;
+          }
+
+          // Close lists if non-list line encountered
+          if (inList && line.trim() === '') {
+            html += '</ul>';
+            inList = false;
+          }
+          if (inOrderedList && line.trim() === '') {
+            html += '</ol>';
+            inOrderedList = false;
+          }
+
+          // Regular Paragraph
+          if (line.trim() !== '') {
+            html += `<p>${formatInline(line)}</p>`;
+          }
+        }
+
+        if (inList) html += '</ul>';
+        if (inOrderedList) html += '</ol>';
+        if (inBlockquote) html += '</blockquote>';
+
+        return html;
+      }
+
+      function formatInline(text) {
+        let safe = escapeHtml(text);
+        safe = safe.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        safe = safe.replace(/\*(.*?)\*/g, '<em>$1</em>');
+        safe = safe.replace(/`([^`]+)`/g, '<code>$1</code>');
+        safe = safe.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600;">$1</a>');
+        return safe;
+      }
+
+      // 8. Modal Functions
+      function openModal(item) {
+        state.activeModalResource = item;
+        modalCategory.textContent = `${item.category} • ${item.subcategory || 'General'}`;
+        modalDiffBadge.textContent = item.difficulty;
+        modalDiffBadge.className = `card-diff-badge ${getDiffClass(item.difficulty)}`;
+
+        // Render Markdown body
+        modalBody.innerHTML = parseMarkdownToHtml(item.summary_markdown || item.description || '');
+
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+        state.activeModalResource = null;
+      }
+
+      // 9. Event Listeners
+      modalCloseBtn.addEventListener('click', closeModal);
+      modalCloseBtnFooter.addEventListener('click', closeModal);
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+      });
+
+      // Keyboard Shortcuts
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          if (cropModal.classList.contains('active')) {
+            closeCropperModal();
+          } else if (modal.classList.contains('active')) {
+            closeModal();
+          }
+        }
+      });
+
+      // Difficulty Buttons Listeners
+      difficultyPillsContainer.querySelectorAll('.pill-btn').forEach(btn => {
+        btn.addEventListener('click', () => setDifficulty(btn.dataset.diff));
+      });
+
+      // 10. Initial Render
+      initTheme();
+      initAvatar();
+      initCategories();
+      applyFilters();
+
+    })();
+  </script>
+</body>
+</html>

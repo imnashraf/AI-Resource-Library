@@ -1,0 +1,32 @@
+{
+  "id": "AI-037",
+  "slug": "the-cold-outreach-playbook",
+  "title": "The Cold Outreach Playbook",
+  "category": "Building & Monetising",
+  "subcategory": "Agency & Client Acquisition",
+  "difficulty": "Intermediate",
+  "description": "A complete system for turning cold strangers into booked calls. Ideal client targeting, first-email anatomy, a four-email follow-up sequence, and the proof assets that turn interest into a meeting.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Building & Monetising",
+    "Chapter 01, What to Know",
+    "Define your ideal client first",
+    "Build your ICP: nail these five",
+    "Chapter 02, What to Say",
+    "The first email: six parts",
+    "Agency & Client Acquisition"
+  ],
+  "ai_tools": [
+    "Claude"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-037_the-cold-outreach-playbook.html",
+  "summary_file": "summaries/AI-037.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

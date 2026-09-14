@@ -1,0 +1,56 @@
+# ==============================================================================
+# Pipeline & System Settings
+# ==============================================================================
+
+app:
+  name: "Systematic Personal AI Resource Library"
+  version: "1.0.0"
+  target_url: "https://aiwithmax.com/"
+  id_prefix: "AI"
+
+crawler:
+  base_url: "https://aiwithmax.com/"
+  delay_seconds: 1.0
+  jitter_seconds: 0.3
+  timeout_seconds: 30
+  max_retries: 5
+  user_agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+  min_html_bytes: 500
+
+downloader:
+  max_file_size_mb: 50
+  allowed_extensions:
+    - ".pdf"
+    - ".docx"
+    - ".xlsx"
+    - ".csv"
+    - ".txt"
+    - ".md"
+    - ".zip"
+
+llm:
+  default_provider: "groq"
+  default_model: "openai/gpt-oss-120b"
+  fallback_provider: "ollama"
+  fallback_model: "llama3.2"
+  temperature: 0.2
+  max_tokens: 2048
+  rate_limit:
+    requests_per_minute: 30
+    tokens_per_minute: 8000
+
+paths:
+  deliverables_root: "ai-resource-library"
+  inventory_dir: "ai-resource-library/inventory"
+  documents_dir: "ai-resource-library/documents"
+  web_pages_dir: "ai-resource-library/web-pages"
+  summaries_dir: "ai-resource-library/summaries"
+  metadata_dir: "ai-resource-library/metadata"
+  pdf_dir: "ai-resource-library/pdf"
+  logs_dir: "ai-resource-library/logs"
+  master_index: "ai-resource-library/MASTER_INDEX.md"
+  learning_roadmap: "ai-resource-library/LEARNING_ROADMAP.md"
+  portal_html: "ai-resource-library/library.html"
+  master_pdf: "ai-resource-library/pdf/AI_RESOURCE_LIBRARY_MASTER.pdf"
+  final_report: "ai-resource-library/FINAL_REPORT.md"
+  pipeline_log: "ai-resource-library/logs/pipeline.log"

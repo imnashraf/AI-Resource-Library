@@ -1,0 +1,33 @@
+{
+  "id": "AI-023",
+  "slug": "claude-humanizer-setup-guide",
+  "title": "Claude Humanizer Setup Guide",
+  "category": "Tools & Integrations",
+  "subcategory": "Third-Party Connectors",
+  "difficulty": "Beginner",
+  "description": "Install and use the Claude Humanizer skill to remove AI-detectable patterns from your writing. Covers the skill setup, the prompts that work, and the techniques for different content types.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Tools & Integrations",
+    "Step 1, Install Claude Code",
+    "Step 2, Install Git (if needed)",
+    "Step 4, Use the Humanizer",
+    "What the Humanizer Fixes",
+    "Troubleshooting",
+    "Third-Party Connectors"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-023_claude-humanizer-setup-guide.html",
+  "summary_file": "summaries/AI-023.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

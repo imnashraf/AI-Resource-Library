@@ -1,0 +1,30 @@
+{
+  "id": "AI-013",
+  "slug": "dynamic-workflows-in-claude-code",
+  "title": "Dynamic Workflows in Claude Code",
+  "category": "Claude Code",
+  "subcategory": "CLI Workflows",
+  "difficulty": "Intermediate",
+  "description": "Build workflows that adapt based on outputs, conditional logic, branching agents, and decision trees inside Claude Code. Moves beyond simple task execution into genuinely intelligent automation.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Claude Code",
+    "Chapter 02, How It Actually Works",
+    "Chapter 04, The Review Layer",
+    "CLI Workflows"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-013_dynamic-workflows-in-claude-code.html",
+  "summary_file": "summaries/AI-013.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

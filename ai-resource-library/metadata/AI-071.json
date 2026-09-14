@@ -1,0 +1,31 @@
+{
+  "id": "AI-071",
+  "slug": "the-5-checks-full-verification-guide",
+  "title": "The 5 Checks: Full Verification Guide",
+  "category": "Claude Code",
+  "subcategory": "Testing & Reliability",
+  "difficulty": "Intermediate",
+  "description": "The exact prompts, setup and failure patterns for catching AI coding agents that report a task as done when it hasn't actually been tested. Requirement, Test, Regression, Diff and Unproven, plus the CLAUDE.md rule, hooks and subagents that enforce it automatically.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Claude Code",
+    "Contents: What You'll Learn",
+    "1. REQUIREMENT",
+    "Testing & Reliability"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude",
+    "Cursor"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-071_the-5-checks-full-verification-guide.html",
+  "summary_file": "summaries/AI-071.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

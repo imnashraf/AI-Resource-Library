@@ -1,0 +1,32 @@
+{
+  "id": "AI-039",
+  "slug": "5-things-that-break-your-claude-code-app",
+  "title": "5 Things That Will Break Your Claude Code App Before Launch",
+  "category": "Claude Code",
+  "subcategory": "Testing & Reliability",
+  "difficulty": "Intermediate",
+  "description": "Five launch-breaking failures in Claude Code apps and exactly how to fix each one. Custom 404 pages, Sentry error tracking, resilient forms, proper loading states, and error boundaries, with ready-to-use Claude Code prompts for each fix.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Claude Code",
+    "Chapter 04, Broken Loading States",
+    "Chapter 05, The Blank White Screen",
+    "Your App Is Ready to Ship.",
+    "Testing & Reliability"
+  ],
+  "ai_tools": [
+    "Claude Code",
+    "Claude",
+    "Sentry"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-039_5-things-that-break-your-claude-code-app.html",
+  "summary_file": "summaries/AI-039.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

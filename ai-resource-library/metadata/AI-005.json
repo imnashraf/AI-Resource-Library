@@ -1,0 +1,29 @@
+{
+  "id": "AI-005",
+  "slug": "10-ways-to-stop-burning-your-claude-usage-limit",
+  "title": "10 Ways to Stop Burning Your Claude Usage Limit",
+  "category": "Getting Started",
+  "subcategory": "Usage & Optimization",
+  "difficulty": "Beginner",
+  "description": "Usage limits hitting faster than expected? Ten concrete techniques to get more out of every message, from smarter prompting to caching strategies to knowing when to switch models.",
+  "source_url": "",
+  "download_url": null,
+  "content_type": "Guide",
+  "author": "AI Resource Library",
+  "date": "2025",
+  "topics": [
+    "Getting Started",
+    "Usage & Optimization"
+  ],
+  "ai_tools": [
+    "Claude Opus",
+    "Claude Haiku",
+    "Claude"
+  ],
+  "status": "WEB_ONLY",
+  "local_file": null,
+  "local_html": "web-pages/AI-005_10-ways-to-stop-burning-your-claude-usage-limit.html",
+  "summary_file": "summaries/AI-005.md",
+  "copyright_status": "Public Web / Personal Reference",
+  "notes": "Public web guide cataloged"
+}

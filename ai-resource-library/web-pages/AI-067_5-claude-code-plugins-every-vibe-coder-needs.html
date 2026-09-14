@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>5 Claude Code Plugins Every Vibe Coder Needs</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+ <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+  .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+  .header.scrolled { border-color: var(--accent-border); }
+  .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+  .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+  .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+  .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+  .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+  a.logo-subtitle:hover { color: var(--accent); }
+  .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+  .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+  .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+  @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+  .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+  .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+  .badge-cat { background: var(--accent); color: #fff; }
+  .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+  .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+  .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+  .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+  .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+  .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+  .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+  .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+  .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+  .toc-box ol { list-style: none; counter-reset: toc; }
+  .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+  .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+  .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+  .toc-box a:hover { color: var(--accent); }
+  .guide-content { padding: 2rem 0 5rem; }
+  .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+  .guide-content h2:first-of-type { border-top: none; margin-top: 0; }
+  .guide-content h3 { font-size: 1.0625rem; font-weight: 700; margin-top: 1.75rem; margin-bottom: 0.625rem; }
+  .guide-content p { margin-bottom: 1.125rem; }
+  .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+  .guide-content li { margin-bottom: 0.375rem; }
+  .guide-content strong { font-weight: 600; }
+  .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+  @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .back-btn { margin-left: 0; flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+  .callout { border-left: 4px solid var(--accent-border); background: var(--accent-light); padding: 0.875rem 1.125rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0; }
+  .callout-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.35rem; }
+  .callout p { margin-bottom: 0; }
+  .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+  .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+  @page { margin: 1.5cm; }
+  @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; } p { orphans: 3; widows: 3; } pre, .callout { break-inside: avoid; } }
+
+  /* Prompt code blocks */
+  .guide-content pre { background: #0a0a0a; color: #f8f8f8; border-radius: 10px; padding: 1.25rem 1.5rem; overflow-x: auto; font-size: 0.8125rem; line-height: 1.6; margin: 0.5rem 0 1.25rem; border: 1px solid #1f1f1f; white-space: pre-wrap; }
+  .guide-content pre code { background: none; border: none; padding: 0; color: inherit; font-size: inherit; }
+  .guide-content code { font-family: 'Courier New', Courier, monospace; }
+  .link-line { font-family: 'Courier New', Courier, monospace; font-size: 0.8125rem; color: var(--accent); margin: 0 0 1.125rem; }
+
+  /* VISUAL BLOCKS */
+  /* VB1: pill tags */
+  .tag-row { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 1.5rem 0; }
+  .tag-pill { display: inline-block; background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); border-radius: 9999px; padding: 0.3rem 0.875rem; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+  /* VB2: at-a-glance summary grid */
+  .summary-stack { display: flex; flex-direction: column; gap: 0.875rem; margin: 1.75rem 0; }
+  .summary-card { background: #fff; border: 1.5px solid var(--accent-border); border-radius: 12px; padding: 1.125rem 1.375rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .summary-num { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--accent); font-size: 1.25rem; flex-shrink: 0; width: 2.5rem; }
+  .summary-body { flex: 1; min-width: 200px; }
+  .summary-name { font-weight: 700; font-size: 0.9375rem; }
+  .summary-cat { font-size: 0.6875rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.04em; margin: 0.2rem 0 0.35rem; }
+  .summary-desc { font-size: 0.8125rem; color: var(--muted); margin: 0; }
+ </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+  <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+  <div class="logo-divider"></div>
+  <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">&#8592; All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+  <span class="badge badge-cat">Claude Code</span>
+  <span class="badge badge-diff">Intermediate</span>
+ </div>
+ <h1>5 Claude Code Plugins Every Vibe Coder Needs</h1>
+ <p class="intro-blurb">The exact plugins for databases, security testing, browser QA, design cloning and live docs, with the install command and the link for each one.</p>
+ <ul>
+  <li><strong>Supabase:</strong> build and manage a database without leaving your terminal</li>
+  <li><strong>Strix:</strong> an AI hacker that attacks your app and fixes what it finds</li>
+  <li><strong>Playwright CLI:</strong> gives your AI a real browser to test what it just built</li>
+  <li><strong>SkillUI:</strong> reverse-engineers any site's design system in one command</li>
+  <li><strong>Context7:</strong> feeds your AI current docs so it stops guessing at APIs</li>
+ </ul>
+ <div class="hero-author">
+  <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+  <div><span class="author-name">Max Johnson</span><span class="author-meta">@maxjohnscn</span></div>
+ </div>
+</div>
+
+<div class="page-wrap">
+ <main class="guide-content">
+
+  <button class="download-btn" onclick="window.print()">&#8595; Download PDF</button>
+
+  <div class="tag-row">
+   <span class="tag-pill">Database</span>
+   <span class="tag-pill">Security</span>
+   <span class="tag-pill">QA / Testing</span>
+   <span class="tag-pill">Design</span>
+   <span class="tag-pill">Documentation</span>
+  </div>
+
+  <p><strong>5 plugins. One install command each. Under 15 minutes, start to finish.</strong></p>
+
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>These are plugins and skills for Claude Code (Anthropic's terminal coding agent), some also work with Codex. If you're vibe coding inside the Claude.ai or ChatGPT web apps rather than a terminal, install steps will differ from what's shown here.</p>
+  </div>
+
+  <h2 id="why-these-five">Chapter 01: Why These Five</h2>
+  <p>Vibe coding moves fast because the AI is doing the typing. It breaks down for the same reason: the AI is guessing. Guessing at your database schema. Guessing whether the login form it just wrote is actually secure. Guessing what the page looks like once it renders, because it can't see a browser. Guessing at a library's API from training data that's already out of date.</p>
+  <p>Each plugin below closes one of those gaps. None of them make Claude Code smarter: they give it a capability it doesn't have by default: a live connection to a database, a real browser, a security tester, a way to see another site's design system, and a way to read current docs instead of stale ones.</p>
+
+  <div class="summary-stack">
+   <div class="summary-card">
+    <div class="summary-num">01</div>
+    <div class="summary-body"><div class="summary-name">Supabase</div><div class="summary-cat">Database</div><p class="summary-desc">Run SQL, migrations and auth changes without opening the dashboard.</p></div>
+   </div>
+   <div class="summary-card">
+    <div class="summary-num">02</div>
+    <div class="summary-body"><div class="summary-name">Strix</div><div class="summary-cat">Security</div><p class="summary-desc">Attacks your app like a real hacker and hands back validated fixes.</p></div>
+   </div>
+   <div class="summary-card">
+    <div class="summary-num">03</div>
+    <div class="summary-body"><div class="summary-name">Playwright CLI</div><div class="summary-cat">QA / Testing</div><p class="summary-desc">Opens a real browser so your AI can see and screenshot what it built.</p></div>
+   </div>
+   <div class="summary-card">
+    <div class="summary-num">04</div>
+    <div class="summary-body"><div class="summary-name">SkillUI</div><div class="summary-cat">Design</div><p class="summary-desc">Extracts any site's colours, type and spacing into a skill file.</p></div>
+   </div>
+   <div class="summary-card">
+    <div class="summary-num">05</div>
+    <div class="summary-body"><div class="summary-name">Context7</div><div class="summary-cat">Documentation</div><p class="summary-desc">Pulls current, version-matched docs into the conversation on request.</p></div>
+   </div>
+  </div>
+
+  <h2 id="plugin-01">Plugin 01 &#183; Database: Supabase</h2>
+  <p><strong>Build and manage a database without leaving your terminal</strong></p>
+  <p>Supabase gives Claude Code a direct line into your project's database, authentication and storage. Once it's connected, you can ask it in plain English to run a SQL query, write a migration, add a column, generate TypeScript types from your schema, or check the logs on an Edge Function, all without opening the Supabase dashboard.</p>
+  <h3>What it does</h3>
+  <ul>
+   <li>Runs SQL queries and migrations against your project</li>
+   <li>Manages auth providers and storage buckets</li>
+   <li>Generates TypeScript types straight from your schema</li>
+   <li>Reads Edge Function logs when something breaks</li>
+  </ul>
+  <h3>Install</h3>
+  <pre><code># Add Anthropic's official plugin marketplace, then install
+claude plugin marketplace add anthropics/claude-plugins-official
+claude plugin install supabase@claude-plugins-official
+
+# Restart the plugin system
+/reload-plugins</code></pre>
+  <p class="link-line">claude.com/plugins/supabase</p>
+  <div class="callout"><p><strong>Try this prompt:</strong> "List all my Supabase projects, then run a SQL query to show me all users created this month." That's a good first prompt to confirm the plugin is actually connected before you build anything on top of it.</p></div>
+
+  <h2 id="plugin-02">Plugin 02 &#183; Security: Strix</h2>
+  <p><strong>An open-source AI hacker that pentests your app for you</strong></p>
+  <p>Strix runs autonomous AI agents that behave like real attackers, they execute your code, probe it for vulnerabilities like SQL injection, broken access control and XSS, and confirm every finding with a working proof-of-concept exploit instead of a "possible issue" guess. Point it at a local folder, a GitHub repo or a live URL and it hands back validated findings with fix guidance.</p>
+  <h3>What it does</h3>
+  <ul>
+   <li>Tests for OWASP Top 10 issues: IDOR, SQLi, XSS, SSRF and more</li>
+   <li>Every finding ships with a reproducible proof-of-concept</li>
+   <li>Installs as an agent skill Claude Code can call directly</li>
+   <li>Can run in CI to block vulnerable pull requests</li>
+  </ul>
+  <h3>Install (agent skill for Claude Code)</h3>
+  <pre><code>npx skills add usestrix/strix</code></pre>
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>Running a full local scan needs Docker plus an LLM API key of your own (Strix's agents make their own model calls, set via STRIX_LLM and LLM_API_KEY). If you'd rather skip local setup, the hosted platform at app.strix.ai runs the same engine without Docker.</p>
+  </div>
+  <p class="link-line">strix.ai &#183; github.com/usestrix/strix</p>
+
+  <h2 id="plugin-03">Plugin 03 &#183; QA / Testing: Playwright CLI</h2>
+  <p><strong>Gives your AI a real browser to test what it just built</strong></p>
+  <p>Playwright CLI is a command-line interface for browser automation, built by the Playwright team specifically for coding agents. Once it's installed, Claude Code can open a real browser, click through the app it just generated, take screenshots, and read back console errors and network requests, catching broken flows before you ever look at the screen yourself.</p>
+  <h3>What it does</h3>
+  <ul>
+   <li>Navigates, clicks, fills forms and uploads files</li>
+   <li>Screenshots full pages or a single element</li>
+   <li>Reads console messages and network requests back to your AI</li>
+   <li>Runs headless by default, or headed so you can watch it work</li>
+  </ul>
+  <h3>Install</h3>
+  <pre><code>npm install -g @playwright/cli@latest
+
+# Installs the skill so Claude Code picks up its commands automatically
+playwright-cli install --skills</code></pre>
+  <p class="link-line">playwright.dev/docs/getting-started-cli</p>
+  <div class="callout"><p><strong>Try this prompt:</strong> "Test the sign-up flow on localhost:3000 using playwright-cli. Take screenshots of every step and flag anything that looks broken." Claude reads its own screenshots back, so it catches layout bugs you'd otherwise only spot by opening the browser yourself.</p></div>
+
+  <h2 id="plugin-04">Plugin 04 &#183; Design: SkillUI</h2>
+  <p><strong>Reverse-engineers any website's design system into a Claude-ready skill</strong></p>
+  <p>Point SkillUI at any URL, GitHub repo or local project and it crawls it, extracting the exact colour palette, typography scale, spacing system, fonts and component patterns: pure static analysis, no AI model or API key involved. Everything gets packaged into a folder with a CLAUDE.md and SKILL.md file that Claude Code reads automatically, so it can build new pages in that exact style.</p>
+  <h3>What it does</h3>
+  <ul>
+   <li>Extracts colours, type scale, spacing and fonts from any site</li>
+   <li>"Ultra" mode adds scroll screenshots and animation detection</li>
+   <li>Also scans a local folder or clones a public repo directly</li>
+   <li>Outputs a folder Claude Code loads automatically on open</li>
+  </ul>
+  <h3>Install &amp; run</h3>
+  <pre><code>npm install -g skillui
+
+# Extract a design system from any site
+skillui --url https://example.com
+
+# Open the output folder and let Claude build in that style
+cd example-design && claude</code></pre>
+  <p class="link-line">skillui.vercel.app &#183; github.com/amaancoderx/npxskillui</p>
+  <div class="callout"><p><strong>Try this prompt:</strong> Run skillui --url against a site you admire, open the output folder in Claude Code, then just ask: "Build me a landing page that matches this design system." It already has the exact colours, type and spacing: it doesn't need you to describe the look.</p></div>
+
+  <h2 id="plugin-05">Plugin 05 &#183; Documentation: Context7</h2>
+  <p><strong>Feeds your AI current docs so it stops guessing at APIs</strong></p>
+  <p>LLMs are trained on a snapshot of the internet, so fast-moving libraries drift out of date quickly: APIs get hallucinated, examples reference versions that no longer exist. Context7 fixes that by pulling live, version-specific documentation and code examples straight from the source and dropping them into the conversation the moment you ask for setup or configuration help, so Claude Code stops guessing.</p>
+  <h3>What it does</h3>
+  <ul>
+   <li>Pulls current, version-matched docs for the library you're using</li>
+   <li>Triggers with a simple "use context7" in your prompt</li>
+   <li>No tab-switching to go find the docs page yourself</li>
+   <li>Works across thousands of actively maintained libraries</li>
+  </ul>
+  <h3>Install</h3>
+  <pre><code>claude mcp add --transport http context7 https://mcp.context7.com/mcp</code></pre>
+  <div class="callout">
+   <div class="callout-label">Note</div>
+   <p>Free to use without an API key. Add one at context7.com/dashboard for higher rate limits and access to private repositories.</p>
+  </div>
+  <p class="link-line">context7.com</p>
+  <div class="callout"><p><strong>Try this prompt:</strong> "Create a Next.js middleware that checks for a valid JWT in cookies. Use context7." Adding "use context7" to any setup or configuration question tells Claude to pull the current docs before it answers, instead of writing from memory.</p></div>
+
+  <h2 id="closing">Closing: Five Plugins. One Better Workflow.</h2>
+  <p>You don't need all five running on day one. Install the one that fixes whatever's actually slowing you down this week, get it into your workflow, then come back for the next.</p>
+  <h3>Your Three Moves</h3>
+  <ul>
+   <li>Pick the plugin that fixes your biggest current bottleneck: database, security, QA, design or docs</li>
+   <li>Run the exact install command from its page</li>
+   <li>Test it with one real prompt before moving on to the next plugin</li>
+  </ul>
+  <h3>Quick Reference</h3>
+  <p>Supabase &#183; Strix &#183; Playwright CLI &#183; SkillUI &#183; Context7: every install command and link is on its own page above, ready to copy.</p>
+
+ </main>
+
+ <aside class="toc-sidebar">
+  <div class="toc-box">
+   <h3>In this guide</h3>
+   <ol>
+    <li><a href="#why-these-five">Why These Five</a></li>
+    <li><a href="#plugin-01">Supabase</a></li>
+    <li><a href="#plugin-02">Strix</a></li>
+    <li><a href="#plugin-03">Playwright CLI</a></li>
+    <li><a href="#plugin-04">SkillUI</a></li>
+    <li><a href="#plugin-05">Context7</a></li>
+    <li><a href="#closing">One Better Workflow</a></li>
+   </ol>
+  </div>
+ </aside>
+</div>
+
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+</body>
+</html>

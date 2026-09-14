@@ -1,0 +1,277 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>The LLM Council Setup Guide</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✦%3C/text%3E%3C/svg%3E">
+ <style>
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ :root { --accent: #1A7A6A; --accent-light: #E8F5F3; --accent-border: #9FD5CE; --text: #000000; --muted: #6B7280; --header-height: 64px; }
+ html { scroll-behavior: smooth; }
+ body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+ .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+ .header.scrolled { border-color: var(--accent-border); }
+ .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+ .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+ .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+ .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+ .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+ a.logo-subtitle:hover { color: var(--accent); }
+ .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+ .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+ .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+ @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+ .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+ .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+ .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+ .badge-cat { background: var(--accent); color: #fff; }
+ .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+ .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+ .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+ .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+ .author-name { display: block; font-weight: 600; font-size: 0.875rem; }
+ .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+ .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+ .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+ .toc-box ol { list-style: none; counter-reset: toc; }
+ .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+ .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+ .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+ .toc-box a:hover { color: var(--accent); }
+ .guide-content { padding: 2rem 0 5rem; }
+ .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+ .guide-content h2:first-child { border-top: none; margin-top: 0; }
+ .guide-content h3 { font-size: 1.0625rem; font-weight: 700; margin-top: 1.75rem; margin-bottom: 0.625rem; }
+ .guide-content p { margin-bottom: 1.125rem; }
+ .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+ .guide-content li { margin-bottom: 0.375rem; }
+ .guide-content strong { font-weight: 600; }
+ .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+ .callout { background: var(--accent-light); border-left: 3px solid var(--accent); padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; font-size: 0.9375rem; margin: 1.25rem 0; }
+ .callout p { margin: 0; }
+ .callout strong { color: var(--accent); }
+ .code-block { background: #000; color: #e2e8f0; font-family: 'Courier New', Courier, monospace; font-size: 0.875rem; line-height: 1.6; padding: 1.25rem 1.5rem; border-radius: 8px; overflow-x: auto; margin: 1.25rem 0; white-space: pre-wrap; }
+ .data-table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.9rem; }
+ .data-table th { background: var(--accent-light); border: 1px solid var(--accent-border); padding: 0.625rem 0.875rem; text-align: left; font-weight: 600; font-size: 0.8125rem; }
+ .data-table td { border: 1px solid #E5E7EB; padding: 0.625rem 0.875rem; vertical-align: top; }
+ .data-table tr:nth-child(even) td { background: #fafafa; }
+ .advisor-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.875rem; margin: 1.5rem 0; }
+ .advisor-card { background: #fff; border: 1px solid var(--accent-border); border-radius: 10px; padding: 1rem 1.125rem; }
+ .advisor-num { font-weight: 700; color: var(--accent); font-size: 0.9375rem; margin-bottom: 0.25rem; }
+ .advisor-name { font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.375rem; }
+ .advisor-q { font-style: italic; font-size: 0.875rem; color: var(--accent); margin-bottom: 0.25rem; }
+ .advisor-desc { font-size: 0.8125rem; color: var(--muted); }
+ @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+     .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+    @page { margin: 1.5cm; } @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .chapter-card, .compare-card, .checklist-card, blockquote { break-inside: avoid; page-break-inside: avoid; } .chapter-overview, .compare-grid, .checklist-grid, .email-flow { break-inside: avoid; page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+ <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+ <div class="logo-divider"></div>
+ <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">← All guides</a>
+ </div>
+</header>
+<div class="guide-hero">
+ <div class="hero-meta">
+ <span class="badge badge-cat">Prompts &amp; Skills</span>
+ <span class="badge badge-diff">Intermediate</span>
+ </div>
+ <h1>The LLM Council Setup Guide</h1>
+ <div class="hero-author">
+ <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+ <div><span class="author-name">Max Johnson</span><span class="author-meta">@maxjohnscn</span></div>
+ </div>
+</div>
+<div class="page-wrap">
+ <article class="guide-content">
+    <button class="download-btn" onclick="downloadPDF()">&#8595; Download PDF</button>
+ <p class="intro-blurb">The exact setup for running five advisors against your hardest questions. No flattery. No agreement. Just genuine pressure testing and a clear final answer.</p>
+ <p><strong>What's inside:</strong></p>
+ <ul>
+ <li>Why Claude (and most LLMs) agree with you too easily</li>
+ <li>The five advisors, Contrarian, First Principles, Expansionist, Outsider, Executor</li>
+ <li>How anonymised peer review removes model bias</li>
+ <li>The full ready-to-paste Council prompt</li>
+ <li>When to use the Council and when it's overkill</li>
+ </ul>
+ <div class="callout"><p><strong>NOTE:</strong> This guide uses Claude, claude.ai or any chat app, as the home for your Council. You don't need code, an API key, or any setup beyond an account.</p></div>
+
+ <h2 id="chapter-01">Chapter 01, Why You Need the Council</h2>
+ <p>Claude is trained to be agreeable. The more confident you sound, the more it agrees. Push back on its answer and it folds. Tell it the plan is good and it tells you the plan is good. Most people are getting bad answers without realising it.</p>
+ <p>Andrej Karpathy, co-founder of OpenAI, built something to fix this. It's called the LLM Council. Instead of one model agreeing with whatever you already think, you set up five advisors with completely different thinking styles and run them all on the same question at the same time. Then they review each other anonymously. Then a chairman gives you a single recommendation.</p>
+ <p><strong>The problem with asking one model:</strong></p>
+ <ul>
+ <li><strong>It agrees with confidence</strong>, State your idea firmly and Claude will reinforce it, even if it's wrong.</li>
+ <li><strong>It mirrors your framing</strong>, If you ask the wrong question, you get a polished version of the wrong answer.</li>
+ <li><strong>It avoids genuine pushback</strong>, Models are trained to be helpful. Helpful and honest are not the same thing.</li>
+ <li><strong>It misses the angles you can't see</strong>, One model has one viewpoint. You need five.</li>
+ </ul>
+
+ <h2 id="chapter-02">Chapter 02, How the Council Works</h2>
+ <p>Three stages. Same chat. Same model. The structure is what creates the result, not the number of LLMs.</p>
+ <ol>
+ <li><strong>Five Advisors Answer</strong>, Claude responds five separate times. Each time it stays fully in character as a different advisor, Contrarian, First Principles, Expansionist, Outsider, Executor. No hedging. No middle ground.</li>
+ <li><strong>Anonymise and Peer Review</strong>, The five answers get relabelled Response A through E and shuffled. Claude then reviews them blind. Which is strongest? Which has the biggest blind spot? What did all five miss?</li>
+ <li><strong>The Chairman Synthesises</strong>, A final voice reads everything and gives you one clear recommendation, the single most important reason behind it, and a concrete next step.</li>
+ </ol>
+ <div class="callout"><p><strong>TIP:</strong> The peer review step is the part most people skip. It's the part that does the real work. Don't run the prompt without it.</p></div>
+
+ <h2 id="chapter-03">Chapter 03, The Five Advisors</h2>
+ <p>Each advisor is a different thinking lens. The point is not to be fair or balanced, it's to commit to a viewpoint completely so the real edges of the question come out.</p>
+ <p><strong>01 The Contrarian</strong>, Looks for what will fail. The most likely failure mode. What you're not seeing. Blunt by design.</p>
+ <p><strong>02 The First Principles Thinker</strong>, Strips away every assumption baked into the question. Rebuilds the problem from scratch. Often the question itself is wrong.</p>
+ <p><strong>03 The Expansionist</strong>, Finds the upside you're missing. The bigger version. The opportunity hiding in the question.</p>
+ <p><strong>04 The Outsider</strong>, Has zero context about your industry. Smart generalist. Catches what insiders take for granted.</p>
+ <p><strong>05 The Executor</strong>, Only cares about Monday morning. Skip the theory. What's the single concrete action and the smallest version that ships this week?</p>
+
+ <!-- VISUAL BLOCK 1, after Chapter 03 -->
+ <div class="advisor-cards">
+ <div class="advisor-card"><div class="advisor-num">01</div><div class="advisor-name">The Contrarian</div><div class="advisor-q">"What will fail?"</div><div class="advisor-desc">Blunt, finds the failure mode</div></div>
+ <div class="advisor-card"><div class="advisor-num">02</div><div class="advisor-name">First Principles</div><div class="advisor-q">"What's actually true?"</div><div class="advisor-desc">Strips assumptions, rebuilds</div></div>
+ <div class="advisor-card"><div class="advisor-num">03</div><div class="advisor-name">The Expansionist</div><div class="advisor-q">"What are you missing?"</div><div class="advisor-desc">The bigger opportunity</div></div>
+ <div class="advisor-card"><div class="advisor-num">04</div><div class="advisor-name">The Outsider</div><div class="advisor-q">"What looks weird from outside?"</div><div class="advisor-desc">Smart generalist, zero context bias</div></div>
+ <div class="advisor-card"><div class="advisor-num">05</div><div class="advisor-name">The Executor</div><div class="advisor-q">"What happens Monday morning?"</div><div class="advisor-desc">One concrete action, ships this week</div></div>
+ </div>
+
+ <h2 id="chapter-04">Chapter 04, The Full Prompt</h2>
+ <p>Open a new Claude chat. Paste this prompt in. Replace the bracketed section at the bottom with your actual question. Send. Claude will do all three stages in one response.</p>
+ <div class="callout"><p><strong>NOTE:</strong> Use Claude's longest-thinking model for best results, Sonnet 4.5 or Opus on Pro. The Council prompt is long and the answer will be longer. Give it room to think.</p></div>
+ <div class="code-block">You are going to act as the LLM Council. I will give
+you a question or decision. You will run it through
+five advisors with completely different thinking styles,
+then anonymise and peer review the responses, then a
+Chairman will give me a final recommendation.
+
+Do all five stages in order. Do not skip ahead. Do not
+summarise as you go.
+
+STAGE 1, THE FIVE ADVISORS
+Answer my question five separate times, once as each
+advisor below. Each advisor must stay fully in character.
+No hedging. No 'on the other hand'. Each one commits
+to their lens completely.
+
+ADVISOR 1, THE CONTRARIAN
+Your only job is to find what will fail. Where does this
+break? What is the user not seeing? What is the most
+likely failure mode? Be blunt.
+
+ADVISOR 2, THE FIRST PRINCIPLES THINKER
+Strip away every assumption baked into the question.
+Rebuild the problem from scratch. What is actually
+being asked underneath the framing? Often the
+question itself is wrong.
+
+ADVISOR 3, THE EXPANSIONIST
+Find the upside the user is missing. What is the bigger
+version of this? What opportunity is hiding inside the
+question they haven't seen yet?
+
+ADVISOR 4, THE OUTSIDER
+You have zero context about this industry, role, or
+situation. Respond as a smart generalist seeing this
+for the first time. What looks weird from the outside?
+What are insiders taking for granted?
+
+ADVISOR 5, THE EXECUTOR
+You only care about Monday morning. Skip the theory.
+What is the single concrete action to take first? What
+is the smallest version of this that can ship this week?
+
+STAGE 2, ANONYMISE AND PEER REVIEW
+Now relabel the five responses as Response A, B, C, D,
+E. Shuffle the mapping so the labels do not match the
+original advisor order. Do not tell me which advisor
+is which.
+
+Then, acting as a neutral reviewer, answer these three
+questions:
+1. Which response is strongest, and why?
+2. Which response has the biggest blind spot, and
+what is it?
+3. What did all five responses miss?
+
+STAGE 3, THE CHAIRMAN
+Now act as the Chairman. Read everything above.
+Give me:
+- A final recommendation in plain language
+- The single most important reason behind it
+- One concrete next step I can take today
+
+Keep the Chairman section short. No more than 200
+words.
+
+MY QUESTION:
+[paste your question here]</div>
+
+ <h2 id="chapter-05">Chapter 05, How to Run It</h2>
+ <p>Five steps from cold start to final recommendation. Total time, around three minutes.</p>
+ <ol>
+ <li><strong>Open a new Claude chat</strong>, Don't use an existing conversation. The Council needs a clean context.</li>
+ <li><strong>Paste the full Council prompt</strong>, All of it. Stages 1, 2 and 3. The advisor instructions are what create the structure.</li>
+ <li><strong>Replace the bracket with your question</strong>, Be specific. 'Should I quit my job and start an agency?' beats 'Career advice please'.</li>
+ <li><strong>Send and let it think</strong>, The full Council response is long. That's the point. Let Claude finish all three stages before you read.</li>
+ <li><strong>Read the Chairman first</strong>, Then go back through the advisor responses to see the reasoning. The Chairman gives you the answer. The advisors show you why.</li>
+ </ol>
+
+ <h2 id="chapter-06">Chapter 06, When to Use It</h2>
+ <table class="data-table">
+ <thead><tr><th>Use it for</th><th>Skip it for</th></tr></thead>
+ <tbody>
+ <tr><td>Big decisions you can't reverse easily</td><td>Quick factual lookups</td></tr>
+ <tr><td>Strategy and direction calls</td><td>Code questions with one right answer</td></tr>
+ <tr><td>Pricing, hiring, positioning</td><td>Editing and tone tweaks</td></tr>
+ <tr><td>Pitch decks and investor docs</td><td>Drafting emails or messages</td></tr>
+ <tr><td>Anything where you need genuine pushback</td><td>Brainstorming when you want quantity</td></tr>
+ <tr><td>Plans you've already convinced yourself of</td><td>Anything that takes under a minute to decide</td></tr>
+ </tbody>
+ </table>
+ <div class="callout"><p><strong>TIP:</strong> If you find yourself re-asking Claude the same question hoping for a different answer, that's the signal. Stop, open a new chat, and run the Council instead.</p></div>
+
+ <h2 id="chapter-07">Chapter 07, Karpathy's Multi-Model Version</h2>
+ <p>The version above runs entirely inside Claude. It works because the structure does the heavy lifting. But Karpathy's original Council uses different models, GPT, Claude, Gemini, Grok, running in parallel.</p>
+ <p><strong>Karpathy's llm-council Repo: github.com/karpathy/llm-council</strong></p>
+ <ol>
+ <li>Get an OpenRouter API key at openrouter.ai. OpenRouter is a single API that gives you access to GPT, Claude, Gemini, Grok and more.</li>
+ <li>Clone the repo: <code>git clone github.com/karpathy/llm-council</code>. The project uses uv for Python package management.</li>
+ <li>Configure your council. In backend/config.py, set the council members and the chairman model. Default is GPT, Claude, Gemini and Grok with Gemini as chairman.</li>
+ <li>Run it locally. It's a local web app, Python backend, React frontend. Open it in your browser and ask away.</li>
+ </ol>
+ <div class="callout"><p><strong>NOTE:</strong> Karpathy described it as a weekend hack. It's not a polished product. The Claude-only prompt version covers 95% of the value with none of the setup.</p></div>
+ </article>
+ <aside class="toc-sidebar">
+ <div class="toc-box">
+ <h3>Chapters</h3>
+ <ol>
+ <li><a href="#chapter-01">Why You Need the Council</a></li>
+ <li><a href="#chapter-02">How It Works</a></li>
+ <li><a href="#chapter-03">The Five Advisors</a></li>
+ <li><a href="#chapter-04">The Full Prompt</a></li>
+ <li><a href="#chapter-05">How to Run It</a></li>
+ <li><a href="#chapter-06">When to Use It</a></li>
+ <li><a href="#chapter-07">Multi-Model Version</a></li>
+ </ol>
+ </div>
+ </aside>
+</div>
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+<script>
+function downloadPDF() {
+  window.print();
+}
+</script>
+</body>
+</html>

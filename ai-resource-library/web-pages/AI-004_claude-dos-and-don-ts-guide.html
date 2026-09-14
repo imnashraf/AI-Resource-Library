@@ -1,0 +1,226 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>The Full Claude Dos and Don'ts</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✦%3C/text%3E%3C/svg%3E">
+ <style>
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ :root {
+ --accent: #1A7A6A;
+ --accent-indigo: #6366F1;
+ --accent-light: #E8F5F3;
+ --accent-border: #9FD5CE;
+ --text: #000000;
+ --muted: #6B7280;
+ --bg: #FFFFFF;
+ --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+ --card-gradient: linear-gradient(160deg, #E8F5F3 0%, #FFFFFF 100%);
+ --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+ --shadow-hover: 0 8px 24px rgba(26,122,106,0.12), 0 2px 8px rgba(0,0,0,0.08);
+ --shadow-hard: 4px 4px 0px #000000;
+ --radius: 12px;
+ --header-height: 64px;
+ }
+ html { scroll-behavior: smooth; }
+ body { font-family: 'Montserrat', sans-serif; background: #F5F1EA; color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; font-size: 1rem; }
+ .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid transparent; height: var(--header-height); display: flex; align-items: center; padding: 0 2rem; transition: border-color 0.2s; }
+ .header.scrolled { border-color: var(--accent-border); }
+ .header-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; }
+ .logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+ .logo img { height: 36px; width: 36px; display: block; border-radius: 50%; object-fit: cover; }
+ .logo-divider { width: 1px; height: 20px; background: var(--accent-border); flex-shrink: 0; }
+ .logo-subtitle { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+ a.logo-subtitle:hover { color: var(--accent); }
+ .back-btn { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--text); text-decoration: none; padding: 0.375rem 0.875rem; border: 1.5px solid var(--text); border-radius: 9999px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+ .back-btn:hover { color: #fff; background: var(--text); transform: translate(-2px, -2px); box-shadow: 3px 3px 0px var(--accent); }
+ .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+ @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .toc-sidebar { display: none; } }
+ .guide-hero { padding: 3.5rem 2rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+ .hero-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+ .badge { display: inline-block; padding: 0.2rem 0.625rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+ .badge-cat { background: var(--accent); color: #fff; }
+ .badge-diff { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
+ .guide-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+ .hero-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+ .author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid var(--accent-border); }
+ .author-name { display: block; font-weight: 600; font-size: 0.875rem; color: var(--text); }
+ .author-meta { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+ .toc-sidebar { position: sticky; top: 80px; padding-top: 2rem; }
+ .toc-box { background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: 10px; padding: 1.25rem; }
+ .toc-box h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.875rem; }
+ .toc-box ol { list-style: none; counter-reset: toc; }
+ .toc-box li { counter-increment: toc; margin-bottom: 0.375rem; }
+ .toc-box a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 0.15s; display: flex; gap: 0.5rem; line-height: 1.5; }
+ .toc-box a::before { content: counter(toc, decimal-leading-zero); color: var(--accent-border); font-weight: 600; font-size: 0.6875rem; flex-shrink: 0; padding-top: 0.1em; }
+ .toc-box a:hover { color: var(--accent); }
+ .guide-content { padding: 2rem 0 5rem; }
+ .guide-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid #F3F4F6; }
+ .guide-content h2:first-child { border-top: none; margin-top: 0; }
+ .guide-content h3 { font-size: 1.125rem; font-weight: 600; margin-top: 1.75rem; margin-bottom: 0.75rem; }
+ .guide-content p { margin-bottom: 1.125rem; }
+ .guide-content ul, .guide-content ol { padding-left: 1.5rem; margin-bottom: 1.125rem; }
+ .guide-content li { margin-bottom: 0.375rem; }
+ .guide-content strong { font-weight: 600; }
+ .intro-blurb { font-size: 1.0625rem; color: var(--muted); border-left: 3px solid var(--accent-border); padding-left: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
+ .callout { background: var(--accent-light); border-left: 3px solid var(--accent); padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; font-size: 0.9375rem; margin: 1.25rem 0; }
+ .callout p { margin: 0; }
+ .callout strong { color: var(--accent); }
+ .code-block { background: #000; color: #fff; font-family: 'Courier New', Courier, monospace; font-size: 0.875rem; line-height: 1.6; padding: 1.25rem 1.5rem; border-radius: 8px; overflow-x: auto; margin: 1.25rem 0; }
+ .code-block code { background: none; color: inherit; }
+
+ /* Chapter grid visual block */
+ .chapter-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin: 1.5rem 0; }
+ @media (max-width: 640px) { .chapter-grid { grid-template-columns: repeat(2, 1fr); } }
+ .chapter-card { background: #fff; border: 1.5px solid #E5E7EB; border-radius: 8px; padding: 0.875rem 1rem; }
+ .chapter-card .ch-num { font-size: 0.75rem; font-weight: 700; color: var(--accent); letter-spacing: 0.04em; margin-bottom: 0.2rem; }
+ .chapter-card .ch-name { font-size: 0.875rem; font-weight: 600; color: var(--text); }
+
+ @media (max-width: 640px) { .guide-hero { padding: 2rem 1rem 1.5rem; } .page-wrap { padding: 0 1rem; } .guide-hero h1 { font-size: 1.75rem; } .header { height: auto; padding: 0.75rem 1rem 0; } .header-inner { flex-wrap: wrap; } .logo-subtitle { flex: 1; } .nav-agent-link { margin-left: 0; } .back-btn { margin-left: 0; } .nav-agent-link, .back-btn { flex: 1; text-align: center; font-size: 0.6875rem; padding: 0.375rem 0.5rem; margin-top: 0.5rem; margin-bottom: 0.625rem; white-space: normal; min-width: 0; line-height: 1.3; } }
+     .download-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.875rem; color: #fff; background: #1A7A6A; border: 2px solid #000; border-radius: 9999px; padding: 0.5rem 1.25rem; cursor: pointer; margin-bottom: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .download-btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0px #000; }
+    @page { margin: 1.5cm; } @media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } .header, .toc-sidebar, .download-btn, .back-btn, .hero-author, .logo-divider { display: none !important; } .page-wrap, .guide-layout, .content-layout { display: block !important; } .guide-content { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; } .guide-hero { padding: 1rem 0 !important; } body { background: #F5F1EA !important; } h2, h3 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; } p { orphans: 3; widows: 3; } pre, .callout, .chapter-card, .compare-card, .checklist-card, blockquote { break-inside: avoid; page-break-inside: avoid; } .chapter-overview, .compare-grid, .checklist-grid, .email-flow { break-inside: avoid; page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+<header class="header" id="site-header">
+ <div class="header-inner">
+ <a href="https://www.instagram.com/maxjohnscn/?hl=en" target="_blank" rel="noopener noreferrer" class="logo"><img src="assets/Headshot.jpg.JPG.jpeg" alt=""></a>
+ <div class="logo-divider"></div>
+ <a href="index.html" class="logo-subtitle">Max's AI Resource Library</a>
+  <a href="index.html" class="back-btn">← All guides</a>
+ </div>
+</header>
+
+<div class="guide-hero">
+ <div class="hero-meta">
+ <span class="badge badge-cat">Getting Started</span>
+ <span class="badge badge-diff">Beginner to Advanced</span>
+ </div>
+ <h1>The Full Claude Dos and Don'ts</h1>
+ <div class="hero-author">
+ <img src="assets/Headshot.jpg.JPG.jpeg" alt="Max Johnson" class="author-avatar">
+ <div>
+ <span class="author-name">Max Johnson</span>
+ <span class="author-meta">@maxjohnscn</span>
+ </div>
+ </div>
+</div>
+
+<div class="page-wrap">
+ <article class="guide-content">
+    <button class="download-btn" onclick="downloadPDF()">&#8595; Download PDF</button>
+ <p class="intro-blurb">Everything I've learned from 400+ hours inside Claude. The habits that separate people who get real work out of it from people who use it like a search engine.</p>
+
+ <p><strong>What's inside:</strong></p>
+ <ul>
+ <li>Why Projects change your output quality overnight</li>
+ <li>How to write instructions Claude actually follows</li>
+ <li>The memory system most people don't know exists</li>
+ <li>Skills, connectors, and the LLM Council explained</li>
+ <li>How to treat Claude as infrastructure, not a toy</li>
+ </ul>
+
+ <h2 id="introduction">Introduction, The setup is the difference.</h2>
+ <p>Most people use about 5% of what Claude can do. They type a question, get an answer, close the tab. Then they wonder why everyone online is getting results they're not.</p>
+ <p>The model isn't the difference. The setup is.</p>
+ <p>I've spent over 400 hours building with Claude. Running my agency on it. Automating client work. Drafting content, reports, proposals, the lot. This is the list I wish someone had handed me on day one. Every do has a matching don't. Follow it and you'll get more out of Claude in a week than most people get in a year.</p>
+ <p>No theory. Just the habits that actually matter.</p>
+
+ <!-- VISUAL BLOCK 1 -->
+ <div class="chapter-grid">
+ <div class="chapter-card"><div class="ch-num">01</div><div class="ch-name">Context</div></div>
+ <div class="chapter-card"><div class="ch-num">02</div><div class="ch-name">Instructions</div></div>
+ <div class="chapter-card"><div class="ch-num">03</div><div class="ch-name">Memory</div></div>
+ <div class="chapter-card"><div class="ch-num">04</div><div class="ch-name">Skills</div></div>
+ <div class="chapter-card"><div class="ch-num">05</div><div class="ch-name">Connectors</div></div>
+ <div class="chapter-card"><div class="ch-num">06</div><div class="ch-name">Decisions</div></div>
+ <div class="chapter-card"><div class="ch-num">07</div><div class="ch-name">Automation</div></div>
+ <div class="chapter-card"><div class="ch-num">08</div><div class="ch-name">Plans &amp; Models</div></div>
+ <div class="chapter-card"><div class="ch-num">09</div><div class="ch-name">Mindset</div></div>
+ </div>
+
+ <h2 id="chapter-01-context">Chapter 01, Context</h2>
+ <p><strong>DON'T</strong>, Don't start every chat from a cold start. Every new conversation with no context starts from zero. Claude has no idea who you are, what your business does, or how you want things written. You end up re-explaining yourself every single time.</p>
+ <p><strong>DO</strong>, Build Projects for everything you do regularly. A Project is a persistent workspace with its own instructions and uploaded files. I have separate ones for content, client work, product, and admin. Each one already knows the context before I type a word. The output quality difference is night and day.</p>
+ <p><strong>DO</strong>, Upload your knowledge files into each Project. Brand guide. SOPs. Examples of writing you like. Pricing. Claude reads them when relevant. The more it has, the less you have to explain.</p>
+
+ <h2 id="chapter-02-instructions">Chapter 02, Instructions</h2>
+ <p><strong>DON'T</strong>, Don't give Claude vague instructions. "Write in a casual tone" is useless. It could mean anything. You'll get generic output and blame the model.</p>
+ <p><strong>DO</strong>, Write specific rules. Sentence length limits. Banned phrases. British English. Real examples of writing you like, pasted straight in. "Write like you're telling a mate something you found, short sentences, no hype" beats "be casual" every time.</p>
+ <p><strong>DO</strong>, Tell Claude what NOT to do. Banning patterns is often stronger than describing what you want. "Never use em dashes. Never open with 'In today's world'. No bullet points unless I ask." That single instruction removes most of the obvious AI tells.</p>
+
+ <h2 id="chapter-03-memory">Chapter 03, Memory</h2>
+ <p><strong>DON'T</strong>, Don't wait for Claude to figure you out passively. Memory works in the background and learns over time. But if you leave it to chance, it takes ages to build a useful picture of you.</p>
+ <p><strong>DO</strong>, Teach it directly. "Remember I run an AI agency in Manchester." "Remember I prefer British English." Say "remember this" and it stores it. Say "forget this" and it drops it. You're in control.</p>
+ <p><strong>DO</strong>, Set your User Preferences. A short paragraph in Settings about how you want Claude to behave. Tone, formatting, expertise level. It applies everywhere, across every chat. Memory is global. Project instructions are specific. Use both.</p>
+
+ <h2 id="chapter-04-skills">Chapter 04, Skills</h2>
+ <p><strong>DON'T</strong>, Don't re-explain your process every time. If you find yourself pasting the same framework or instructions into chat after chat, you're wasting time Claude could be saving you.</p>
+ <p><strong>DO</strong>, Install Skills and build your own. A Skill is a packaged set of instructions that teaches Claude how to handle a specific task. Teach it once, benefit every time. The five worth installing now: frontend design, document creation (docx), PDF, spreadsheets (xlsx), presentations (pptx). The output jump on each is immediate.</p>
+ <p><strong>DO</strong>, Add to them constantly. Every time Claude gets something slightly wrong, feed the fix back into the Skill as a rule. Specific in, specific out. That's the whole game.</p>
+
+ <h2 id="chapter-05-connectors">Chapter 05, Connectors</h2>
+ <p><strong>DON'T</strong>, Don't treat Claude as a chatbot that lives in a tab. Copying information between Claude and your other apps by hand defeats the point. That's manual work you've just moved, not removed.</p>
+ <p><strong>DO</strong>, Connect it to your actual tools. MCP connectors plug Claude into Gmail, Calendar, Drive, Notion, Slack, and more. Once connected it reads your real data and takes action inside those tools. "Check my calendar for tomorrow." "Draft a reply to that email." It handles the coordination.</p>
+ <p><strong>DO</strong>, Know the boundary. Claude only uses connectors when you ask. It's not watching your inbox. And on Gmail it drafts but doesn't send. You approve every send. That's deliberate.</p>
+
+ <h2 id="chapter-06-decisions">Chapter 06, Decisions</h2>
+ <p><strong>DON'T</strong>, Don't let Claude just agree with you. Claude is trained to be helpful. The more confident you sound, the more it agrees. Push back and it folds. Helpful and honest are not the same thing, and most people are getting reassurance dressed up as advice.</p>
+ <p><strong>DO</strong>, Run the LLM Council on big calls. Five advisors, different thinking styles, same question. Contrarian, First Principles, Expansionist, Outsider, Executor. Then they peer review each other blind. Then a chairman gives you one clear recommendation. Use it for pricing, hiring, positioning, anything you can't easily reverse. Skip it for quick lookups and email drafts.</p>
+ <p><strong>DO</strong>, Notice the signal. If you're re-asking Claude the same question hoping for a different answer, stop. Open a new chat. Run the Council instead.</p>
+
+ <h2 id="chapter-07-automation">Chapter 07, Automation</h2>
+ <p><strong>DON'T</strong>, Don't draft repetitive work by hand. Lead replies. Meeting recaps. Weekly reports. If you're doing the same shaped task over and over, you're the bottleneck, not the work.</p>
+ <p><strong>DO</strong>, Build scheduled tasks in Claude Code. A task that checks Gmail hourly, drafts a reply to each new lead in your voice, and saves it to drafts. Thirty seconds per lead to review and send. A Monday morning task that pulls your data, writes the client report, and drafts the email before you open your laptop. I get roughly two working days back a week from three of these.</p>
+ <p><strong>DO</strong>, Budget the tuning week. Week one the drafts sound slightly off. That's normal. Edit them, note why, feed the reason back into the file. By week three it sounds like you wrote it. Nothing good in AI automation works perfectly on day one. Build it, break it, fix it, tune it.</p>
+
+ <h2 id="chapter-08-plans-and-models">Chapter 08, Plans and Models</h2>
+ <p><strong>DON'T</strong>, Don't assume you need to spend big to start. Most of this works on the free plan. You don't need to pay anything to test Projects, Memory, and connectors.</p>
+ <p><strong>DO</strong>, Upgrade when you hit the limit, not before. Pro is around $20 a month and unlocks Projects, the latest models, and far more messages. If you're using Claude for real work it pays for itself in the first week. Once your automations run at volume you may outgrow it. Max comes in two tiers, $100 (5x usage) and $200 (20x). Move up only when Pro genuinely starts stalling you.</p>
+ <p><strong>DO</strong>, Use the strongest model for the job. Use the latest Opus for hard reasoning, long documents, and anything where the writing has to land. Lighter models are fine for routine drafting and data pulls inside automations. Match the model to the task.</p>
+
+ <h2 id="chapter-09-the-mindset">Chapter 09, The Mindset</h2>
+ <p><strong>DON'T</strong>, Don't use Claude as a toy. Asking it for the odd answer here and there is fine. But that's a fraction of what it does, and it's the difference between someone who plays with AI and someone who runs on it.</p>
+ <p><strong>DO</strong>, Treat it as infrastructure. Projects for context. Memory for preferences. Skills for process. Connectors for action. Council for decisions. Scheduled tasks for the repetitive stuff. Set up properly, Claude stops being a thing you open and becomes the layer your work runs through.</p>
+ <p>The full stack: Projects · Memory · Skills · Connectors · LLM Council · Scheduled Tasks. Each one multiplies the others. None of them are hard to set up. All of them are ignored by most people.</p>
+
+ <h2 id="now-go-do-it">Now Go Do It.</h2>
+ <p>Most people who read a guide like this never actually set anything up. Don't be that person.</p>
+ <p>Open Claude. Build one Project today. Write your User Preferences. Connect Gmail. Ten minutes. The gap between you now and you in a week with a properly set up Claude is genuinely significant.</p>
+ </article>
+ <aside class="toc-sidebar">
+ <div class="toc-box">
+ <h3>Contents</h3>
+ <ol>
+ <li><a href="#introduction">Introduction</a></li>
+ <li><a href="#chapter-01-context">Context</a></li>
+ <li><a href="#chapter-02-instructions">Instructions</a></li>
+ <li><a href="#chapter-03-memory">Memory</a></li>
+ <li><a href="#chapter-04-skills">Skills</a></li>
+ <li><a href="#chapter-05-connectors">Connectors</a></li>
+ <li><a href="#chapter-06-decisions">Decisions</a></li>
+ <li><a href="#chapter-07-automation">Automation</a></li>
+ <li><a href="#chapter-08-plans-and-models">Plans and Models</a></li>
+ <li><a href="#chapter-09-the-mindset">The Mindset</a></li>
+ <li><a href="#now-go-do-it">Now Go Do It</a></li>
+ </ol>
+ </div>
+ </aside>
+</div>
+
+<script>
+ const h = document.getElementById('site-header');
+ window.addEventListener('scroll', () => h.classList.toggle('scrolled', window.scrollY > 8));
+</script>
+<script>
+function downloadPDF() {
+  window.print();
+}
+</script>
+</body>
+</html>
